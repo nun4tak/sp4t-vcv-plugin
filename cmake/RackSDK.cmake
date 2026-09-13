@@ -106,10 +106,10 @@ endif ()
 
 # ---------------------------------------------------------- compile.mk -------
 
-# Rack for DAWs loads plugins as shared objects, so everything needs -fPIC, and
-# plugin symbols must not leak into the host.
-add_compile_options(-fPIC -fvisibility=hidden
-                    $<$<COMPILE_LANGUAGE:CXX>:-fvisibility-inlines-hidden>)
+# Rack for DAWs loads plugins as shared objects, so everything needs -fPIC.
+# Keep default symbol visibility, as the SDK plugin.mk does: Rack looks up the
+# plugin callbacks (init(), ...) by name, which fails if they are hidden.
+add_compile_options(-fPIC)
 # Debugger symbols. These are removed by `strip` in the dist target.
 add_compile_options(-g)
 add_compile_options(${_rack_march})
@@ -177,6 +177,14 @@ set_target_properties(${RACK_PLUGIN_LIB} PROPERTIES
 if (APPLE)
   set_target_properties(${RACK_PLUGIN_LIB} PROPERTIES SUFFIX ".dylib")
   target_link_options(${RACK_PLUGIN_LIB} PRIVATE -undefined dynamic_lookup)
+  # The SDK's libRack.dylib has the bare install name "libRack.dylib", which dyld
+  # can't resolve. Rack symlinks /tmp/Rack2 to its system dir at startup, so load
+  # libRack through it. Done on the built library (not only in dist), so that the
+  # build and install outputs are loadable too; re-sign after the edit.
+  add_custom_command(TARGET ${RACK_PLUGIN_LIB} POST_BUILD
+      COMMAND install_name_tool -change libRack.dylib /tmp/Rack2/libRack.dylib $<TARGET_FILE:${RACK_PLUGIN_LIB}>
+      COMMAND codesign -f -s - $<TARGET_FILE:${RACK_PLUGIN_LIB}>
+      COMMENT "Resolving libRack.dylib through /tmp/Rack2")
 endif ()
 
 # ------------------------------------------------ distributables (dist) ------
@@ -187,15 +195,20 @@ message(STATUS "PLUGIN_DISTRIBUTABLES: ${PLUGIN_DISTRIBUTABLES}")
 
 # Mirror the distributables next to the built library, so ${_rack_plugin_dir} is
 # a ready-to-load Rack plugin directory. Refreshed on every build, since panel
-# SVGs and plugin.json change more often than the code.
+# SVGs and plugin.json change more often than the code: custom targets are always
+# out of date, unlike POST_BUILD steps of the library that only run on relink.
+set(RACK_PLUGIN_DISTRIBUTABLES_TARGET ${RACK_PLUGIN_LIB}_distributables)
+add_custom_target(${RACK_PLUGIN_DISTRIBUTABLES_TARGET} ALL)
+add_dependencies(${RACK_PLUGIN_DISTRIBUTABLES_TARGET} ${RACK_PLUGIN_LIB})
+
 foreach (_item IN LISTS PLUGIN_DISTRIBUTABLES)
   if (IS_DIRECTORY "${CMAKE_SOURCE_DIR}/${_item}")
-    add_custom_command(TARGET ${RACK_PLUGIN_LIB} POST_BUILD
+    add_custom_command(TARGET ${RACK_PLUGIN_DISTRIBUTABLES_TARGET} POST_BUILD
         COMMAND "${CMAKE_COMMAND}" -E copy_directory
                 "${CMAKE_SOURCE_DIR}/${_item}" "${_rack_plugin_dir}/${_item}"
         COMMENT "Copying ${_item} into ${PLUGIN_NAME}/")
   else ()
-    add_custom_command(TARGET ${RACK_PLUGIN_LIB} POST_BUILD
+    add_custom_command(TARGET ${RACK_PLUGIN_DISTRIBUTABLES_TARGET} POST_BUILD
         COMMAND "${CMAKE_COMMAND}" -E copy_if_different
                 "${CMAKE_SOURCE_DIR}/${_item}" "${_rack_plugin_dir}/"
         COMMENT "Copying ${_item} into ${PLUGIN_NAME}/")
@@ -204,7 +217,7 @@ endforeach ()
 
 # Drop excluded paths from the plugin dir, and thus from install and dist too.
 foreach (_item IN LISTS PLUGIN_DISTRIBUTABLES_EXCLUDE)
-  add_custom_command(TARGET ${RACK_PLUGIN_LIB} POST_BUILD
+  add_custom_command(TARGET ${RACK_PLUGIN_DISTRIBUTABLES_TARGET} POST_BUILD
       COMMAND "${CMAKE_COMMAND}" -E rm -rf "${_rack_plugin_dir}/${_item}"
       COMMENT "Excluding ${_item} from ${PLUGIN_NAME}/")
 endforeach ()
@@ -215,7 +228,7 @@ install(DIRECTORY "${_rack_plugin_dir}" DESTINATION ".")
 
 set(STABLE_PLUGIN_BUILD_TARGET build_plugin)
 add_custom_target(${STABLE_PLUGIN_BUILD_TARGET})
-add_dependencies(${STABLE_PLUGIN_BUILD_TARGET} ${RACK_PLUGIN_LIB})
+add_dependencies(${STABLE_PLUGIN_BUILD_TARGET} ${RACK_PLUGIN_DISTRIBUTABLES_TARGET})
 
 # Quick development install: library and manifest only, no resources.
 add_custom_target(${STABLE_PLUGIN_BUILD_TARGET}_quick_install
@@ -243,14 +256,15 @@ else ()
               "${_rack_plugin_dir}" "${_rack_dist_dir}/${PLUGIN_NAME}"
       WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
       COMMENT "Packaging ${_rack_package}")
-  add_dependencies(plugin_dist ${RACK_PLUGIN_LIB})
+  add_dependencies(plugin_dist ${RACK_PLUGIN_DISTRIBUTABLES_TARGET})
 
   set(_rack_dist_lib "${_rack_dist_dir}/${PLUGIN_NAME}/$<TARGET_FILE_NAME:${RACK_PLUGIN_LIB}>")
   if (APPLE)
-    # Rack resolves libRack.dylib through the /tmp/Rack2 symlink at load time.
+    # libRack.dylib already resolves through /tmp/Rack2 (see the plugin target).
+    # Stripping invalidates the signature (expected, hence the silenced warning),
+    # so re-sign.
     add_custom_command(TARGET plugin_dist POST_BUILD
-        COMMAND strip -S "${_rack_dist_lib}"
-        COMMAND install_name_tool -change libRack.dylib /tmp/Rack2/libRack.dylib "${_rack_dist_lib}"
+        COMMAND strip -no_code_signature_warning -S "${_rack_dist_lib}"
         COMMAND codesign -f -s - "${_rack_dist_lib}")
   else ()
     add_custom_command(TARGET plugin_dist POST_BUILD

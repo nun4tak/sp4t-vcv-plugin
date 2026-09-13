@@ -1,7 +1,7 @@
 {
   "slug": "Nun4tak-SP4T",
   "name": "Nun4tak SP4T modules",
-  "version": "0.1.0",
+  "version": "2.0.1",
   "license": "freeware",
   "brand": "Nun4tak",
   "author": "Benoit Bovy",
@@ -16,9 +16,9 @@
     {
       "slug": "SP4T-Stereo-In",
       "name": "SP4T Stereo In",
-      "description": "Ambisonics Stereo Encoder",
+      "description": "Ambisonic Stereo Encoder",
       "manualUrl": "",
-        "tags": ["Spatial Audio", "3D", "Ambisonics", "Encoder", "Panner"]
+        "tags": ["Utility", "Polyphonic", "Panning"]
     }      
   ]
 }
