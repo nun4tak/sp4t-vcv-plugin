@@ -13,9 +13,9 @@ SAF's `framework/CMakeLists.txt` always builds a universal `arm64;x86_64`
 binary on macOS, and (when `SAF_ENABLE_SIMD` is enabled) applies a single
 `-march=native` to both architecture slices. `-march=native` targets only the
 host CPU, so it breaks compilation of whichever slice isn't the host
-architecture. Worse, SAF's SIMD fallback path only has x86 (SSE/AVX)
+architecture. Also, SAF's SIMD fallback path only has x86 (SSE/AVX)
 intrinsics implemented — there is no NEON equivalent — so `SAF_ENABLE_SIMD`
-can never be valid while compiling the arm64 slice at all, regardless of
+can never be valid while compiling the arm64 slice, regardless of
 `-march`.
 
 [`spatial-audio-framework-universal-simd.patch`](spatial-audio-framework-universal-simd.patch)
@@ -28,10 +28,8 @@ library.
 
 ### How to apply it
 
-The patch is already applied to the checked-in submodule commit, so nothing
-needs to be done for a normal build. It only needs to be re-applied if the
-submodule is updated to a newer upstream commit (e.g. via
-`git submodule update --remote`), which would drop the local patch:
+If the submodule is updated to a newer upstream commit (e.g. via `git submodule
+update --remote`), try re-apply the patch:
 
 ```sh
 cd SDKs/Spatial_Audio_Framework
