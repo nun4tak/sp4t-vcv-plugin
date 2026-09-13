@@ -1,0 +1,11 @@
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+.envrc
+
+# SDKs packages (not submodules)
+SDKs/Rack-SDK
+
+# CMake / Make build output
+build/
+dist/

@@ -1,0 +1,42 @@
+cmake_minimum_required(VERSION 3.19)
+
+# Must be set before project(); Rack plugins target 10.9 (see the SDK compile.mk).
+set(CMAKE_OSX_DEPLOYMENT_TARGET "10.9" CACHE STRING "Minimum macOS deployment version")
+
+# The slug and version are single-sourced from the plugin manifest.
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/plugin.json" _manifest)
+string(JSON PLUGIN_SLUG GET "${_manifest}" slug)
+string(JSON PLUGIN_VERSION GET "${_manifest}" version)
+
+project(${PLUGIN_SLUG} VERSION ${PLUGIN_VERSION} LANGUAGES C CXX)
+
+# Rack requires the plugin directory to be named after the slug.
+set(PLUGIN_NAME ${PLUGIN_SLUG})
+
+# The SDK is vendored under SDKs; override with -DRACK_SDK_DIR=<path>.
+set(RACK_SDK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/SDKs/Rack-SDK"
+    CACHE PATH "Path to the VCV Rack SDK")
+
+# Spatial Audio Framework
+#
+# Configured and added *before* RackSDK.cmake: RackSDK.cmake sets plugin-only
+# compiler flags (notably -march for the Rack plugin's single target arch) via
+# add_compile_options(), which is directory-scoped and would otherwise leak
+# into SAF's build. SAF itself always targets a universal arm64+x86_64 binary
+# on macOS, so an inherited arm64-only -march flag breaks its x86_64 slice.
+set(SAF_BUILD_TESTS OFF CACHE BOOL "Build SAF unit tests.")
+set(SAF_BUILD_EXAMPLES OFF CACHE BOOL "Build SAF examples.")
+set(SAF_ENABLE_SIMD ON CACHE BOOL "Enable the use of SSE3, AVX2, AVX512")
+add_subdirectory(SDKs/Spatial_Audio_Framework)
+
+# Rack SDK
+include(cmake/RackSDK.cmake)
+
+# Files shipped inside the plugin directory besides plugin.json, res/ and LICENSE*.
+set(ADDITIONAL_PLUGIN_DISTRIBUTABLES "")
+
+target_sources(${RACK_PLUGIN_LIB} PRIVATE
+    src/plugin.cpp
+    src/SP4TStereoIn.cpp)
+
+target_link_libraries(${RACK_PLUGIN_LIB} PRIVATE saf)

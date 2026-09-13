@@ -1,0 +1,16 @@
+[workspace]
+authors = ["Benoit Bovy"]
+channels = ["conda-forge"]
+name = "nun4tak-vcv"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+configure = { cmd = "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release", description = "Configure the CMake build in build/" }
+build = { cmd = "cmake --build build", depends-on = ["configure"], description = "Build the plugin into build/Nun4tak/" }
+dist = { cmd = "cmake --build build --target plugin_dist", depends-on = ["configure"], description = "Package a .vcvplugin into build/dist/" }
+install = { cmd = "cmake --install build", depends-on = ["build"], description = "Install the plugin into the Rack user plugin folder" }
+clean = { cmd = "cmake -E rm -rf build", description = "Remove the build directory" }
+
+[dependencies]
+cmake = ">=4.3.4,<5"
