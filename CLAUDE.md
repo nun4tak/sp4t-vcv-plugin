@@ -26,6 +26,8 @@ channels correspond to:
 - 3rd channel: top-down component (Z axis)
 - 4th channel: front-rear component (X axis)
 
+Follow VCV-Rack's standard conventions for voltages, as described in https://vcvrack.com/manual/VoltageStandards.
+
 The module audio processing kernels are implemented with the help of the
 "Spatial Audio Framework" (SAF):
 
@@ -49,7 +51,7 @@ Notes on the general design of the module panels (SVG files):
 - Follow the recommandations here: https://vcvrack.com/manual/Panel, with some exceptions:
   - Do not convert any text or font into paths when generating or editing SVG files. Keep them as objects so these can be edited manually if needed
   - Do not use any color gradient nor fancy patterns
-- Keep the panel design clear and minimal
+- Keep the panel design clear, minimal and elegant. Light background is silver and black background is dark-grey. Use flat and matte design. Use colors inspired by the Ayu theme (https://ayutheme.com/). Avoid using too much colors on the panel.
 - At the top of the panel, add the name of the module. Just below the name, add a very brief one-line description (3-4 words maximum) if there's enough room.
 - At the bottom of the panel add "\nu.na.tak\" with small sized font.
 - For the panel components, reuse (for now) Rack's Component Library graphics
