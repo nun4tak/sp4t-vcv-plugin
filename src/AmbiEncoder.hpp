@@ -42,9 +42,8 @@ struct AmbiEncoder {
 
 	/** Sets the direction of a source, in degrees.
 	 *
-	 * Azimuth is anticlockwise from the front (+x) toward the left (+y) and
-	 * elevation is upward (+z). Elevations beyond +/-90 degrees go over the
-	 * pole and are wrapped accordingly.
+	 * Azimuth is anticlockwise from the front (+x) toward the left (+y) and is
+	 * wrapped to [-180, 180]. Elevation is upward (+z) and clamped to [-90, 90].
 	 */
 	void setSourceDirection(int index, float azimuth, float elevation);
 

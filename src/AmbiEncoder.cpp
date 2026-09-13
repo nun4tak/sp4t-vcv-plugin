@@ -70,16 +70,8 @@ void AmbiEncoder::setSourceDirection(int index, float azimuth, float elevation) 
 	if (index < 0 || index >= maxNumSources)
 		return;
 
-	elevation = wrapDegrees(elevation);
-	if (elevation > 90.f) {
-		elevation = 180.f - elevation;
-		azimuth += 180.f;
-	}
-	else if (elevation < -90.f) {
-		elevation = -180.f - elevation;
-		azimuth += 180.f;
-	}
 	azimuth = wrapDegrees(azimuth);
+	elevation = std::min(std::max(elevation, -90.f), 90.f);
 
 	float* direction = &directions[2 * index];
 	if (direction[0] != azimuth || direction[1] != elevation) {

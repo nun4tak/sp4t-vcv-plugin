@@ -44,6 +44,7 @@ Notes on the name of the modules:
 - All modules of this plugin have the same "SP4T" prefix.
 - The name of the module in the C++ source is like "SP4TModuleName" where
   ModuleName is in PascalCase
+- The module slug in `plugin.json` is obtained by converting PascalCase above with hyphens, e.g., "SP4T-Module-Name"
 - The name of the module shown on the panel (SVG file) and in any documentation is obtained by converting PascalCase above with spaces, e.g., "SP4T Module Name"
 
 Notes on the general design of the module panels (SVG files):

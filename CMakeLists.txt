@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.19)
 
-# Must be set before project(); Rack plugins target 10.9 (see the SDK compile.mk).
-set(CMAKE_OSX_DEPLOYMENT_TARGET "10.9" CACHE STRING "Minimum macOS deployment version")
+# Must be set before project(). Rack plugins target 10.9 (see the SDK compile.mk),
+# but SAF forces macOS 12.0 (and uses macOS 12 Accelerate APIs), so match it.
+set(CMAKE_OSX_DEPLOYMENT_TARGET "12.0" CACHE STRING "Minimum macOS deployment version")
 
 # The slug and version are single-sourced from the plugin manifest.
 file(READ "${CMAKE_CURRENT_SOURCE_DIR}/plugin.json" _manifest)

@@ -22,7 +22,7 @@ unzip -d SDKs Rack-SDK.zip
 
 ```sh
 pixi run configure   # cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-pixi run build       # cmake --build build
+pixi run build       # cmake --build build --parallel 4
 pixi run install     # cmake --install build
 pixi run dist        # cmake --build build --target plugin_dist
 pixi run clean       # cmake -E rm -rf build

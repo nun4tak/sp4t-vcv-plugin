@@ -20,14 +20,14 @@ as an attenuverter of the CV input for that angle.
 - Width: 6 HP
 - 3 Knobs
   - azimuth (-180 to 180 degrees, default 0 degrees)
-  - elevation (-180 to 180 degrees, default 0 degrees)
+  - elevation (-90 to 90 degrees, default 0 degrees)
   - spread (0 to 90 degrees, default 45 degrees)
 - 1 switch
   - select ambisonic order 1 (FOA), 2 (HOA-2) or 3 (HOA-3) for the output
 - 3 CV jack inputs:
   - azimuth (bipolar)
   - elevation (bipolar)
-  - spread (bipolar)
+  - spread (unipolar)
 - 2 audio jack inputs:
   - Left (Mono)
   - Right

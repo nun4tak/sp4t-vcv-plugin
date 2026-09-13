@@ -36,9 +36,7 @@ SourceDirection vectorToDirection(const SourceVector& v) {
  *
  * Each source lies at `spread` degrees (great-circle distance) from the center,
  * along the horizontal tangent pointing toward increasing azimuth for the left
- * source. A negative spread swaps left and right. The tangent is computed from
- * the unwrapped azimuth so that the stereo image is not mirrored when the
- * elevation goes past a pole.
+ * source.
  */
 void stereoPairDirections(float azimuth, float elevation, float spread,
                           SourceDirection* left, SourceDirection* right) {
@@ -109,7 +107,7 @@ struct SP4TStereoIn : Module {
 		config(PARAMS_LEN, INPUTS_LEN, OUTPUTS_LEN, LIGHTS_LEN);
 		configParam(AZIMUTH_PARAM, -180.f, 180.f, 0.f, "Azimuth", "°");
 		paramQuantities[AZIMUTH_PARAM]->description = "CV attenuverter when the azimuth CV input is connected";
-		configParam(ELEVATION_PARAM, -180.f, 180.f, 0.f, "Elevation", "°");
+		configParam(ELEVATION_PARAM, -90.f, 90.f, 0.f, "Elevation", "°");
 		paramQuantities[ELEVATION_PARAM]->description = "CV attenuverter when the elevation CV input is connected";
 		configParam(SPREAD_PARAM, 0.f, 90.f, 45.f, "Spread", "°");
 		paramQuantities[SPREAD_PARAM]->description = "CV attenuator when the spread CV input is connected";
@@ -133,21 +131,23 @@ struct SP4TStereoIn : Module {
 		updateControls();
 	}
 
-	/** Knob value, or with CV connected the knob attenuverting the CV (+/-5 V
-	 * spans the knob range). */
-	float getAngle(int paramId, int inputId) {
+	/** Knob value or, with CV connected, the knob attenuating the CV where
+	 * `fullScaleVoltage` spans the knob range (5 V bipolar, 10 V unipolar). */
+	float getAngle(int paramId, int inputId, float fullScaleVoltage) {
 		float angle = params[paramId].getValue();
 		if (inputs[inputId].isConnected())
-			angle *= inputs[inputId].getVoltage() / 5.f;
+			angle *= inputs[inputId].getVoltage() / fullScaleVoltage;
 		return angle;
 	}
 
 	void updateControls() {
 		encoder.setOrder((int) params[ORDER_PARAM].getValue() + 1);
 
-		float azimuth = getAngle(AZIMUTH_PARAM, AZIMUTH_INPUT);
-		float elevation = getAngle(ELEVATION_PARAM, ELEVATION_INPUT);
-		float spread = math::clamp(getAngle(SPREAD_PARAM, SPREAD_INPUT), -90.f, 90.f);
+		// Beyond +/-180 degrees, the azimuth wraps around. The elevation doesn't
+		// go past the poles (the rear is reached with the azimuth).
+		float azimuth = getAngle(AZIMUTH_PARAM, AZIMUTH_INPUT, 5.f);
+		float elevation = math::clamp(getAngle(ELEVATION_PARAM, ELEVATION_INPUT, 5.f), -90.f, 90.f);
+		float spread = math::clamp(getAngle(SPREAD_PARAM, SPREAD_INPUT, 10.f), 0.f, 90.f);
 
 		// Stereo as soon as the right input is connected.
 		bool isStereo = inputs[RIGHT_INPUT].isConnected();
