@@ -9,3 +9,5 @@ SDKs/Rack-SDK
 # CMake / Make build output
 build/
 dist/
+
+.cache/
