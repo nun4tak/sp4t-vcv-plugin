@@ -1,6 +1,6 @@
 # Nun4tak SP4T VCV Rack plugin
 
-A VCV Rack plugin that provides modules for Ambisonics 3D spatial audio.
+A VCV Rack plugin that provides modules for Ambisonic 3D spatial audio.
 
 ## Project configuration and build
 
@@ -8,8 +8,8 @@ All instructions can be found in the README.md file. Prefer running configure
 and compile commands via the pixi tool when possible (e.g., when a pixi task
 exists). You can still suggests adding pixi tasks for common tasks. 
 
-Module C++ source files are in the `src/` folder and module panel SVG files are
-in the `res/` folder.
+Module C++ source files are in the `src/` folder and module panel + component
+SVG files are in the `res/` folder.
 
 ## General Design
 
@@ -54,14 +54,21 @@ Notes on the general design of the module panels (SVG files):
 - Keep the panel design clear, minimal and elegant. Light background is silver and black background is dark-grey. Use flat and matte design. Use colors inspired by the Ayu theme (https://ayutheme.com/). Avoid using too much colors on the panel.
 - At the top of the panel, add the name of the module. Just below the name, add a very brief one-line description (3-4 words maximum) if there's enough room.
 - At the bottom of the panel add "\nu.na.tak\" with small sized font.
+- For the control and jack labels, use a compact although clear and readable
+  font size. Use capital letters.
 - For the panel components, reuse (for now) Rack's Component Library graphics
   found in https://github.com/VCVRack/Rack/tree/v2/res/ComponentLibrary (CC
-  BY-NC 4.0). Use the "Round*" knobs (not the Befaco, Rogan or Davies ones).
+  BY-NC 4.0). Use the "Round*" knobs (not the Befaco, Rogan or Davies ones). You
+  can modify it in order to get a more flat and matte design, but the position
+  of the knobs or switches should stay clear. For jacks keep the components
+  as-is.
 - jack inputs and outputs carrying ambisonic signals (via polyphonic cables)
-  must all have the same identifiable contour (border), for example the jack
-  plug component may be drawn on top of the ambisonics circular logo
+  must all have the same identifiable contour (border) that is distinct from the
+  other jacks (CV or audio). For example the jack plug component may be drawn on
+  top of the ambisonics circular logo
   (https://en.wikipedia.org/wiki/Ambisonics#/media/File:AmbisonicLogo.svg), the
-  two being center aligned together but the latter has a slightly bigger size.
+  two being center aligned together but the latter having a slightly bigger
+  size.
 
 ## Module Design
 
