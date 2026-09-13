@@ -6,40 +6,48 @@
   <!-- just under the top screws -->
   <text id="title" x="25.4" y="9" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4.1" font-weight="700" text-anchor="middle" fill="#2B3038">SP<tspan fill="#22A4E6">4</tspan>T · STEREO IN</text>
 
-  <!-- Screen area; its content is drawn by the module widget. -->
-  <rect id="screen" x="2.5" y="11.7" width="45.8" height="27.3" rx="1" fill="#0D1017"/>
+  <!-- Screen area, vertically centered between the title and the angle controls area;
+       its content is drawn by the module widget. -->
+  <rect id="screen" x="2.5" y="11.5" width="45.8" height="27.3" rx="1" fill="#0D1017"/>
 
-  <!-- Thin arcs around the knobs at x=16.64, y=50.7 / 67.2 / 83.7 (radius 5.6 mm, gap at the bottom). -->
-  <g id="knob-arcs" fill="none" stroke="#737A83" stroke-width="0.3" stroke-linecap="round">
-    <path d="M13.789,55.52A5.6,5.6 0 1 1 19.491,55.52"/>
-    <path d="M13.789,72.02A5.6,5.6 0 1 1 19.491,72.02"/>
-    <path d="M13.789,88.52A5.6,5.6 0 1 1 19.491,88.52"/>
+  <!-- Area encompassing the angle controls (same width and rounding as the screen). -->
+  <rect id="angle-area" x="2.5" y="41.3" width="45.8" height="59.42" rx="1" fill="#C2C6CC"/>
+
+  <!-- Angle rows at y=54.427 / 73.167 / 91.907 (4 mm margins): CV input (x=8.013), CV attenuverter
+       (x=22.846), large knob (x=40.233). Thin lines link the components; thin arcs around the trims
+       (radius 4.19 mm) and the knobs (radius 6.417 mm). -->
+  <g id="angle-strokes" fill="none" stroke="#737A83" stroke-width="0.3" stroke-linecap="round">
+    <path d="M12.83,54.427H18.056M27.636,54.427H33.216"/>
+    <path d="M12.83,73.167H18.056M27.636,73.167H33.216"/>
+    <path d="M12.83,91.907H18.056M27.636,91.907H33.216"/>
+    <path d="M20.712,58.033A4.19,4.19 0 1 1 24.98,58.033"/>
+    <path d="M20.712,76.773A4.19,4.19 0 1 1 24.98,76.773"/>
+    <path d="M20.712,95.513A4.19,4.19 0 1 1 24.98,95.513"/>
+    <path d="M36.9655,59.95A6.417,6.417 0 1 1 43.5005,59.95"/>
+    <path d="M36.9655,78.69A6.417,6.417 0 1 1 43.5005,78.69"/>
+    <path d="M36.9655,97.43A6.417,6.417 0 1 1 43.5005,97.43"/>
   </g>
 
-  <g id="labels" font-family="Helvetica, Arial, sans-serif" font-size="2.6" font-weight="bold" text-anchor="middle" fill="#3A4049">
-    <text x="16.64" y="43.9">AZIMUTH</text>
-    <text x="16.64" y="60.4">ELEVATION</text>
-    <text x="16.64" y="76.9">SPREAD</text>
-    <!-- order switch at x=35.56, y=67.2 -->
-    <text x="35.56" y="61">ORDER</text>
-    <g font-size="2.9">
-      <text x="39.66" y="65.35">3</text>
-      <text x="39.66" y="68.24">2</text>
-      <text x="39.66" y="71.11">1</text>
+  <g id="labels" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-size="3.3" font-weight="600" letter-spacing="0.2" text-anchor="middle" fill="#3A4049">
+    <text x="40.233" y="46.81">AZIMUTH</text>
+    <text x="40.233" y="65.55">ELEVATION</text>
+    <text x="40.233" y="84.29">SPREAD</text>
+    <!-- bottom row at y=114 (4 mm margins): audio inputs (x=8.013, 18.336), order switch (x=26.925),
+         Ambisonic output (x=41.3) -->
+    <text x="8.013" y="107.4">L/MONO</text>
+    <text x="18.336" y="107.4">R</text>
+    <text x="26.925" y="107.4">ORDER</text>
+    <text x="41.3" y="107.4">OUT</text>
+    <g font-size="2.9" text-anchor="start">
+      <text x="30" y="112.125">1st</text>
+      <text x="30" y="115.015">2nd</text>
+      <text x="30" y="117.885">3rd</text>
     </g>
-    <!-- CV inputs at y=99.5 -->
-    <text x="10.7" y="93.3">AZI</text>
-    <text x="25.4" y="93.3">ELEV</text>
-    <text x="40.1" y="93.3">SPREAD</text>
-    <!-- audio inputs and Ambisonic output at y=114 -->
-    <text x="10.7" y="107.4">L/MONO</text>
-    <text x="25.4" y="107.4">R</text>
-    <text x="40.1" y="107.4">OUT</text>
   </g>
 
   <!-- Ambisonic jack contour (jack radius 4 mm, ring inner edge under the jack: no gap). -->
-  <circle id="ambisonic-output-contour" cx="40.1" cy="114" r="4.7" fill="none" stroke="#E57215" stroke-width="1.6"/>
+  <circle id="ambisonic-output-contour" cx="41.3" cy="114" r="4.7" fill="none" stroke="#22A4E6" stroke-width="1.6"/>
 
-  <!-- above the level of the bottom screws -->
-  <text id="brand" x="25.4" y="123.2" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4" font-weight="700" text-anchor="middle" fill="#3A4049">\nu.na.tak\</text>
+  <!-- between the bottom screws -->
+  <text id="brand" x="25.4" y="124.4" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4" font-weight="700" text-anchor="middle" fill="#3A4049">\nu.na.tak\</text>
 </svg>

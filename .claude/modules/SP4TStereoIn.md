@@ -12,8 +12,8 @@ connected. In case of an input stereo source, the "spread" angle controls the
 angular distance between the "mono" direction (as determined by the azimuth and
 elevation angles) and each of the actual left and right sources.
 
-When a CV input jack is connected for a given angle, the corresponding knob acts
-as an attenuverter of the CV input for that angle.
+Each angle also has a CV input with a dedicated attenuverter (trim knob). The
+attenuated CV is added to the value of the corresponding angle knob.
 
 ## Specifications
 
@@ -22,6 +22,7 @@ as an attenuverter of the CV input for that angle.
   - azimuth (-180 to 180 degrees, default 0 degrees)
   - elevation (-90 to 90 degrees, default 0 degrees)
   - spread (0 to 90 degrees, default 45 degrees)
+- 3 small knobs (trim): CV attenuverters for azimuth, elevation and spread
 - 1 switch
   - select ambisonic order 1 (FOA), 2 (HOA-2) or 3 (HOA-3) for the output
 - 3 CV jack inputs:
@@ -53,15 +54,19 @@ input mono or stereo source on a sphere:
   the front hemisphere, unless the mono source is on the rear hemisphere (e.g.,
   left and right sources for a mono source at the rear with a 90 degrees spread).
 
-Below the screen, the three knobs are vertically aligned. The switch is
-positioned right next to the knobs, vertically aligned with the group of knobs.
-The knobs and the switch are horizontally spaced evenly, i.e., with the same gap
-between them and with the panel borders.
+Below the screen, there is one row for each angle (azimuth, elevation, spread),
+with from left to right: the CV input, the CV attenuverter (trim) and the main
+knob (large, i.e., about 117% of the normal knob size; both knobs with arcs). Each row spans the module width (same left/right
+margins as the screen), its components are linked by thin horizontal lines (same
+stroke as the knob arcs) and the angle name is centered above the main knob. The
+rows are stacked and evenly spaced inside a rounded rectangle area (same width
+and rounding as the screen, slightly darker or lighter than the panel
+background). The screen is vertically centered between the title and that area.
 
-At the bottom of the module, there's two rows of 3 jacks each, evenly spread
-across the module width. The 1st row contains the 3 CV inputs and the 2nd row
-contains the Left (Mono) and Right inputs and the Ambisonic output. Add a label
-just above of each jack.
+At the bottom of the module, there's a single row aligned with the screen
+margins, evenly spaced: the Left (Mono) and Right inputs, the order switch and
+the Ambisonic output. Add a label just above each jack and the switch. The
+switch positions are labeled "1st", "2nd" and "3rd" from top to bottom.
 
 ## Implementation
 

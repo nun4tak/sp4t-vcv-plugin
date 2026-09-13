@@ -65,13 +65,14 @@ Notes on the general design of the module panels (SVG files):
   capital letters, with a vertically centered dot surrounded by spaces after
   "SP4T" (e.g., "SP4T · MODULE NAME") and the
   "4" colored in the Ayu theme blue (no subtitle).
-- At the bottom of the panel, above the level of the bottom screws, add
+- At the bottom of the panel, between the bottom screws, add
   "\nu.na.tak\" with a bold and bright font, almost as big as the title.
 - For the title and "\nu.na.tak\" texts, use a rounded, less common font family
   (e.g., "M PLUS Rounded 1c"). Prefer static (non-variable) font files, which
   render correctly in VCV Rack once converted to paths.
-- For the control and jack labels, use a clear and readable font size (not too
-  small). Use capital letters.
+- For the control and jack labels, use a common, compact (condensed) but readable
+  font family, with a clear and readable font size (not too small) and slightly
+  increased letter spacing. Use capital letters.
 - For the panel components, reuse (for now) Rack's Component Library graphics
   found in https://github.com/VCVRack/Rack/tree/v2/res/ComponentLibrary (CC
   BY-NC 4.0). Use the "Round*" knobs (not the Befaco, Rogan or Davies ones). You
@@ -83,7 +84,7 @@ Notes on the general design of the module panels (SVG files):
 - jack inputs and outputs carrying ambisonic signals (via polyphonic cables)
   must all have the same identifiable contour that is distinct from the other
   jacks (CV or audio): a simple thick stroke circle around the jack, in the
-  accent color.
+  same Ayu theme blue as the "4" of the title.
 
 ## Module Design
 

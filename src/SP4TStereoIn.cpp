@@ -67,6 +67,9 @@ struct SP4TStereoIn : Module {
 		ELEVATION_PARAM,
 		SPREAD_PARAM,
 		ORDER_PARAM,
+		AZIMUTH_CV_PARAM,
+		ELEVATION_CV_PARAM,
+		SPREAD_CV_PARAM,
 		PARAMS_LEN
 	};
 	enum InputId {
@@ -106,12 +109,12 @@ struct SP4TStereoIn : Module {
 	SP4TStereoIn() : encoder(MAX_NUM_SOURCES) {
 		config(PARAMS_LEN, INPUTS_LEN, OUTPUTS_LEN, LIGHTS_LEN);
 		configParam(AZIMUTH_PARAM, -180.f, 180.f, 0.f, "Azimuth", "°");
-		paramQuantities[AZIMUTH_PARAM]->description = "CV attenuverter when the azimuth CV input is connected";
 		configParam(ELEVATION_PARAM, -90.f, 90.f, 0.f, "Elevation", "°");
-		paramQuantities[ELEVATION_PARAM]->description = "CV attenuverter when the elevation CV input is connected";
 		configParam(SPREAD_PARAM, 0.f, 90.f, 45.f, "Spread", "°");
-		paramQuantities[SPREAD_PARAM]->description = "CV attenuator when the spread CV input is connected";
-		configSwitch(ORDER_PARAM, 0.f, 2.f, 0.f, "Ambisonic order", {"1 (FOA)", "2 (HOA-2)", "3 (HOA-3)"});
+		configParam(AZIMUTH_CV_PARAM, -1.f, 1.f, 0.f, "Azimuth CV attenuverter", "%", 0.f, 100.f);
+		configParam(ELEVATION_CV_PARAM, -1.f, 1.f, 0.f, "Elevation CV attenuverter", "%", 0.f, 100.f);
+		configParam(SPREAD_CV_PARAM, -1.f, 1.f, 0.f, "Spread CV attenuverter", "%", 0.f, 100.f);
+		configSwitch(ORDER_PARAM, 0.f, 2.f, 0.f, "Ambisonic order", {"1st (FOA)", "2nd (HOA-2)", "3rd (HOA-3)"});
 
 		configInput(AZIMUTH_INPUT, "Azimuth CV");
 		configInput(ELEVATION_INPUT, "Elevation CV");
@@ -131,13 +134,11 @@ struct SP4TStereoIn : Module {
 		updateControls();
 	}
 
-	/** Knob value or, with CV connected, the knob attenuating the CV where
-	 * `fullScaleVoltage` spans the knob range (5 V bipolar, 10 V unipolar). */
-	float getAngle(int paramId, int inputId, float fullScaleVoltage) {
-		float angle = params[paramId].getValue();
-		if (inputs[inputId].isConnected())
-			angle *= inputs[inputId].getVoltage() / fullScaleVoltage;
-		return angle;
+	/** Knob value plus the CV input scaled by its attenuverter, where
+	 * `fullScaleVoltage` (5 V bipolar, 10 V unipolar) spans `range` degrees. */
+	float getAngle(int paramId, int cvParamId, int inputId, float range, float fullScaleVoltage) {
+		float cv = inputs[inputId].getVoltage() / fullScaleVoltage;
+		return params[paramId].getValue() + params[cvParamId].getValue() * cv * range;
 	}
 
 	void updateControls() {
@@ -145,9 +146,9 @@ struct SP4TStereoIn : Module {
 
 		// Beyond +/-180 degrees, the azimuth wraps around. The elevation doesn't
 		// go past the poles (the rear is reached with the azimuth).
-		float azimuth = getAngle(AZIMUTH_PARAM, AZIMUTH_INPUT, 5.f);
-		float elevation = math::clamp(getAngle(ELEVATION_PARAM, ELEVATION_INPUT, 5.f), -90.f, 90.f);
-		float spread = math::clamp(getAngle(SPREAD_PARAM, SPREAD_INPUT, 10.f), 0.f, 90.f);
+		float azimuth = getAngle(AZIMUTH_PARAM, AZIMUTH_CV_PARAM, AZIMUTH_INPUT, 180.f, 5.f);
+		float elevation = math::clamp(getAngle(ELEVATION_PARAM, ELEVATION_CV_PARAM, ELEVATION_INPUT, 90.f, 5.f), -90.f, 90.f);
+		float spread = math::clamp(getAngle(SPREAD_PARAM, SPREAD_CV_PARAM, SPREAD_INPUT, 90.f, 10.f), 0.f, 90.f);
 
 		// Stereo as soon as the right input is connected.
 		bool isStereo = inputs[RIGHT_INPUT].isConnected();
@@ -376,24 +377,29 @@ struct SP4TStereoInWidget : ModuleWidget {
 		addChild(createWidget<ThemedScrew>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<ThemedScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-		SP4TStereoInDisplay* display = createWidget<SP4TStereoInDisplay>(mm2px(Vec(2.5, 11.7)));
+		SP4TStereoInDisplay* display = createWidget<SP4TStereoInDisplay>(mm2px(Vec(2.5, 11.5)));
 		display->box.size = mm2px(Vec(45.8, 27.3));
 		display->module = module;
 		addChild(display);
 
-		// Knobs and switch, with even horizontal gaps in between and with the panel borders
-		addParam(createParamCentered<SP4TRoundKnob>(mm2px(Vec(16.64, 50.7)), module, SP4TStereoIn::AZIMUTH_PARAM));
-		addParam(createParamCentered<SP4TRoundKnob>(mm2px(Vec(16.64, 67.2)), module, SP4TStereoIn::ELEVATION_PARAM));
-		addParam(createParamCentered<SP4TRoundKnob>(mm2px(Vec(16.64, 83.7)), module, SP4TStereoIn::SPREAD_PARAM));
-		addParam(createParamCentered<SP4TSwitchThree>(mm2px(Vec(35.56, 67.2)), module, SP4TStereoIn::ORDER_PARAM));
+		// One row per angle (CV input, CV attenuverter, knob), spanning the panel
+		// width with 4 mm margins.
+		const float rowY[] = {54.427f, 73.167f, 91.907f};
+		const int knobIds[] = {SP4TStereoIn::AZIMUTH_PARAM, SP4TStereoIn::ELEVATION_PARAM, SP4TStereoIn::SPREAD_PARAM};
+		const int cvParamIds[] = {SP4TStereoIn::AZIMUTH_CV_PARAM, SP4TStereoIn::ELEVATION_CV_PARAM, SP4TStereoIn::SPREAD_CV_PARAM};
+		const int inputIds[] = {SP4TStereoIn::AZIMUTH_INPUT, SP4TStereoIn::ELEVATION_INPUT, SP4TStereoIn::SPREAD_INPUT};
+		for (int i = 0; i < 3; i++) {
+			addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(8.013, rowY[i])), module, inputIds[i]));
+			addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(22.846, rowY[i])), module, cvParamIds[i]));
+			addParam(createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(40.233, rowY[i])), module, knobIds[i]));
+		}
 
-		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(10.7, 99.5)), module, SP4TStereoIn::AZIMUTH_INPUT));
-		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(25.4, 99.5)), module, SP4TStereoIn::ELEVATION_INPUT));
-		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(40.1, 99.5)), module, SP4TStereoIn::SPREAD_INPUT));
+		// Bottom row (4 mm margins): audio inputs, order switch, Ambisonic output
+		addParam(createParamCentered<SP4TSwitchThree>(mm2px(Vec(26.925, 114.0)), module, SP4TStereoIn::ORDER_PARAM));
 
-		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(10.7, 114.0)), module, SP4TStereoIn::LEFT_INPUT));
-		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(25.4, 114.0)), module, SP4TStereoIn::RIGHT_INPUT));
-		addOutput(createOutputCentered<ThemedPJ301MPort>(mm2px(Vec(40.1, 114.0)), module, SP4TStereoIn::AMBI_OUTPUT));
+		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(8.013, 114.0)), module, SP4TStereoIn::LEFT_INPUT));
+		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(18.336, 114.0)), module, SP4TStereoIn::RIGHT_INPUT));
+		addOutput(createOutputCentered<ThemedPJ301MPort>(mm2px(Vec(41.3, 114.0)), module, SP4TStereoIn::AMBI_OUTPUT));
 	}
 
 	void appendContextMenu(Menu* menu) override {
