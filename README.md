@@ -32,6 +32,19 @@ pixi run clean       # cmake -E rm -rf build
 `pixi run install` is enough from a clean checkout. Without pixi, run the CMake
 commands shown in the comments directly.
 
+## Module panels
+
+Panel SVGs are edited in `res/staging/`, where text is kept as editable text
+objects. Rack does not render SVG text, so convert it to paths before building:
+
+```sh
+pixi run export-panels   # res/staging/*.svg -> res/*.svg (requires Inkscape)
+```
+
+The exported files in `res/` are generated: edit the staging files instead.
+
+## Build output
+
 `build` produces a ready-to-load plugin directory at `build/Nun4tak/`. `install`
 copies it into the Rack user plugin folder, which defaults to
 `~/Library/Application Support/Rack2/plugins-mac-arm64` on macOS,

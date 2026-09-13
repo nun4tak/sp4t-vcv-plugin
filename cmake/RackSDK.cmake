@@ -7,6 +7,8 @@
 #   PLUGIN_NAME   plugin slug, exactly as in plugin.json
 # Optional:
 #   ADDITIONAL_PLUGIN_DISTRIBUTABLES  extra files/dirs to ship inside the plugin dir
+#   PLUGIN_DISTRIBUTABLES_EXCLUDE     files/dirs within the distributables not to
+#                                     ship (e.g. res/staging)
 #
 # Defines the target ${RACK_PLUGIN_LIB} ("plugin"); add your sources to it with
 # target_sources().
@@ -198,6 +200,13 @@ foreach (_item IN LISTS PLUGIN_DISTRIBUTABLES)
                 "${CMAKE_SOURCE_DIR}/${_item}" "${_rack_plugin_dir}/"
         COMMENT "Copying ${_item} into ${PLUGIN_NAME}/")
   endif ()
+endforeach ()
+
+# Drop excluded paths from the plugin dir, and thus from install and dist too.
+foreach (_item IN LISTS PLUGIN_DISTRIBUTABLES_EXCLUDE)
+  add_custom_command(TARGET ${RACK_PLUGIN_LIB} POST_BUILD
+      COMMAND "${CMAKE_COMMAND}" -E rm -rf "${_rack_plugin_dir}/${_item}"
+      COMMENT "Excluding ${_item} from ${PLUGIN_NAME}/")
 endforeach ()
 
 # `cmake --install` drops the whole plugin dir into CMAKE_INSTALL_PREFIX, which

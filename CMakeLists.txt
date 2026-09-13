@@ -29,14 +29,17 @@ set(SAF_BUILD_EXAMPLES OFF CACHE BOOL "Build SAF examples.")
 set(SAF_ENABLE_SIMD ON CACHE BOOL "Enable the use of SSE3, AVX2, AVX512")
 add_subdirectory(SDKs/Spatial_Audio_Framework)
 
+# Files shipped inside the plugin directory besides plugin.json, res/ and LICENSE*.
+set(ADDITIONAL_PLUGIN_DISTRIBUTABLES "")
+# Files not shipped: panel sources with text not yet converted to paths.
+set(PLUGIN_DISTRIBUTABLES_EXCLUDE res/staging)
+
 # Rack SDK
 include(cmake/RackSDK.cmake)
 
-# Files shipped inside the plugin directory besides plugin.json, res/ and LICENSE*.
-set(ADDITIONAL_PLUGIN_DISTRIBUTABLES "")
-
 target_sources(${RACK_PLUGIN_LIB} PRIVATE
     src/plugin.cpp
+    src/AmbiEncoder.cpp
     src/SP4TStereoIn.cpp)
 
 target_link_libraries(${RACK_PLUGIN_LIB} PRIVATE saf)

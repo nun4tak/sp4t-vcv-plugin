@@ -11,6 +11,7 @@ build = { cmd = "cmake --build build", depends-on = ["configure"], description =
 dist = { cmd = "cmake --build build --target plugin_dist", depends-on = ["configure"], description = "Package a .vcvplugin into build/dist/" }
 install = { cmd = "cmake --install build", depends-on = ["build"], description = "Install the plugin into the Rack user plugin folder" }
 clean = { cmd = "cmake -E rm -rf build", description = "Remove the build directory" }
+export-panels = { cmd = '''bash -c 'for f in res/staging/*.svg; do inkscape "$f" --export-text-to-path --export-plain-svg --export-overwrite --export-filename="res/$(basename "$f")" || exit 1; done' ''', description = "Convert panel text to paths (res/staging/*.svg -> res/*.svg), requires Inkscape" }
 
 [dependencies]
 cmake = ">=4.3.4,<5"

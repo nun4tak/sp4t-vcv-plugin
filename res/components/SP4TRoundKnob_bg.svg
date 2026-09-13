@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Flat variant of VCV Rack's RoundBlackKnob_bg.svg (Component Library, CC BY-NC 4.0). Static part. -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="28.34759px" height="28.34768px" viewBox="0 0 28.34759 28.34768">
+  <circle id="skirt" cx="14.17379" cy="14.17387" r="14.17385" fill="#15181D"/>
+  <circle id="cap" cx="14.17379" cy="14.17387" r="11.28538" fill="#363B45"/>
+</svg>

@@ -48,7 +48,7 @@ Notes on the name of the modules:
 
 Notes on the general design of the module panels (SVG files):
 
-- Follow the recommandations here: https://vcvrack.com/manual/Panel, with some exceptions:
+- Follow the recommendations here: https://vcvrack.com/manual/Panel, with some exceptions:
   - Do not convert any text or font into paths when generating or editing SVG files. Keep them as objects so these can be edited manually if needed
   - Do not use any color gradient nor fancy patterns
 - Keep the panel design clear, minimal and elegant. Light background is silver and black background is dark-grey. Use flat and matte design. Use colors inspired by the Ayu theme (https://ayutheme.com/). Avoid using too much colors on the panel.
