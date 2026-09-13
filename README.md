@@ -42,6 +42,9 @@ pixi run export-panels   # res/staging/*.svg -> res/*.svg (requires Inkscape)
 ```
 
 The exported files in `res/` are generated: edit the staging files instead.
+Fonts used by the panels but not installed by default (e.g., M PLUS Rounded 1c, SIL OFL)
+are shipped in `res/staging/fonts/`, which the export task makes available to
+Inkscape via `res/staging/fonts/fonts.conf`.
 
 ## Build output
 

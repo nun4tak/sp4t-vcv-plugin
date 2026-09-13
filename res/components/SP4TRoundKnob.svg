@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Flat variant of VCV Rack's RoundBlackKnob.svg (Component Library, CC BY-NC 4.0). Rotating part. -->
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="28.34759px" height="28.34768px" viewBox="0 0 28.34759 28.34768">
-  <path id="indicator" fill="#E6E1CF" d="M15.05997,0h-1.76925v13.65571c0,0.28613,0.23196,0.51809,0.51809,0.51809h0.73308c0.28613,0,0.51809-0.23196,0.51809-0.51809z"/>
+  <rect id="indicator" x="13.37379" y="2.4" width="1.6" height="10.2" rx="0.8" fill="#E6E1CF"/>
 </svg>

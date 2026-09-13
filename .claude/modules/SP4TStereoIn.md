@@ -17,7 +17,7 @@ as an attenuverter of the CV input for that angle.
 
 ## Specifications
 
-- Width: 6 HP
+- Width: 10 HP
 - 3 Knobs
   - azimuth (-180 to 180 degrees, default 0 degrees)
   - elevation (-90 to 90 degrees, default 0 degrees)
@@ -35,7 +35,7 @@ as an attenuverter of the CV input for that angle.
 
 ## Panel design
 
-There is a small screen at the top of the module that draws the location of the
+There is a screen at the top of the module that draws the location of the
 input mono or stereo source on a sphere:
 
 - The screen takes the width of the module (minus some reasonable margin)
@@ -45,17 +45,23 @@ input mono or stereo source on a sphere:
   in the right click menu (default: orthographic pair).
 - (hemi)sphere graticules are drawn (fine stroke width, little contrast color)
   to give the illusion of rounded surface and to provide landmarks
-- The position of the mono source is represented by a small filled circle. In
-  case of a stereo input, the position of the "mono" source is grayed out and
-  two other filled circles are drawn for the left and right actual source
-  positions respectively.
+- The position of the mono source is represented by the letter "M". In case of a
+  stereo input, the "M" letter is grayed out and the letters "L" and "R" are
+  drawn for the left and right actual source positions respectively.
+- For the orthographic pair, sources located exactly on the boundary between
+  the front and rear hemispheres (e.g., left, right, top, bottom) are shown on
+  the front hemisphere, unless the mono source is on the rear hemisphere (e.g.,
+  left and right sources for a mono source at the rear with a 90 degrees spread).
 
 Below the screen, the three knobs are vertically aligned. The switch is
 positioned right next to the knobs, vertically aligned with the group of knobs.
+The knobs and the switch are horizontally spaced evenly, i.e., with the same gap
+between them and with the panel borders.
 
-At the bottom of the module, there's two rows of 3 jacks each. The 1st row
-contains the 3 CV inputs and the 2nd row contains the Left (Mono) and Right
-inputs and the Ambisonic output. Add a label just above of each jack.
+At the bottom of the module, there's two rows of 3 jacks each, evenly spread
+across the module width. The 1st row contains the 3 CV inputs and the 2nd row
+contains the Left (Mono) and Right inputs and the Ambisonic output. Add a label
+just above of each jack.
 
 ## Implementation
 

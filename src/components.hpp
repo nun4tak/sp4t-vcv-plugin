@@ -8,12 +8,28 @@
 // keeping the original sizes.
 
 
-/** Flat variant of RoundBlackKnob (10 mm). */
+/** Flat variant of RoundBlackKnob (9.6 mm), with a darker body on dark panels. */
 struct SP4TRoundKnob : RoundKnob {
+	std::shared_ptr<window::Svg> lightBgSvg;
+	std::shared_ptr<window::Svg> darkBgSvg;
+	bool dark = false;
+
 	SP4TRoundKnob() {
 		shadow->opacity = 0.f;
 		setSvg(Svg::load(asset::plugin(pluginInstance, "res/components/SP4TRoundKnob.svg")));
-		bg->setSvg(Svg::load(asset::plugin(pluginInstance, "res/components/SP4TRoundKnob_bg.svg")));
+		lightBgSvg = Svg::load(asset::plugin(pluginInstance, "res/components/SP4TRoundKnob_bg.svg"));
+		darkBgSvg = Svg::load(asset::plugin(pluginInstance, "res/components/SP4TRoundKnob_bg-dark.svg"));
+		dark = settings::preferDarkPanels;
+		bg->setSvg(dark ? darkBgSvg : lightBgSvg);
+	}
+
+	void step() override {
+		if (dark != settings::preferDarkPanels) {
+			dark = settings::preferDarkPanels;
+			bg->setSvg(dark ? darkBgSvg : lightBgSvg);
+			fb->setDirty();
+		}
+		RoundKnob::step();
 	}
 };
 

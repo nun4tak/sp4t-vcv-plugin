@@ -1,44 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- SP4T Stereo In panel, dark theme. 6 HP. Units: mm. -->
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="30.48mm" height="128.5mm" viewBox="0 0 30.48 128.5">
-  <rect id="background" x="0" y="0" width="30.48" height="128.5" fill="#2A2E35"/>
+<!-- SP4T Stereo In panel, dark theme. 10 HP. Units: mm. -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="50.8mm" height="128.5mm" viewBox="0 0 50.8 128.5">
+  <rect id="background" x="0" y="0" width="50.8" height="128.5" fill="#2A2E35"/>
 
-  <g id="header" font-family="Helvetica, Arial, sans-serif" text-anchor="middle">
-    <text id="title" x="15.24" y="9.3" font-size="3" font-weight="bold" fill="#E6E1CF">SP4T Stereo In</text>
-    <text id="subtitle" x="15.24" y="12.4" font-size="1.75" fill="#8A9199">Ambisonic stereo encoder</text>
-  </g>
+  <!-- just under the top screws -->
+  <text id="title" x="25.4" y="9" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4.1" font-weight="700" text-anchor="middle" fill="#E6E1CF">SP<tspan fill="#59C2FF">4</tspan>T · STEREO IN</text>
 
   <!-- Screen area; its content is drawn by the module widget. -->
-  <rect id="screen" x="2" y="14.6" width="26.48" height="18.8" rx="0.8" fill="#0D1017"/>
+  <rect id="screen" x="2.5" y="11.7" width="45.8" height="27.3" rx="1" fill="#0D1017"/>
 
-  <g id="labels" font-family="Helvetica, Arial, sans-serif" font-size="1.8" font-weight="bold" text-anchor="middle" fill="#BFBDB6">
-    <!-- knobs at x=10.5, y=44.5 / 60 / 75.5 -->
-    <text x="10.5" y="38.3">AZIMUTH</text>
-    <text x="10.5" y="53.8">ELEVATION</text>
-    <text x="10.5" y="69.3">SPREAD</text>
-    <!-- order switch at x=22.5, y=60 -->
-    <text x="22.5" y="53.8">ORDER</text>
-    <text x="27.1" y="57.65">3</text>
-    <text x="27.1" y="60.65">2</text>
-    <text x="27.1" y="63.4">1</text>
-    <!-- CV inputs at y=97.5 -->
-    <text x="5.8" y="91.6">AZI</text>
-    <text x="15.24" y="91.6">ELEV</text>
-    <text x="24.68" y="91.6">SPREAD</text>
-    <!-- audio inputs and Ambisonic output at y=113 -->
-    <text x="5.8" y="106.9">L/MONO</text>
-    <text x="15.24" y="106.9">R</text>
-    <text x="24.68" y="106.9">OUT</text>
+  <!-- Thin arcs around the knobs at x=16.64, y=50.7 / 67.2 / 83.7 (radius 5.6 mm, gap at the bottom). -->
+  <g id="knob-arcs" fill="none" stroke="#61676F" stroke-width="0.3" stroke-linecap="round">
+    <path d="M13.789,55.52A5.6,5.6 0 1 1 19.491,55.52"/>
+    <path d="M13.789,72.02A5.6,5.6 0 1 1 19.491,72.02"/>
+    <path d="M13.789,88.52A5.6,5.6 0 1 1 19.491,88.52"/>
   </g>
 
-  <!-- Ambisonic logo contour behind the Ambisonic output jack (radius 5 mm, jack radius 4 mm). -->
-  <path id="ambisonic-output-contour" transform="translate(24.68 113)" fill="#FFB454" fill-rule="evenodd"
-    d="M5,0A5,5 0 1 0 -5,0A5,5 0 1 0 5,0Z
-       M0,0A2.5,2.5 0 1 0 -5,0A2.5,2.5 0 1 0 0,0Z
-       M5,0A2.5,2.5 0 1 0 0,0A2.5,2.5 0 1 0 5,0Z
-       M2.5,-2.5A2.5,2.5 0 1 0 -2.5,-2.5A2.5,2.5 0 1 0 2.5,-2.5Z
-       M2.5,2.5A2.5,2.5 0 1 0 -2.5,2.5A2.5,2.5 0 1 0 2.5,2.5Z
-       M2.5,0A2.5,2.5 0 1 0 -2.5,0A2.5,2.5 0 1 0 2.5,0Z"/>
+  <g id="labels" font-family="Helvetica, Arial, sans-serif" font-size="2.6" font-weight="bold" text-anchor="middle" fill="#BFBDB6">
+    <text x="16.64" y="43.9">AZIMUTH</text>
+    <text x="16.64" y="60.4">ELEVATION</text>
+    <text x="16.64" y="76.9">SPREAD</text>
+    <!-- order switch at x=35.56, y=67.2 -->
+    <text x="35.56" y="61">ORDER</text>
+    <g font-size="2.9">
+      <text x="39.66" y="65.35">3</text>
+      <text x="39.66" y="68.24">2</text>
+      <text x="39.66" y="71.11">1</text>
+    </g>
+    <!-- CV inputs at y=99.5 -->
+    <text x="10.7" y="93.3">AZI</text>
+    <text x="25.4" y="93.3">ELEV</text>
+    <text x="40.1" y="93.3">SPREAD</text>
+    <!-- audio inputs and Ambisonic output at y=114 -->
+    <text x="10.7" y="107.4">L/MONO</text>
+    <text x="25.4" y="107.4">R</text>
+    <text x="40.1" y="107.4">OUT</text>
+  </g>
 
-  <text id="brand" x="15.24" y="122.2" font-family="Helvetica, Arial, sans-serif" font-size="1.6" text-anchor="middle" fill="#8A9199">\nu.na.tak\</text>
+  <!-- Ambisonic jack contour (jack radius 4 mm, ring inner edge under the jack: no gap). -->
+  <circle id="ambisonic-output-contour" cx="40.1" cy="114" r="4.7" fill="none" stroke="#FFB454" stroke-width="1.6"/>
+
+  <!-- above the level of the bottom screws -->
+  <text id="brand" x="25.4" y="123.2" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4" font-weight="700" text-anchor="middle" fill="#E6E1CF">\nu.na.tak\</text>
 </svg>

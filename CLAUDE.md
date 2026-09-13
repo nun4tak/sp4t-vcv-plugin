@@ -26,7 +26,8 @@ channels correspond to:
 - 3rd channel: top-down component (Z axis)
 - 4th channel: front-rear component (X axis)
 
-Follow VCV-Rack's standard conventions for voltages, as described in https://vcvrack.com/manual/VoltageStandards.
+Follow VCV-Rack's standard conventions for voltages, as described in
+https://vcvrack.com/manual/VoltageStandards.
 
 The module audio processing kernels are implemented with the help of the
 "Spatial Audio Framework" (SAF):
@@ -44,32 +45,45 @@ Notes on the name of the modules:
 - All modules of this plugin have the same "SP4T" prefix.
 - The name of the module in the C++ source is like "SP4TModuleName" where
   ModuleName is in PascalCase
-- The module slug in `plugin.json` is obtained by converting PascalCase above with hyphens, e.g., "SP4T-Module-Name"
-- The name of the module shown on the panel (SVG file) and in any documentation is obtained by converting PascalCase above with spaces, e.g., "SP4T Module Name"
+- The module slug in `plugin.json` is obtained by converting PascalCase above
+  with hyphens, e.g., "SP4T-Module-Name"
+- The name of the module shown on the panel (SVG file) and in any documentation
+  is obtained by converting PascalCase above with spaces, e.g., "SP4T Module
+  Name"
 
 Notes on the general design of the module panels (SVG files):
 
 - Follow the recommendations here: https://vcvrack.com/manual/Panel, with some exceptions:
-  - Do not convert any text or font into paths when generating or editing SVG files. Keep them as objects so these can be edited manually if needed
+  - Do not convert any text or font into paths when generating or editing SVG
+    files. Keep them as objects so these can be edited manually if needed
   - Do not use any color gradient nor fancy patterns
-- Keep the panel design clear, minimal and elegant. Light background is silver and black background is dark-grey. Use flat and matte design. Use colors inspired by the Ayu theme (https://ayutheme.com/). Avoid using too much colors on the panel.
-- At the top of the panel, add the name of the module. Just below the name, add a very brief one-line description (3-4 words maximum) if there's enough room.
-- At the bottom of the panel add "\nu.na.tak\" with small sized font.
-- For the control and jack labels, use a compact although clear and readable
-  font size. Use capital letters.
+- Keep the panel design clear, minimal and elegant. Light background is silver
+  and black background is dark-grey. Use flat and matte design. Use colors
+  inspired by the Ayu theme (https://ayutheme.com/). Avoid using too much colors
+  on the panel.
+- At the top of the panel, just under the screws, add the name of the module in
+  capital letters, with a vertically centered dot surrounded by spaces after
+  "SP4T" (e.g., "SP4T · MODULE NAME") and the
+  "4" colored in the Ayu theme blue (no subtitle).
+- At the bottom of the panel, above the level of the bottom screws, add
+  "\nu.na.tak\" with a bold and bright font, almost as big as the title.
+- For the title and "\nu.na.tak\" texts, use a rounded, less common font family
+  (e.g., "M PLUS Rounded 1c"). Prefer static (non-variable) font files, which
+  render correctly in VCV Rack once converted to paths.
+- For the control and jack labels, use a clear and readable font size (not too
+  small). Use capital letters.
 - For the panel components, reuse (for now) Rack's Component Library graphics
   found in https://github.com/VCVRack/Rack/tree/v2/res/ComponentLibrary (CC
   BY-NC 4.0). Use the "Round*" knobs (not the Befaco, Rogan or Davies ones). You
   can modify it in order to get a more flat and matte design, but the position
-  of the knobs or switches should stay clear. For jacks keep the components
-  as-is.
+  of the knobs or switches should stay clear. Surround knobs closely with a thin
+  stroke arc drawn on the panel, similarly to the VCV Fundamental modules, with a
+  subtle color (low contrast with the panel background). For jacks
+  keep the components as-is.
 - jack inputs and outputs carrying ambisonic signals (via polyphonic cables)
-  must all have the same identifiable contour (border) that is distinct from the
-  other jacks (CV or audio). For example the jack plug component may be drawn on
-  top of the ambisonics circular logo
-  (https://en.wikipedia.org/wiki/Ambisonics#/media/File:AmbisonicLogo.svg), the
-  two being center aligned together but the latter having a slightly bigger
-  size.
+  must all have the same identifiable contour that is distinct from the other
+  jacks (CV or audio): a simple thick stroke circle around the jack, in the
+  accent color.
 
 ## Module Design
 

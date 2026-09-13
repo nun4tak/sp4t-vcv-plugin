@@ -52,7 +52,7 @@ void stereoPairDirections(float azimuth, float elevation, float spread,
 // Screen colors (Ayu dark)
 const NVGcolor SCREEN_GRID = nvgRGBA(0x6c, 0x73, 0x80, 0x58);
 const NVGcolor SCREEN_OUTLINE = nvgRGBA(0x6c, 0x73, 0x80, 0xb0);
-const NVGcolor SCREEN_TEXT = nvgRGB(0x6c, 0x73, 0x80);
+const NVGcolor SCREEN_TEXT = nvgRGB(0xd9, 0xd7, 0xce);
 const NVGcolor SOURCE_MONO = nvgRGB(0xff, 0xb4, 0x54);
 const NVGcolor SOURCE_INACTIVE = nvgRGB(0x56, 0x5b, 0x66);
 const NVGcolor SOURCE_LEFT = nvgRGB(0x59, 0xc2, 0xff);
@@ -224,7 +224,7 @@ struct SP4TStereoInDisplay : TransparentWidget {
 	 * continues from the right edge of the front disk. */
 	void drawOrthographicPair(NVGcontext* vg) {
 		const float pad = 3.f;
-		const float labelHeight = 7.f;
+		const float labelHeight = 11.f;
 		float r = std::min((box.size.x - 3 * pad) / 4, (box.size.y - labelHeight - 2 * pad) / 2);
 		float cy = (box.size.y + labelHeight) / 2;
 		Vec front(box.size.x / 2 - pad / 2 - r, cy);
@@ -235,9 +235,17 @@ struct SP4TStereoInDisplay : TransparentWidget {
 		drawLabel(vg, Vec(front.x, cy - r - 2), "FRONT");
 		drawLabel(vg, Vec(rear.x, cy - r - 2), "REAR");
 
+		// Sources on the front/rear boundary (azimuth or elevation at +/-90
+		// degrees, up to rounding errors) are shown on the same disk as the mono
+		// source, or on the front disk if the mono source is on the boundary too.
+		const float boundary = 1e-4f;
+		SourceDirection center = module ? module->centerDirection : SourceDirection{0.f, 0.f};
+		bool boundaryOnRear = directionToVector(center.azimuth, center.elevation).x < -boundary;
+
 		drawSources(vg, [&](const SourceDirection& d) -> Vec {
 			SourceVector v = directionToVector(d.azimuth, d.elevation);
-			if (v.x >= 0)
+			bool onFront = v.x > boundary || (v.x >= -boundary && !boundaryOnRear);
+			if (onFront)
 				return Vec(front.x - v.y * r, front.y - v.z * r);
 			return Vec(rear.x + v.y * r, rear.y - v.z * r);
 		});
@@ -323,20 +331,25 @@ struct SP4TStereoInDisplay : TransparentWidget {
 		// The module browser preview shows a centered mono source.
 		SourceDirection center = module ? module->centerDirection : SourceDirection{0.f, 0.f};
 		if (module && module->stereo) {
-			drawDot(vg, project(center), 1.6f, SOURCE_INACTIVE);
-			drawDot(vg, project(module->leftDirection), 2.4f, SOURCE_LEFT);
-			drawDot(vg, project(module->rightDirection), 2.4f, SOURCE_RIGHT);
+			drawSourceLetter(vg, project(center), "M", SOURCE_INACTIVE);
+			drawSourceLetter(vg, project(module->leftDirection), "L", SOURCE_LEFT);
+			drawSourceLetter(vg, project(module->rightDirection), "R", SOURCE_RIGHT);
 		}
 		else {
-			drawDot(vg, project(center), 2.4f, SOURCE_MONO);
+			drawSourceLetter(vg, project(center), "M", SOURCE_MONO);
 		}
 	}
 
-	void drawDot(NVGcontext* vg, Vec p, float radius, NVGcolor color) {
-		nvgBeginPath(vg);
-		nvgCircle(vg, p.x, p.y, radius);
+	/** Draws a source as a letter centered on its projected position. */
+	void drawSourceLetter(NVGcontext* vg, Vec p, const char* letter, NVGcolor color) {
+		std::shared_ptr<window::Font> font = APP->window->loadFont(asset::system("res/fonts/Nunito-Bold.ttf"));
+		if (!font)
+			return;
+		nvgFontFaceId(vg, font->handle);
+		nvgFontSize(vg, 11.f);
 		nvgFillColor(vg, color);
-		nvgFill(vg);
+		nvgTextAlign(vg, NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE);
+		nvgText(vg, p.x, p.y, letter, NULL);
 	}
 
 	void drawLabel(NVGcontext* vg, Vec p, const char* text) {
@@ -344,7 +357,7 @@ struct SP4TStereoInDisplay : TransparentWidget {
 		if (!font)
 			return;
 		nvgFontFaceId(vg, font->handle);
-		nvgFontSize(vg, 7.f);
+		nvgFontSize(vg, 10.f);
 		nvgFillColor(vg, SCREEN_TEXT);
 		nvgTextAlign(vg, NVG_ALIGN_CENTER | NVG_ALIGN_BOTTOM);
 		nvgText(vg, p.x, p.y, text, NULL);
@@ -363,23 +376,24 @@ struct SP4TStereoInWidget : ModuleWidget {
 		addChild(createWidget<ThemedScrew>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<ThemedScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-		SP4TStereoInDisplay* display = createWidget<SP4TStereoInDisplay>(mm2px(Vec(2.0, 14.6)));
-		display->box.size = mm2px(Vec(26.48, 18.8));
+		SP4TStereoInDisplay* display = createWidget<SP4TStereoInDisplay>(mm2px(Vec(2.5, 11.7)));
+		display->box.size = mm2px(Vec(45.8, 27.3));
 		display->module = module;
 		addChild(display);
 
-		addParam(createParamCentered<SP4TRoundKnob>(mm2px(Vec(10.5, 44.5)), module, SP4TStereoIn::AZIMUTH_PARAM));
-		addParam(createParamCentered<SP4TRoundKnob>(mm2px(Vec(10.5, 60.0)), module, SP4TStereoIn::ELEVATION_PARAM));
-		addParam(createParamCentered<SP4TRoundKnob>(mm2px(Vec(10.5, 75.5)), module, SP4TStereoIn::SPREAD_PARAM));
-		addParam(createParamCentered<SP4TSwitchThree>(mm2px(Vec(22.5, 60.0)), module, SP4TStereoIn::ORDER_PARAM));
+		// Knobs and switch, with even horizontal gaps in between and with the panel borders
+		addParam(createParamCentered<SP4TRoundKnob>(mm2px(Vec(16.64, 50.7)), module, SP4TStereoIn::AZIMUTH_PARAM));
+		addParam(createParamCentered<SP4TRoundKnob>(mm2px(Vec(16.64, 67.2)), module, SP4TStereoIn::ELEVATION_PARAM));
+		addParam(createParamCentered<SP4TRoundKnob>(mm2px(Vec(16.64, 83.7)), module, SP4TStereoIn::SPREAD_PARAM));
+		addParam(createParamCentered<SP4TSwitchThree>(mm2px(Vec(35.56, 67.2)), module, SP4TStereoIn::ORDER_PARAM));
 
-		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(5.8, 97.5)), module, SP4TStereoIn::AZIMUTH_INPUT));
-		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(15.24, 97.5)), module, SP4TStereoIn::ELEVATION_INPUT));
-		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(24.68, 97.5)), module, SP4TStereoIn::SPREAD_INPUT));
+		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(10.7, 99.5)), module, SP4TStereoIn::AZIMUTH_INPUT));
+		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(25.4, 99.5)), module, SP4TStereoIn::ELEVATION_INPUT));
+		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(40.1, 99.5)), module, SP4TStereoIn::SPREAD_INPUT));
 
-		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(5.8, 113.0)), module, SP4TStereoIn::LEFT_INPUT));
-		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(15.24, 113.0)), module, SP4TStereoIn::RIGHT_INPUT));
-		addOutput(createOutputCentered<ThemedPJ301MPort>(mm2px(Vec(24.68, 113.0)), module, SP4TStereoIn::AMBI_OUTPUT));
+		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(10.7, 114.0)), module, SP4TStereoIn::LEFT_INPUT));
+		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(25.4, 114.0)), module, SP4TStereoIn::RIGHT_INPUT));
+		addOutput(createOutputCentered<ThemedPJ301MPort>(mm2px(Vec(40.1, 114.0)), module, SP4TStereoIn::AMBI_OUTPUT));
 	}
 
 	void appendContextMenu(Menu* menu) override {
