@@ -51,8 +51,10 @@ void stereoPairDirections(float azimuth, float elevation, float spread,
 
 // Screen colors (Ayu dark)
 const NVGcolor SCREEN_GRID = nvgRGBA(0x6c, 0x73, 0x80, 0x58);
+const NVGcolor SCREEN_GRID_HIDDEN = nvgRGBA(0x6c, 0x73, 0x80, 0x28);
 const NVGcolor SCREEN_OUTLINE = nvgRGBA(0x6c, 0x73, 0x80, 0xb0);
 const NVGcolor SCREEN_TEXT = nvgRGB(0xd9, 0xd7, 0xce);
+const NVGcolor SCREEN_TEXT_DIM = nvgRGB(0x8a, 0x91, 0x99);
 const NVGcolor SOURCE_MONO = nvgRGB(0xff, 0xb4, 0x54);
 const NVGcolor SOURCE_INACTIVE = nvgRGB(0x56, 0x5b, 0x66);
 const NVGcolor SOURCE_LEFT = nvgRGB(0x59, 0xc2, 0xff);
@@ -90,6 +92,8 @@ struct SP4TStereoIn : Module {
 	enum Projection {
 		PROJECTION_ORTHOGRAPHIC_PAIR,
 		PROJECTION_HAMMER,
+		PROJECTION_CARTESIAN,
+		PROJECTION_SPHERE_3D,
 		PROJECTIONS_LEN
 	};
 
@@ -222,10 +226,13 @@ struct SP4TStereoInDisplay : TransparentWidget {
 		if (layer == 1) {
 			nvgSave(args.vg);
 			nvgScissor(args.vg, 0, 0, box.size.x, box.size.y);
-			if (module && module->projection == SP4TStereoIn::PROJECTION_HAMMER)
-				drawHammer(args.vg);
-			else
-				drawOrthographicPair(args.vg);
+			int projection = module ? module->projection : SP4TStereoIn::PROJECTION_ORTHOGRAPHIC_PAIR;
+			switch (projection) {
+				case SP4TStereoIn::PROJECTION_HAMMER: drawHammer(args.vg); break;
+				case SP4TStereoIn::PROJECTION_CARTESIAN: drawCartesian(args.vg); break;
+				case SP4TStereoIn::PROJECTION_SPHERE_3D: drawSphere3D(args.vg); break;
+				default: drawOrthographicPair(args.vg); break;
+			}
 			nvgRestore(args.vg);
 		}
 		TransparentWidget::drawLayer(args, layer);
@@ -265,17 +272,17 @@ struct SP4TStereoInDisplay : TransparentWidget {
 
 	void drawHemisphereGrid(NVGcontext* vg, Vec c, float r) {
 		nvgBeginPath(vg);
-		// Parallels every 30 degrees
-		for (int elevation = -60; elevation <= 60; elevation += 30) {
+		// Parallels every 45 degrees
+		for (int elevation = -45; elevation <= 45; elevation += 45) {
 			float y = c.y - std::sin(elevation * DEG2RAD) * r;
 			float halfWidth = std::cos(elevation * DEG2RAD) * r;
 			nvgMoveTo(vg, c.x - halfWidth, y);
 			nvgLineTo(vg, c.x + halfWidth, y);
 		}
-		// Meridians every 30 degrees
+		// Meridians every 45 degrees
 		nvgMoveTo(vg, c.x, c.y - r);
 		nvgLineTo(vg, c.x, c.y + r);
-		for (int azimuth = 30; azimuth < 90; azimuth += 30)
+		for (int azimuth = 45; azimuth < 90; azimuth += 45)
 			nvgEllipse(vg, c.x, c.y, std::sin(azimuth * DEG2RAD) * r, r);
 		nvgStrokeColor(vg, SCREEN_GRID);
 		nvgStrokeWidth(vg, 0.5f);
@@ -305,7 +312,8 @@ struct SP4TStereoInDisplay : TransparentWidget {
 		};
 
 		nvgBeginPath(vg);
-		for (int azimuth = -150; azimuth <= 150; azimuth += 30) {
+		// Meridians and parallels every 45 degrees
+		for (int azimuth = -135; azimuth <= 135; azimuth += 45) {
 			for (int k = 0; k <= 18; k++) {
 				Vec p = project(azimuth, -90 + 10 * k);
 				if (k == 0)
@@ -314,7 +322,7 @@ struct SP4TStereoInDisplay : TransparentWidget {
 					nvgLineTo(vg, p.x, p.y);
 			}
 		}
-		for (int elevation = -60; elevation <= 60; elevation += 30) {
+		for (int elevation = -45; elevation <= 45; elevation += 45) {
 			for (int k = 0; k <= 36; k++) {
 				Vec p = project(-180 + 10 * k, elevation);
 				if (k == 0)
@@ -338,6 +346,218 @@ struct SP4TStereoInDisplay : TransparentWidget {
 		});
 	}
 
+	/** Equirectangular (cartesian) projection over the whole screen, with the
+	 * origin at the center: azimuth on the horizontal (Y) axis, increasing
+	 * toward the left and +/-180 degrees at the edges, and elevation on the
+	 * vertical (Z) axis, +/-90 degrees at the top/bottom edges. */
+	void drawCartesian(NVGcontext* vg) {
+		Vec size = box.size;
+		Vec c = size.div(2);
+		auto project = [=](float azimuth, float elevation) {
+			return Vec(c.x - azimuth / 360 * size.x, c.y - elevation / 180 * size.y);
+		};
+
+		// Graticules every 45 degrees (the edges are the screen borders)
+		nvgBeginPath(vg);
+		for (int azimuth = -135; azimuth <= 135; azimuth += 45) {
+			float x = project(azimuth, 0).x;
+			nvgMoveTo(vg, x, 0);
+			nvgLineTo(vg, x, size.y);
+		}
+		for (int elevation = -45; elevation <= 45; elevation += 90) {
+			float y = project(0, elevation).y;
+			nvgMoveTo(vg, 0, y);
+			nvgLineTo(vg, size.x, y);
+		}
+		nvgStrokeColor(vg, SCREEN_GRID);
+		nvgStrokeWidth(vg, 0.5f);
+		nvgStroke(vg);
+
+		nvgBeginPath(vg);
+		nvgMoveTo(vg, 0, c.y);
+		nvgLineTo(vg, size.x, c.y);
+		nvgMoveTo(vg, c.x, 0);
+		nvgLineTo(vg, c.x, size.y);
+		nvgStrokeColor(vg, SCREEN_OUTLINE);
+		nvgStrokeWidth(vg, 0.8f);
+		nvgStroke(vg);
+
+		// Labels sit next to their graticule, on the side of the origin. Azimuth
+		// labels alternate between below and above the horizontal axis so they
+		// don't crowd each other; elevation labels are right of the vertical
+		// axis (the origin is labeled once, as an azimuth).
+		const float offset = 1.5f;
+		for (int azimuth = -180; azimuth <= 180; azimuth += 45) {
+			float x = project(azimuth, 0).x;
+			bool below = azimuth % 90 != 0;
+			float y = below ? c.y + offset : c.y - offset;
+			int vAlign = below ? NVG_ALIGN_TOP : NVG_ALIGN_BOTTOM;
+			if (azimuth > 0)
+				drawGridLabel(vg, Vec(x + offset, y), string::f("%d", azimuth), NVG_ALIGN_LEFT | vAlign);
+			else
+				drawGridLabel(vg, Vec(x - offset, y), string::f("%d", azimuth), NVG_ALIGN_RIGHT | vAlign);
+		}
+		for (int elevation = -90; elevation <= 90; elevation += 45) {
+			float y = project(0, elevation).y;
+			if (elevation > 0)
+				drawGridLabel(vg, Vec(c.x + offset, y + offset), string::f("%d", elevation), NVG_ALIGN_LEFT | NVG_ALIGN_TOP);
+			else if (elevation < 0)
+				drawGridLabel(vg, Vec(c.x + offset, y - offset), string::f("%d", elevation), NVG_ALIGN_LEFT | NVG_ALIGN_BOTTOM);
+		}
+
+		// Keep the letters of sources at the edges (e.g., rear or poles) whole.
+		const Vec margin(4, 5);
+		drawSources(vg, [&](const SourceDirection& d) {
+			return project(d.azimuth, d.elevation).clamp(math::Rect(margin, size.minus(margin.mult(2))));
+		});
+	}
+
+	/** 3D view of the sphere and its X, Y, Z axes, seen from the front-left and
+	 * above, with X (front) pointing toward the viewer at the lower left, Y
+	 * (left) to the right and Z up. Graticules and sources on the hidden side
+	 * of the sphere are faded.
+	 *
+	 * The projection is orthographic. */
+	void drawSphere3D(NVGcontext* vg) {
+		// Camera direction, from the center toward the eye.
+		const float camAzimuth = 30 * DEG2RAD;
+		const float camElevation = 30 * DEG2RAD;
+		const SourceVector eye = directionToVector(camAzimuth * RAD2DEG, camElevation * RAD2DEG);
+		const SourceVector right = {-std::sin(camAzimuth), std::cos(camAzimuth), 0.f};
+		const SourceVector up = {-std::sin(camElevation) * std::cos(camAzimuth),
+		                         -std::sin(camElevation) * std::sin(camAzimuth), std::cos(camElevation)};
+		auto dot = [](const SourceVector& a, const SourceVector& b) {
+			return a.x * b.x + a.y * b.y + a.z * b.z;
+		};
+
+		Vec c = box.size.div(2);
+		// Radius of the sphere outline on the screen (not drawn, used for the
+		// layout).
+		float outlineRadius = c.y - 11;
+
+		// Axis names, just outside the outline in the screen direction of the
+		// positive axis ends.
+		const SourceVector axes[3] = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+		const char* axisNames[3] = {"X", "Y", "Z"};
+		const float labelDistance = outlineRadius + 5;
+		const float labelHalfHeight = 3.5f;
+		auto axisDirection = [=](const SourceVector& axis) {
+			return Vec(dot(axis, right), -dot(axis, up)).normalize();
+		};
+
+		// Centers the plot vertically on the screen, including the axis names
+		// (the Z name sticks out above the sphere).
+		float top = -outlineRadius;
+		float bottom = outlineRadius;
+		for (const SourceVector& axis : axes) {
+			float y = axisDirection(axis).y * labelDistance;
+			top = std::min(top, y - labelHalfHeight);
+			bottom = std::max(bottom, y + labelHalfHeight);
+		}
+		c.y -= (top + bottom) / 2;
+
+		auto project = [=](const SourceVector& v) {
+			return Vec(c.x + outlineRadius * dot(v, right), c.y - outlineRadius * dot(v, up));
+		};
+		auto isVisible = [=](const SourceVector& v) {
+			return dot(v, eye) > 0;
+		};
+
+		// Graticules: parallels and meridians every 45 degrees, including the
+		// great circles in the XY, XZ and YZ planes.
+		using Curve = std::function<SourceVector(float)>;
+		auto parallel = [](float elevation) -> Curve {
+			float e = elevation * DEG2RAD;
+			return [=](float t) {
+				return SourceVector{std::cos(e) * std::cos(t), std::cos(e) * std::sin(t), std::sin(e)};
+			};
+		};
+		auto meridian = [](float azimuth) -> Curve {
+			float a = azimuth * DEG2RAD;
+			return [=](float t) {
+				return SourceVector{std::cos(t) * std::cos(a), std::cos(t) * std::sin(a), std::sin(t)};
+			};
+		};
+		const std::vector<Curve> graticules = {
+			parallel(-45), parallel(0), parallel(45),
+			meridian(0), meridian(45), meridian(90), meridian(135),
+		};
+
+		// Strokes the curves as polylines, keeping only the segments on the
+		// hidden or the visible side of the sphere.
+		const int numSegments = 72;
+		auto strokeCurves = [&](const std::vector<Curve>& curves, bool visible, NVGcolor color, float width) {
+			nvgBeginPath(vg);
+			for (const Curve& curve : curves) {
+				SourceVector prev = curve(0);
+				bool drawing = false;
+				for (int k = 1; k <= numSegments; k++) {
+					SourceVector v = curve(2 * float(M_PI) * k / numSegments);
+					SourceVector mid = {prev.x + v.x, prev.y + v.y, prev.z + v.z};
+					float norm = std::sqrt(dot(mid, mid));
+					SourceVector midUnit = {mid.x / norm, mid.y / norm, mid.z / norm};
+					if (isVisible(midUnit) == visible) {
+						if (!drawing) {
+							Vec p = project(prev);
+							nvgMoveTo(vg, p.x, p.y);
+						}
+						Vec p = project(v);
+						nvgLineTo(vg, p.x, p.y);
+					}
+					drawing = isVisible(midUnit) == visible;
+					prev = v;
+				}
+			}
+			nvgStrokeColor(vg, color);
+			nvgStrokeWidth(vg, width);
+			nvgStroke(vg);
+		};
+		strokeCurves(graticules, false, SCREEN_GRID_HIDDEN, 0.5f);
+		strokeCurves(graticules, true, SCREEN_GRID, 0.5f);
+
+		// Axes as diameters of the sphere, with an arrow at the positive end
+		// whose tip touches the sphere surface.
+		const float arrowLength = 4.f;
+		const float arrowHalfWidth = 1.8f;
+		for (const SourceVector& axis : axes) {
+			Vec tip = project(axis);
+			Vec u = tip.minus(c).normalize();
+			Vec n(-u.y, u.x);
+			Vec base = tip.minus(u.mult(arrowLength));
+
+			nvgBeginPath(vg);
+			Vec p0 = project(SourceVector{-axis.x, -axis.y, -axis.z});
+			nvgMoveTo(vg, p0.x, p0.y);
+			nvgLineTo(vg, base.x, base.y);
+			nvgStrokeColor(vg, SCREEN_OUTLINE);
+			nvgStrokeWidth(vg, 0.8f);
+			nvgStroke(vg);
+
+			nvgBeginPath(vg);
+			nvgMoveTo(vg, tip.x, tip.y);
+			nvgLineTo(vg, base.x + n.x * arrowHalfWidth, base.y + n.y * arrowHalfWidth);
+			nvgLineTo(vg, base.x - n.x * arrowHalfWidth, base.y - n.y * arrowHalfWidth);
+			nvgClosePath(vg);
+			nvgFillColor(vg, SCREEN_OUTLINE);
+			nvgFill(vg);
+		}
+
+		for (int i = 0; i < 3; i++)
+			drawAxisLabel(vg, c.plus(axisDirection(axes[i]).mult(labelDistance)), axisNames[i]);
+
+		drawSources(vg, [&](const SourceDirection& d) {
+			SourceVector v = directionToVector(d.azimuth, d.elevation);
+			return ProjectedSource(project(v), isVisible(v) ? 1.f : 0.5f);
+		});
+	}
+
+	/** Projected position of a source; `alpha` below 1 fades hidden sources. */
+	struct ProjectedSource {
+		Vec pos;
+		float alpha;
+		ProjectedSource(Vec pos, float alpha = 1.f) : pos(pos), alpha(alpha) {}
+	};
+
 	template <typename Project>
 	void drawSources(NVGcontext* vg, const Project& project) {
 		// The module browser preview shows a centered mono source.
@@ -353,15 +573,15 @@ struct SP4TStereoInDisplay : TransparentWidget {
 	}
 
 	/** Draws a source as a letter centered on its projected position. */
-	void drawSourceLetter(NVGcontext* vg, Vec p, const char* letter, NVGcolor color) {
+	void drawSourceLetter(NVGcontext* vg, ProjectedSource p, const char* letter, NVGcolor color) {
 		std::shared_ptr<window::Font> font = APP->window->loadFont(asset::system("res/fonts/Nunito-Bold.ttf"));
 		if (!font)
 			return;
 		nvgFontFaceId(vg, font->handle);
 		nvgFontSize(vg, 11.f);
-		nvgFillColor(vg, color);
+		nvgFillColor(vg, nvgTransRGBAf(color, p.alpha));
 		nvgTextAlign(vg, NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE);
-		nvgText(vg, p.x, p.y, letter, NULL);
+		nvgText(vg, p.pos.x, p.pos.y, letter, NULL);
 	}
 
 	void drawLabel(NVGcontext* vg, Vec p, const char* text) {
@@ -373,6 +593,29 @@ struct SP4TStereoInDisplay : TransparentWidget {
 		nvgFillColor(vg, SCREEN_TEXT);
 		nvgTextAlign(vg, NVG_ALIGN_CENTER | NVG_ALIGN_BOTTOM);
 		nvgText(vg, p.x, p.y, text, NULL);
+	}
+
+	void drawAxisLabel(NVGcontext* vg, Vec p, const char* text) {
+		std::shared_ptr<window::Font> font = APP->window->loadFont(asset::system("res/fonts/ShareTechMono-Regular.ttf"));
+		if (!font)
+			return;
+		nvgFontFaceId(vg, font->handle);
+		nvgFontSize(vg, 10.f);
+		nvgFillColor(vg, SCREEN_TEXT);
+		nvgTextAlign(vg, NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE);
+		nvgText(vg, p.x, p.y, text, NULL);
+	}
+
+	/** Small, dim label for graticules. */
+	void drawGridLabel(NVGcontext* vg, Vec p, const std::string& text, int align) {
+		std::shared_ptr<window::Font> font = APP->window->loadFont(asset::system("res/fonts/ShareTechMono-Regular.ttf"));
+		if (!font)
+			return;
+		nvgFontFaceId(vg, font->handle);
+		nvgFontSize(vg, 7.f);
+		nvgFillColor(vg, SCREEN_TEXT_DIM);
+		nvgTextAlign(vg, align);
+		nvgText(vg, p.x, p.y, text.c_str(), NULL);
 	}
 };
 
@@ -417,8 +660,8 @@ struct SP4TStereoInWidget : ModuleWidget {
 		SP4TStereoIn* module = getModule<SP4TStereoIn>();
 
 		menu->addChild(new MenuSeparator);
-		menu->addChild(createIndexPtrSubmenuItem("Screen projection",
-			{"Orthographic (front / rear)", "Hammer"},
+		menu->addChild(createIndexPtrSubmenuItem("3D view mode",
+			{"Orthographic (front / rear)", "Hammer", "Cartesian", "3D sphere"},
 			&module->projection));
 		menu->addChild(createBoolPtrMenuItem("Flip azimuth (positive = right)", "", &module->flipAzimuth));
 	}

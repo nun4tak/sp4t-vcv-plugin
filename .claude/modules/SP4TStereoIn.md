@@ -34,7 +34,7 @@ attenuated CV is added to the value of the corresponding angle knob.
   - Right
 - 1 Ambisonic jack output (polyphonic) 
 - Right-click menu options:
-  - screen projection (see panel design below)
+  - 3D view mode (see panel design below)
   - flip azimuth (boolean, default disabled): flips the sign of the azimuth
     angle (knob + CV) so that turning the knob to the right or feeding a
     positive CV moves the source to the right. This feels more natural for
@@ -47,12 +47,27 @@ There is a screen at the top of the module that draws the location of the
 input mono or stereo source on a sphere:
 
 - The screen takes the width of the module (minus some reasonable margin)
-- The sphere is represented using either the Hammer projection, or a pair of
-  orthographic projected hemispheres for the front (+x axis) and the rear (-x
-  axis) shown side by side. The projection type is chosen via a dedicated option
-  in the right click menu (default: orthographic pair).
-- (hemi)sphere graticules are drawn (fine stroke width, little contrast color)
-  to give the illusion of rounded surface and to provide landmarks
+- The sphere is represented using one of the following projections, chosen via
+  the "3D view mode" option in the right click menu (default: orthographic
+  pair):
+  - a pair of orthographic projected hemispheres for the front (+x axis) and
+    the rear (-x axis) shown side by side
+  - the Hammer projection
+  - a cartesian projection: a 2D rectangular plane that takes the whole screen
+    area, with the origin at the center, azimuth on the horizontal (Y) axis
+    (-180 to 180 degrees, positive to the left) and elevation on the vertical
+    (Z) axis (-90 to 90 degrees, positive to the top). Both axes are drawn,
+    with labeled graticules every 45 degrees.
+  - a 3D sphere view: 3D view (orthographic projection) of the sphere and its X,
+    Y, Z axes (labeled), with every 45 degrees. The sphere boundary (outline) is
+    not drawn; the three great circles in the XY, XZ and YZ planes are drawn
+    like the other graticules. The axes are drawn as diameters of these great
+    circles, each with a small arrow inside the sphere whose tip touches the
+    sphere surface at the positive end. Graticules and sources on the hidden
+    side of the sphere are faded.
+- (hemi)sphere graticules are drawn every 45 degrees in all projections (fine
+  stroke width, little contrast color) to give the illusion of rounded surface
+  and to provide landmarks
 - The position of the mono source is represented by the letter "M". In case of a
   stereo input, the "M" letter is grayed out and the letters "L" and "R" are
   drawn for the left and right actual source positions respectively.
@@ -63,12 +78,13 @@ input mono or stereo source on a sphere:
 
 Below the screen, there is one row for each angle (azimuth, elevation, spread),
 with from left to right: the CV input, the CV attenuverter (trim) and the main
-knob (large, i.e., about 117% of the normal knob size; both knobs with arcs). Each row spans the module width (same left/right
-margins as the screen), its components are linked by thin horizontal lines (same
-stroke as the knob arcs) and the angle name is centered above the main knob. The
-rows are stacked and evenly spaced inside a rounded rectangle area (same width
-and rounding as the screen, slightly darker or lighter than the panel
-background). The screen is vertically centered between the title and that area.
+knob (large, i.e., about 117% of the normal knob size; both knobs with arcs).
+Each row spans the module width (same left/right margins as the screen), its
+components are linked by thin horizontal lines (same stroke as the knob arcs)
+and the angle name is centered above the main knob. The rows are stacked and
+evenly spaced inside a rounded rectangle area (same width and rounding as the
+screen, slightly darker or lighter than the panel background). The screen is
+vertically centered between the title and that area.
 
 At the bottom of the module, there's a single row aligned with the screen
 margins, evenly spaced: the Left (Mono) and Right inputs, the order switch and
