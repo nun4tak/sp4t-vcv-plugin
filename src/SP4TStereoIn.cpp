@@ -105,6 +105,9 @@ struct SP4TStereoIn : Module {
 	bool stereo = false;
 
 	int projection = PROJECTION_ORTHOGRAPHIC_PAIR;
+	/** When enabled, positive azimuth values (knob or CV) move the source to the
+	 * right (clockwise), opposite to the Ambisonic convention. */
+	bool flipAzimuth = false;
 
 	SP4TStereoIn() : encoder(MAX_NUM_SOURCES) {
 		config(PARAMS_LEN, INPUTS_LEN, OUTPUTS_LEN, LIGHTS_LEN);
@@ -130,6 +133,7 @@ struct SP4TStereoIn : Module {
 	void onReset(const ResetEvent& e) override {
 		Module::onReset(e);
 		projection = PROJECTION_ORTHOGRAPHIC_PAIR;
+		flipAzimuth = false;
 		encoder.reset();
 		updateControls();
 	}
@@ -147,6 +151,8 @@ struct SP4TStereoIn : Module {
 		// Beyond +/-180 degrees, the azimuth wraps around. The elevation doesn't
 		// go past the poles (the rear is reached with the azimuth).
 		float azimuth = getAngle(AZIMUTH_PARAM, AZIMUTH_CV_PARAM, AZIMUTH_INPUT, 180.f, 5.f);
+		if (flipAzimuth)
+			azimuth = -azimuth;
 		float elevation = math::clamp(getAngle(ELEVATION_PARAM, ELEVATION_CV_PARAM, ELEVATION_INPUT, 90.f, 5.f), -90.f, 90.f);
 		float spread = math::clamp(getAngle(SPREAD_PARAM, SPREAD_CV_PARAM, SPREAD_INPUT, 90.f, 10.f), 0.f, 90.f);
 
@@ -192,6 +198,7 @@ struct SP4TStereoIn : Module {
 	json_t* dataToJson() override {
 		json_t* rootJ = json_object();
 		json_object_set_new(rootJ, "projection", json_integer(projection));
+		json_object_set_new(rootJ, "flipAzimuth", json_boolean(flipAzimuth));
 		return rootJ;
 	}
 
@@ -199,6 +206,10 @@ struct SP4TStereoIn : Module {
 		json_t* projectionJ = json_object_get(rootJ, "projection");
 		if (projectionJ)
 			projection = math::clamp((int) json_integer_value(projectionJ), 0, PROJECTIONS_LEN - 1);
+
+		json_t* flipAzimuthJ = json_object_get(rootJ, "flipAzimuth");
+		if (flipAzimuthJ)
+			flipAzimuth = json_boolean_value(flipAzimuthJ);
 	}
 };
 
@@ -409,6 +420,7 @@ struct SP4TStereoInWidget : ModuleWidget {
 		menu->addChild(createIndexPtrSubmenuItem("Screen projection",
 			{"Orthographic (front / rear)", "Hammer"},
 			&module->projection));
+		menu->addChild(createBoolPtrMenuItem("Flip azimuth (positive = right)", "", &module->flipAzimuth));
 	}
 };
 

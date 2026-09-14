@@ -84,7 +84,8 @@ Notes on the general design of the module panels (SVG files):
 - jack inputs and outputs carrying ambisonic signals (via polyphonic cables)
   must all have the same identifiable contour that is distinct from the other
   jacks (CV or audio): a simple thick stroke circle around the jack, in the
-  same Ayu theme blue as the "4" of the title.
+  same Ayu theme blue as the "4" of the title. Their labels must also start with
+  the "A-" prefix (e.g., "A-IN", "A-OUT").
 
 ## Module Design
 

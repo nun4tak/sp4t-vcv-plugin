@@ -33,6 +33,13 @@ attenuated CV is added to the value of the corresponding angle knob.
   - Left (Mono)
   - Right
 - 1 Ambisonic jack output (polyphonic) 
+- Right-click menu options:
+  - screen projection (see panel design below)
+  - flip azimuth (boolean, default disabled): flips the sign of the azimuth
+    angle (knob + CV) so that turning the knob to the right or feeding a
+    positive CV moves the source to the right. This feels more natural for
+    eurorack users despite it doesn't follow the Ambisonic convention (positive
+    azimuth = anticlockwise, i.e., to the left), hence disabled by default.
 
 ## Panel design
 
@@ -65,7 +72,8 @@ background). The screen is vertically centered between the title and that area.
 
 At the bottom of the module, there's a single row aligned with the screen
 margins, evenly spaced: the Left (Mono) and Right inputs, the order switch and
-the Ambisonic output. Add a label just above each jack and the switch. The
+the Ambisonic output. Add a label just above each jack and the switch (the
+Ambisonic output is labeled "A-OUT"). The
 switch positions are labeled "1st", "2nd" and "3rd" from top to bottom.
 
 ## Implementation
