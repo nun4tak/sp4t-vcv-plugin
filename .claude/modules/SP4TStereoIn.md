@@ -100,3 +100,8 @@ implement a common encoder with an arbitrary number of input sources as well,
 even tough here it is limited to Mono (1 source) or Stereo (2 sources). The
 common, generic encoder could then be reused later for another more advanced
 rack module.
+
+The screen is drawn by the reusable `sp4t::AmbisonicDisplay` widget
+(`src/AmbisonicDisplay.hpp`), which is independent of the module: the module
+widget sets its view mode and sources (directions, letters and colors) in
+`step()`.
