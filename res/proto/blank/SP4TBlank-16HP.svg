@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Blank SP4T panel, light theme. 16 HP. Units: mm. Prototype, not used by the build. -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="81.28mm" height="128.5mm" viewBox="0 0 81.28 128.5">
+  <defs id="component-defs">
+    <!-- ScrewSilver.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <linearGradient id="screw-g1" gradientUnits="userSpaceOnUse" x1="219.99944" y1="6477.3999" x2="232.99944" y2="6477.3999" gradientTransform="matrix(6.123234e-17 1 1 -6.123234e-17 -6469.8999 -219)"><stop offset="0" stop-color="#ABA9A9"/><stop offset="1" stop-color="#8F8F8F"/></linearGradient>
+    <linearGradient id="screw-g2" gradientUnits="userSpaceOnUse" x1="220.68697" y1="6477.3999" x2="232.31085" y2="6477.3999" gradientTransform="matrix(6.123234e-17 1 1 -6.123234e-17 -6469.8999 -219)"><stop offset="0.00559" stop-color="#F5F5F5"/><stop offset="1" stop-color="#C2C2C2"/></linearGradient>
+    <linearGradient id="screw-g3" gradientUnits="userSpaceOnUse" x1="221.13403" y1="6477.3999" x2="231.86378" y2="6477.3999" gradientTransform="matrix(6.123234e-17 1 1 -6.123234e-17 -6469.8999 -219)"><stop offset="0.00559" stop-color="#EBEBEB"/><stop offset="1" stop-color="#CCCCCC"/></linearGradient>
+    <symbol id="ScrewSilver" viewBox="0 0 15 14.9989">
+      <circle fill="url(#screw-g1)" cx="7.5" cy="7.49944" r="6.5"/>
+      <circle fill="url(#screw-g2)" cx="7.5" cy="7.49891" r="5.81194"/>
+      <circle fill="url(#screw-g3)" cx="7.5" cy="7.49891" r="5.36487"/>
+      <path fill="#8C8C8C" d="M10.96889,6.80997L9.00528,6.57471C8.70384,6.5386,8.46626,6.30092,8.43027,5.99947L8.19598,4.03719c-0.01021-0.08553-0.08276-0.14993-0.1689-0.14993H6.97294c-0.08613,0-0.15867,0.06438-0.16889,0.1499l-0.23484,1.9634C6.53315,6.30204,6.29544,6.5397,5.99394,6.57569L4.03118,6.81003c-0.08554,0.01021-0.14993,0.08276-0.14993,0.1689v1.0542c0,0.08613,0.06438,0.15866,0.1499,0.16889l1.96299,0.2348C6.29557,8.47287,6.5332,8.7105,6.56925,9.01193l0.23479,1.96293c0.01023,0.08552,0.08277,0.1499,0.16889,0.1499h1.0542c0.08612,0,0.15865-0.06436,0.16889-0.14986l0.23521-1.96318c0.03611-0.30139,0.27372-0.53895,0.57512-0.57499l1.96249-0.2347c0.08552-0.01023,0.1499-0.08276,0.1499-0.16889V6.97886C11.11875,6.89275,11.05439,6.82022,10.96889,6.80997z"/>
+    </symbol>
+  </defs>
+  <g id="panel" inkscape:groupmode="layer" inkscape:label="Panel">
+  <rect id="background" x="0" y="0" width="81.28" height="128.5" fill="#D8DBDF"/>
+
+  <!-- just under the top screws -->
+  <text id="title" x="40.64" y="9" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4.1" font-weight="700" text-anchor="middle" fill="#2B3038">SP<tspan fill="#22A4E6">4</tspan>T · MODULE NAME</text>
+
+  <!-- between the bottom screws -->
+  <text id="brand" x="40.64" y="124.4" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4" font-weight="700" text-anchor="middle" fill="#3A4049">\nu.na.tak\</text>
+  </g>
+  <g id="components" inkscape:groupmode="layer" inkscape:label="Components">
+    <!-- Rack widgets (positions from the module source); not part of the exported panel. -->
+    <use id="screw-top-left" xlink:href="#ScrewSilver" x="5.08" y="0" width="5.08" height="5.0796"/>
+    <use id="screw-top-right" xlink:href="#ScrewSilver" x="71.12" y="0" width="5.08" height="5.0796"/>
+    <use id="screw-bottom-left" xlink:href="#ScrewSilver" x="5.08" y="123.42" width="5.08" height="5.0796"/>
+    <use id="screw-bottom-right" xlink:href="#ScrewSilver" x="71.12" y="123.42" width="5.08" height="5.0796"/>
+  </g>
+</svg>
