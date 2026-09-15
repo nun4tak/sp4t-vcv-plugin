@@ -26,9 +26,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="1.2113518"
-     inkscape:cx="73.471635"
-     inkscape:cy="253.84863"
+     inkscape:zoom="1.4120825"
+     inkscape:cx="55.945741"
+     inkscape:cy="371.43723"
      inkscape:window-width="1512"
      inkscape:window-height="916"
      inkscape:window-x="0"
@@ -403,13 +403,13 @@
        height="128.5"
        fill="#d8dbdf" />
     <rect
-       style="fill:#bbbec3;fill-opacity:1;stroke:none;stroke-width:0.283768;stroke-dasharray:none;stroke-opacity:1"
-       id="rect85"
-       width="21.265783"
-       height="18.093122"
-       x="26.924738"
-       y="102.89175"
-       rx="1.3737124"
+       style="fill:#bbbfc3;fill-opacity:1;stroke:none;stroke-width:0.217749;stroke-dasharray:none;stroke-opacity:1"
+       id="rect138"
+       width="22.847641"
+       height="19.948242"
+       x="26.224442"
+       y="101.33542"
+       rx="0.80887681"
        ry="1.5523056" />
     <!-- just under the top screws -->
     <text
