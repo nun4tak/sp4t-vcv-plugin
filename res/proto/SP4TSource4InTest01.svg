@@ -26,15 +26,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="1.1498409"
-     inkscape:cx="69.14"
-     inkscape:cy="254.38302"
+     inkscape:zoom="1.2682325"
+     inkscape:cx="194.75924"
+     inkscape:cy="253.50241"
      inkscape:window-width="1512"
      inkscape:window-height="916"
      inkscape:window-x="0"
      inkscape:window-y="38"
      inkscape:window-maximized="0"
-     inkscape:current-layer="panel"
+     inkscape:current-layer="svg49"
      showgrid="true"
      showguides="true">
     <inkscape:grid
@@ -394,7 +394,8 @@
   <g
      id="panel"
      inkscape:groupmode="layer"
-     inkscape:label="Panel">
+     inkscape:label="Panel"
+     style="display:inline">
     <rect
        id="background"
        x="0"
@@ -402,6 +403,30 @@
        width="50.799999"
        height="128.5"
        fill="#d8dbdf" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#rect33"
+       id="use54"
+       transform="translate(0,21.718315)" />
+    <rect
+       style="display:inline;opacity:0.15;fill:#484c51;fill-opacity:1;stroke:none;stroke-width:0.217749;stroke-dasharray:none;stroke-opacity:1"
+       id="rect33"
+       width="21.141476"
+       height="19.948238"
+       x="3.7348583"
+       y="57.922585"
+       rx="0.80887592"
+       ry="1.5523056" />
+    <rect
+       style="display:inline;opacity:0.15;fill:#484c51;fill-opacity:1;stroke:none;stroke-width:0.217749;stroke-dasharray:none;stroke-opacity:1"
+       id="rect52"
+       width="21.141476"
+       height="19.948238"
+       x="25.923664"
+       y="57.922585"
+       rx="0.80887592"
+       ry="1.5523056" />
     <rect
        style="fill:#bbbec3;fill-opacity:1;stroke:none;stroke-width:0.283768;stroke-dasharray:none;stroke-opacity:1"
        id="rect85"
@@ -431,16 +456,20 @@
        x="8.7065477"
        y="107.4"
        id="text43"
-       style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-style:normal;font-stretch:normal;font-variant:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan
          sodipodi:role="line"
-         id="tspan2">OMNI</tspan></text>
+         id="tspan2"
+         x="8.8065472"
+         y="107.4">OMNI</tspan></text>
     <text
        x="42.071697"
        y="107.4"
        id="text46"
-       style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-style:normal;font-stretch:normal;font-variant:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill-opacity:1"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#3a4049;fill-opacity:1"><tspan
          sodipodi:role="line"
-         id="tspan85">AMB</tspan></text>
+         id="tspan85"
+         x="42.171696"
+         y="107.4">AMB</tspan></text>
     <!-- Ambisonic jack contour (jack radius 4 mm, ring inner edge under the jack: no gap). -->
     <!-- between the bottom screws -->
     <text
@@ -453,41 +482,165 @@
        text-anchor="middle"
        fill="#3a4049">\nu.na.tak\</text>
     <text
-       x="7.1707439"
-       y="16.008919"
+       x="8.7840014"
+       y="56.218262"
        id="text72"
        style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan
          sodipodi:role="line"
-         id="tspan75"
-         x="7.2707443"
-         y="16.008919">AZ</tspan></text>
+         id="tspan45"
+         x="8.8840017"
+         y="56.218262">AZ</tspan></text>
     <text
-       x="21.789476"
-       y="16.008919"
+       x="19.753874"
+       y="56.218262"
        id="text73"
        style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan
          sodipodi:role="line"
-         id="tspan76"
-         x="21.889477"
-         y="16.008919">ELEV</tspan></text>
+         id="tspan46"
+         x="19.853874"
+         y="56.218262">ELEV</tspan></text>
+    <rect
+       id="screen"
+       x="1.7279129"
+       y="11.500114"
+       width="47.344173"
+       height="34.038799"
+       rx="1.0718677"
+       fill="#0d1017"
+       style="display:inline;stroke-width:1.15606" />
     <text
-       x="60.803211"
-       y="16.976284"
-       id="text74"
+       x="14.474406"
+       y="69.671616"
+       id="text50"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:4.93889px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#777a88;fill-opacity:0.5"><tspan
+         sodipodi:role="line"
+         id="tspan50"
+         x="14.574407"
+         y="69.671616">1</tspan></text>
+    <text
+       x="30.972807"
+       y="56.218262"
+       id="text51"
        style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan
          sodipodi:role="line"
-         id="tspan74"
-         x="60.90321"
-         y="16.976284">SPREAD</tspan></text>
+         id="tspan51"
+         x="31.072807"
+         y="56.218262">AZ</tspan></text>
+    <text
+       x="41.94521"
+       y="56.218262"
+       id="text52"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan
+         sodipodi:role="line"
+         id="tspan52"
+         x="42.045208"
+         y="56.218262">ELEV</tspan></text>
+    <text
+       x="36.545044"
+       y="69.671616"
+       id="text53"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:4.93889px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#777a88;fill-opacity:0.5"><tspan
+         sodipodi:role="line"
+         id="tspan53"
+         x="36.645042"
+         y="69.671616">2</tspan></text>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#rect33"
+       id="use55"
+       transform="translate(22.188806,21.718315)" />
+    <text
+       x="14.316448"
+       y="91.359787"
+       id="text55"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:4.93889px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#777a88;fill-opacity:0.5"><tspan
+         sodipodi:role="line"
+         id="tspan57"
+         x="14.416449"
+         y="91.359787">3</tspan></text>
+    <text
+       x="36.504047"
+       y="91.389931"
+       id="text56"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:4.93889px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#777a88;fill-opacity:0.5"><tspan
+         sodipodi:role="line"
+         id="tspan58"
+         x="36.604046"
+         y="91.389931">4</tspan></text>
+    <path
+       d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
+       id="path36"
+       style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round"
+       transform="matrix(0.91074573,0,0,0.91074573,-12.050399,17.8556)" />
+    <path
+       d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
+       id="path51"
+       style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round"
+       transform="matrix(0.91074573,0,0,0.91074573,-0.95473147,17.8556)" />
+    <path
+       d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
+       id="path53"
+       style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round"
+       transform="matrix(0.91074573,0,0,0.91074573,21.236602,17.8556)" />
+    <path
+       d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
+       id="path1"
+       style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round"
+       transform="matrix(0.91074573,0,0,0.91074573,10.140935,17.8556)" />
+    <path
+       d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
+       id="path2"
+       style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round"
+       transform="matrix(0.91074573,0,0,0.91074573,-12.050399,-4.0422777)" />
+    <path
+       d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
+       id="path3"
+       style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round"
+       transform="matrix(0.91074573,0,0,0.91074573,-0.95473147,-4.0422777)" />
+    <path
+       d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
+       id="path4"
+       style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round"
+       transform="matrix(0.91074573,0,0,0.91074573,21.236602,-4.0422777)" />
+    <path
+       d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
+       id="path9"
+       style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round"
+       transform="matrix(0.91074573,0,0,0.91074573,10.140935,-4.0422777)" />
+    <text
+       x="34.262531"
+       y="112.15141"
+       id="text47"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:start;fill:#3a4049;fill-opacity:1"><tspan
+         sodipodi:role="line"
+         id="tspan82"
+         x="34.262531"
+         y="112.15141">1</tspan></text>
+    <text
+       x="34.262531"
+       y="115.0414"
+       id="text48"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:start;fill:#3a4049;fill-opacity:1"><tspan
+         sodipodi:role="line"
+         id="tspan83"
+         x="34.262531"
+         y="115.0414">2</tspan></text>
+    <text
+       x="34.262531"
+       y="117.91141"
+       id="text49"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:start;fill:#3a4049;fill-opacity:1"><tspan
+         sodipodi:role="line"
+         id="tspan84"
+         x="34.262531"
+         y="117.91141">3</tspan></text>
   </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer1"
-     inkscape:label="Guides" />
   <g
      id="components"
      inkscape:groupmode="layer"
-     inkscape:label="Components">
+     inkscape:label="Components"
+     style="display:inline">
     <use
        id="ambi-output"
        xlink:href="#PJ301M"
@@ -500,38 +653,34 @@
     <use
        id="screw-top-left"
        xlink:href="#ScrewSilver"
-       x="5.08"
+       x="5.0799999"
        y="0"
-       width="5.08"
-       height="5.0796" />
+       width="5.0799999"
+       height="5.0795999" />
     <use
        id="screw-top-right"
        xlink:href="#ScrewSilver"
-       x="40.64"
+       x="40.639999"
        y="0"
-       width="5.08"
-       height="5.0796" />
+       width="5.0799999"
+       height="5.0795999" />
     <use
        id="screw-bottom-left"
        xlink:href="#ScrewSilver"
-       x="5.08"
+       x="5.0799999"
        y="123.42"
-       width="5.08"
-       height="5.0796" />
+       width="5.0799999"
+       height="5.0795999" />
     <use
        id="screw-bottom-right"
        xlink:href="#ScrewSilver"
-       x="40.64"
+       x="40.639999"
        y="123.42"
-       width="5.08"
-       height="5.0796" />
+       width="5.0799999"
+       height="5.0795999" />
     <g
        id="g51"
        transform="matrix(0.91074573,0,0,0.91074573,-12.050399,17.8556)">
-      <path
-         d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
-         id="path36"
-         style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
       <use
          id="elevation-cv-param"
          xlink:href="#SP4TRoundSmallKnob"
@@ -540,48 +689,14 @@
          width="6.7733002"
          height="6.7733002" />
     </g>
-    <g
-       id="g85"
-       transform="translate(2.6207917,12.662694)">
-      <g
-         id="g84">
-        <text
-           x="31.641741"
-           y="99.488708"
-           id="text47"
-           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:start;fill:#3a4049;fill-opacity:1"><tspan
-             sodipodi:role="line"
-             id="tspan82"
-             x="31.641741"
-             y="99.488708">1</tspan></text>
-        <text
-           x="31.641741"
-           y="102.37871"
-           id="text48"
-           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:start;fill:#3a4049;fill-opacity:1"><tspan
-             sodipodi:role="line"
-             id="tspan83"
-             x="31.641741"
-             y="102.37871">2</tspan></text>
-        <text
-           x="31.641741"
-           y="105.24871"
-           id="text49"
-           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:start;fill:#3a4049;fill-opacity:1"><tspan
-             sodipodi:role="line"
-             id="tspan84"
-             x="31.641741"
-             y="105.24871">3</tspan></text>
-      </g>
-      <use
-         id="order-param"
-         xlink:href="#SP4TSwitchThree"
-         x="24.646299"
-         y="109.1998"
-         width="4.5574002"
-         height="9.6004"
-         transform="translate(1.6417413,-12.636294)" />
-    </g>
+    <use
+       id="order-param"
+       xlink:href="#SP4TSwitchThree"
+       x="24.646299"
+       y="109.1998"
+       width="4.5574002"
+       height="9.6004"
+       transform="translate(4.262533,0.0264)" />
     <use
        id="left-input"
        xlink:href="#PJ301M"
@@ -593,10 +708,6 @@
     <g
        id="g52"
        transform="matrix(0.91074573,0,0,0.91074573,-0.95473148,17.8556)">
-      <path
-         d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
-         id="path51"
-         style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
       <use
          id="use51"
          xlink:href="#SP4TRoundSmallKnob"
@@ -608,10 +719,6 @@
     <g
        id="g54"
        transform="matrix(0.91074573,0,0,0.91074573,21.236602,17.8556)">
-      <path
-         d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
-         id="path53"
-         style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
       <use
          id="use53"
          xlink:href="#SP4TRoundSmallKnob"
@@ -644,11 +751,6 @@
        width="8.0263996"
        height="8.0263996"
        transform="translate(34.030497,40.303014)" />
-    <path
-       style="fill:none;stroke:#737a83;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M -6.7758383,65.346198 V 79.488652"
-       id="path76"
-       sodipodi:nodetypes="cc" />
     <use
        id="use1"
        xlink:href="#PJ301M"
@@ -660,10 +762,6 @@
     <g
        id="g2"
        transform="matrix(0.91074573,0,0,0.91074573,10.140935,17.8556)">
-      <path
-         d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
-         id="path1"
-         style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
       <use
          id="use2"
          xlink:href="#SP4TRoundSmallKnob"
@@ -674,11 +772,7 @@
     </g>
     <g
        id="g3"
-       transform="matrix(0.91074573,0,0,0.91074573,-12.050399,-3.7468448)">
-      <path
-         d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
-         id="path2"
-         style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
+       transform="matrix(0.91074573,0,0,0.91074573,-12.050399,-4.0422776)">
       <use
          id="use3"
          xlink:href="#SP4TRoundSmallKnob"
@@ -689,11 +783,7 @@
     </g>
     <g
        id="g4"
-       transform="matrix(0.91074573,0,0,0.91074573,-0.95473148,-3.7468448)">
-      <path
-         d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
-         id="path3"
-         style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
+       transform="matrix(0.91074573,0,0,0.91074573,-0.95473148,-4.0422776)">
       <use
          id="use4"
          xlink:href="#SP4TRoundSmallKnob"
@@ -704,11 +794,7 @@
     </g>
     <g
        id="g5"
-       transform="matrix(0.91074573,0,0,0.91074573,21.236602,-3.7468448)">
-      <path
-         d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
-         id="path4"
-         style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
+       transform="matrix(0.91074573,0,0,0.91074573,21.236602,-4.0422776)">
       <use
          id="use5"
          xlink:href="#SP4TRoundSmallKnob"
@@ -724,7 +810,7 @@
        y="69.153801"
        width="8.0263996"
        height="8.0263996"
-       transform="translate(11.839164,0.13323225)" />
+       transform="translate(11.839164,-0.16219961)" />
     <use
        id="use7"
        xlink:href="#PJ301M"
@@ -732,7 +818,7 @@
        y="87.893799"
        width="8.0263996"
        height="8.0263996"
-       transform="translate(0.74349681,-18.53867)" />
+       transform="translate(0.74349681,-18.834102)" />
     <use
        id="use8"
        xlink:href="#PJ301M"
@@ -740,7 +826,7 @@
        y="50.413799"
        width="8.0263996"
        height="8.0263996"
-       transform="translate(34.030497,18.700569)" />
+       transform="translate(34.030497,18.405137)" />
     <use
        id="use9"
        xlink:href="#PJ301M"
@@ -748,200 +834,12 @@
        y="50.413799"
        width="8.0263996"
        height="8.0263996"
-       transform="translate(22.93483,18.700569)" />
+       transform="translate(22.93483,18.405137)" />
     <g
        id="g10"
-       transform="matrix(0.91074573,0,0,0.91074573,10.140935,-3.7468448)">
-      <path
-         d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
-         id="path9"
-         style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
+       transform="matrix(0.91074573,0,0,0.91074573,10.140935,-4.0422776)">
       <use
          id="use10"
-         xlink:href="#SP4TRoundSmallKnob"
-         x="19.459299"
-         y="69.780296"
-         width="6.7733002"
-         height="6.7733002" />
-    </g>
-    <g
-       id="g11"
-       transform="matrix(0.91074573,0,0,0.91074573,-12.050399,-26.066962)">
-      <path
-         d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
-         id="path10"
-         style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
-      <use
-         id="use11"
-         xlink:href="#SP4TRoundSmallKnob"
-         x="19.459299"
-         y="69.780296"
-         width="6.7733002"
-         height="6.7733002" />
-    </g>
-    <g
-       id="g12"
-       transform="matrix(0.91074573,0,0,0.91074573,-0.95473148,-26.066962)">
-      <path
-         d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
-         id="path11"
-         style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
-      <use
-         id="use12"
-         xlink:href="#SP4TRoundSmallKnob"
-         x="19.459299"
-         y="69.780296"
-         width="6.7733002"
-         height="6.7733002" />
-    </g>
-    <g
-       id="g13"
-       transform="matrix(0.91074573,0,0,0.91074573,21.236602,-26.066962)">
-      <path
-         d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
-         id="path12"
-         style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
-      <use
-         id="use13"
-         xlink:href="#SP4TRoundSmallKnob"
-         x="19.459299"
-         y="69.780296"
-         width="6.7733002"
-         height="6.7733002" />
-    </g>
-    <use
-       id="use14"
-       xlink:href="#PJ301M"
-       x="3.9998"
-       y="69.153801"
-       width="8.0263996"
-       height="8.0263996"
-       transform="translate(11.839164,-22.186885)" />
-    <use
-       id="use15"
-       xlink:href="#PJ301M"
-       x="3.9998"
-       y="87.893799"
-       width="8.0263996"
-       height="8.0263996"
-       transform="translate(0.74349681,-40.858787)" />
-    <use
-       id="use16"
-       xlink:href="#PJ301M"
-       x="3.9998"
-       y="50.413799"
-       width="8.0263996"
-       height="8.0263996"
-       transform="translate(34.030497,-3.6195479)" />
-    <use
-       id="use17"
-       xlink:href="#PJ301M"
-       x="3.9998"
-       y="50.413799"
-       width="8.0263996"
-       height="8.0263996"
-       transform="translate(22.93483,-3.6195479)" />
-    <g
-       id="g18"
-       transform="matrix(0.91074573,0,0,0.91074573,10.140935,-26.066962)">
-      <path
-         d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
-         id="path17"
-         style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
-      <use
-         id="use18"
-         xlink:href="#SP4TRoundSmallKnob"
-         x="19.459299"
-         y="69.780296"
-         width="6.7733002"
-         height="6.7733002" />
-    </g>
-    <g
-       id="g19"
-       transform="matrix(0.91074573,0,0,0.91074573,-12.050399,-47.92687)">
-      <path
-         d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
-         id="path18"
-         style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
-      <use
-         id="use19"
-         xlink:href="#SP4TRoundSmallKnob"
-         x="19.459299"
-         y="69.780296"
-         width="6.7733002"
-         height="6.7733002" />
-    </g>
-    <g
-       id="g21"
-       transform="matrix(0.91074573,0,0,0.91074573,-0.95473148,-47.92687)">
-      <path
-         d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
-         id="path21"
-         style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
-      <use
-         id="use21"
-         xlink:href="#SP4TRoundSmallKnob"
-         x="19.459299"
-         y="69.780296"
-         width="6.7733002"
-         height="6.7733002" />
-    </g>
-    <g
-       id="g23"
-       transform="matrix(0.91074573,0,0,0.91074573,21.236602,-47.92687)">
-      <path
-         d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
-         id="path23"
-         style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
-      <use
-         id="use23"
-         xlink:href="#SP4TRoundSmallKnob"
-         x="19.459299"
-         y="69.780296"
-         width="6.7733002"
-         height="6.7733002" />
-    </g>
-    <use
-       id="use24"
-       xlink:href="#PJ301M"
-       x="3.9998"
-       y="69.153801"
-       width="8.0263996"
-       height="8.0263996"
-       transform="translate(11.839164,-44.046793)" />
-    <use
-       id="use25"
-       xlink:href="#PJ301M"
-       x="3.9998"
-       y="87.893799"
-       width="8.0263996"
-       height="8.0263996"
-       transform="translate(0.74349681,-62.718695)" />
-    <use
-       id="use26"
-       xlink:href="#PJ301M"
-       x="3.9998"
-       y="50.413799"
-       width="8.0263996"
-       height="8.0263996"
-       transform="translate(34.030497,-25.479456)" />
-    <use
-       id="use27"
-       xlink:href="#PJ301M"
-       x="3.9998"
-       y="50.413799"
-       width="8.0263996"
-       height="8.0263996"
-       transform="translate(22.93483,-25.479456)" />
-    <g
-       id="g28"
-       transform="matrix(0.91074573,0,0,0.91074573,10.140935,-47.92687)">
-      <path
-         d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
-         id="path27"
-         style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
-      <use
-         id="use28"
          xlink:href="#SP4TRoundSmallKnob"
          x="19.459299"
          y="69.780296"
