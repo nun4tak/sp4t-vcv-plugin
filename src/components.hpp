@@ -76,3 +76,18 @@ struct SP4TSwitchThree : app::SvgSwitch {
 		addFrame(Svg::load(asset::plugin(pluginInstance, "res/components/SP4TSwitchThree_0.svg")));
 	}
 };
+
+
+/** Flat variant of CKSS (vertical 2-position switch, value 0 at the top).
+ *
+ * Same design than SP4TSwitchThree, with a shorter body. The frame files are
+ * named after the handle position of CKSS, i.e., _0 is the bottom position and
+ * _1 the top position.
+ */
+struct SP4TSwitchTwo : app::SvgSwitch {
+	SP4TSwitchTwo() {
+		shadow->opacity = 0.f;
+		addFrame(Svg::load(asset::plugin(pluginInstance, "res/components/SP4TSwitchTwo_1.svg")));
+		addFrame(Svg::load(asset::plugin(pluginInstance, "res/components/SP4TSwitchTwo_0.svg")));
+	}
+};
