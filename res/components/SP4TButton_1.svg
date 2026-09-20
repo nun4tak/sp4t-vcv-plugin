@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Flat variant of VCV Rack's TL1105_1.svg (Component Library, CC BY-NC 4.0), with the SP4TRoundSmallKnob metrics. Pressed position. -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="20px" height="20px" viewBox="0 0 20 20">
+  <circle id="body" cx="10" cy="10" r="9.6" fill="#15181D"/>
+  <circle id="cap" cx="10" cy="10" r="6.4" fill="#2A2F38"/>
+</svg>

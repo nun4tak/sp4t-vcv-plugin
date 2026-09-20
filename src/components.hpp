@@ -63,6 +63,35 @@ struct SP4TRoundSmallKnob : SP4TKnob {
 };
 
 
+/** Flat variant of TL1105 (momentary push button), with the SP4TRoundSmallKnob
+ * metrics (6.8 mm). */
+struct SP4TButton : app::SvgSwitch {
+	SP4TButton() {
+		momentary = true;
+		shadow->opacity = 0.f;
+		addFrame(Svg::load(asset::plugin(pluginInstance, "res/components/SP4TButton_0.svg")));
+		addFrame(Svg::load(asset::plugin(pluginInstance, "res/components/SP4TButton_1.svg")));
+	}
+};
+
+
+/** Flat variant of VCVLatch (latching push button), with the SP4TButton metrics.
+ *
+ * Unlike VCVLatch, which only depresses the button while the mouse is held
+ * (SvgSwitch::latch), the frame here follows the param value: the cap stays lit
+ * as long as the button is latched on. The off frame is the released
+ * SP4TButton, so only the lit frame is a file of its own.
+ */
+struct SP4TLatch : app::SvgSwitch {
+	SP4TLatch() {
+		momentary = false;
+		shadow->opacity = 0.f;
+		addFrame(Svg::load(asset::plugin(pluginInstance, "res/components/SP4TButton_0.svg")));
+		addFrame(Svg::load(asset::plugin(pluginInstance, "res/components/SP4TLatch_1.svg")));
+	}
+};
+
+
 /** Flat variant of CKSSThree (vertical 3-position switch, value 0 at the top).
  *
  * The frame files are named after the handle position of CKSSThree, i.e.,
