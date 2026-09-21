@@ -27,12 +27,12 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="1.2682325"
-     inkscape:cx="194.75924"
+     inkscape:cx="141.92981"
      inkscape:cy="253.50241"
      inkscape:window-width="1512"
      inkscape:window-height="916"
-     inkscape:window-x="0"
-     inkscape:window-y="38"
+     inkscape:window-x="541"
+     inkscape:window-y="146"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg49"
      showgrid="true"
@@ -415,7 +415,7 @@
        width="21.141476"
        height="19.948238"
        x="3.7348583"
-       y="57.922585"
+       y="54.749149"
        rx="0.80887592"
        ry="1.5523056" />
     <rect
@@ -424,7 +424,7 @@
        width="21.141476"
        height="19.948238"
        x="25.923664"
-       y="57.922585"
+       y="54.749149"
        rx="0.80887592"
        ry="1.5523056" />
     <rect
@@ -483,22 +483,22 @@
        fill="#3a4049">\nu.na.tak\</text>
     <text
        x="8.7840014"
-       y="56.218262"
+       y="53.044827"
        id="text72"
        style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan
          sodipodi:role="line"
          id="tspan45"
          x="8.8840017"
-         y="56.218262">AZ</tspan></text>
+         y="53.044827">AZ</tspan></text>
     <text
        x="19.753874"
-       y="56.218262"
+       y="53.044827"
        id="text73"
        style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan
          sodipodi:role="line"
          id="tspan46"
          x="19.853874"
-         y="56.218262">ELEV</tspan></text>
+         y="53.044827">ELEV</tspan></text>
     <rect
        id="screen"
        x="1.7279129"
@@ -510,40 +510,40 @@
        style="display:inline;stroke-width:1.15606" />
     <text
        x="14.474406"
-       y="69.671616"
+       y="66.498184"
        id="text50"
        style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:4.93889px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#777a88;fill-opacity:0.5"><tspan
          sodipodi:role="line"
          id="tspan50"
          x="14.574407"
-         y="69.671616">1</tspan></text>
+         y="66.498184">1</tspan></text>
     <text
        x="30.972807"
-       y="56.218262"
+       y="53.044827"
        id="text51"
        style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan
          sodipodi:role="line"
          id="tspan51"
          x="31.072807"
-         y="56.218262">AZ</tspan></text>
+         y="53.044827">AZ</tspan></text>
     <text
        x="41.94521"
-       y="56.218262"
+       y="53.044827"
        id="text52"
        style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan
          sodipodi:role="line"
          id="tspan52"
          x="42.045208"
-         y="56.218262">ELEV</tspan></text>
+         y="53.044827">ELEV</tspan></text>
     <text
        x="36.545044"
-       y="69.671616"
+       y="66.498184"
        id="text53"
        style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:4.93889px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#777a88;fill-opacity:0.5"><tspan
          sodipodi:role="line"
          id="tspan53"
          x="36.645042"
-         y="69.671616">2</tspan></text>
+         y="66.498184">2</tspan></text>
     <use
        x="0"
        y="0"
@@ -552,62 +552,54 @@
        transform="translate(22.188806,21.718315)" />
     <text
        x="14.316448"
-       y="91.359787"
+       y="88.186356"
        id="text55"
        style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:4.93889px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#777a88;fill-opacity:0.5"><tspan
          sodipodi:role="line"
          id="tspan57"
          x="14.416449"
-         y="91.359787">3</tspan></text>
+         y="88.186356">3</tspan></text>
     <text
        x="36.504047"
-       y="91.389931"
+       y="88.216499"
        id="text56"
        style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:4.93889px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.2;text-anchor:middle;fill:#777a88;fill-opacity:0.5"><tspan
          sodipodi:role="line"
          id="tspan58"
          x="36.604046"
-         y="91.389931">4</tspan></text>
+         y="88.216499">4</tspan></text>
     <path
-       d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
+       d="m 6.8129666,84.602848 a 3.8160246,3.8160246 0 1 1 3.8870624,0"
        id="path36"
-       style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round"
-       transform="matrix(0.91074573,0,0,0.91074573,-12.050399,17.8556)" />
+       style="fill:none;stroke:#737a83;stroke-width:0.273224;stroke-linecap:round" />
     <path
-       d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
+       d="m 17.908634,84.602848 a 3.8160246,3.8160246 0 1 1 3.887063,0"
        id="path51"
-       style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round"
-       transform="matrix(0.91074573,0,0,0.91074573,-0.95473147,17.8556)" />
+       style="fill:none;stroke:#737a83;stroke-width:0.273224;stroke-linecap:round" />
     <path
-       d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
+       d="m 40.099968,84.602848 a 3.8160246,3.8160246 0 1 1 3.887062,0"
        id="path53"
-       style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round"
-       transform="matrix(0.91074573,0,0,0.91074573,21.236602,17.8556)" />
+       style="fill:none;stroke:#737a83;stroke-width:0.273224;stroke-linecap:round" />
     <path
-       d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
+       d="m 29.004301,84.602848 a 3.8160246,3.8160246 0 1 1 3.887062,0"
        id="path1"
-       style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round"
-       transform="matrix(0.91074573,0,0,0.91074573,10.140935,17.8556)" />
+       style="fill:none;stroke:#737a83;stroke-width:0.273224;stroke-linecap:round" />
     <path
-       d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
+       d="m 6.8129666,62.704971 a 3.8160246,3.8160246 0 1 1 3.8870624,0"
        id="path2"
-       style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round"
-       transform="matrix(0.91074573,0,0,0.91074573,-12.050399,-4.0422777)" />
+       style="fill:none;stroke:#737a83;stroke-width:0.273224;stroke-linecap:round" />
     <path
-       d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
+       d="m 17.908634,62.704971 a 3.8160246,3.8160246 0 1 1 3.887063,0"
        id="path3"
-       style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round"
-       transform="matrix(0.91074573,0,0,0.91074573,-0.95473147,-4.0422777)" />
+       style="fill:none;stroke:#737a83;stroke-width:0.273224;stroke-linecap:round" />
     <path
-       d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
+       d="m 40.099968,62.704971 a 3.8160246,3.8160246 0 1 1 3.887062,0"
        id="path4"
-       style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round"
-       transform="matrix(0.91074573,0,0,0.91074573,21.236602,-4.0422777)" />
+       style="fill:none;stroke:#737a83;stroke-width:0.273224;stroke-linecap:round" />
     <path
-       d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
+       d="m 29.004301,62.704971 a 3.8160246,3.8160246 0 1 1 3.887062,0"
        id="path9"
-       style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round"
-       transform="matrix(0.91074573,0,0,0.91074573,10.140935,-4.0422777)" />
+       style="fill:none;stroke:#737a83;stroke-width:0.273224;stroke-linecap:round" />
     <text
        x="34.262531"
        y="112.15141"
@@ -680,7 +672,7 @@
        height="5.0795999" />
     <g
        id="g51"
-       transform="matrix(0.91074573,0,0,0.91074573,-12.050399,17.8556)">
+       transform="matrix(0.91074573,0,0,0.91074573,-12.050399,14.682166)">
       <use
          id="elevation-cv-param"
          xlink:href="#SP4TRoundSmallKnob"
@@ -707,7 +699,7 @@
        transform="translate(0.74349681)" />
     <g
        id="g52"
-       transform="matrix(0.91074573,0,0,0.91074573,-0.95473148,17.8556)">
+       transform="matrix(0.91074573,0,0,0.91074573,-0.95473148,14.682166)">
       <use
          id="use51"
          xlink:href="#SP4TRoundSmallKnob"
@@ -718,7 +710,7 @@
     </g>
     <g
        id="g54"
-       transform="matrix(0.91074573,0,0,0.91074573,21.236602,17.8556)">
+       transform="matrix(0.91074573,0,0,0.91074573,21.236602,14.682166)">
       <use
          id="use53"
          xlink:href="#SP4TRoundSmallKnob"
@@ -734,7 +726,7 @@
        y="69.153801"
        width="8.0263996"
        height="8.0263996"
-       transform="translate(11.839164,21.735677)" />
+       transform="translate(11.839164,18.562243)" />
     <use
        id="spread-cv-input"
        xlink:href="#PJ301M"
@@ -742,7 +734,7 @@
        y="87.893799"
        width="8.0263996"
        height="8.0263996"
-       transform="translate(0.74349681,3.0637743)" />
+       transform="translate(0.74349681,-0.1096593)" />
     <use
        id="use71"
        xlink:href="#PJ301M"
@@ -750,7 +742,7 @@
        y="50.413799"
        width="8.0263996"
        height="8.0263996"
-       transform="translate(34.030497,40.303014)" />
+       transform="translate(34.030497,37.12958)" />
     <use
        id="use1"
        xlink:href="#PJ301M"
@@ -758,10 +750,10 @@
        y="50.413799"
        width="8.0263996"
        height="8.0263996"
-       transform="translate(22.93483,40.303014)" />
+       transform="translate(22.93483,37.12958)" />
     <g
        id="g2"
-       transform="matrix(0.91074573,0,0,0.91074573,10.140935,17.8556)">
+       transform="matrix(0.91074573,0,0,0.91074573,10.140935,14.682166)">
       <use
          id="use2"
          xlink:href="#SP4TRoundSmallKnob"
@@ -772,7 +764,7 @@
     </g>
     <g
        id="g3"
-       transform="matrix(0.91074573,0,0,0.91074573,-12.050399,-4.0422776)">
+       transform="matrix(0.91074573,0,0,0.91074573,-12.050399,-7.2157112)">
       <use
          id="use3"
          xlink:href="#SP4TRoundSmallKnob"
@@ -783,7 +775,7 @@
     </g>
     <g
        id="g4"
-       transform="matrix(0.91074573,0,0,0.91074573,-0.95473148,-4.0422776)">
+       transform="matrix(0.91074573,0,0,0.91074573,-0.95473148,-7.2157112)">
       <use
          id="use4"
          xlink:href="#SP4TRoundSmallKnob"
@@ -794,7 +786,7 @@
     </g>
     <g
        id="g5"
-       transform="matrix(0.91074573,0,0,0.91074573,21.236602,-4.0422776)">
+       transform="matrix(0.91074573,0,0,0.91074573,21.236602,-7.2157112)">
       <use
          id="use5"
          xlink:href="#SP4TRoundSmallKnob"
@@ -810,7 +802,7 @@
        y="69.153801"
        width="8.0263996"
        height="8.0263996"
-       transform="translate(11.839164,-0.16219961)" />
+       transform="translate(11.839164,-3.3356332)" />
     <use
        id="use7"
        xlink:href="#PJ301M"
@@ -818,7 +810,7 @@
        y="87.893799"
        width="8.0263996"
        height="8.0263996"
-       transform="translate(0.74349681,-18.834102)" />
+       transform="translate(0.74349681,-22.007536)" />
     <use
        id="use8"
        xlink:href="#PJ301M"
@@ -826,7 +818,7 @@
        y="50.413799"
        width="8.0263996"
        height="8.0263996"
-       transform="translate(34.030497,18.405137)" />
+       transform="translate(34.030497,15.231703)" />
     <use
        id="use9"
        xlink:href="#PJ301M"
@@ -834,10 +826,10 @@
        y="50.413799"
        width="8.0263996"
        height="8.0263996"
-       transform="translate(22.93483,18.405137)" />
+       transform="translate(22.93483,15.231703)" />
     <g
        id="g10"
-       transform="matrix(0.91074573,0,0,0.91074573,10.140935,-4.0422776)">
+       transform="matrix(0.91074573,0,0,0.91074573,10.140935,-7.2157112)">
       <use
          id="use10"
          xlink:href="#SP4TRoundSmallKnob"
