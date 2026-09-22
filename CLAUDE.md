@@ -80,11 +80,13 @@ Notes on the general design of the module panels (SVG files):
   of the knobs or switches should stay clear. Surround knobs closely with a thin
   stroke arc drawn on the panel, similarly to the VCV Fundamental modules, with a
   subtle color (low contrast with the panel background). For jacks
-  keep the components as-is.
+  keep the components as-is, except the ambisonic ones (see below).
 - jack inputs and outputs carrying ambisonic signals (via polyphonic cables)
-  must all have the same identifiable contour that is distinct from the other
-  jacks (CV or audio): a simple thick stroke circle around the jack, in the
-  same Ayu theme blue as the "4" of the title. Their labels must also start with
+  must all use the `SP4TAmbiPort` component (`res/components/SP4TAmbiPort.svg`
+  and `SP4TAmbiPort-dark.svg`): Rack's PJ301M jack with its outer ring in the
+  same Ayu theme blue as the "4" of the title (#22A4E6 on light panels,
+  #59C2FF on dark ones). Only that ring is recoloured, so the component keeps
+  the stock jack size and no contour is drawn on the panel. Their labels must also start with
   the "A-" prefix (e.g., "A-IN", "A-OUT").
 
 ## Module Design

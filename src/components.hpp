@@ -120,3 +120,19 @@ struct SP4TSwitchTwo : app::SvgSwitch {
 		addFrame(Svg::load(asset::plugin(pluginInstance, "res/components/SP4TSwitchTwo_0.svg")));
 	}
 };
+
+
+/** Jack carrying an ambisonic signal (polyphonic cable).
+ *
+ * VCV Rack's PJ301M port with its outer ring in the Ayu blue used for the "4"
+ * of the panel titles (#22A4E6 on light panels, #59C2FF on dark ones), so that
+ * ambisonic jacks are told apart from the CV and audio ones at a glance. Only
+ * that ring is recoloured, so the component keeps the stock port metrics
+ * (8.0264 mm) and is a drop-in replacement for ThemedPJ301MPort.
+ */
+struct SP4TAmbiPort : app::ThemedSvgPort {
+	SP4TAmbiPort() {
+		setSvg(Svg::load(asset::plugin(pluginInstance, "res/components/SP4TAmbiPort.svg")),
+		       Svg::load(asset::plugin(pluginInstance, "res/components/SP4TAmbiPort-dark.svg")));
+	}
+};

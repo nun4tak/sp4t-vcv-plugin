@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Flat variant of VCV Rack's CKSSThree_0.svg (Component Library, CC BY-NC 4.0). Bottom position. -->
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="13.457px" height="28.34766px" viewBox="0 0 13.457 28.34766">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="4.557437mm" height="9.600408mm" viewBox="0 0 13.457 28.34766">
   <rect id="body" x="0" y="0" width="13.457" height="28.34766" rx="1.41797" fill="#15181D"/>
   <rect id="slot" x="1.25778" y="1.21638" width="10.94143" height="25.86174" rx="0.6" fill="#0B0D11"/>
   <rect id="handle" x="1.25778" y="18.23161" width="10.94143" height="8.84651" rx="0.6" fill="#6C7380"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Flat variant of VCV Rack's CKSS_1.svg (Component Library, CC BY-NC 4.0), with the SP4TSwitchThree metrics. Top position. -->
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="13.457px" height="20.61261px" viewBox="0 0 13.457 20.61261">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="4.557437mm" height="6.980804mm" viewBox="0 0 13.457 20.61261">
   <rect id="body" x="0" y="0" width="13.457" height="20.61261" rx="1.41797" fill="#15181D"/>
   <rect id="slot" x="1.25778" y="1.21638" width="10.94143" height="18.12669" rx="0.6" fill="#0B0D11"/>
   <rect id="handle" x="1.25778" y="1.21638" width="10.94143" height="8.84651" rx="0.6" fill="#6C7380"/>

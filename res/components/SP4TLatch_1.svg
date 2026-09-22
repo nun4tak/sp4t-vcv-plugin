@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Lit ("on") frame of SP4TLatch, sharing the SP4TButton metrics and body. The
      off frame is SP4TButton_0.svg, i.e., the released button. -->
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="20px" height="20px" viewBox="0 0 20 20">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="6.773333mm" height="6.773333mm" viewBox="0 0 20 20">
   <circle id="body" cx="10" cy="10" r="9.6" fill="#15181D"/>
   <circle id="cap" cx="10" cy="10" r="6.4" fill="#E6E1CF"/>
 </svg>
