@@ -36,9 +36,9 @@ It also has a few limitations:
 - It is directional / far-field only (some tricks can mimic the perception of
   distance to near sources, but those are not part of ambisonics itself).
 - The spherical harmonics are truncated at a given order, with a corresponding
-  fixed number of channels — a full-3D order *N* has *(N+1)²* channels (FOA = 4,
-  2nd order = 9, 3rd order = 16). This sets the finite "directional" resolution
-  and sharpness of the encoded sound field.
+  fixed number of channels — a full-3D order *N* has *(N+1)²* channels
+  (1st-order = 4, 2nd order = 9, 3rd order = 16). This sets the finite
+  "directional" resolution and sharpness of the encoded sound field.
 
 ## Why ambisonics in modular synthesis / VCV Rack?
 
