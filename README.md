@@ -47,21 +47,24 @@ playback. Because each ambisonic channel is just an ordinary audio signal, the
 whole sound field becomes something you can patch, modulate, process and route
 like anything else on the rack.
 
-A typical flow might be: **map or move** arbitrary sources onto the sphere — or
-**directly synthesize** the 3D sound field — then **rotate, flip, decouple and
-process** that field, and finally **decode** it to a mono, stereo or binaural
-signal. And there is no obligation to represent a realistic scene: the ambisonic
+There is no obligation to represent a realistic scene: the ambisonic
 channels can just as well carry different sound *textures* mapped across a
 sphere, turning spatial operations into a sound-design tool in their own right.
 
-The usual caveat applies — some operations only stay meaningful when applied
-consistently across the whole channel set — but gain, mute, mixing and routing
-all behave like normal audio. Although still largely underused this way, modular
-synthesis offers exactly the right abstraction and workflow for exploring the
-full range of ambisonic possibilities.
+One caveat, though: some operations only stay "spatially" meaningful when applied
+consistently across the whole channel set.
 
-VCV Rack's polyphonic cables make it also very convenient to carry ambisonic
-signals between modules (up to 3rd order = 16 channels).
+Although still largely underused this way, modular synthesis offers exactly the
+right abstraction and workflow for exploring the full range of ambisonic
+possibilities. Moreover, VCV Rack's polyphonic cables make it very convenient to
+carry ambisonic signals between modules (up to 3rd order = 16 channels).
+
+This VCV rack plugin aims at providing a comprehensive set of modules for
+typical ambisonic operations such as **encoding** one or more sources into a 3D
+sound field - or directly **synthesize** the sound field, **rotate, flip,
+decouple and process** that field, and finally **decode** it to a mono, stereo
+or binaural signal or to an array of speakers. In the spirit of modular
+synthesis, almost everything is modulable and CV-controllable!
 
 ## Interpreting the ambisonic channels
 
