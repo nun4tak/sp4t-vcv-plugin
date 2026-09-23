@@ -14,16 +14,15 @@ given harmonic function (figure 1 TODO) sampled at the audio rate. This
 *scene-based* encoding contrasts with *object-based* techniques such as Dolby
 Atmos, where each object carries its own audio stream plus positional metadata.
 
-Despite being less popular, scene-based ambisonic encoding has several
-advantages that offer exciting perspectives for sound design and audio
-synthesis:
+Despite being less popular, ambisonics has several advantages that offer
+exciting opportunities for sound design and audio synthesis:
 
 - It is a relatively simple and non-proprietary technique.
 - It is speaker-agnostic: the same encoded signal can be decoded in many
   different ways, e.g., to binaural or to any speaker layout, whether standard
   or arbitrary.
 - The whole sound field can be processed in simple and efficient ways, like
-  exact / lossless field rotation or flipping. It is an advanced panning tool.
+  exact (lossless) field rotation or flipping. It is an advanced panning tool.
 - Applications go well beyond panning: for example, the omni vs. directional
   components of the sound field can be easily decoupled and processed
   independently.
@@ -37,8 +36,8 @@ It also has a few limitations:
   the finite spatial resolution and sharpness of the encoded sound field. Lower
   orders are subject to spatial blur.
 
-To each order *N* corresponds of fixed number *(N+1)²** of ambisonic audio
-channels (1st-order = 4, 2nd order = 9, 3rd order = 16).
+To each order *N* corresponds of fixed number *(N+1)²* of ambisonic audio
+channels: 1st-order = 4, 2nd order = 9, 3rd order = 16.
 
 ## Why ambisonics in modular synthesis / VCV Rack?
 
@@ -46,7 +45,7 @@ The point of ambisonics in a modular context goes well beyond immersive-audio
 playback. Because each ambisonic channel is just an ordinary audio signal, the
 whole sound field becomes something that can be patched, modulated, processed
 and routed like anything else on the rack (note: ambisonic channels do not carry
-"speaker" signals, and some operations stay "spatially" meaningful only when
+"speaker" signals, and some operations stay spatially meaningful only when
 they are applied consistently across the whole channel set).
 
 There is no obligation to represent a realistic scene: the ambisonic
@@ -78,7 +77,7 @@ channel-ordering convention.
 | 2 | 1st | Z | top–bottom | *(TODO)* |
 | 3 | 1st | X | front–rear | *(TODO)* |
 
-Basically, channel 0 corresponds to the sound that would be picked by a an
+Basically, channel 0 corresponds to the sound that would be picked by an
 omnidirectional (virtual) microphone while channels 1,2,3 relate to what would
 be picked by figure-8 microphones along the X,Y,Z axes.
 
