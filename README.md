@@ -78,7 +78,7 @@ A First-Order Ambisonic (FOA) signal has 4 channels W,X,Y,Z (the so-called
 |---|---|---|---|---|
 | 0 | 0th | (W) | isotropic / omnidirectional | <img src="https://github.com/benbovy/nun4tak-vcv-sp4t/blob/main/res/misc/b_format_W.svg?sanatize=true" width="50px"> |
 | 1 | 1st | Y   | left–right | <img src="https://github.com/benbovy/nun4tak-vcv-sp4t/blob/main/res/misc/b_format_Y.svg?sanatize=true" width="50px"> |
-| 2 | 1st | Z   | top–bottom | <img src="https://github.com/benbovy/nun4tak-vcv-sp4t/blob/main/res/misc/b_format_Z.svg?sanatize=true" width="50px"> |
+| 2 | 1st | Z   | top–bottom | <img src="https://github.com/benbovy/nun4tak-vcv-sp4t/blob/main/res/misc/b_format_Z.svg?sanatize=true" width="30px"> |
 | 3 | 1st | X   | front–rear | <img src="https://github.com/benbovy/nun4tak-vcv-sp4t/blob/main/res/misc/b_format_X.svg?sanatize=true" width="50px"> |
 
 In idealized settings the first channel corresponds to the sound that would be
