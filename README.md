@@ -15,10 +15,9 @@ encoding contrasts with the usual *channel-based* encoding (1 channel = 1
 speaker) and *object-based* techniques such as Dolby Atmos, where each object
 carries its own audio stream plus positional metadata.
 
-<figure>
 <img src="https://github.com/benbovy/nun4tak-vcv-sp4t/blob/main/res/misc/spherical_functions.svg?sanatize=true">
- <figcaption>Spherical harmonic functions up to order 3.</figcaption>
-</figure>
+
+*Figure 1: Spherical harmonic functions up to order 3.*
 
 Despite being less popular, ambisonics has multiple advantages that offer real
 opportunities for sound design and audio synthesis:
@@ -77,8 +76,8 @@ A First-Order Ambisonic (FOA) signal has 4 channels W,X,Y,Z (the so-called
 
 | Channel (ACN) | Order | Axis | Direction | Plot |
 |---|---|---|---|---|
-| 0 | 0th | (W) | isotropic / omnidirectional | *(TODO: same picture as gain/mute modules)* |
-| 1 | 1st | Y   | left–right | *(TODO)* |
+| 0 | 0th | (W) | isotropic / omnidirectional | <img src="https://github.com/benbovy/nun4tak-vcv-sp4t/blob/main/res/misc/b_format_W.svg?sanatize=true"> |
+| 1 | 1st | Y   | left–right | <img src="https://github.com/benbovy/nun4tak-vcv-sp4t/blob/main/res/misc/b_format_Y.svg?sanatize=true"> |
 | 2 | 1st | Z   | top–bottom | *(TODO)* |
 | 3 | 1st | X   | front–rear | *(TODO)* |
 
