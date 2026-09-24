@@ -3,19 +3,25 @@
 A VCV Rack plugin providing
 [ambisonic](https://en.wikipedia.org/wiki/Ambisonics) 3D spatial audio modules.
 
-All ambisonic signals generated or processed by the modules use the ACN channel
-ordering, SN3D normalization (ambiX) convention, unless otherwise specified.
+Ambisonic input/output signals use the ACN channel ordering and SN3D normalization
+conventions (ambiX), unless otherwise specified.
 
 ## What is ambisonics?
 
-Ambisonics encodes a full 3D sound field using spherical harmonic decomposition:
-it is a multi-channel audio encoding technique where each channel carries a
-given harmonic function (figure 1 TODO) sampled at the audio rate. This
-*scene-based* encoding contrasts with *object-based* techniques such as Dolby
-Atmos, where each object carries its own audio stream plus positional metadata.
+Ambisonics encodes a full 3D sound field using spherical harmonic decomposition
+(figure 1): it is a multi-channel audio encoding technique where each channel
+carries a given harmonic function sampled at the audio rate. This *scene-based*
+encoding contrasts with the usual *channel-based* encoding (1 channel = 1
+speaker) and *object-based* techniques such as Dolby Atmos, where each object
+carries its own audio stream plus positional metadata.
 
-Despite being less popular, ambisonics has several advantages that offer
-exciting opportunities for sound design and audio synthesis:
+<figure>
+<img src="https://github.com/benbovy/nun4tak-vcv-sp4t/blob/main/res/misc/spherical_functions.svg?sanatize=true">
+ <figcaption>Spherical harmonic functions up to order 3.</figcaption>
+</figure>
+
+Despite being less popular, ambisonics has multiple advantages that offer real
+opportunities for sound design and audio synthesis:
 
 - It is a relatively simple and non-proprietary technique.
 - It is speaker-agnostic: the same encoded signal can be decoded in many
@@ -37,7 +43,7 @@ It also has a few limitations:
   orders are subject to spatial blur.
 
 To each order *N* corresponds of fixed number *(N+1)²* of ambisonic audio
-channels: 1st-order = 4, 2nd order = 9, 3rd order = 16.
+channels: 1st-order = 4, 2nd order = 9, 3rd order = 16 (figure 1).
 
 ## Why ambisonics in modular synthesis / VCV Rack?
 
@@ -55,36 +61,35 @@ sphere, turning spatial operations into a powerful sound-design tool.
 Modular synthesis has the right workflow for exploring the full range of
 ambisonic possibilities. VCV Rack's polyphonic cables make it also very
 convenient to carry ambisonic signals between modules (up to 3rd order = 16
-channels).
+channels, hopefully more in the future?).
 
-This VCV rack plugin aims at providing a comprehensive set of modules for
+This VCV Rack plugin aims at providing a comprehensive set of modules for
 typical ambisonic operations such as **encoding** one or more sources into a 3D
-sound field - or directly **synthesize** the sound field, **rotate, flip,
+sound field - or directly **synthesize** the sound field -, **rotate, flip,
 decouple and process** that field, and finally **decode** it to a mono, stereo
-or binaural signal or to an array of speakers. In the spirit of modular
+or binaural signal or to any array of speakers. In the spirit of modular
 synthesis, almost anything can be controlled and CV modulated!
 
-## Interpreting the ambisonic channels
+## How to interpret the ambisonic channels?
 
-A First-Order Ambisonics (FOA) signal has 4 channels, and each is easy to
-interpret. This set is the classic *B-format*. The table below follows the ACN
-channel-ordering convention.
+A First-Order Ambisonic (FOA) signal has 4 channels W,X,Y,Z (the so-called
+*B-format*). The table below follows the ACN channel-ordering convention.
 
 | Channel (ACN) | Order | Axis | Direction | Plot |
 |---|---|---|---|---|
-| 0 | 0th | — | isotropic / omnidirectional | *(TODO: same picture as gain/mute modules)* |
-| 1 | 1st | Y | left–right | *(TODO)* |
-| 2 | 1st | Z | top–bottom | *(TODO)* |
-| 3 | 1st | X | front–rear | *(TODO)* |
+| 0 | 0th | (W) | isotropic / omnidirectional | *(TODO: same picture as gain/mute modules)* |
+| 1 | 1st | Y   | left–right | *(TODO)* |
+| 2 | 1st | Z   | top–bottom | *(TODO)* |
+| 3 | 1st | X   | front–rear | *(TODO)* |
 
-Basically, channel 0 corresponds to the sound that would be picked by an
-omnidirectional (virtual) microphone while channels 1,2,3 relate to what would
-be picked by figure-8 microphones along the X,Y,Z axes.
+In idealized settings the first channel corresponds to the sound that would be
+picked by an omnidirectional microphone while the other three channels relate to
+what would be picked by figure-8 microphones oriented along the X,Y,Z axes.
 
-The first two ACN channels are thus equivalent — up to some gain normalization —
-to the familiar "mid-side" representation of a stereo signal. Ambisonics may
-indeed be viewed as a generalisation of the "mid-side" concept to 3D spatial
-audio!
+The first two ACN channels W,Y are thus equivalent — up to some gain
+normalization — to the familiar "mid-side" representation of a stereo signal.
+Ambisonics may indeed be viewed as a generalization of the "mid-side" concept to
+3D spatial audio!
 
 Subsequent channels, if any, represent Higher-Order Ambisonics (HOA). They are
 harder to interpret, since they correspond to more complex harmonics, most of
