@@ -1,6 +1,6 @@
 # Nun4tak SP4T
 
-A VCV Rack plugin providing
+A [VCV Rack](https://vcvrack.com/) plugin providing
 [ambisonic](https://en.wikipedia.org/wiki/Ambisonics) 3D spatial audio modules.
 
 Ambisonic input/output signals use the ACN channel ordering and SN3D normalization
@@ -166,7 +166,9 @@ interaction, review and testing. Most of the ambisonic DSP relies on the
 Framework](https://github.com/leomccormack/Spatial_Audio_Framework) (dual ISC /
 GNU GPLv2 licence) that is also used by the
 [SPARTA](https://github.com/leomccormack/SPARTA) audio plugins. Many thanks to
-the developers of those projects for making those available publicly!
+the developers of those tools for making them available publicly!
+
+The documentation has been written and edited mostly by me.
 
 I'm an experienced software developer ; I'm pretty familiar with concepts and
 tricks used in real-time audio-DSP programming but I don't have yet a strong
