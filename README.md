@@ -150,3 +150,27 @@ copies it into the Rack user plugin folder, which defaults to
 If the SDK lives elsewhere, pass `-DRACK_SDK_DIR=<path>` when configuring. To
 install to a different folder, pass `-DCMAKE_INSTALL_PREFIX=<path>`. For a debug
 build, configure with `-DCMAKE_BUILD_TYPE=Debug`.
+
+## Disclaimer
+
+The development of this plugin has been AI assisted. It has *not* been "vibe"
+coded.
+
+The module panels have been carefully designed and edited by hand. AI has been
+used only for minor ajustements, fixes and more complex drawings such as the
+spherical harmonic functions.
+
+The code of this plugin has been written using AI, with careful human
+interaction, review and testing. Most of the ambisonic DSP relies on the
+[Spatial Audio
+Framework](https://github.com/leomccormack/Spatial_Audio_Framework) (dual ISC /
+GNU GPLv2 licence) that is also used by the
+[SPARTA](https://github.com/leomccormack/SPARTA) audio plugins. Many thanks to
+the developers of those projects for making those available publicly!
+
+I'm an experienced software developer ; I'm pretty familiar with concepts and
+tricks used in real-time audio-DSP programming but I don't have yet a strong
+expertise in this domain! This project is also a good way of getting myself into
+ambisonics and the development of VCV rack plugins, an exciting and fun
+experience! There may be bugs or mistakes as I'm still learning those things. If
+you find any, please do not hesitate to report it!
