@@ -14,8 +14,8 @@ clean = { cmd = "cmake -E rm -rf build", description = "Remove the build directo
 
 [tasks.export-panel]
 args = ["panel"]
-cmd = '''bash -c 'export FONTCONFIG_FILE="$PWD/res/staging/fonts/fonts.conf"; p="${1%-dark}"; for v in "$p" "$p-dark"; do f="res/staging/$v.svg"; if [ ! -f "$f" ]; then echo "no such panel: $f" >&2; exit 1; fi; inkscape "$f" --export-text-to-path --export-plain-svg --export-overwrite --export-filename="res/$v.svg" || exit 1; done' -- "{{ panel }}"'''
-description = "Convert one panel's light and dark text to paths (res/staging/<panel>[-dark].svg -> res/), requires Inkscape"
+cmd = 'res/staging/export-panel.sh "{{ panel }}"'
+description = "Convert one panel's light and dark text to paths and drop its components layer (res/staging/<panel>[-dark].svg -> res/), requires Inkscape"
 
 [dependencies]
 cmake = ">=4.3.4,<5"

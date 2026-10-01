@@ -23,8 +23,14 @@ attenuated CV is added to the value of the corresponding angle knob.
   - elevation (-90 to 90 degrees, default 0 degrees)
   - spread (0 to 90 degrees, default 45 degrees)
 - 3 small knobs (trim): CV attenuverters for azimuth, elevation and spread
-- 1 switch
+- 2 switches
   - select ambisonic order 1 (FOA), 2 (HOA-2) or 3 (HOA-3) for the output
+  - azimuth direction (2 positions labeled "+" and "-", default "+"): in the "-"
+    position, the sign of the azimuth angle (knob + CV) is flipped so that
+    turning the knob to the right or feeding a positive CV moves the source to
+    the right. This feels more natural for eurorack users despite it doesn't
+    follow the Ambisonic convention (positive azimuth = anticlockwise, i.e., to
+    the left), hence the "+" position (the convention) by default.
 - 3 CV jack inputs:
   - azimuth (bipolar)
   - elevation (bipolar)
@@ -35,11 +41,6 @@ attenuated CV is added to the value of the corresponding angle knob.
 - 1 Ambisonic jack output (polyphonic) 
 - Right-click menu options:
   - 3D view mode (see panel design below)
-  - flip azimuth (boolean, default disabled): flips the sign of the azimuth
-    angle (knob + CV) so that turning the knob to the right or feeding a
-    positive CV moves the source to the right. This feels more natural for
-    eurorack users despite it doesn't follow the Ambisonic convention (positive
-    azimuth = anticlockwise, i.e., to the left), hence disabled by default.
 
 ## Panel design
 
@@ -76,21 +77,25 @@ input mono or stereo source on a sphere:
   the front hemisphere, unless the mono source is on the rear hemisphere (e.g.,
   left and right sources for a mono source at the rear with a 90 degrees spread).
 
-Below the screen, there is one row for each angle (azimuth, elevation, spread),
-with from left to right: the CV input, the CV attenuverter (trim) and the main
-knob (large, i.e., about 117% of the normal knob size; both knobs with arcs).
-Each row spans the module width (same left/right margins as the screen), its
-components are linked by thin horizontal lines (same stroke as the knob arcs)
-and the angle name is centered above the main knob. The rows are stacked and
-evenly spaced inside a rounded rectangle area (same width and rounding as the
-screen, slightly darker or lighter than the panel background). The screen is
-vertically centered between the title and that area.
+Below the screen, there is one column for each angle (azimuth on the left,
+elevation in the middle, spread on the right), with from top to bottom: the main
+knob (large, i.e., about 117% of the normal knob size), the CV attenuverter
+(trim) and the CV input. Both knobs have arcs and the angle name ("AZ", "ELEV",
+"SPREAD") is centered above the main knob. The azimuth column also holds the
+azimuth direction switch, between its knob and its trim, with the "+" and "-"
+labels on the right of the switch. The components of a column are linked by thin
+lines (same stroke as the knob arcs), curved where the column is not straight.
+The trims and the CV inputs each share a row; the azimuth and elevation knobs
+share a row as well, the elevation knob being centered on the panel, while the
+spread knob is lower so that its longer label fits above it.
 
 At the bottom of the module, there's a single row aligned with the screen
 margins, evenly spaced: the Left (Mono) and Right inputs, the order switch and
-the Ambisonic output. Add a label just above each jack and the switch (the
-Ambisonic output is labeled "AMB"). The
-switch positions are labeled "1st", "2nd" and "3rd" from top to bottom.
+the Ambisonic output. Add a label just above each jack ("L/MONO", "R" and "AMB"
+for the Ambisonic output). The order switch positions are labeled "1", "2" and
+"3" from top to bottom, on the right of the switch. The order switch and the
+Ambisonic output stand on a rounded rectangle area slightly darker or lighter
+than the panel background.
 
 ## Implementation
 

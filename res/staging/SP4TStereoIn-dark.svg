@@ -23,14 +23,9 @@
     <!-- Screen area, vertically centered between the title and the angle controls area;
        its content is drawn by the module widget. -->
     <rect id="screen" x="1.728" y="11.5" width="47.344" height="34.039" rx="1.072" fill="#0d1017" style="stroke-width:1.1561" />
-    <!-- Area encompassing the angle controls (same width and rounding as the screen). -->
-    <!-- Angle rows at y=54.427 / 73.167 / 91.907 (4 mm margins): CV input (x=8.013), CV attenuverter
-       (x=22.846), large knob (x=40.233). Thin lines link the components; thin arcs around the trims
-       (radius 4.19 mm) and the knobs (radius 6.417 mm). -->
     <text x="8.707" y="107.4" id="text43" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">L/MONO</text>
     <text x="19.76" y="107.4" id="text44" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">R</text>
     <text x="42.072" y="107.4" id="text46" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan85" x="42.172" y="107.4">AMB</tspan></text>
-    <!-- Ambisonic jack contour (jack radius 4 mm, ring inner edge under the jack: no gap). -->
     <!-- between the bottom screws -->
     <text id="brand" x="25.4" y="125.958" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4" font-weight="700" text-anchor="middle" fill="#bfbdb6">\nu.na.tak\</text>
     <text x="8.781" y="50.985" id="text72" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan75" x="8.881" y="50.985">AZ</tspan></text>

@@ -36,6 +36,9 @@ const NVGcolor SOURCE_RIGHT = nvgRGB(0xf0, 0x71, 0x78);
 
 
 struct SP4TStereoIn : Module {
+	// The enum items are named after the components of the panel SVG files. Their
+	// order is part of the patch format (params, inputs and outputs are saved by
+	// index), so new items are appended.
 	enum ParamId {
 		AZIMUTH_PARAM,
 		ELEVATION_PARAM,
@@ -44,12 +47,13 @@ struct SP4TStereoIn : Module {
 		AZIMUTH_CV_PARAM,
 		ELEVATION_CV_PARAM,
 		SPREAD_CV_PARAM,
+		AZIMUTH_CV_SWITCH_PARAM,
 		PARAMS_LEN
 	};
 	enum InputId {
-		AZIMUTH_INPUT,
-		ELEVATION_INPUT,
-		SPREAD_INPUT,
+		AZIMUTH_CV_INPUT,
+		ELEVATION_CV_INPUT,
+		SPREAD_CV_INPUT,
 		LEFT_INPUT,
 		RIGHT_INPUT,
 		INPUTS_LEN
@@ -75,9 +79,6 @@ struct SP4TStereoIn : Module {
 
 	/** sp4t::AmbisonicDisplay::ViewMode */
 	int viewMode = sp4t::AmbisonicDisplay::VIEW_ORTHOGRAPHIC_PAIR;
-	/** When enabled, positive azimuth values (knob or CV) move the source to the
-	 * right (clockwise), opposite to the Ambisonic convention. */
-	bool flipAzimuth = false;
 
 	SP4TStereoIn() : encoder(MAX_NUM_SOURCES) {
 		config(PARAMS_LEN, INPUTS_LEN, OUTPUTS_LEN, LIGHTS_LEN);
@@ -88,10 +89,16 @@ struct SP4TStereoIn : Module {
 		configParam(ELEVATION_CV_PARAM, -1.f, 1.f, 0.f, "Elevation CV attenuverter", "%", 0.f, 100.f);
 		configParam(SPREAD_CV_PARAM, -1.f, 1.f, 0.f, "Spread CV attenuverter", "%", 0.f, 100.f);
 		configSwitch(ORDER_PARAM, 0.f, 2.f, 0.f, "Ambisonic order", {"1st (FOA)", "2nd (HOA-2)", "3rd (HOA-3)"});
+		// The Ambisonic convention (positive azimuth = anticlockwise, i.e., to the
+		// left) is the default; the other position is more natural for eurorack
+		// users, for whom turning the knob to the right moves the source to the
+		// right.
+		configSwitch(AZIMUTH_CV_SWITCH_PARAM, 0.f, 1.f, 0.f, "Azimuth direction",
+		             {"Positive = left (Ambisonic)", "Positive = right"});
 
-		configInput(AZIMUTH_INPUT, "Azimuth CV");
-		configInput(ELEVATION_INPUT, "Elevation CV");
-		configInput(SPREAD_INPUT, "Spread CV");
+		configInput(AZIMUTH_CV_INPUT, "Azimuth CV");
+		configInput(ELEVATION_CV_INPUT, "Elevation CV");
+		configInput(SPREAD_CV_INPUT, "Spread CV");
 		configInput(LEFT_INPUT, "Left (mono)");
 		configInput(RIGHT_INPUT, "Right");
 		configOutput(AMBI_OUTPUT, "Ambisonic (ACN/SN3D)");
@@ -103,7 +110,6 @@ struct SP4TStereoIn : Module {
 	void onReset(const ResetEvent& e) override {
 		Module::onReset(e);
 		viewMode = sp4t::AmbisonicDisplay::VIEW_ORTHOGRAPHIC_PAIR;
-		flipAzimuth = false;
 		encoder.reset();
 		updateControls();
 	}
@@ -120,11 +126,11 @@ struct SP4TStereoIn : Module {
 
 		// Beyond +/-180 degrees, the azimuth wraps around. The elevation doesn't
 		// go past the poles (the rear is reached with the azimuth).
-		float azimuth = getAngle(AZIMUTH_PARAM, AZIMUTH_CV_PARAM, AZIMUTH_INPUT, 180.f, 5.f);
-		if (flipAzimuth)
+		float azimuth = getAngle(AZIMUTH_PARAM, AZIMUTH_CV_PARAM, AZIMUTH_CV_INPUT, 180.f, 5.f);
+		if (params[AZIMUTH_CV_SWITCH_PARAM].getValue() > 0.5f)
 			azimuth = -azimuth;
-		float elevation = math::clamp(getAngle(ELEVATION_PARAM, ELEVATION_CV_PARAM, ELEVATION_INPUT, 90.f, 5.f), -90.f, 90.f);
-		float spread = math::clamp(getAngle(SPREAD_PARAM, SPREAD_CV_PARAM, SPREAD_INPUT, 90.f, 10.f), 0.f, 90.f);
+		float elevation = math::clamp(getAngle(ELEVATION_PARAM, ELEVATION_CV_PARAM, ELEVATION_CV_INPUT, 90.f, 5.f), -90.f, 90.f);
+		float spread = math::clamp(getAngle(SPREAD_PARAM, SPREAD_CV_PARAM, SPREAD_CV_INPUT, 90.f, 10.f), 0.f, 90.f);
 
 		// Stereo as soon as the right input is connected.
 		bool isStereo = inputs[RIGHT_INPUT].isConnected();
@@ -169,7 +175,6 @@ struct SP4TStereoIn : Module {
 		json_t* rootJ = json_object();
 		// Saved as "projection", the former name of the view mode.
 		json_object_set_new(rootJ, "projection", json_integer(viewMode));
-		json_object_set_new(rootJ, "flipAzimuth", json_boolean(flipAzimuth));
 		return rootJ;
 	}
 
@@ -177,10 +182,6 @@ struct SP4TStereoIn : Module {
 		json_t* viewModeJ = json_object_get(rootJ, "projection");
 		if (viewModeJ)
 			viewMode = math::clamp((int) json_integer_value(viewModeJ), 0, sp4t::AmbisonicDisplay::VIEW_MODES_LEN - 1);
-
-		json_t* flipAzimuthJ = json_object_get(rootJ, "flipAzimuth");
-		if (flipAzimuthJ)
-			flipAzimuth = json_boolean_value(flipAzimuthJ);
 	}
 };
 
@@ -198,30 +199,34 @@ struct SP4TStereoInWidget : ModuleWidget {
 		addChild(createWidget<ThemedScrew>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<ThemedScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-		display = createWidget<sp4t::AmbisonicDisplay>(mm2px(Vec(2.5, 11.5)));
-		display->box.size = mm2px(Vec(45.8, 27.3));
+		display = createWidget<sp4t::AmbisonicDisplay>(mm2px(Vec(1.728, 11.5)));
+		display->box.size = mm2px(Vec(47.344, 34.039));
 		// The module browser preview shows a centered mono source.
 		display->sources = {{{0.f, 0.f}, "M", SOURCE_MONO}};
 		addChild(display);
 
-		// One row per angle (CV input, CV attenuverter, knob), spanning the panel
-		// width with 4 mm margins.
-		const float rowY[] = {54.427f, 73.167f, 91.907f};
-		const int knobIds[] = {SP4TStereoIn::AZIMUTH_PARAM, SP4TStereoIn::ELEVATION_PARAM, SP4TStereoIn::SPREAD_PARAM};
-		const int cvParamIds[] = {SP4TStereoIn::AZIMUTH_CV_PARAM, SP4TStereoIn::ELEVATION_CV_PARAM, SP4TStereoIn::SPREAD_CV_PARAM};
-		const int inputIds[] = {SP4TStereoIn::AZIMUTH_INPUT, SP4TStereoIn::ELEVATION_INPUT, SP4TStereoIn::SPREAD_INPUT};
-		for (int i = 0; i < 3; i++) {
-			addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(8.013, rowY[i])), module, inputIds[i]));
-			addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(22.846, rowY[i])), module, cvParamIds[i]));
-			addParam(createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(40.233, rowY[i])), module, knobIds[i]));
-		}
+		// One column per angle, from the knob down to its CV input, as drawn on
+		// the panel: azimuth on the left, elevation in the middle (its knob is
+		// centered on the panel) and spread on the right (lowered by one step).
+		// The azimuth column also holds the direction switch.
+		addParam(createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(8.757, 58.901)), module, SP4TStereoIn::AZIMUTH_PARAM));
+		addParam(createParamCentered<SP4TSwitchTwo>(mm2px(Vec(8.829, 72.418)), module, SP4TStereoIn::AZIMUTH_CV_SWITCH_PARAM));
+		addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(8.756, 84.492)), module, SP4TStereoIn::AZIMUTH_CV_PARAM));
+		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(8.756, 94.903)), module, SP4TStereoIn::AZIMUTH_CV_INPUT));
 
-		// Bottom row (4 mm margins): audio inputs, order switch, Ambisonic output
-		addParam(createParamCentered<SP4TSwitchThree>(mm2px(Vec(26.925, 114.0)), module, SP4TStereoIn::ORDER_PARAM));
+		addParam(createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(25.4, 58.901)), module, SP4TStereoIn::ELEVATION_PARAM));
+		addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(19.852, 84.492)), module, SP4TStereoIn::ELEVATION_CV_PARAM));
+		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(19.852, 94.903)), module, SP4TStereoIn::ELEVATION_CV_INPUT));
 
-		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(8.013, 114.0)), module, SP4TStereoIn::LEFT_INPUT));
-		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(18.336, 114.0)), module, SP4TStereoIn::RIGHT_INPUT));
-		addOutput(createOutputCentered<ThemedPJ301MPort>(mm2px(Vec(41.3, 114.0)), module, SP4TStereoIn::AMBI_OUTPUT));
+		addParam(createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(42.044, 67.656)), module, SP4TStereoIn::SPREAD_PARAM));
+		addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(42.043, 84.492)), module, SP4TStereoIn::SPREAD_CV_PARAM));
+		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(42.043, 94.903)), module, SP4TStereoIn::SPREAD_CV_INPUT));
+
+		// Bottom row: audio inputs, order switch, Ambisonic output
+		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(8.756, 114.0)), module, SP4TStereoIn::LEFT_INPUT));
+		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(19.852, 114.0)), module, SP4TStereoIn::RIGHT_INPUT));
+		addParam(createParamCentered<SP4TSwitchThree>(mm2px(Vec(31.188, 114.0)), module, SP4TStereoIn::ORDER_PARAM));
+		addOutput(createOutputCentered<SP4TAmbiPort>(mm2px(Vec(42.043, 114.0)), module, SP4TStereoIn::AMBI_OUTPUT));
 	}
 
 	/** Shows the view mode and the source directions of the module. */
@@ -250,7 +255,6 @@ struct SP4TStereoInWidget : ModuleWidget {
 		menu->addChild(createIndexPtrSubmenuItem("3D view mode",
 			sp4t::AmbisonicDisplay::getViewModeLabels(),
 			&module->viewMode));
-		menu->addChild(createBoolPtrMenuItem("Flip azimuth (positive = right)", "", &module->flipAzimuth));
 	}
 };
 

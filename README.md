@@ -135,9 +135,12 @@ objects. Rack does not render SVG text, so convert it to paths before building:
 pixi run export-panel SP4TGain   # res/staging/SP4TGain[-dark].svg -> res/
 ```
 
-The exported files in `res/` are generated: edit the staging files instead.
+The exported files in `res/` are generated: edit the staging files instead. The
+task runs `res/staging/export-panel.sh`, which also drops the panel's
+`components` layer (a positioning aid: Rack draws those widgets from
+`res/components/`).
 Fonts used by the panels but not installed by default (e.g., M PLUS Rounded 1c, SIL OFL)
-are shipped in `res/staging/fonts/`, which the export task makes available to
+are shipped in `res/staging/fonts/`, which the script makes available to
 Inkscape via `res/staging/fonts/fonts.conf`.
 
 ## Build output
