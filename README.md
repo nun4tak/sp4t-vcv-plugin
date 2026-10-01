@@ -170,8 +170,8 @@ the developers of those tools for making them available publicly!
 
 The documentation has been written and edited mostly by me.
 
-I'm an experienced software developer ; I'm pretty familiar with concepts and
-tricks used in real-time audio-DSP programming but I don't have yet a strong
+I'm an experienced software developer who is pretty familiar with concepts and
+tricks used in real-time audio-DSP programming, but I don't have yet a strong
 expertise in this domain! This project is also a good way of getting myself into
 ambisonics and the development of VCV rack plugins, an exciting and fun
 experience! There may be bugs or mistakes as I'm still learning those things. If
