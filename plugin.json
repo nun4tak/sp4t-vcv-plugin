@@ -26,6 +26,13 @@
       "description": "Ambisonic Stereo Decoder",
       "manualUrl": "",
         "tags": ["Utility", "Polyphonic", "Panning"]
+    },
+    {
+      "slug": "SP4T-Gain",
+      "name": "SP4T Gain",
+      "description": "Ambisonic Gains",
+      "manualUrl": "",
+        "tags": ["Utility", "Polyphonic", "VCA"]
     }
   ]
 }

@@ -138,16 +138,16 @@ struct SP4TAmbiPort : app::ThemedSvgPort {
 };
 
 
-/** LED emitting the Ayu blue of the ambisonic jacks and of the panel titles.
+/** LED showing an audio-rate signal, emitting the Ayu blue of the ambisonic
+ * jacks and of the panel titles.
  *
- * Sized after the dots drawn at the center of the speaker cones of the panels
- * (1.134 mm), where it is meant to be placed. Unlike the Component Library
- * lights, it has no background nor border, so the dot of the panel is what
- * shows through when the light is off, on both the light and dark panels.
+ * Sized after the LED dots of the panels (1.134 mm). Unlike the Component
+ * Library lights, it has no background nor border, so what shows through when
+ * the light is off is the panel itself, on both the light and dark themes.
  */
-struct SP4TSpeakerLight : app::ModuleLightWidget {
-	/** Radius of the glow, which spreads a little beyond the speaker cone
-	 * (2.587 mm) rather than over the LED itself, too small to be seen. */
+struct SP4TSignalLight : app::ModuleLightWidget {
+	/** Radius of the glow, which spreads well beyond the LED itself, too small
+	 * to be seen otherwise (it covers a speaker cone on SP4T Stereo Out). */
 	float haloRadius = mm2px(3.2f);
 	/** Radius of the opaque core of the glow, relative to `haloRadius`. */
 	float haloCore = 0.35f;
@@ -155,7 +155,7 @@ struct SP4TSpeakerLight : app::ModuleLightWidget {
 	 * light is otherwise barely visible. */
 	float haloGain = 3.f;
 
-	SP4TSpeakerLight() {
+	SP4TSignalLight() {
 		addBaseColor(nvgRGB(0x59, 0xc2, 0xff));
 		box.size = mm2px(Vec(1.134, 1.134));
 	}

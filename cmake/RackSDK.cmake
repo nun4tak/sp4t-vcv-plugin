@@ -189,7 +189,9 @@ endif ()
 
 # ------------------------------------------------ distributables (dist) ------
 
-file(GLOB _rack_license LICENSE*)
+# Relative, as the other distributables below: the copy commands prefix them
+# with ${CMAKE_SOURCE_DIR}.
+file(GLOB _rack_license RELATIVE "${CMAKE_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}/LICENSE*")
 set(PLUGIN_DISTRIBUTABLES plugin.json res ${_rack_license} ${ADDITIONAL_PLUGIN_DISTRIBUTABLES})
 message(STATUS "PLUGIN_DISTRIBUTABLES: ${PLUGIN_DISTRIBUTABLES}")
 
