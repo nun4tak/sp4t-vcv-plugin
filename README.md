@@ -130,7 +130,9 @@ Panel SVGs are edited in `res/staging/`, where text is kept as editable text
 objects. Rack does not render SVG text, so convert it to paths before building:
 
 ```sh
-pixi run export-panels   # res/staging/*.svg -> res/*.svg (requires Inkscape)
+# one panel at a time, named after its SVG file without the extension;
+# both the light and the dark version are exported (requires Inkscape)
+pixi run export-panel SP4TGain   # res/staging/SP4TGain[-dark].svg -> res/
 ```
 
 The exported files in `res/` are generated: edit the staging files instead.
