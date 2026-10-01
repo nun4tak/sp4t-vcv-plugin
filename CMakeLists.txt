@@ -43,7 +43,9 @@ include(cmake/RackSDK.cmake)
 target_sources(${RACK_PLUGIN_LIB} PRIVATE
     src/plugin.cpp
     src/AmbiEncoder.cpp
+    src/AmbiStereoDecoder.cpp
     src/AmbisonicDisplay.cpp
-    src/SP4TStereoIn.cpp)
+    src/SP4TStereoIn.cpp
+    src/SP4TStereoOut.cpp)
 
 target_link_libraries(${RACK_PLUGIN_LIB} PRIVATE saf)

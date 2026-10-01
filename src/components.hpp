@@ -136,3 +136,47 @@ struct SP4TAmbiPort : app::ThemedSvgPort {
 		       Svg::load(asset::plugin(pluginInstance, "res/components/SP4TAmbiPort-dark.svg")));
 	}
 };
+
+
+/** LED emitting the Ayu blue of the ambisonic jacks and of the panel titles.
+ *
+ * Sized after the dots drawn at the center of the speaker cones of the panels
+ * (1.134 mm), where it is meant to be placed. Unlike the Component Library
+ * lights, it has no background nor border, so the dot of the panel is what
+ * shows through when the light is off, on both the light and dark panels.
+ */
+struct SP4TSpeakerLight : app::ModuleLightWidget {
+	/** Radius of the glow, which spreads a little beyond the speaker cone
+	 * (2.587 mm) rather than over the LED itself, too small to be seen. */
+	float haloRadius = mm2px(3.2f);
+	/** Radius of the opaque core of the glow, relative to `haloRadius`. */
+	float haloCore = 0.35f;
+	/** Scales up Rack's halo brightness setting, as the glow of such a small
+	 * light is otherwise barely visible. */
+	float haloGain = 3.f;
+
+	SP4TSpeakerLight() {
+		addBaseColor(nvgRGB(0x59, 0xc2, 0xff));
+		box.size = mm2px(Vec(1.134, 1.134));
+	}
+
+	/** LightWidget::drawHalo(), with the radii and the brightness above
+	 * instead of values derived from the size of the light. */
+	void drawHalo(const DrawArgs& args) override {
+		// Not in a framebuffer, e.g., screenshots or the module browser.
+		if (args.fb)
+			return;
+		float halo = settings::haloBrightness;
+		if (halo == 0.f)
+			return;
+
+		Vec center = box.size.div(2);
+		NVGcolor inner = color::mult(color, std::min(halo * haloGain, 1.f));
+		NVGpaint paint = nvgRadialGradient(args.vg, center.x, center.y, haloRadius * haloCore,
+		                                   haloRadius, inner, nvgRGBA(0, 0, 0, 0));
+		nvgBeginPath(args.vg);
+		nvgRect(args.vg, center.x - haloRadius, center.y - haloRadius, 2 * haloRadius, 2 * haloRadius);
+		nvgFillPaint(args.vg, paint);
+		nvgFill(args.vg);
+	}
+};

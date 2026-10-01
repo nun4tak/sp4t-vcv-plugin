@@ -19,6 +19,13 @@
       "description": "Ambisonic Stereo Encoder",
       "manualUrl": "",
         "tags": ["Utility", "Polyphonic", "Panning"]
-    }      
+    },
+    {
+      "slug": "SP4T-Stereo-Out",
+      "name": "SP4T Stereo Out",
+      "description": "Ambisonic Stereo Decoder",
+      "manualUrl": "",
+        "tags": ["Utility", "Polyphonic", "Panning"]
+    }
   ]
 }

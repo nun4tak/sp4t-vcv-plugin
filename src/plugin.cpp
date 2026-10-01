@@ -8,4 +8,5 @@ void init(Plugin* p) {
 	pluginInstance = p;
 
 	p->addModel(modelNun4takSP4TStereoIn);
+	p->addModel(modelNun4takSP4TStereoOut);
 }
