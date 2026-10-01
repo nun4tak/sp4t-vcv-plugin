@@ -36,9 +36,6 @@ const NVGcolor SOURCE_RIGHT = nvgRGB(0xf0, 0x71, 0x78);
 
 
 struct SP4TStereoIn : Module {
-	// The enum items are named after the components of the panel SVG files. Their
-	// order is part of the patch format (params, inputs and outputs are saved by
-	// index), so new items are appended.
 	enum ParamId {
 		AZIMUTH_PARAM,
 		ELEVATION_PARAM,
@@ -201,14 +198,9 @@ struct SP4TStereoInWidget : ModuleWidget {
 
 		display = createWidget<sp4t::AmbisonicDisplay>(mm2px(Vec(1.728, 11.5)));
 		display->box.size = mm2px(Vec(47.344, 34.039));
-		// The module browser preview shows a centered mono source.
 		display->sources = {{{0.f, 0.f}, "M", SOURCE_MONO}};
 		addChild(display);
 
-		// One column per angle, from the knob down to its CV input, as drawn on
-		// the panel: azimuth on the left, elevation in the middle (its knob is
-		// centered on the panel) and spread on the right (lowered by one step).
-		// The azimuth column also holds the direction switch.
 		addParam(createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(8.757, 58.901)), module, SP4TStereoIn::AZIMUTH_PARAM));
 		addParam(createParamCentered<SP4TSwitchTwo>(mm2px(Vec(8.829, 72.418)), module, SP4TStereoIn::AZIMUTH_CV_SWITCH_PARAM));
 		addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(8.756, 84.492)), module, SP4TStereoIn::AZIMUTH_CV_PARAM));
@@ -222,7 +214,6 @@ struct SP4TStereoInWidget : ModuleWidget {
 		addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(42.043, 84.492)), module, SP4TStereoIn::SPREAD_CV_PARAM));
 		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(42.043, 94.903)), module, SP4TStereoIn::SPREAD_CV_INPUT));
 
-		// Bottom row: audio inputs, order switch, Ambisonic output
 		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(8.756, 114.0)), module, SP4TStereoIn::LEFT_INPUT));
 		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(19.852, 114.0)), module, SP4TStereoIn::RIGHT_INPUT));
 		addParam(createParamCentered<SP4TSwitchThree>(mm2px(Vec(31.188, 114.0)), module, SP4TStereoIn::ORDER_PARAM));

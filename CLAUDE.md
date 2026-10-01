@@ -53,10 +53,14 @@ Notes on the name of the modules:
 
 Notes on the general design of the module panels (SVG files):
 
+Use the panel SVG files found in `res/proto` as a reference. They should already
+follow the following general guidelines.
+
 - Follow the recommendations here: https://vcvrack.com/manual/Panel, with some exceptions:
   - Do not convert any text or font into paths when generating or editing SVG
     files. Keep them as objects so these can be edited manually if needed
-  - Do not use any color gradient nor fancy patterns
+  - Do not use any color gradient (except for spherical harmonic function illustrations)
+    nor fancy patterns
 - Keep the panel design clear, minimal and elegant. Light background is silver
   and black background is dark-grey. Use flat and matte design. Use colors
   inspired by the Ayu theme (https://ayutheme.com/). Avoid using too much colors
@@ -65,11 +69,15 @@ Notes on the general design of the module panels (SVG files):
   capital letters, with a vertically centered dot surrounded by spaces after
   "SP4T" (e.g., "SP4T · MODULE NAME") and the
   "4" colored in the Ayu theme blue (no subtitle).
-- At the bottom of the panel, between the bottom screws, add
-  "\nu.na.tak\" with a bold and bright font, almost as big as the title.
+- At the bottom of the panel, between the bottom screws, add the
+  "\nu.na.tak\" brand text with a bold and bright font, almost as big as the title.
 - For the title and "\nu.na.tak\" texts, use a rounded, less common font family
   (e.g., "M PLUS Rounded 1c"). Prefer static (non-variable) font files, which
   render correctly in VCV Rack once converted to paths.
+- For small panels less or equal to 6HP: use only two screws (those on the
+  left). If necessary, split the prefix "SP4T" with the rest of the title and
+  place it next to the top screw ; at the bottom of the panel place the brand
+  text next to the screw and, if needed, use the short "\n.tk\" brand text.
 - For the control and jack labels, use a common, compact (condensed) but readable
   font family, with a clear and readable font size (not too small) and slightly
   increased letter spacing. Use capital letters.
@@ -89,7 +97,21 @@ Notes on the general design of the module panels (SVG files):
   the stock jack size and no contour is drawn on the panel. Their label must be
   "AMB", for both input and output ambisonic jack ports.
 
-## Module Design
+## General implementation notes
+
+In the C++ plugin code, the enum items declared in each module (parameters, CVs,
+inputs, outputs, etc.) are named after their corresponding components of the
+panel SVG files. Use uppercase characters and underscores for the C++ names.
+Avoid changing the order of the items when refactoring (this would break
+existing VCV Rack patches, which rely on item index), unless explicitly asked.
+
+Avoid adding too many verbose comments directly in the code. Do not comment
+something that can be easily understood just by looking at the code. It is OK to
+add one-line comments to clearly distinguish the parts of long blocks of code.
+If a comment is useful in general (project-scope), it is better to update this
+section instead.
+
+## Module Design and implementation
 
 For each module of this plugin, there's a corresponding design document found in
 the `.claude/modules` directory. Use that document to build, update and/or
