@@ -86,8 +86,8 @@ Notes on the general design of the module panels (SVG files):
   and `SP4TAmbiPort-dark.svg`): Rack's PJ301M jack with its outer ring in the
   same Ayu theme blue as the "4" of the title (#22A4E6 on light panels,
   #59C2FF on dark ones). Only that ring is recoloured, so the component keeps
-  the stock jack size and no contour is drawn on the panel. Their labels must also start with
-  the "A-" prefix (e.g., "A-IN", "A-OUT").
+  the stock jack size and no contour is drawn on the panel. Their label must be
+  "AMB", for both input and output ambisonic jack ports.
 
 ## Module Design
 

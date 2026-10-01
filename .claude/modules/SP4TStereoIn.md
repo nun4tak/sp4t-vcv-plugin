@@ -89,7 +89,7 @@ vertically centered between the title and that area.
 At the bottom of the module, there's a single row aligned with the screen
 margins, evenly spaced: the Left (Mono) and Right inputs, the order switch and
 the Ambisonic output. Add a label just above each jack and the switch (the
-Ambisonic output is labeled "A-OUT"). The
+Ambisonic output is labeled "AMB"). The
 switch positions are labeled "1st", "2nd" and "3rd" from top to bottom.
 
 ## Implementation
