@@ -1,53 +1,75 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- SP4T Stereo In panel, dark theme. 10 HP. Units: mm. -->
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="50.8mm" height="128.5mm" viewBox="0 0 50.8 128.5">
-  <rect id="background" x="0" y="0" width="50.8" height="128.5" fill="#2A2E35"/>
-
-  <!-- just under the top screws -->
-  <text id="title" x="25.4" y="9" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4.1" font-weight="700" text-anchor="middle" fill="#E6E1CF">SP<tspan fill="#59C2FF">4</tspan>T · STEREO IN</text>
-
-  <!-- Screen area, vertically centered between the title and the angle controls area;
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SP4T Stereo In panel, dark theme. 10 HP. Units: mm.
+     Components layer holds VCV Rack placeholders (see
+     https://vcvrack.com/manual/Panel#Adding-components); it is
+     removed when the production panel is exported. -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" version="1.1" width="50.8mm" height="128.5mm" viewBox="0 0 50.8 128.5" id="svg49">
+  <sodipodi:namedview id="namedview49" inkscape:document-units="mm" showgrid="true" showguides="true">
+    <inkscape:grid id="grid59" units="mm" originx="0" originy="0" spacingx="0.26458333" spacingy="0.26458334" empcolor="#0099e5" empopacity="0.30196078" color="#0099e5" opacity="0.14901961" empspacing="5" enabled="true" visible="false" />
+  </sodipodi:namedview>
+  <defs id="component-defs">
+    <!-- ScrewSilver.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <!-- PJ301M.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <!-- SP4TRoundLargeKnob_bg.svg + SP4TRoundLargeKnob.svg (indicator at the default, centered position) -->
+    <!-- SP4TRoundSmallKnob_bg.svg + SP4TRoundSmallKnob.svg (indicator at the default, centered position) -->
+    <!-- SP4TSwitchThree_2.svg (top position, i.e., value 0) -->
+    <!-- SP4TSwitchTwo_0.svg (top position, i.e. value 0) -->
+  </defs>
+  <g id="panel" inkscape:groupmode="layer" inkscape:label="Panel">
+    <rect id="background" x="0" y="0" width="50.8" height="128.5" fill="#2a2e35" />
+    <rect style="fill:#4a5059;stroke:none" id="rect138" width="22.848" height="19.948" x="26.224" y="101.335" rx="0.809" ry="1.552" />
+    <!-- just under the top screws -->
+    <text id="title" x="25.4" y="9" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4.1" font-weight="700" text-anchor="middle" fill="#e6e1cf">SP<tspan fill="#59c2ff" id="tspan32">4</tspan>T · STEREO IN</text>
+    <!-- Screen area, vertically centered between the title and the angle controls area;
        its content is drawn by the module widget. -->
-  <rect id="screen" x="2.5" y="11.5" width="45.8" height="27.3" rx="1" fill="#0D1017"/>
-
-  <!-- Area encompassing the angle controls (same width and rounding as the screen). -->
-  <rect id="angle-area" x="2.5" y="41.3" width="45.8" height="59.42" rx="1" fill="#383D46"/>
-
-  <!-- Angle rows at y=54.427 / 73.167 / 91.907 (4 mm margins): CV input (x=8.013), CV attenuverter
+    <rect id="screen" x="1.728" y="11.5" width="47.344" height="34.039" rx="1.072" fill="#0d1017" style="stroke-width:1.1561" />
+    <!-- Area encompassing the angle controls (same width and rounding as the screen). -->
+    <!-- Angle rows at y=54.427 / 73.167 / 91.907 (4 mm margins): CV input (x=8.013), CV attenuverter
        (x=22.846), large knob (x=40.233). Thin lines link the components; thin arcs around the trims
        (radius 4.19 mm) and the knobs (radius 6.417 mm). -->
-  <g id="angle-strokes" fill="none" stroke="#61676F" stroke-width="0.3" stroke-linecap="round">
-    <path d="M12.83,54.427H18.056M27.636,54.427H33.216"/>
-    <path d="M12.83,73.167H18.056M27.636,73.167H33.216"/>
-    <path d="M12.83,91.907H18.056M27.636,91.907H33.216"/>
-    <path d="M20.712,58.033A4.19,4.19 0 1 1 24.98,58.033"/>
-    <path d="M20.712,76.773A4.19,4.19 0 1 1 24.98,76.773"/>
-    <path d="M20.712,95.513A4.19,4.19 0 1 1 24.98,95.513"/>
-    <path d="M36.9655,59.95A6.417,6.417 0 1 1 43.5005,59.95"/>
-    <path d="M36.9655,78.69A6.417,6.417 0 1 1 43.5005,78.69"/>
-    <path d="M36.9655,97.43A6.417,6.417 0 1 1 43.5005,97.43"/>
-  </g>
-
-  <g id="labels" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-size="3.3" font-weight="600" letter-spacing="0.2" text-anchor="middle" fill="#BFBDB6">
-    <text x="40.233" y="46.81">AZIMUTH</text>
-    <text x="40.233" y="65.55">ELEVATION</text>
-    <text x="40.233" y="84.29">SPREAD</text>
-    <!-- bottom row at y=114 (4 mm margins): audio inputs (x=8.013, 18.336), order switch (x=26.925),
-         Ambisonic output (x=41.3) -->
-    <text x="8.013" y="107.4">L/MONO</text>
-    <text x="18.336" y="107.4">R</text>
-    <text x="26.925" y="107.4">ORDER</text>
-    <text x="41.3" y="107.4">A-OUT</text>
-    <g font-size="2.9" text-anchor="start">
-      <text x="30" y="112.125">1st</text>
-      <text x="30" y="115.015">2nd</text>
-      <text x="30" y="117.885">3rd</text>
+    <text x="8.707" y="107.4" id="text43" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">L/MONO</text>
+    <text x="19.76" y="107.4" id="text44" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">R</text>
+    <text x="42.072" y="107.4" id="text46" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan85" x="42.172" y="107.4">AMB</tspan></text>
+    <!-- Ambisonic jack contour (jack radius 4 mm, ring inner edge under the jack: no gap). -->
+    <!-- between the bottom screws -->
+    <text id="brand" x="25.4" y="125.958" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4" font-weight="700" text-anchor="middle" fill="#bfbdb6">\nu.na.tak\</text>
+    <text x="8.781" y="50.985" id="text72" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan75" x="8.881" y="50.985">AZ</tspan></text>
+    <text x="25.302" y="50.985" id="text73" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan76" x="25.402" y="50.985">ELEV</tspan></text>
+    <text x="42.061" y="60.343" id="text74" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan74" x="42.161" y="60.343">SPREAD</tspan></text>
+    <path style="fill:none;stroke:#61676f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 19.8437,79.375 v -4.9493 c 0,-1.2595 5.5562,-4.088 5.5562,-5.3475 v -3.732" id="path82" sodipodi:nodetypes="cssc" />
+    <path style="fill:none;stroke:#61676f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 42.0435,74.057 v 5.4316" id="path77" sodipodi:nodetypes="cc" />
+    <path style="fill:none;stroke:#61676f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="M 8.7565,65.3462 V 79.4887" id="path76" sodipodi:nodetypes="cc" />
+    <path d="m 36.9655,59.95 a 6.417,6.417 0 1 1 6.535,0" id="path38" style="fill:none;stroke:#61676f;stroke-width:0.3;stroke-linecap:round" transform="matrix(0.9,0,0,0.9,-27.4532,9.9164)" />
+    <path d="m 36.9655,59.95 a 6.417,6.417 0 1 1 6.535,0" id="path57" style="fill:none;stroke:#61676f;stroke-width:0.3;stroke-linecap:round" transform="matrix(0.9,0,0,0.9,-10.8097,9.9164)" />
+    <path d="m 36.9655,59.95 a 6.417,6.417 0 1 1 6.535,0" id="path58" style="fill:none;stroke:#61676f;stroke-width:0.3;stroke-linecap:round" transform="matrix(0.9,0,0,0.9,5.8338,18.6715)" />
+    <path d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0" id="path36" style="fill:none;stroke:#61676f;stroke-width:0.3;stroke-linecap:round" transform="matrix(0.91074573,0,0,0.91074573,-12.0504,17.8556)" />
+    <path d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0" id="path51" style="fill:none;stroke:#61676f;stroke-width:0.3;stroke-linecap:round" transform="matrix(0.91074573,0,0,0.91074573,-0.9547,17.8556)" />
+    <path d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0" id="path53" style="fill:none;stroke:#61676f;stroke-width:0.3;stroke-linecap:round" transform="matrix(0.91074573,0,0,0.91074573,21.2366,17.8556)" />
+    <text x="31.642" y="99.489" id="text47" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:start;fill:#bfbdb6" transform="translate(2.621,12.663)"><tspan sodipodi:role="line" id="tspan82" x="31.642" y="99.489">1</tspan></text>
+    <text x="31.642" y="102.379" id="text48" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:start;fill:#bfbdb6" transform="translate(2.621,12.663)"><tspan sodipodi:role="line" id="tspan83" x="31.642" y="102.379">2</tspan></text>
+    <text x="31.642" y="105.249" id="text49" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:start;fill:#bfbdb6" transform="translate(2.621,12.663)"><tspan sodipodi:role="line" id="tspan84" x="31.642" y="105.249">3</tspan></text>
+    <g id="g121" transform="translate(0.072,0.26)">
+      <text x="11.832" y="71.622" id="text118" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:start;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan120" x="11.832" y="71.622">+</tspan></text>
+      <text x="12.129" y="74.765" id="text119" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:start;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan121" x="12.129" y="74.765">-</tspan></text>
     </g>
+    <path style="fill:none;stroke:#61676f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 8.7565,88.6228 v 1.6128" id="path146" sodipodi:nodetypes="cc" />
+    <path style="fill:none;stroke:#61676f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 19.8522,88.6228 v 1.6128" id="path1" sodipodi:nodetypes="cc" />
+    <path style="fill:none;stroke:#61676f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 42.0435,88.6228 v 1.6128" id="path2" sodipodi:nodetypes="cc" />
   </g>
-
-  <!-- Ambisonic jack contour (jack radius 4 mm, ring inner edge under the jack: no gap). -->
-  <circle id="ambisonic-output-contour" cx="41.3" cy="114" r="4.7" fill="none" stroke="#59C2FF" stroke-width="1.6"/>
-
-  <!-- between the bottom screws -->
-  <text id="brand" x="25.4" y="124.4" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4" font-weight="700" text-anchor="middle" fill="#E6E1CF">\nu.na.tak\</text>
+  <g id="components" inkscape:groupmode="layer" inkscape:label="components" style="display:none">
+    <circle id="ambi-output" inkscape:label="ambi-output" cx="42.043" cy="114" r="4.013" fill="#0000ff" />
+    <circle id="azimuth-cv-param" inkscape:label="azimuth-cv-param" cx="8.756" cy="84.492" r="3.084" fill="#ff0000" />
+    <circle id="order-param" inkscape:label="order-param" cx="31.188" cy="114" r="2.279" fill="#ff0000" />
+    <circle id="left-input" inkscape:label="left-input" cx="8.756" cy="114" r="4.013" fill="#00ff00" />
+    <circle id="right-input" inkscape:label="right-input" cx="19.852" cy="114" r="4.013" fill="#00ff00" />
+    <circle id="elevation-cv-param" inkscape:label="elevation-cv-param" cx="19.852" cy="84.492" r="3.084" fill="#ff0000" />
+    <circle id="spread-cv-param" inkscape:label="spread-cv-param" cx="42.043" cy="84.492" r="3.084" fill="#ff0000" />
+    <circle id="azimuth-param" inkscape:label="azimuth-param" cx="8.757" cy="58.901" r="5.055" fill="#ff0000" />
+    <circle id="elevation-param" inkscape:label="elevation-param" cx="25.4" cy="58.901" r="5.055" fill="#ff0000" />
+    <circle id="spread-param" inkscape:label="spread-param" cx="42.044" cy="67.656" r="5.055" fill="#ff0000" />
+    <circle id="elevation-cv-input" inkscape:label="elevation-cv-input" cx="19.852" cy="94.903" r="4.013" fill="#00ff00" />
+    <circle id="azimuth-cv-input" inkscape:label="azimuth-cv-input" cx="8.756" cy="94.903" r="4.013" fill="#00ff00" />
+    <circle id="spread-cv-input" inkscape:label="spread-cv-input" cx="42.043" cy="94.903" r="4.013" fill="#00ff00" />
+    <circle id="azimuth-cv-switch" inkscape:label="azimuth-cv-switch" cx="8.829" cy="72.418" r="2.278" fill="#ff0000" />
+  </g>
 </svg>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SP4T Smear panel, dark theme. 4 HP. Units: mm.
+     Components layer holds VCV Rack placeholders (see
+     https://vcvrack.com/manual/Panel#Adding-components); it is
+     removed when the production panel is exported. -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" version="1.1" width="20.32mm" height="128.5mm" viewBox="0 0 20.32 128.5" id="svg8">
+  <sodipodi:namedview id="namedview8" inkscape:document-units="mm" />
+  <defs id="component-defs">
+    <!-- ScrewSilver.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <!-- PJ301M.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <!-- SP4TRoundLargeKnob_bg.svg + SP4TRoundLargeKnob.svg (indicator at the default, centered position) -->
+    <!-- SP4TRoundSmallKnob_bg.svg + SP4TRoundSmallKnob.svg (indicator at the default, centered position) -->
+  </defs>
+  <g id="panel" inkscape:groupmode="layer" inkscape:label="Panel">
+    <rect id="background" x="0" y="0" width="20.32" height="128.5" fill="#2a2e35" style="stroke-width:0.8165" />
+    <rect style="fill:#4a5059;stroke:none" id="rect138" width="8.9" height="19.948" x="10.16" y="101.335" rx="0.716" ry="1.552" />
+    <!-- just under the top screws -->
+    <text id="title" x="10.016" y="9" style="font-weight:bold;font-size:4.1px;font-family:'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif;text-anchor:middle;fill:#e6e1cf"><tspan sodipodi:role="line" id="tspan165" x="10.016" y="9">SMEAR</tspan></text>
+    <!-- between the bottom screws -->
+    <text id="brand" x="14.862" y="125.958" style="font-weight:bold;font-size:4px;font-family:'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan156" x="14.862" y="125.958">\n.tk\</tspan></text>
+    <text x="5.683" y="107.4" id="text43" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan163" x="5.783" y="107.4">IN</tspan></text>
+    <text x="10.227" y="33.786" id="text46" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan178" x="10.327" y="33.786">AMOUNT</tspan></text>
+    <text id="text150" x="14.848" y="3.728" style="font-weight:bold;font-size:3.321px;font-family:'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif;text-anchor:middle;fill:#e6e1cf;stroke-width:0.81"><tspan sodipodi:role="line" id="tspan153" x="14.848" y="3.728" style="stroke-width:0.81">SP<tspan fill="#59c2ff" id="title-accent">4</tspan>T</tspan></text>
+    <text x="14.511" y="107.4" id="text158" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan164" x="14.611" y="107.4">OUT</tspan></text>
+    <path d="m 8.2165,72.8546 a 3.816,3.816 0 1 1 3.8871,0" id="path36" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
+    <path style="fill:none;stroke:#61676f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 10.16,73.7479 v 1.6128" id="path146" sodipodi:nodetypes="cc" />
+    <path style="fill:none;stroke:#61676f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="M 10.16,48.0079 V 64.25" id="path178" sodipodi:nodetypes="cc" />
+    <g id="g58-4" transform="matrix(0.9,0,0,0.9,-26.0497,-7.5659)">
+      <path d="m 36.9655,59.95 a 6.417,6.417 0 1 1 6.535,0" id="path58" style="fill:none;stroke:#61676f;stroke-width:0.3;stroke-linecap:round" />
+    </g>
+  </g>
+  <g id="components" inkscape:groupmode="layer" inkscape:label="components" style="display:none">
+    <circle id="poly-output" inkscape:label="poly-output" cx="14.574" cy="114" r="4.013" fill="#0000ff" />
+    <circle id="poly-input" inkscape:label="poly-input" cx="5.745" cy="114" r="4.013" fill="#00ff00" />
+    <circle id="amount-param" inkscape:label="amount-param" cx="10.16" cy="41.418" r="5.054" fill="#ff0000" />
+    <circle id="amount-cv-param" inkscape:label="amount-cv-param" cx="10.16" cy="69.57" r="3.084" fill="#ff0000" />
+    <circle id="amount-cv-input" inkscape:label="amount-cv-input" cx="10.16" cy="80.049" r="4.013" fill="#00ff00" />
+  </g>
+</svg>

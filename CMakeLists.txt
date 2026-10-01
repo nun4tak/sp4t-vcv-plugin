@@ -32,8 +32,10 @@ add_subdirectory(SDKs/Spatial_Audio_Framework)
 
 # Files shipped inside the plugin directory besides plugin.json, res/ and LICENSE*.
 set(ADDITIONAL_PLUGIN_DISTRIBUTABLES "")
-# Files not shipped: panel sources with text not yet converted to paths.
-set(PLUGIN_DISTRIBUTABLES_EXCLUDE res/staging)
+# Files not shipped: panel sources with text not yet converted to paths, the
+# prototype panels together with the script that turns them into staging panels,
+# and miscellaneous files that are not runtime assets.
+set(PLUGIN_DISTRIBUTABLES_EXCLUDE res/staging res/proto res/misc)
 
 # Rack SDK
 include(cmake/RackSDK.cmake)

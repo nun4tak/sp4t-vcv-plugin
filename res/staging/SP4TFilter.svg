@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SP4T Filter panel, light theme. 8 HP. Units: mm.
+     Components layer holds VCV Rack placeholders (see
+     https://vcvrack.com/manual/Panel#Adding-components); it is
+     removed when the production panel is exported. -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" version="1.1" width="40.64mm" height="128.5mm" viewBox="0 0 40.64 128.5" id="svg8">
+  <sodipodi:namedview id="namedview8" inkscape:document-units="mm" />
+  <defs id="component-defs">
+    <!-- ScrewSilver.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <!-- SP4TSwitchTwo_0.svg (top position, i.e. value 0) -->
+    <!-- SP4TAmbiPort.svg (PJ301M with the Ayu-blue outer ring) -->
+    <!-- PJ301M.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <!-- SP4TRoundLargeKnob_bg.svg + SP4TRoundLargeKnob.svg (indicator at the default, centered position) -->
+    <!-- SP4TRoundSmallKnob_bg.svg + SP4TRoundSmallKnob.svg (indicator at the default, centered position) -->
+  </defs>
+  <g id="panel" inkscape:groupmode="layer" inkscape:label="Panel">
+    <rect id="background" x="0" y="0" width="40.64" height="128.5" fill="#d8dbdf" />
+    <!-- just under the top screws -->
+    <text id="title" x="20.32" y="9" style="font-weight:bold;font-size:4.1px;font-family:'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif;text-anchor:middle;fill:#2b3038"><tspan sodipodi:role="line" id="tspan1" x="20.32" y="9">SP<tspan fill="#22a4e6" id="title-accent">4</tspan>T · FILTER</tspan></text>
+    <!-- between the bottom screws -->
+    <text id="brand" x="20.32" y="125.958" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4" font-weight="700" text-anchor="middle" fill="#3a4049">\nu.na.tak\</text>
+    <rect id="screen" x="1.728" y="11.5" width="37.294" height="34.039" rx="0.844" fill="#0d1017" style="stroke-width:1.026" />
+    <rect style="fill:#bbbfc3;stroke:none" id="rect138" width="10.048" height="19.948" x="26.86" y="101.335" rx="0.809" ry="1.552" />
+    <text x="8.823" y="107.4" id="text43" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan2" x="8.923" y="107.4">AMB</tspan></text>
+    <text x="31.951" y="107.4" id="text46" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan85" x="32.051" y="107.4">AMB</tspan></text>
+    <g id="g51" transform="matrix(0.91074573,0,0,0.91074573,-12.0507,17.8556)">
+      <path d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0" id="path36" style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
+    </g>
+    <g id="g52" transform="matrix(0.91074573,0,0,0.91074573,-0.4869,17.8556)">
+      <path d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0" id="path51-6" style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
+    </g>
+    <g id="g54" transform="matrix(0.91074573,0,0,0.91074573,11.0773,17.8556)">
+      <path d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0" id="path53-3" style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
+    </g>
+    <g id="g50" transform="matrix(0.9,0,0,0.9,-28.5623,9.9164)">
+      <path d="m 36.9655,59.95 a 6.417,6.417 0 1 1 6.535,0" id="path38" style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
+    </g>
+    <g id="g57-5" transform="matrix(0.9,0,0,0.9,-15.8897,9.9164)">
+      <path d="m 36.9655,59.95 a 6.417,6.417 0 1 1 6.535,0" id="path57-5" style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
+    </g>
+    <g id="g58-4" transform="matrix(0.9,0,0,0.9,-3.107,18.6715)">
+      <path d="m 36.9655,59.95 a 6.417,6.417 0 1 1 6.535,0" id="path58" style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
+    </g>
+    <path style="fill:none;stroke:#737a83;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="M 20.32,65.3463 V 79.4887" id="path76" sodipodi:nodetypes="cc" />
+    <text x="20.222" y="51.575" id="text73" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan4" x="20.322" y="51.575">ELEV</tspan></text>
+    <text x="7.549" y="51.575" id="text105" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan3" x="7.649" y="51.575">AZ</tspan></text>
+    <text x="33.004" y="60.343" id="text106" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan5" x="33.104" y="60.343">D/W</tspan></text>
+    <path style="fill:none;stroke:#737a83;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 31.8842,79.4319 v -1.1998 c 0,-1.2595 1.2185,-1.2646 1.2185,-2.5241 v -1.4444" id="path82" sodipodi:nodetypes="cssc" />
+    <path style="fill:none;stroke:#737a83;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 8.8659,79.4319 v -4.9493 c 0,-1.2595 -1.2185,-4.088 -1.2185,-5.3475 v -3.732" id="path110" sodipodi:nodetypes="cssc" />
+    <g id="g121" transform="translate(-0.451)">
+      <text x="11.832" y="71.621" id="text118" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:start;fill:#3a4049"><tspan sodipodi:role="line" id="tspan120" x="11.832" y="71.621">+</tspan></text>
+      <text x="12.129" y="74.764" id="text119" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:start;fill:#3a4049"><tspan sodipodi:role="line" id="tspan121" x="12.129" y="74.764">-</tspan></text>
+    </g>
+    <path style="fill:none;stroke:#737a83;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 8.7562,88.6695 v 1.6128" id="path146" sodipodi:nodetypes="cc" />
+    <path style="fill:none;stroke:#737a83;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 20.32,88.6695 v 1.6128" id="path1" sodipodi:nodetypes="cc" />
+    <path style="fill:none;stroke:#737a83;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 31.8842,88.6695 v 1.6128" id="path2" sodipodi:nodetypes="cc" />
+  </g>
+  <g id="components" inkscape:groupmode="layer" inkscape:label="components" style="display:none">
+    <circle id="az-param" inkscape:label="az-param" cx="7.647" cy="58.9" r="5.054" fill="#ff0000" />
+    <circle id="elev-param" inkscape:label="elev-param" cx="20.32" cy="58.9" r="5.055" fill="#ff0000" />
+    <circle id="dw-param" inkscape:label="dw-param" cx="33.102" cy="67.655" r="5.054" fill="#ff0000" />
+    <circle id="az-cv-switch" inkscape:label="az-cv-switch" cx="8.306" cy="72.157" r="2.278" fill="#ff0000" />
+    <circle id="az-cv-param" inkscape:label="az-cv-param" cx="8.756" cy="84.493" r="3.084" fill="#ff0000" />
+    <circle id="elev-cv-param" inkscape:label="elev-cv-param" cx="20.321" cy="84.493" r="3.084" fill="#ff0000" />
+    <circle id="dw-cv-param" inkscape:label="dw-cv-param" cx="31.885" cy="84.493" r="3.084" fill="#ff0000" />
+    <circle id="ambi-input" inkscape:label="ambi-input" cx="8.756" cy="114" r="4.013" fill="#00ff00" />
+    <circle id="ambi-output" inkscape:label="ambi-output" cx="31.884" cy="114" r="4.013" fill="#0000ff" />
+    <circle id="elev-cv-input" inkscape:label="elev-cv-input" cx="20.32" cy="94.97" r="4.013" fill="#00ff00" />
+    <circle id="az-cv-input" inkscape:label="az-cv-input" cx="8.756" cy="94.97" r="4.013" fill="#00ff00" />
+    <circle id="dw-cv-input" inkscape:label="dw-cv-input" cx="31.884" cy="94.97" r="4.013" fill="#00ff00" />
+  </g>
+</svg>
