@@ -5,7 +5,7 @@
 Ambisonic gains.
 
 This basic module allows changing or modulating the gain independently for each
-channel of an input ambisonic input signal and route the result all through the
+channel of an input ambisonic signal and route the result all through the
 ambisonic output. This is mostly for convenience and for experimental purpose.
 
 ACN ordered Ambisonic channels are arranged on the panel as a grid, from

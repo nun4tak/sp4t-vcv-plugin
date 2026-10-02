@@ -83,11 +83,62 @@ struct SP4TButton : app::SvgSwitch {
  * SP4TButton, so only the lit frame is a file of its own.
  */
 struct SP4TLatch : app::SvgSwitch {
+	/** How far the glow of the lit cap spreads beyond it, in px (0: no glow). */
+	float haloSpread = 3.f;
+	/** Scales up Rack's halo brightness setting, as for SP4TSignalLight. */
+	float haloGain = 3.f;
+	/** The lit cap of SP4TLatch_1.svg (#E6E1CF), brightened: the glow also
+	 * covers the cap, which it would otherwise darken. */
+	NVGcolor haloColor = nvgRGB(0xff, 0xfb, 0xee);
+
 	SP4TLatch() {
 		momentary = false;
 		shadow->opacity = 0.f;
 		addFrame(Svg::load(asset::plugin(pluginInstance, "res/components/SP4TButton_0.svg")));
 		addFrame(Svg::load(asset::plugin(pluginInstance, "res/components/SP4TLatch_1.svg")));
+	}
+
+	/** Glow around the cap while the button is on. */
+	void drawLayer(const DrawArgs& args, int layer) override {
+		app::SvgSwitch::drawLayer(args, layer);
+
+		// Not in a framebuffer, e.g., screenshots or the module browser.
+		if (layer != 1 || args.fb || haloSpread <= 0.f)
+			return;
+		float halo = settings::haloBrightness;
+		if (halo == 0.f)
+			return;
+		ParamQuantity* pq = getParamQuantity();
+		if (!pq || pq->getValue() < 0.5f)
+			return;
+
+		// The lit cap is 6.4/20 of the size of the button.
+		Vec center = box.size.div(2);
+		float core = box.size.x * 0.32f;
+		float outer = core + haloSpread;
+		// Only the opacity follows the halo setting: scaling the color down
+		// instead would darken what the glow is drawn over.
+		NVGcolor inner = haloColor;
+		inner.a = std::min(halo * haloGain, 1.f);
+		NVGpaint paint = nvgRadialGradient(args.vg, center.x, center.y, core, outer,
+		                                   inner, nvgRGBA(0, 0, 0, 0));
+		nvgBeginPath(args.vg);
+		nvgRect(args.vg, center.x - outer, center.y - outer, 2 * outer, 2 * outer);
+		nvgFillPaint(args.vg, paint);
+		nvgFill(args.vg);
+	}
+};
+
+
+/** SP4TLatch that is momentary instead when the MOM/LATCH switch param of its
+ * module, `modeParamId`, is in its MOM (0) position. */
+struct SP4TModeButton : SP4TLatch {
+	int modeParamId = -1;
+
+	void step() override {
+		if (module && modeParamId >= 0)
+			momentary = module->params[modeParamId].getValue() < 0.5f;
+		SP4TLatch::step();
 	}
 };
 
@@ -199,7 +250,11 @@ struct SP4TSignalLight : app::ModuleLightWidget {
 		Vec center = box.size.div(2);
 		float core = getRadius() + rimWidth;
 		float outer = core + haloSpread;
-		NVGcolor inner = color::mult(color, std::min(halo * haloGain, 1.f));
+		// The lit color at full brightness, only the opacity following the
+		// brightness and the halo setting: scaling the color down instead would
+		// darken the LED, which the glow is drawn over.
+		NVGcolor inner = baseColors.empty() ? color : baseColors[0];
+		inner.a = std::min(color.a * halo * haloGain, 1.f);
 		NVGpaint paint = nvgRadialGradient(args.vg, center.x, center.y, core, outer,
 		                                   inner, nvgRGBA(0, 0, 0, 0));
 		nvgBeginPath(args.vg);

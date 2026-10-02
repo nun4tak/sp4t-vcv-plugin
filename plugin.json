@@ -33,6 +33,13 @@
       "description": "Ambisonic Gains",
       "manualUrl": "",
         "tags": ["Utility", "Polyphonic", "VCA"]
+    },
+    {
+      "slug": "SP4T-Mute",
+      "name": "SP4T Mute",
+      "description": "Ambisonic Mutes",
+      "manualUrl": "",
+        "tags": ["Utility", "Polyphonic", "Switch"]
     }
   ]
 }

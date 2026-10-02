@@ -11,3 +11,4 @@ extern Plugin* pluginInstance;
 extern Model* modelNun4takSP4TStereoIn;
 extern Model* modelNun4takSP4TStereoOut;
 extern Model* modelNun4takSP4TGain;
+extern Model* modelNun4takSP4TMute;
