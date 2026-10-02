@@ -10,10 +10,11 @@ conventions (ambiX), unless otherwise specified.
 
 Ambisonics encodes a full 3D sound field using spherical harmonic decomposition
 (figure 1): it is a multi-channel audio encoding technique where each channel
-carries a given harmonic function sampled at the audio rate. This *scene-based*
-encoding contrasts with the usual *channel-based* encoding (1 channel = 1
-speaker) and *object-based* techniques such as Dolby Atmos, where each object
-carries its own audio stream plus positional metadata.
+carries a given harmonic function sampled at the audio rate (see below for more
+details how to interpret those signals). This *scene-based* encoding contrasts
+with the usual *channel-based* encoding (1 channel = 1 speaker) and
+*object-based* techniques such as Dolby Atmos, where each object carries its own
+audio stream plus positional metadata.
 
 <img src="https://github.com/benbovy/nun4tak-vcv-sp4t/blob/main/res/misc/spherical_functions.svg?sanatize=true">
 
@@ -53,9 +54,10 @@ and routed like anything else on the rack (note: ambisonic channels do not carry
 "speaker" signals, and some operations stay spatially meaningful only when
 they are applied consistently across the whole channel set).
 
-There is no obligation to represent a realistic scene: the ambisonic
-channels can just as well carry different sound *textures* mapped across a
-sphere, turning spatial operations into a powerful sound-design tool.
+There is no obligation to represent a realistic scene: the ambisonic channels
+can just as well carry different sound *textures* mapped across a sphere,
+turning spatial operations into a powerful sound-design tool. And why not try
+using it with CV signals? There's no limitation, really.
 
 Modular synthesis has the right workflow for exploring the full range of
 ambisonic possibilities. VCV Rack's polyphonic cables make it also very
