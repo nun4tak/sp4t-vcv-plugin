@@ -87,13 +87,13 @@ struct SP4TStereoOut : Module {
 		outputs[RIGHT_OUTPUT].setVoltage(out[1]);
 
 		// The LEDs show the peak of the audio-rate output signals, full scale at
-		// 5 V with a square-root response so that quiet signals still show.
+		// 5 V with a cube-root response so that quiet signals still show brightly.
 		for (int i = 0; i < 2; i++)
 			peaks[i] = std::fmax(peaks[i], std::fabs(out[i]));
 		if (lightDivider.process()) {
 			float deltaTime = args.sampleTime * lightDivider.getDivision();
 			for (int i = 0; i < 2; i++) {
-				float brightness = std::sqrt(std::fmin(peaks[i] / 5.f, 1.f));
+				float brightness = std::cbrt(std::fmin(peaks[i] / 5.f, 1.f));
 				lights[LEFT_LED_LIGHT + i].setBrightnessSmooth(brightness, deltaTime);
 				peaks[i] = 0.f;
 			}

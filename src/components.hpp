@@ -141,41 +141,69 @@ struct SP4TAmbiPort : app::ThemedSvgPort {
 /** LED showing an audio-rate signal, emitting the Ayu blue of the ambisonic
  * jacks and of the panel titles.
  *
- * Sized after the LED dots of the panels (1.134 mm). Unlike the Component
- * Library lights, it has no background nor border, so what shows through when
- * the light is off is the panel itself, on both the light and dark themes.
+ * Sized after the LED dots of the panels (1.134 mm), black when off, and sunk
+ * in a bevelled rim. Compared to the Component Library lights, the rim and the
+ * glow are drawn here because their metrics do not follow the size of the
+ * light, which is too small for a glow derived from it to be seen.
  */
 struct SP4TSignalLight : app::ModuleLightWidget {
-	/** Radius of the glow, which spreads well beyond the LED itself, too small
-	 * to be seen otherwise (it covers a speaker cone on SP4T Stereo Out). */
-	float haloRadius = mm2px(3.2f);
-	/** Radius of the opaque core of the glow, relative to `haloRadius`. */
-	float haloCore = 0.35f;
+	/** Width of the rim around the LED, in px. */
+	float rimWidth = 0.9f;
+	/** How far the glow spreads beyond the rim, in px (0: no glow). It is at
+	 * full brightness up to the rim, then fades out. */
+	float haloSpread = mm2px(2.3f);
 	/** Scales up Rack's halo brightness setting, as the glow of such a small
 	 * light is otherwise barely visible. */
 	float haloGain = 3.f;
 
 	SP4TSignalLight() {
+		bgColor = nvgRGB(0x00, 0x00, 0x00);
 		addBaseColor(nvgRGB(0x59, 0xc2, 0xff));
 		box.size = mm2px(Vec(1.134, 1.134));
 	}
 
-	/** LightWidget::drawHalo(), with the radii and the brightness above
+	float getRadius() const {
+		return std::min(box.size.x, box.size.y) / 2.f;
+	}
+
+	/** The LED and its rim, lit by `drawLight()` and `drawHalo()` on top. */
+	void drawBackground(const DrawArgs& args) override {
+		Vec center = box.size.div(2);
+		float radius = getRadius();
+
+		// Darker at the top, as if the LED was sunk into the panel.
+		NVGpaint rim = nvgLinearGradient(args.vg, center.x, center.y - radius - rimWidth,
+		                                 center.x, center.y + radius + rimWidth,
+		                                 nvgRGB(0x1c, 0x1f, 0x24), nvgRGB(0x6a, 0x72, 0x80));
+		nvgBeginPath(args.vg);
+		nvgCircle(args.vg, center.x, center.y, radius + rimWidth);
+		nvgFillPaint(args.vg, rim);
+		nvgFill(args.vg);
+
+		nvgBeginPath(args.vg);
+		nvgCircle(args.vg, center.x, center.y, radius);
+		nvgFillColor(args.vg, bgColor);
+		nvgFill(args.vg);
+	}
+
+	/** LightWidget::drawHalo(), with the metrics and the brightness above
 	 * instead of values derived from the size of the light. */
 	void drawHalo(const DrawArgs& args) override {
 		// Not in a framebuffer, e.g., screenshots or the module browser.
-		if (args.fb)
+		if (args.fb || haloSpread <= 0.f)
 			return;
 		float halo = settings::haloBrightness;
 		if (halo == 0.f)
 			return;
 
 		Vec center = box.size.div(2);
+		float core = getRadius() + rimWidth;
+		float outer = core + haloSpread;
 		NVGcolor inner = color::mult(color, std::min(halo * haloGain, 1.f));
-		NVGpaint paint = nvgRadialGradient(args.vg, center.x, center.y, haloRadius * haloCore,
-		                                   haloRadius, inner, nvgRGBA(0, 0, 0, 0));
+		NVGpaint paint = nvgRadialGradient(args.vg, center.x, center.y, core, outer,
+		                                   inner, nvgRGBA(0, 0, 0, 0));
 		nvgBeginPath(args.vg);
-		nvgRect(args.vg, center.x - haloRadius, center.y - haloRadius, 2 * haloRadius, 2 * haloRadius);
+		nvgRect(args.vg, center.x - outer, center.y - outer, 2 * outer, 2 * outer);
 		nvgFillPaint(args.vg, paint);
 		nvgFill(args.vg);
 	}

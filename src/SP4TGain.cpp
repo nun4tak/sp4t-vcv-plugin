@@ -69,11 +69,11 @@ struct SP4TGain : Module {
 		}
 
 		// The LEDs show the peak of the audio-rate output channels, full scale at
-		// 5 V with a square-root response so that quiet signals still show.
+		// 5 V with a cube-root response so that quiet signals still show brightly.
 		if (lightDivider.process()) {
 			float deltaTime = args.sampleTime * lightDivider.getDivision();
 			for (int c = 0; c < NUM_CHANNELS; c++) {
-				float brightness = c < channels ? std::sqrt(std::fmin(peaks[c] / 5.f, 1.f)) : 0.f;
+				float brightness = c < channels ? std::cbrt(std::fmin(peaks[c] / 5.f, 1.f)) : 0.f;
 				lights[CH1_LED_LIGHT + c].setBrightnessSmooth(brightness, deltaTime);
 				peaks[c] = 0.f;
 			}
@@ -107,7 +107,12 @@ struct SP4TGainWidget : ModuleWidget {
 				int c = 4 * row + col;
 				addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(knobX[col], knobY[row])), module, SP4TGain::CH1_GAIN_PARAM + c));
 				addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(knobX[col], inputY[row])), module, SP4TGain::CH1_GAIN_CV_INPUT + c));
-				addChild(createLightCentered<SP4TSignalLight>(mm2px(Vec(ledX[col], ledY[row])), module, SP4TGain::CH1_LED_LIGHT + c));
+
+				// The LEDs sit close to the knobs and their arcs, so the glow
+				// stops right after the rim.
+				SP4TSignalLight* light = createLightCentered<SP4TSignalLight>(mm2px(Vec(ledX[col], ledY[row])), module, SP4TGain::CH1_LED_LIGHT + c);
+				light->haloSpread = 1.5f;
+				addChild(light);
 			}
 		}
 

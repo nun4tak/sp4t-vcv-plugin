@@ -47,5 +47,7 @@ component if possible, rename the component if relevant).
 This is the `SP4TSignalLight` component (`src/components.hpp`), named after what
 it shows rather than after the speaker cones of the Stereo Out panel where it
 first appeared. The brightness follows the peak of the channel over the last 256
-samples, full scale at 5 V with a square-root response. The LEDs of the channels
-that the input signal does not carry are off.
+samples, full scale at 5 V with a cube-root response. The LEDs of the channels
+that the input signal does not carry are off. Here the glow of the component is
+kept small (`haloSpread` of 1.5 px beyond the rim of the LED, instead of
+2.3 mm), as the LEDs sit close to the knobs and to their arcs.
