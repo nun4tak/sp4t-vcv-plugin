@@ -12,8 +12,9 @@ connected. In case of an input stereo source, the "spread" angle controls the
 angular distance between the "mono" direction (as determined by the azimuth and
 elevation angles) and each of the actual left and right sources.
 
-Each angle also has a CV input with a dedicated attenuverter (trim knob). The
-attenuated CV is added to the value of the corresponding angle knob.
+Each angle also has a CV input with a dedicated trim knob, an attenuverter for
+the bipolar azimuth and elevation CVs and an attenuator for the unipolar spread
+CV. The attenuated CV is added to the value of the corresponding angle knob.
 
 ## Specifications
 
@@ -22,7 +23,8 @@ attenuated CV is added to the value of the corresponding angle knob.
   - azimuth (-180 to 180 degrees, default 0 degrees)
   - elevation (-90 to 90 degrees, default 0 degrees)
   - spread (0 to 90 degrees, default 45 degrees)
-- 3 small knobs (trim): CV attenuverters for azimuth, elevation and spread
+- 3 small knobs (trim): CV attenuverters for azimuth and elevation, CV
+  attenuator for spread (its CV input is unipolar)
 - 2 switches
   - select ambisonic order 1 (FOA), 2 (HOA-2) or 3 (HOA-3) for the output
   - azimuth direction (2 positions labeled "+" and "-", default "+"): in the "-"
@@ -79,8 +81,8 @@ input mono or stereo source on a sphere:
 
 Below the screen, there is one column for each angle (azimuth on the left,
 elevation in the middle, spread on the right), with from top to bottom: the main
-knob (large, i.e., about 117% of the normal knob size), the CV attenuverter
-(trim) and the CV input. Both knobs have arcs and the angle name ("AZ", "ELEV",
+knob (large, i.e., about 117% of the normal knob size), the CV attenuverter or
+attenuator (trim) and the CV input. Both knobs have arcs and the angle name ("AZ", "ELEV",
 "SPREAD") is centered above the main knob. The azimuth column also holds the
 azimuth direction switch, between its knob and its trim, with the "+" and "-"
 labels on the right of the switch. The components of a column are linked by thin

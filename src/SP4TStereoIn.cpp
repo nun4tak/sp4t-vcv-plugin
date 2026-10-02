@@ -84,7 +84,8 @@ struct SP4TStereoIn : Module {
 		configParam(SPREAD_PARAM, 0.f, 90.f, 45.f, "Spread", "°");
 		configParam(AZIMUTH_CV_PARAM, -1.f, 1.f, 0.f, "Azimuth CV attenuverter", "%", 0.f, 100.f);
 		configParam(ELEVATION_CV_PARAM, -1.f, 1.f, 0.f, "Elevation CV attenuverter", "%", 0.f, 100.f);
-		configParam(SPREAD_CV_PARAM, -1.f, 1.f, 0.f, "Spread CV attenuverter", "%", 0.f, 100.f);
+		// Attenuator and not attenuverter: the spread CV is unipolar.
+		configParam(SPREAD_CV_PARAM, 0.f, 1.f, 0.f, "Spread CV attenuator", "%", 0.f, 100.f);
 		configSwitch(ORDER_PARAM, 0.f, 2.f, 0.f, "Ambisonic order", {"1st (FOA)", "2nd (HOA-2)", "3rd (HOA-3)"});
 		// The Ambisonic convention (positive azimuth = anticlockwise, i.e., to the
 		// left) is the default; the other position is more natural for eurorack
@@ -111,8 +112,9 @@ struct SP4TStereoIn : Module {
 		updateControls();
 	}
 
-	/** Knob value plus the CV input scaled by its attenuverter, where
-	 * `fullScaleVoltage` (5 V bipolar, 10 V unipolar) spans `range` degrees. */
+	/** Knob value plus the CV input scaled by its attenuverter (attenuator for
+	 * the spread), where `fullScaleVoltage` (5 V bipolar, 10 V unipolar) spans
+	 * `range` degrees. */
 	float getAngle(int paramId, int cvParamId, int inputId, float range, float fullScaleVoltage) {
 		float cv = inputs[inputId].getVoltage() / fullScaleVoltage;
 		return params[paramId].getValue() + params[cvParamId].getValue() * cv * range;
