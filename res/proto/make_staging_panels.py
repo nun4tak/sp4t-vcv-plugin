@@ -71,16 +71,13 @@ DARK = {
     '#484c51': '#cfd3d9',
     '#5c6370': '#9da5ae',   # Flip chevron icon
     '#0b0d11': '#15181d',   # chevron accent, stays dark over the lifted icon
-    # harmonic lobes: the light half already reads on a dark ground; the dark
-    # half and its outline are lifted so they stay visible. Note the lobes sit on
-    # the grouping rects, not on the bare background.
+    # harmonic lobes: both halves are flat (Rack does not render radial
+    # gradients) and keep their colour in the dark theme, where the grouping
+    # rects they sit on are inverted to a light ink: a white and a near-black
+    # lobe read on those rects in both themes.
     '#ffffff': '#ffffff',
-    '#b3bbc6': '#b3bbc6',
-    '#4d5560': '#6e7681',
-    # deliberately NOT #3a4049: that is a key above (label text), and a value
-    # colliding with a key makes the result impossible to verify.
-    '#16181d': '#363b44',
-    '#23272e': '#4a5059',
+    '#16181d': '#16181d',
+    '#23272e': '#4a5059',   # lobe outlines and other line art
 }
 HEX = re.compile(r'#[0-9a-fA-F]{6}')
 PAINT_ATTRS = ('fill', 'stroke', 'stop-color')
