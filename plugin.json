@@ -42,6 +42,13 @@
         "tags": ["Utility", "Polyphonic", "Panning"]
     },
     {
+      "slug": "SP4T-Split",
+      "name": "SP4T Split",
+      "description": "Ambisonic Channel Split",
+      "manualUrl": "",
+        "tags": ["Utility", "Polyphonic", "Multiple"]
+    },
+    {
       "slug": "SP4T-Gain",
       "name": "SP4T Gain",
       "description": "Ambisonic Gains",

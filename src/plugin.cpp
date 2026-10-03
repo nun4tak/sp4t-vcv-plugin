@@ -11,6 +11,7 @@ void init(Plugin* p) {
 	p->addModel(modelNun4takSP4TStereoOut);
 	p->addModel(modelNun4takSP4TEarsOut);
 	p->addModel(modelNun4takSP4TRotate);
+	p->addModel(modelNun4takSP4TSplit);
 	p->addModel(modelNun4takSP4TGain);
 	p->addModel(modelNun4takSP4TMute);
 }

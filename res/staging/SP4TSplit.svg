@@ -3,8 +3,8 @@
      Components layer holds VCV Rack placeholders (see
      https://vcvrack.com/manual/Panel#Adding-components); it is
      removed when the production panel is exported. -->
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" version="1.1" width="30.48mm" height="128.5mm" viewBox="0 0 30.48 128.5" id="svg8">
-  <sodipodi:namedview id="namedview8" inkscape:document-units="mm" />
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" version="1.1" width="30.48mm" height="128.5mm" viewBox="0 0 30.48 128.5" id="svg8" sodipodi:docname="SP4TSplitTest01.svg" inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)">
+  <sodipodi:namedview id="namedview8" inkscape:document-units="mm" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" inkscape:zoom="3.5316157" inkscape:cx="57.480772" inkscape:cy="173.43337" inkscape:window-width="1512" inkscape:window-height="916" inkscape:window-x="0" inkscape:window-y="38" inkscape:window-maximized="1" inkscape:current-layer="layer1" />
   <defs id="component-defs">
     <!-- ScrewSilver.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
     <!-- SP4TAmbiPort.svg (PJ301M with the Ayu-blue outer ring) -->
@@ -153,5 +153,21 @@
     <circle id="ch15-output" inkscape:label="ch15-output" cx="15.24" cy="95.016" r="4.013" fill="#0000ff" />
     <circle id="ch16-output" inkscape:label="ch16-output" cx="24.068" cy="95.016" r="4.013" fill="#0000ff" />
     <circle id="ch14-output" inkscape:label="ch14-output" cx="6.411" cy="95.016" r="4.013" fill="#0000ff" />
+    <circle id="ch1-led" inkscape:label="ch1-led" cx="11.893" cy="24.666" r="0.567" fill="#ff00ff" />
+    <circle id="ch2-led" inkscape:label="ch2-led" cx="3.009" cy="37.344" r="0.567" fill="#ff00ff" />
+    <circle id="ch3-led" inkscape:label="ch3-led" cx="11.893" cy="37.344" r="0.567" fill="#ff00ff" />
+    <circle id="ch4-led" inkscape:label="ch4-led" cx="20.733" cy="37.344" r="0.567" fill="#ff00ff" />
+    <circle id="ch5-led" inkscape:label="ch5-led" cx="3.009" cy="50.084" r="0.567" fill="#ff00ff" />
+    <circle id="ch6-led" inkscape:label="ch6-led" cx="11.893" cy="50.084" r="0.567" fill="#ff00ff" />
+    <circle id="ch7-led" inkscape:label="ch7-led" cx="20.733" cy="50.084" r="0.567" fill="#ff00ff" />
+    <circle id="ch8-led" inkscape:label="ch8-led" cx="3.009" cy="62.725" r="0.567" fill="#ff00ff" />
+    <circle id="ch9-led" inkscape:label="ch9-led" cx="11.893" cy="62.725" r="0.567" fill="#ff00ff" />
+    <circle id="ch10-led" inkscape:label="ch10-led" cx="20.733" cy="62.725" r="0.567" fill="#ff00ff" />
+    <circle id="ch11-led" inkscape:label="ch11-led" cx="3.009" cy="75.432" r="0.567" fill="#ff00ff" />
+    <circle id="ch12-led" inkscape:label="ch12-led" cx="11.893" cy="75.432" r="0.567" fill="#ff00ff" />
+    <circle id="ch13-led" inkscape:label="ch13-led" cx="20.733" cy="75.432" r="0.567" fill="#ff00ff" />
+    <circle id="ch14-led" inkscape:label="ch14-led" cx="3.009" cy="88.132" r="0.567" fill="#ff00ff" />
+    <circle id="ch15-led" inkscape:label="ch15-led" cx="11.893" cy="88.132" r="0.567" fill="#ff00ff" />
+    <circle id="ch16-led" inkscape:label="ch16-led" cx="20.733" cy="88.132" r="0.567" fill="#ff00ff" />
   </g>
 </svg>
