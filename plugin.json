@@ -35,6 +35,13 @@
         "tags": ["Utility", "Polyphonic", "Panning"]
     },
     {
+      "slug": "SP4T-Rotate",
+      "name": "SP4T Rotate",
+      "description": "Ambisonic Rotator",
+      "manualUrl": "",
+        "tags": ["Utility", "Polyphonic", "Panning"]
+    },
+    {
       "slug": "SP4T-Gain",
       "name": "SP4T Gain",
       "description": "Ambisonic Gains",
