@@ -44,9 +44,11 @@ target_sources(${RACK_PLUGIN_LIB} PRIVATE
     src/plugin.cpp
     src/AmbiEncoder.cpp
     src/AmbiStereoDecoder.cpp
+    src/AmbiBinauralDecoder.cpp
     src/AmbisonicDisplay.cpp
     src/SP4TStereoIn.cpp
     src/SP4TStereoOut.cpp
+    src/SP4TEarsOut.cpp
     src/SP4TGain.cpp
     src/SP4TMute.cpp)
 
