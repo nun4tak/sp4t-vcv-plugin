@@ -59,8 +59,15 @@ follow the following general guidelines.
 - Follow the recommendations here: https://vcvrack.com/manual/Panel, with some exceptions:
   - Do not convert any text or font into paths when generating or editing SVG
     files. Keep them as objects so these can be edited manually if needed
-  - Do not use any color gradient (except for spherical harmonic function illustrations)
-    nor fancy patterns
+  - Do not use fancy patterns, and keep color gradients to the deliberate
+    exceptions below. Only simple linear gradients, as Rack does not render
+    radial ones (which is why the spherical harmonic illustrations are flat):
+    - the channel cell backgrounds of the Gain, Mute, Split and Merge panels: a
+      vertical linear gradient, `gradientUnits="userSpaceOnUse"`, from the panel
+      background color at the top of the cell to the cell color at the bottom,
+      one gradient per row of the grid. The cell opacity still encodes the
+      Ambisonic order (1.0 / 0.8 / 0.5 / 0.25 for order 0 / 1 / 2 / 3)
+    - spherical harmonic function illustrations
 - Keep the panel design clear, minimal and elegant. Light background is silver
   and black background is dark-grey. Use flat and matte design. Use colors
   inspired by the Ayu theme (https://ayutheme.com/). Avoid using too much colors

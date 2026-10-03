@@ -19,6 +19,71 @@
     <!-- SP4TRoundLargeKnob_bg.svg + SP4TRoundLargeKnob.svg (indicator at the default, centered position) -->
     <!-- SP4TRoundSmallKnob_bg.svg + SP4TRoundSmallKnob.svg (indicator at the default, centered position) -->
     <!-- SP4TSwitchThree_2.svg (top position, i.e., value 0) -->
+    <!-- Channel cell backgrounds: panel colour at the top of the cell, cell colour at the bottom. -->
+    <linearGradient
+       id="cell-g1"
+       gradientUnits="userSpaceOnUse"
+       x1="0"
+       y1="14.612"
+       x2="0"
+       y2="34.56">
+      <stop
+         offset="0"
+         stop-color="#2a2e35"
+         id="stop1" />
+      <stop
+         offset="1"
+         stop-color="#cfd3d9"
+         id="stop2" />
+    </linearGradient>
+    <linearGradient
+       id="cell-g2"
+       gradientUnits="userSpaceOnUse"
+       x1="0"
+       y1="36.371"
+       x2="0"
+       y2="56.319">
+      <stop
+         offset="0"
+         stop-color="#2a2e35"
+         id="stop3" />
+      <stop
+         offset="1"
+         stop-color="#cfd3d9"
+         id="stop4" />
+    </linearGradient>
+    <linearGradient
+       id="cell-g3"
+       gradientUnits="userSpaceOnUse"
+       x1="0"
+       y1="57.923"
+       x2="0"
+       y2="77.871">
+      <stop
+         offset="0"
+         stop-color="#2a2e35"
+         id="stop5" />
+      <stop
+         offset="1"
+         stop-color="#cfd3d9"
+         id="stop6" />
+    </linearGradient>
+    <linearGradient
+       id="cell-g4"
+       gradientUnits="userSpaceOnUse"
+       x1="0"
+       y1="79.641"
+       x2="0"
+       y2="99.589">
+      <stop
+         offset="0"
+         stop-color="#2a2e35"
+         id="stop7" />
+      <stop
+         offset="1"
+         stop-color="#cfd3d9"
+         id="stop8" />
+    </linearGradient>
   </defs>
   <g
      id="panel">
@@ -39,104 +104,104 @@
        rx="0.809"
        ry="1.552" />
     <rect
-       style="opacity:0.5;fill:none;stroke:#cfd3d9;stroke-width:0.35"
+       style="opacity:0.5;fill:url(#cell-g3);stroke:none"
        id="rect129"
-       width="9.698"
-       height="19.598"
-       x="3.907"
-       y="58.098"
-       rx="0.634"
-       ry="1.377" />
+       width="10.048"
+       height="19.948"
+       x="3.732"
+       y="57.923"
+       rx="0.809"
+       ry="1.552" />
     <rect
-       style="opacity:0.25;fill:none;stroke:#cfd3d9;stroke-width:0.35"
+       style="opacity:0.25;fill:url(#cell-g3);stroke:none"
        id="rect126"
-       width="9.698"
-       height="19.598"
-       x="37.194"
-       y="58.098"
-       rx="0.634"
-       ry="1.377" />
+       width="10.048"
+       height="19.948"
+       x="37.019"
+       y="57.923"
+       rx="0.809"
+       ry="1.552" />
     <rect
-       style="opacity:0.5;fill:none;stroke:#cfd3d9;stroke-width:0.35"
+       style="opacity:0.5;fill:url(#cell-g2);stroke:none"
        id="rect130"
-       width="9.698"
-       height="19.598"
-       x="37.194"
-       y="36.546"
-       rx="0.634"
-       ry="1.377" />
+       width="10.048"
+       height="19.948"
+       x="37.019"
+       y="36.371"
+       rx="0.809"
+       ry="1.552" />
     <rect
-       style="opacity:0.25;fill:none;stroke:#cfd3d9;stroke-width:0.35"
+       style="opacity:0.25;fill:url(#cell-g4);stroke:none"
        id="rect125"
-       width="9.698"
-       height="19.598"
-       x="37.194"
-       y="79.816"
-       rx="0.634"
-       ry="1.377" />
+       width="10.048"
+       height="19.948"
+       x="37.019"
+       y="79.641"
+       rx="0.809"
+       ry="1.552" />
     <rect
-       style="opacity:0.25;fill:none;stroke:#cfd3d9;stroke-width:0.35"
+       style="opacity:0.25;fill:url(#cell-g4);stroke:none"
        id="rect124"
-       width="9.698"
-       height="19.598"
-       x="26.099"
-       y="79.816"
-       rx="0.634"
-       ry="1.377" />
+       width="10.048"
+       height="19.948"
+       x="25.924"
+       y="79.641"
+       rx="0.809"
+       ry="1.552" />
     <rect
-       style="opacity:0.25;fill:none;stroke:#cfd3d9;stroke-width:0.35"
+       style="opacity:0.25;fill:url(#cell-g4);stroke:none"
        id="rect123"
-       width="9.698"
-       height="19.598"
-       x="15.003"
-       y="79.816"
-       rx="0.634"
-       ry="1.377" />
+       width="10.048"
+       height="19.948"
+       x="14.828"
+       y="79.641"
+       rx="0.809"
+       ry="1.552" />
     <rect
-       style="opacity:0.25;fill:none;stroke:#cfd3d9;stroke-width:0.35"
+       style="opacity:0.25;fill:url(#cell-g4);stroke:none"
        id="rect122"
-       width="9.698"
-       height="19.598"
-       x="3.907"
-       y="79.816"
-       rx="0.634"
-       ry="1.377" />
+       width="10.048"
+       height="19.948"
+       x="3.732"
+       y="79.641"
+       rx="0.809"
+       ry="1.552" />
     <rect
-       style="opacity:0.25;fill:none;stroke:#cfd3d9;stroke-width:0.35"
+       style="opacity:0.25;fill:url(#cell-g3);stroke:none"
        id="rect127"
-       width="9.698"
-       height="19.598"
-       x="26.099"
-       y="58.098"
-       rx="0.634"
-       ry="1.377" />
+       width="10.048"
+       height="19.948"
+       x="25.924"
+       y="57.923"
+       rx="0.809"
+       ry="1.552" />
     <rect
-       style="opacity:0.5;fill:none;stroke:#cfd3d9;stroke-width:0.35"
+       style="opacity:0.5;fill:url(#cell-g2);stroke:none"
        id="rect131"
-       width="9.698"
-       height="19.598"
-       x="26.099"
-       y="36.546"
-       rx="0.634"
-       ry="1.377" />
+       width="10.048"
+       height="19.948"
+       x="25.924"
+       y="36.371"
+       rx="0.809"
+       ry="1.552" />
     <rect
-       style="opacity:0.25;fill:none;stroke:#cfd3d9;stroke-width:0.35"
+       style="opacity:0.25;fill:url(#cell-g3);stroke:none"
        id="rect128"
-       width="9.698"
-       height="19.598"
-       x="15.003"
-       y="58.098"
-       rx="0.634"
-       ry="1.377" />
+       width="10.048"
+       height="19.948"
+       x="14.828"
+       y="57.923"
+       rx="0.809"
+       ry="1.552" />
     <rect
-       style="opacity:0.5;fill:none;stroke:#cfd3d9;stroke-width:0.35"
+       style="opacity:0.5;fill:url(#cell-g2);stroke:none"
        id="rect132"
-       width="9.698"
-       height="19.598"
-       x="15.003"
-       y="36.546"
-       rx="0.634"
-       ry="1.377" />
+       width="10.048"
+       height="19.948"
+       x="14.828"
+       y="36.371"
+       rx="0.809"
+       ry="1.552" />
     <!-- just under the top screws -->
     <g
        id="title"
@@ -200,14 +265,14 @@
          style="fill:#16181d;stroke:#4a5059" />
     </g>
     <rect
-       style="opacity:0.5;fill:none;stroke:#cfd3d9;stroke-width:0.35"
+       style="opacity:0.5;fill:url(#cell-g2);stroke:none"
        id="rect133"
-       width="9.698"
-       height="19.598"
-       x="3.907"
-       y="36.546"
-       rx="0.634"
-       ry="1.377" />
+       width="10.048"
+       height="19.948"
+       x="3.732"
+       y="36.371"
+       rx="0.809"
+       ry="1.552" />
     <g
        fill-rule="evenodd"
        stroke-width="2.2"
@@ -500,41 +565,41 @@
          style="fill:#ffffff;stroke:#ffffff" />
     </g>
     <rect
-       style="opacity:0.8;fill:none;stroke:#cfd3d9;stroke-width:0.35"
+       style="opacity:0.8;fill:url(#cell-g1);stroke:none"
        id="rect134"
-       width="9.698"
-       height="19.598"
-       x="37.194"
-       y="14.787"
-       rx="0.634"
-       ry="1.377" />
+       width="10.048"
+       height="19.948"
+       x="37.019"
+       y="14.612"
+       rx="0.809"
+       ry="1.552" />
     <rect
-       style="opacity:0.8;fill:none;stroke:#cfd3d9;stroke-width:0.35"
+       style="opacity:0.8;fill:url(#cell-g1);stroke:none"
        id="rect135"
-       width="9.698"
-       height="19.598"
-       x="26.099"
-       y="14.787"
-       rx="0.634"
-       ry="1.377" />
+       width="10.048"
+       height="19.948"
+       x="25.924"
+       y="14.612"
+       rx="0.809"
+       ry="1.552" />
     <rect
-       style="opacity:0.8;fill:none;stroke:#cfd3d9;stroke-width:0.35"
+       style="opacity:0.8;fill:url(#cell-g1);stroke:none"
        id="rect136"
-       width="9.698"
-       height="19.598"
-       x="15.003"
-       y="14.787"
-       rx="0.634"
-       ry="1.377" />
+       width="10.048"
+       height="19.948"
+       x="14.828"
+       y="14.612"
+       rx="0.809"
+       ry="1.552" />
     <rect
-       style="fill:none;stroke:#cfd3d9;stroke-width:0.35"
+       style="fill:url(#cell-g1);stroke:none"
        id="rect137"
-       width="9.698"
-       height="19.598"
-       x="3.907"
-       y="14.787"
-       rx="0.634"
-       ry="1.377" />
+       width="10.048"
+       height="19.948"
+       x="3.732"
+       y="14.612"
+       rx="0.809"
+       ry="1.552" />
     <path
        d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0"
        id="path36"
