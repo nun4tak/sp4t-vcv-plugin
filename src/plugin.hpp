@@ -13,5 +13,6 @@ extern Model* modelNun4takSP4TStereoOut;
 extern Model* modelNun4takSP4TEarsOut;
 extern Model* modelNun4takSP4TRotate;
 extern Model* modelNun4takSP4TSplit;
+extern Model* modelNun4takSP4TMerge;
 extern Model* modelNun4takSP4TGain;
 extern Model* modelNun4takSP4TMute;

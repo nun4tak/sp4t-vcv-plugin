@@ -49,6 +49,13 @@
         "tags": ["Utility", "Polyphonic", "Multiple"]
     },
     {
+      "slug": "SP4T-Merge",
+      "name": "SP4T Merge",
+      "description": "Ambisonic Channel Merge",
+      "manualUrl": "",
+        "tags": ["Utility", "Polyphonic", "Multiple"]
+    },
+    {
       "slug": "SP4T-Gain",
       "name": "SP4T Gain",
       "description": "Ambisonic Gains",

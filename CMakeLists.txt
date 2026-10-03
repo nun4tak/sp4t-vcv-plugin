@@ -53,6 +53,7 @@ target_sources(${RACK_PLUGIN_LIB} PRIVATE
     src/SP4TEarsOut.cpp
     src/SP4TRotate.cpp
     src/SP4TSplit.cpp
+    src/SP4TMerge.cpp
     src/SP4TGain.cpp
     src/SP4TMute.cpp)
 
