@@ -74,32 +74,32 @@
       </g>
     </g>
     <rect
-       style="opacity:0.8;fill:#cfd3d9;stroke:none"
+       style="opacity:0.8;fill:none;stroke:#cfd3d9;stroke-width:0.35"
        id="rect34"
-       width="8.5"
-       height="12.39"
-       x="19.818"
-       y="36.369"
-       rx="0.684"
-       ry="0.964" />
+       width="8.15"
+       height="12.04"
+       x="19.993"
+       y="36.544"
+       rx="0.509"
+       ry="0.789" />
     <rect
-       style="opacity:0.8;fill:#cfd3d9;stroke:none"
+       style="opacity:0.8;fill:none;stroke:#cfd3d9;stroke-width:0.35"
        id="rect21"
-       width="8.5"
-       height="12.39"
-       x="10.99"
-       y="36.369"
-       rx="0.684"
-       ry="0.964" />
+       width="8.15"
+       height="12.04"
+       x="11.165"
+       y="36.544"
+       rx="0.509"
+       ry="0.789" />
     <rect
-       style="opacity:0.8;fill:#cfd3d9;stroke:none"
+       style="opacity:0.8;fill:none;stroke:#cfd3d9;stroke-width:0.35"
        id="rect47"
-       width="8.5"
-       height="12.39"
-       x="2.161"
-       y="36.369"
-       rx="0.684"
-       ry="0.964" />
+       width="8.15"
+       height="12.04"
+       x="2.336"
+       y="36.544"
+       rx="0.509"
+       ry="0.789" />
     <g
        fill-rule="evenodd"
        stroke-width="2.2"
@@ -146,45 +146,45 @@
          style="fill:#16181d;stroke:#4a5059" />
     </g>
     <rect
-       style="fill:#cfd3d9;stroke:none"
+       style="fill:none;stroke:#cfd3d9;stroke-width:0.35"
        id="rect137"
-       width="8.5"
-       height="12.39"
-       x="10.99"
-       y="23.633"
-       rx="0.684"
-       ry="0.964" />
+       width="8.15"
+       height="12.04"
+       x="11.165"
+       y="23.808"
+       rx="0.509"
+       ry="0.789" />
     <path
        d="M 15.3424,26.763 H 15.1374 l -0.2243,-0.0429 -0.2001,-0.0809 -0.2003,-0.1335 -0.1503,-0.1503 -0.1335,-0.2003 -0.0812,-0.2003 -0.0429,-0.224 v -0.205 l 0.0429,-0.2243 0.0812,-0.2001 0.1335,-0.2003 0.1503,-0.1503 0.2003,-0.1335 0.2001,-0.0812 0.2243,-0.0429 h 0.205 l 0.224,0.0429 0.2003,0.0812 0.2003,0.1335 0.1503,0.1503 0.1335,0.2003 0.0809,0.2001 0.0429,0.2243 v 0.205 l -0.0429,0.224 -0.0809,0.2003 -0.1335,0.2003 -0.1503,0.1503 -0.2003,0.1335 -0.2003,0.0809 z"
        id="path1-2"
        style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.0543;stroke-linejoin:round" />
     <rect
-       style="opacity:0.5;fill:#cfd3d9;stroke:none"
+       style="opacity:0.5;fill:none;stroke:#cfd3d9;stroke-width:0.35"
        id="rect40"
-       width="8.5"
-       height="12.39"
-       x="19.818"
-       y="49.103"
-       rx="0.684"
-       ry="0.964" />
+       width="8.15"
+       height="12.04"
+       x="19.993"
+       y="49.278"
+       rx="0.509"
+       ry="0.789" />
     <rect
-       style="opacity:0.5;fill:#cfd3d9;stroke:none"
+       style="opacity:0.5;fill:none;stroke:#cfd3d9;stroke-width:0.35"
        id="rect41"
-       width="8.5"
-       height="12.39"
-       x="10.99"
-       y="49.103"
-       rx="0.684"
-       ry="0.964" />
+       width="8.15"
+       height="12.04"
+       x="11.165"
+       y="49.278"
+       rx="0.509"
+       ry="0.789" />
     <rect
-       style="opacity:0.5;fill:#cfd3d9;stroke:none"
+       style="opacity:0.5;fill:none;stroke:#cfd3d9;stroke-width:0.35"
        id="rect42"
-       width="8.5"
-       height="12.39"
-       x="2.161"
-       y="49.103"
-       rx="0.684"
-       ry="0.964" />
+       width="8.15"
+       height="12.04"
+       x="2.336"
+       y="49.278"
+       rx="0.509"
+       ry="0.789" />
     <g
        fill-rule="evenodd"
        stroke-width="2.2"
@@ -251,32 +251,32 @@
          style="fill:#ffffff;stroke:#ffffff" />
     </g>
     <rect
-       style="opacity:0.15;fill:#cfd3d9;stroke:none"
+       style="opacity:0.25;fill:none;stroke:#cfd3d9;stroke-width:0.35"
        id="rect98"
-       width="8.5"
-       height="12.39"
-       x="19.818"
-       y="61.794"
-       rx="0.684"
-       ry="0.964" />
+       width="8.15"
+       height="12.04"
+       x="19.993"
+       y="61.969"
+       rx="0.509"
+       ry="0.789" />
     <rect
-       style="opacity:0.5;fill:#cfd3d9;stroke:none"
+       style="opacity:0.5;fill:none;stroke:#cfd3d9;stroke-width:0.35"
        id="rect99"
-       width="8.5"
-       height="12.39"
-       x="10.99"
-       y="61.794"
-       rx="0.684"
-       ry="0.964" />
+       width="8.15"
+       height="12.04"
+       x="11.165"
+       y="61.969"
+       rx="0.509"
+       ry="0.789" />
     <rect
-       style="opacity:0.5;fill:#cfd3d9;stroke:none"
+       style="opacity:0.5;fill:none;stroke:#cfd3d9;stroke-width:0.35"
        id="rect100"
-       width="8.5"
-       height="12.39"
-       x="2.161"
-       y="61.794"
-       rx="0.684"
-       ry="0.964" />
+       width="8.15"
+       height="12.04"
+       x="2.336"
+       y="61.969"
+       rx="0.509"
+       ry="0.789" />
     <g
        fill-rule="evenodd"
        stroke-width="2.2"
@@ -355,59 +355,59 @@
          style="fill:#16181d;stroke:#4a5059" />
     </g>
     <rect
-       style="opacity:0.15;fill:#cfd3d9;stroke:none"
+       style="opacity:0.25;fill:none;stroke:#cfd3d9;stroke-width:0.35"
        id="rect158"
-       width="8.5"
-       height="12.39"
-       x="19.818"
-       y="74.511"
-       rx="0.684"
-       ry="0.964" />
+       width="8.15"
+       height="12.04"
+       x="19.993"
+       y="74.686"
+       rx="0.509"
+       ry="0.789" />
     <rect
-       style="opacity:0.15;fill:#cfd3d9;stroke:none"
+       style="opacity:0.25;fill:none;stroke:#cfd3d9;stroke-width:0.35"
        id="rect159"
-       width="8.5"
-       height="12.39"
-       x="10.99"
-       y="74.511"
-       rx="0.684"
-       ry="0.964" />
+       width="8.15"
+       height="12.04"
+       x="11.165"
+       y="74.686"
+       rx="0.509"
+       ry="0.789" />
     <rect
-       style="opacity:0.15;fill:#cfd3d9;stroke:none"
+       style="opacity:0.25;fill:none;stroke:#cfd3d9;stroke-width:0.35"
        id="rect160"
-       width="8.5"
-       height="12.39"
-       x="2.161"
-       y="74.511"
-       rx="0.684"
-       ry="0.964" />
+       width="8.15"
+       height="12.04"
+       x="2.336"
+       y="74.686"
+       rx="0.509"
+       ry="0.789" />
     <rect
-       style="opacity:0.15;fill:#cfd3d9;stroke:none"
+       style="opacity:0.25;fill:none;stroke:#cfd3d9;stroke-width:0.35"
        id="rect224"
-       width="8.5"
-       height="12.39"
-       x="19.818"
-       y="87.2"
-       rx="0.684"
-       ry="0.964" />
+       width="8.15"
+       height="12.04"
+       x="19.993"
+       y="87.375"
+       rx="0.509"
+       ry="0.789" />
     <rect
-       style="opacity:0.15;fill:#cfd3d9;stroke:none"
+       style="opacity:0.25;fill:none;stroke:#cfd3d9;stroke-width:0.35"
        id="rect225"
-       width="8.5"
-       height="12.39"
-       x="10.99"
-       y="87.2"
-       rx="0.684"
-       ry="0.964" />
+       width="8.15"
+       height="12.04"
+       x="11.165"
+       y="87.375"
+       rx="0.509"
+       ry="0.789" />
     <rect
-       style="opacity:0.15;fill:#cfd3d9;stroke:none"
+       style="opacity:0.25;fill:none;stroke:#cfd3d9;stroke-width:0.35"
        id="rect226"
-       width="8.5"
-       height="12.39"
-       x="2.161"
-       y="87.2"
-       rx="0.684"
-       ry="0.964" />
+       width="8.15"
+       height="12.04"
+       x="2.336"
+       y="87.375"
+       rx="0.509"
+       ry="0.789" />
     <g
        fill-rule="evenodd"
        stroke-width="2.2"
