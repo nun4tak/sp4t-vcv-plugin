@@ -28,6 +28,7 @@ struct AmbisonicDisplay : TransparentWidget {
 		VIEW_HAMMER,
 		VIEW_CARTESIAN,
 		VIEW_SPHERE_3D,
+		VIEW_XY_Z_PROJECTIONS,
 		VIEW_MODES_LEN
 	};
 
@@ -45,7 +46,7 @@ struct AmbisonicDisplay : TransparentWidget {
 	/** Menu labels of the view modes, in ViewMode order. */
 	static std::vector<std::string> getViewModeLabels();
 
-	int viewMode = VIEW_ORTHOGRAPHIC_PAIR;
+	int viewMode = VIEW_XY_Z_PROJECTIONS;
 	/** Drawn in order (the last one on top). */
 	std::vector<Source> sources;
 	/** Orthographic pair only: sources on the front/rear boundary are drawn on
@@ -64,10 +65,11 @@ private:
 	void drawHammer(NVGcontext* vg, Vec size);
 	void drawCartesian(NVGcontext* vg, Vec size);
 	void drawSphere3D(NVGcontext* vg, Vec size);
+	void drawXYandZProjections(NVGcontext* vg, Vec size);
 
 	template <typename Project>
-	void drawSources(NVGcontext* vg, const Project& project);
-	void drawSourceLabel(NVGcontext* vg, ProjectedSource p, const Source& source);
+	void drawSources(NVGcontext* vg, const Project& project, float fontSize = 11.f);
+	void drawSourceLabel(NVGcontext* vg, ProjectedSource p, const Source& source, float fontSize = 11.f);
 };
 
 

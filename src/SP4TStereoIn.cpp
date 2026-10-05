@@ -75,7 +75,7 @@ struct SP4TStereoIn : Module {
 	bool stereo = false;
 
 	/** sp4t::AmbisonicDisplay::ViewMode */
-	int viewMode = sp4t::AmbisonicDisplay::VIEW_ORTHOGRAPHIC_PAIR;
+	int viewMode = sp4t::AmbisonicDisplay::VIEW_XY_Z_PROJECTIONS;
 
 	SP4TStereoIn() : encoder(MAX_NUM_SOURCES) {
 		config(PARAMS_LEN, INPUTS_LEN, OUTPUTS_LEN, LIGHTS_LEN);
@@ -107,7 +107,7 @@ struct SP4TStereoIn : Module {
 
 	void onReset(const ResetEvent& e) override {
 		Module::onReset(e);
-		viewMode = sp4t::AmbisonicDisplay::VIEW_ORTHOGRAPHIC_PAIR;
+		viewMode = sp4t::AmbisonicDisplay::VIEW_XY_Z_PROJECTIONS;
 		encoder.reset();
 		updateControls();
 	}

@@ -51,8 +51,8 @@ input mono or stereo source on a sphere:
 
 - The screen takes the width of the module (minus some reasonable margin)
 - The sphere is represented using one of the following projections, chosen via
-  the "3D view mode" option in the right click menu (default: orthographic
-  pair):
+  the "3D view mode" option in the right click menu (default: XY/Z
+  projections):
   - a pair of orthographic projected hemispheres for the front (+x axis) and
     the rear (-x axis) shown side by side
   - the Hammer projection
@@ -68,6 +68,29 @@ input mono or stereo source on a sphere:
     circles, each with a small arrow inside the sphere whose tip touches the
     sphere surface at the positive end. Graticules and sources on the hidden
     side of the sphere are faded.
+  - an XY/Z projections view: on the left, the horizontal (XY) plane as a
+    circle seen from above, the front (+x) up and the left (+y) left, so that a
+    source panned right shows on the right. Both axes are drawn as diameters
+    with an arrow and a name at their positive ends (same arrows as the 3D
+    sphere view). Sources are projected orthographically onto the plane, so one
+    straight overhead lands at the centre, and carry the "M", "L" and "R"
+    labels, plus one graticule: the circle at 45 degrees of elevation, drawn
+    with the thickness and colour of the graticules of the 3D sphere view.
+    Elevation is read on the Z axis standing on the right of the screen, over
+    the whole height, drawn the same way (line, arrow and name, no circle) with
+    a small horizontal mark across its origin: every source is projected onto
+    it as well, at its own height, with the same labels, sizes and colours as
+    on the circle. The three labels
+    sit in slots side by side there -- the centre source on the axis, the left
+    one to its left and the right one to its right -- so that they stay
+    readable where their heights coincide, which the whole pair does whenever
+    the elevation is zero.
+  - all the labels of this view are drawn at the size the axis names of the
+    Rotate screen come out at. Both screens are scaled to fit their own box
+    from the same reference units, so matching what is rendered takes fewer
+    units here than the 16 of that screen, in the ratio of the two screen
+    widths. The circle takes what the screen allows once every label, source
+    labels on the rims included, has room inside the margin.
 - (hemi)sphere graticules are drawn every 45 degrees in all projections (fine
   stroke width, little contrast color) to give the illusion of rounded surface
   and to provide landmarks

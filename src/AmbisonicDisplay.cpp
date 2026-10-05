@@ -13,7 +13,8 @@ const Vec AmbisonicDisplay::REFERENCE_SIZE = mm2px(Vec(45.8f, 27.3f));
 
 
 std::vector<std::string> AmbisonicDisplay::getViewModeLabels() {
-	return {"Orthographic (front / rear)", "Hammer", "Cartesian", "3D sphere"};
+	return {"Orthographic (front / rear)", "Hammer", "Cartesian", "3D sphere",
+	        "XY/Z projections"};
 }
 
 
@@ -36,6 +37,7 @@ void AmbisonicDisplay::drawLayer(const DrawArgs& args, int layer) {
 			case VIEW_HAMMER: drawHammer(args.vg, size); break;
 			case VIEW_CARTESIAN: drawCartesian(args.vg, size); break;
 			case VIEW_SPHERE_3D: drawSphere3D(args.vg, size); break;
+			case VIEW_XY_Z_PROJECTIONS: drawXYandZProjections(args.vg, size); break;
 			default: drawOrthographicPair(args.vg, size); break;
 		}
 		nvgRestore(args.vg);
@@ -358,15 +360,144 @@ void AmbisonicDisplay::drawSphere3D(NVGcontext* vg, Vec size) {
 }
 
 
-template <typename Project>
-void AmbisonicDisplay::drawSources(NVGcontext* vg, const Project& project) {
-	for (const Source& source : sources)
-		drawSourceLabel(vg, project(source.direction), source);
+/** The horizontal plane as a circle, seen from above: the front (+x) points up
+ * and the left (+y) points left, so a source panned to the right shows on the
+ * right of the circle. Sources are projected orthographically onto the plane,
+ * as in the orthographic pair view, so one straight overhead lands at the
+ * center.
+ *
+ * That projection alone says nothing about elevation, which is read instead on
+ * the z axis standing on the right of the screen, over the whole height: every
+ * source is projected onto it as well, at its own height.
+ */
+void AmbisonicDisplay::drawXYandZProjections(NVGcontext* vg, Vec size) {
+	const float pad = 3.f;
+	/** Labels, at the size the axis names of the Rotate screen come out at.
+	 * Both screens are drawn in the same reference units and scaled to fit
+	 * their own box, and both are limited by their width, so the 16 units of
+	 * the Rotate names render here in the ratio of the two screen widths:
+	 * 16 * 37.294 / 47.344 mm. */
+	const float fontSize = 12.6f;
+	const float labelHalfHeight = 0.35f * fontSize;   // cap height
+	/** How far a source label sitting on a rim or on the z axis reaches past
+	 * it. */
+	const float sourceReach = labelHalfHeight;
+	/** Between an axis and its name: enough for the name to clear a source
+	 * label sitting at the end of that axis. */
+	const float nameGap = labelHalfHeight + 2.f;
+	const float nameRoom = nameGap + labelHalfHeight;
+	/** Advance of one glyph of the source font, i.e. the width of one slot of
+	 * the z axis (see below). */
+	const float slot = 0.6f * fontSize;
+	/** The z axis takes the width of its three slots. */
+	const float columnHalfWidth = 1.5f * slot;
+	/** Between the circle and the z axis, with room for a source label on the
+	 * right rim of the circle. */
+	const float gap = 4.f + sourceReach;
+	const float arrowLength = 4.f;
+	const float arrowHalfWidth = 1.8f;
+
+	// The circle takes what the screen allows once every label has its room:
+	// vertically the X name above it and a rear source label below it,
+	// horizontally the Y name, the z axis and a source label on the right rim.
+	float r = std::min((size.y - 2 * pad - nameRoom - sourceReach) / 2.f,
+	                   (size.x - 2 * pad - nameRoom - gap - 2 * columnHalfWidth) / 2.f);
+	if (r <= 0.f)
+		return;
+
+	Vec c(pad + nameRoom + r, (size.y - nameRoom - 2 * r - sourceReach) / 2.f + nameRoom + r);
+
+	// The z axis fills the height, with the Z name above its arrow and room for
+	// a source label at its bottom end, and is centered in the width left to
+	// the right of the circle.
+	float axisTop = pad + nameRoom;
+	float axisBottom = size.y - pad - sourceReach;
+	float axisRadius = (axisBottom - axisTop) / 2.f;
+	Vec axisCenter((c.x + r + sourceReach + size.x - pad) / 2.f, (axisTop + axisBottom) / 2.f);
+
+	// A diameter of a plot, along the screen direction `u`, with an arrow at
+	// that end whose tip touches the rim and a name just outside it.
+	auto drawDiameter = [&](Vec center, float radius, Vec u, const char* name) {
+		Vec tip = center.plus(u.mult(radius));
+		Vec base = tip.minus(u.mult(arrowLength));
+		Vec n(-u.y, u.x);
+
+		nvgBeginPath(vg);
+		Vec negative = center.minus(u.mult(radius));
+		nvgMoveTo(vg, negative.x, negative.y);
+		nvgLineTo(vg, base.x, base.y);
+		nvgStrokeColor(vg, SCREEN_OUTLINE);
+		nvgStrokeWidth(vg, 0.8f);
+		nvgStroke(vg);
+
+		nvgBeginPath(vg);
+		nvgMoveTo(vg, tip.x, tip.y);
+		nvgLineTo(vg, base.x + n.x * arrowHalfWidth, base.y + n.y * arrowHalfWidth);
+		nvgLineTo(vg, base.x - n.x * arrowHalfWidth, base.y - n.y * arrowHalfWidth);
+		nvgClosePath(vg);
+		nvgFillColor(vg, SCREEN_OUTLINE);
+		nvgFill(vg);
+
+		drawText(vg, LABEL_FONT, fontSize, SCREEN_TEXT, NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE,
+		         center.plus(u.mult(radius + nameGap)), name);
+	};
+
+	// Sources at 45 degrees of elevation, above or below, land on this circle:
+	// the one graticule of the plot, drawn as those of the 3D sphere view.
+	nvgBeginPath(vg);
+	nvgCircle(vg, c.x, c.y, std::cos(45 * DEG2RAD) * r);
+	nvgStrokeColor(vg, SCREEN_GRID);
+	nvgStrokeWidth(vg, 0.5f);
+	nvgStroke(vg);
+
+	nvgBeginPath(vg);
+	nvgCircle(vg, c.x, c.y, r);
+	nvgStrokeColor(vg, SCREEN_OUTLINE);
+	nvgStrokeWidth(vg, 0.8f);
+	nvgStroke(vg);
+
+	drawDiameter(c, r, Vec(0.f, -1.f), "X");
+	drawDiameter(c, r, Vec(-1.f, 0.f), "Y");
+	drawDiameter(axisCenter, axisRadius, Vec(0.f, -1.f), "Z");
+
+	// The origin of the z axis, i.e. the horizon.
+	const float originHalfWidth = 2.f * arrowHalfWidth;
+	nvgBeginPath(vg);
+	nvgMoveTo(vg, axisCenter.x - originHalfWidth, axisCenter.y);
+	nvgLineTo(vg, axisCenter.x + originHalfWidth, axisCenter.y);
+	nvgStrokeColor(vg, SCREEN_OUTLINE);
+	nvgStrokeWidth(vg, 0.8f);
+	nvgStroke(vg);
+
+	// The sources on the z axis, in three slots side by side so that labels at
+	// the same height do not pile up, which the whole stereo pair is at
+	// whenever its elevation is zero: the center source on the axis, the left
+	// one to its left and the right one to its right, as on the circle. They
+	// come in that order from the module.
+	const float slots[3] = {0.f, -slot, slot};
+	for (size_t i = 0; i < sources.size() && i < 3; i++) {
+		const Source& source = sources[i];
+		float z = std::sin(source.direction.elevation * DEG2RAD);
+		Vec p(axisCenter.x + slots[i], axisCenter.y - z * axisRadius);
+		drawSourceLabel(vg, ProjectedSource(p), source, fontSize);
+	}
+
+	drawSources(vg, [&](const Direction& d) {
+		Vector3 v = directionToVector(d.azimuth, d.elevation);
+		return Vec(c.x - v.y * r, c.y - v.x * r);
+	}, fontSize);
 }
 
 
-void AmbisonicDisplay::drawSourceLabel(NVGcontext* vg, ProjectedSource p, const Source& source) {
-	drawText(vg, SOURCE_FONT, 11.f, nvgTransRGBAf(source.color, p.alpha), NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE,
+template <typename Project>
+void AmbisonicDisplay::drawSources(NVGcontext* vg, const Project& project, float fontSize) {
+	for (const Source& source : sources)
+		drawSourceLabel(vg, project(source.direction), source, fontSize);
+}
+
+
+void AmbisonicDisplay::drawSourceLabel(NVGcontext* vg, ProjectedSource p, const Source& source, float fontSize) {
+	drawText(vg, SOURCE_FONT, fontSize, nvgTransRGBAf(source.color, p.alpha), NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE,
 	         p.pos, source.label.c_str());
 }
 
