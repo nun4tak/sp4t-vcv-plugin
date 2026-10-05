@@ -69,8 +69,11 @@ DARK = {
     # a dark ink at opacity 0.15/0.5 disappears on a dark ground, so this one is
     # inverted to a light ink rather than merely darkened
     '#484c51': '#cfd3d9',
-    '#5c6370': '#9da5ae',   # Flip chevron icon
-    '#0b0d11': '#15181d',   # chevron accent, stays dark over the lifted icon
+    '#5c6370': '#9da5ae',   # Flip crossfade curve icons, dry signal
+    # the flipped signal is the emphasized line of those icons, so it is
+    # inverted to the brightest ink rather than merely darkened: the icons sit
+    # on the panel background, where a near-black line disappears
+    '#0b0d11': '#e6e1cf',
     # harmonic lobes: both halves are flat (Rack does not render radial
     # gradients) and keep their colour in the dark theme, where the grouping
     # rects they sit on are inverted to a light ink: a white and a near-black

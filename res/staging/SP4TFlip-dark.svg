@@ -38,11 +38,11 @@
     <text x="20.383" y="40.44" id="text129" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan131" x="20.483" y="40.44">Z</tspan></text>
     <g style="fill:none;stroke:#bfbdb6;stroke-width:7.128;stroke-linecap:round" id="g143" transform="matrix(0.07946381,0,0,0.03553847,18.24067,66.89327)">
       <path d="m 8,8 c 12,3.6 18,7 24,14 6,7 12,15.6 24,34" id="path1-8" style="stroke:#9da5ae;stroke-width:7.128" />
-      <path d="M 10.4,53.6 C 21.2,37.04 26.6,29.3 32,23 37.4,16.7 42.8,13.64 53.6,10.4" id="path2-1" style="stroke:#15181d;stroke-width:7.128" />
+      <path d="M 10.4,53.6 C 21.2,37.04 26.6,29.3 32,23 37.4,16.7 42.8,13.64 53.6,10.4" id="path2-1" style="stroke:#e6e1cf;stroke-width:7.128" />
     </g>
     <g style="fill:none;stroke:#9da5ae;stroke-width:7.128;stroke-linecap:round;stroke-linejoin:round" id="g145" transform="matrix(0.07083916,0,0,0.04712771,18.53588,69.55258)">
       <path d="M 32,40 56,8" id="path145" style="stroke:#9da5ae;stroke-width:7.128" sodipodi:nodetypes="cc" />
-      <path d="M 32,40 56,8" id="path144" style="stroke:#15181d;stroke-width:7.128" sodipodi:nodetypes="cc" />
+      <path d="M 32,40 56,8" id="path144" style="stroke:#e6e1cf;stroke-width:7.128" sodipodi:nodetypes="cc" />
     </g>
     <g id="g58-4" transform="matrix(0.9,0,0,0.9,-20.9697,8.1721)">
       <path d="m 36.9655,59.95 a 6.417,6.417 0 1 1 6.535,0" id="path58" style="fill:none;stroke:#61676f;stroke-width:0.3;stroke-linecap:round" />

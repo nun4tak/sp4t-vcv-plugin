@@ -68,6 +68,13 @@
       "description": "Ambisonic Mutes",
       "manualUrl": "",
         "tags": ["Utility", "Polyphonic", "Switch"]
+    },
+    {
+      "slug": "SP4T-Flip",
+      "name": "SP4T Flip",
+      "description": "Ambisonic Sound Field Flip",
+      "manualUrl": "",
+        "tags": ["Utility", "Polyphonic", "Panning"]
     }
   ]
 }

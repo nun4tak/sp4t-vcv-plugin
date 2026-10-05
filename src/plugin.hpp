@@ -16,3 +16,4 @@ extern Model* modelNun4takSP4TSplit;
 extern Model* modelNun4takSP4TMerge;
 extern Model* modelNun4takSP4TGain;
 extern Model* modelNun4takSP4TMute;
+extern Model* modelNun4takSP4TFlip;
