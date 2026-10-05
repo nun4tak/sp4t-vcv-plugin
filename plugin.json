@@ -75,6 +75,13 @@
       "description": "Ambisonic Sound Field Flip",
       "manualUrl": "",
         "tags": ["Utility", "Polyphonic", "Panning"]
+    },
+    {
+      "slug": "SP4T-Smear",
+      "name": "SP4T Smear",
+      "description": "Multi-channel Decorrelator",
+      "manualUrl": "",
+        "tags": ["Effect", "Polyphonic", "Reverb"]
     }
   ]
 }

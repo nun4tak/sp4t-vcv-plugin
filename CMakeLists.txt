@@ -46,6 +46,7 @@ target_sources(${RACK_PLUGIN_LIB} PRIVATE
     src/AmbiStereoDecoder.cpp
     src/AmbiBinauralDecoder.cpp
     src/AmbiRotator.cpp
+    src/Decorrelator.cpp
     src/AmbisonicDisplay.cpp
     src/RotationDisplay.cpp
     src/SP4TStereoIn.cpp
@@ -56,6 +57,7 @@ target_sources(${RACK_PLUGIN_LIB} PRIVATE
     src/SP4TMerge.cpp
     src/SP4TGain.cpp
     src/SP4TMute.cpp
-    src/SP4TFlip.cpp)
+    src/SP4TFlip.cpp
+    src/SP4TSmear.cpp)
 
 target_link_libraries(${RACK_PLUGIN_LIB} PRIVATE saf)
