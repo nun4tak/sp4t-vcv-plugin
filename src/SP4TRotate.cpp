@@ -74,12 +74,11 @@ struct SP4TRotate : Module {
 		updateControls();
 	}
 
-	/** Knob plus attenuverted CV, in degrees, negated by the +/- switch. The
-	 * switch applies to the sum, i.e. to the knob as well as to the CV. `range`
-	 * is reached at 5 V with the attenuverter wide open. */
-	float getAngle(int paramId, int cvParamId, int inputId, int switchId, float range) {
-		float cv = inputs[inputId].getVoltage() / 5.f;
-		float angle = params[paramId].getValue() + params[cvParamId].getValue() * cv * range;
+	/** Knob plus the attenuverted CV voltage in force, in degrees, negated by
+	 * the +/- switch. The switch applies to the sum, i.e. to the knob as well as
+	 * to the CV. `range` is reached at 5 V with the attenuverter wide open. */
+	float getAngle(int paramId, int cvParamId, float cv, int switchId, float range) {
+		float angle = params[paramId].getValue() + params[cvParamId].getValue() * cv / 5.f * range;
 		return params[switchId].getValue() < 0.5f ? angle : -angle;
 	}
 
@@ -89,11 +88,24 @@ struct SP4TRotate : Module {
 		int channels = inputs[AMBI_INPUT].getChannels();
 		rotator.setOrder((int) std::floor(std::sqrt((float) channels)) - 1);
 
+		// The angle CV inputs are normalled from left to right (yaw, pitch,
+		// roll): an unpatched one takes the voltage of the nearest patched jack
+		// on its left, and 0 V when there is none. Each angle keeps its own
+		// attenuverter and direction switch, so one CV can drive the three of
+		// them by different amounts and in different directions.
+		float cv[3] = {};
+		float normalled = 0.f;
+		for (int i = 0; i < 3; i++) {
+			if (inputs[YAW_CV_INPUT + i].isConnected())
+				normalled = inputs[YAW_CV_INPUT + i].getVoltage();
+			cv[i] = normalled;
+		}
+
 		// Yaw and roll are left to wrap around and pitch is clamped by the
 		// rotator, which also keeps the screen and the audio path in agreement.
-		yaw = getAngle(YAW_PARAM, YAW_CV_PARAM, YAW_CV_INPUT, YAW_CV_SWITCH_PARAM, 180.f);
-		pitch = getAngle(PITCH_PARAM, PITCH_CV_PARAM, PITCH_CV_INPUT, PITCH_CV_SWITCH_PARAM, 90.f);
-		roll = getAngle(ROLL_PARAM, ROLL_CV_PARAM, ROLL_CV_INPUT, ROLL_CV_SWITCH_PARAM, 180.f);
+		yaw = getAngle(YAW_PARAM, YAW_CV_PARAM, cv[0], YAW_CV_SWITCH_PARAM, 180.f);
+		pitch = getAngle(PITCH_PARAM, PITCH_CV_PARAM, cv[1], PITCH_CV_SWITCH_PARAM, 90.f);
+		roll = getAngle(ROLL_PARAM, ROLL_CV_PARAM, cv[2], ROLL_CV_SWITCH_PARAM, 180.f);
 		rotator.setAngles(yaw, pitch, roll);
 	}
 

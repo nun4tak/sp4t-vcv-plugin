@@ -104,22 +104,33 @@ struct SP4TSource4In : Module {
 		updateControls();
 	}
 
-	/** Knob value plus the CV input, where 5 V spans `range` degrees. */
-	float getAngle(int paramId, int inputId, float range) {
-		return params[paramId].getValue() + inputs[inputId].getVoltage() / 5.f * range;
+	/** Knob value plus the CV voltage in force, where 5 V spans `range` degrees. */
+	float getAngle(int paramId, float cv, float range) {
+		return params[paramId].getValue() + cv / 5.f * range;
 	}
 
 	void updateControls() {
 		encoder.setOrder((int) params[ORDER_PARAM].getValue() + 1);
 
+		// The AZ and ELEV CV inputs are normalled from left to right (sources 1
+		// to 4): an unpatched one takes the voltage of the nearest patched jack
+		// of its row on its left, and 0 V when there is none.
+		float azCv = 0.f;
+		float elevCv = 0.f;
+
 		numActiveSources = 0;
 		for (int i = 0; i < NUM_SOURCES; i++) {
+			if (inputs[SRC1_AZ_CV_INPUT + i].isConnected())
+				azCv = inputs[SRC1_AZ_CV_INPUT + i].getVoltage();
+			if (inputs[SRC1_ELEV_CV_INPUT + i].isConnected())
+				elevCv = inputs[SRC1_ELEV_CV_INPUT + i].getVoltage();
+
 			// Beyond +/-180 degrees, the azimuth wraps around. The elevation
 			// doesn't go past the poles (the rear is reached with the azimuth).
-			float azimuth = getAngle(SRC1_AZ_PARAM + i, SRC1_AZ_CV_INPUT + i, 180.f);
+			float azimuth = getAngle(SRC1_AZ_PARAM + i, azCv, 180.f);
 			if (flipAzimuth)
 				azimuth = -azimuth;
-			float elevation = math::clamp(getAngle(SRC1_ELEV_PARAM + i, SRC1_ELEV_CV_INPUT + i, 90.f), -90.f, 90.f);
+			float elevation = math::clamp(getAngle(SRC1_ELEV_PARAM + i, elevCv, 90.f), -90.f, 90.f);
 
 			directions[i] = sp4t::vectorToDirection(sp4t::directionToVector(azimuth, elevation));
 			connected[i] = inputs[SRC1_INPUT + i].isConnected();

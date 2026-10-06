@@ -29,6 +29,12 @@ For convenience, each of the angles can be flipped using the +/- switches.
 - 3 small knob (trim): CV attenuverters for each of the angles
 - 3 CV jack inputs:
   - CV controls for each of the angles (bipolar)
+  - normalled from left to right (yaw, pitch, roll): a CV input with no cable
+    plugged in takes the signal of the nearest patched input on its left, and no
+    CV at all when there is none. Each angle keeps its own attenuverter and
+    direction switch, so one CV can drive the three of them by different amounts
+    and in different directions. Triangles drawn between the jacks on the panel
+    show it.
 - 1 AMB Ambisonic jack input (polyphonic) 
 - 1 AMB Ambisonic jack output (polyphonic) 
 - 1 display

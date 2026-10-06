@@ -62,6 +62,10 @@
     <path style="fill:none;stroke:#61676f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 8.7562,88.6695 v 1.6128" id="path146" sodipodi:nodetypes="cc" />
     <path style="fill:none;stroke:#61676f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 20.32,88.6695 v 1.6128" id="path1" sodipodi:nodetypes="cc" />
     <path style="fill:none;stroke:#61676f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 31.8842,88.6695 v 1.6128" id="path2" sodipodi:nodetypes="cc" />
+    <!-- The angle CV inputs are normalled from left to right: each triangle
+       points from a jack to the one that falls back on it when unpatched. -->
+    <path style="fill:#61676f;stroke:none" d="M 15.288,94.97 L 13.788,94.22 L 13.788,95.72 Z" id="cv-normal-1" />
+    <path style="fill:#61676f;stroke:none" d="M 26.852,94.97 L 25.352,94.22 L 25.352,95.72 Z" id="cv-normal-2" />
   </g>
   <g id="components" inkscape:groupmode="layer" inkscape:label="components" style="display:none">
     <circle id="yaw-param" inkscape:label="yaw-param" cx="7.647" cy="58.9" r="5.054" fill="#ff0000" />

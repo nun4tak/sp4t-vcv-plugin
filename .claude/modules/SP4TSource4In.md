@@ -21,6 +21,10 @@ An omni-directional source can also be added via the OMNI jack input.
 - 2x4 CV jack inputs:
   - 4 azimuth (bipolar)
   - 4 elevation (bipolar)
+  - each row is normalled from left to right (sources 1 to 4): a CV input with
+    no cable plugged in takes the signal of the nearest patched input of its row
+    on its left, and no CV at all when there is none. Triangles drawn between
+    the jacks on the panel show it.
 - 4 source jack inputs
 - 1 omni-directional jack input
 - 1 switch
