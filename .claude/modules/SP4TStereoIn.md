@@ -96,7 +96,9 @@ input mono or stereo source on a sphere:
   and to provide landmarks
 - The position of the mono source is represented by the letter "M". In case of a
   stereo input, the "M" letter is grayed out and the letters "L" and "R" are
-  drawn for the left and right actual source positions respectively.
+  drawn for the left and right actual source positions respectively. The "M"
+  letter is also grayed out as long as no input source is connected, like the
+  source labels of the Source4 In module.
 - For the orthographic pair, sources located exactly on the boundary between
   the front and rear hemispheres (e.g., left, right, top, bottom) are shown on
   the front hemisphere, unless the mono source is on the rear hemisphere (e.g.,

@@ -73,6 +73,7 @@ struct SP4TStereoIn : Module {
 	sp4t::Direction leftDirection = {0.f, 0.f};
 	sp4t::Direction rightDirection = {0.f, 0.f};
 	bool stereo = false;
+	bool monoConnected = false;
 
 	/** sp4t::AmbisonicDisplay::ViewMode */
 	int viewMode = sp4t::AmbisonicDisplay::VIEW_XY_Z_PROJECTIONS;
@@ -151,6 +152,7 @@ struct SP4TStereoIn : Module {
 		leftDirection = left;
 		rightDirection = right;
 		stereo = isStereo;
+		monoConnected = inputs[LEFT_INPUT].isConnected();
 	}
 
 	void process(const ProcessArgs& args) override {
@@ -200,7 +202,9 @@ struct SP4TStereoInWidget : ModuleWidget {
 
 		display = createWidget<sp4t::AmbisonicDisplay>(mm2px(Vec(1.728, 11.5)));
 		display->box.size = mm2px(Vec(47.344, 34.039));
-		display->sources = {{{0.f, 0.f}, "M", SOURCE_MONO}};
+		// Also the screen of the module browser, where step() has no module to
+		// read: the source sits at its default direction, unconnected.
+		display->sources = {{{0.f, 0.f}, "M", SOURCE_INACTIVE}};
 		addChild(display);
 
 		addParam(createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(8.757, 58.901)), module, SP4TStereoIn::AZIMUTH_PARAM));
@@ -230,12 +234,15 @@ struct SP4TStereoInWidget : ModuleWidget {
 			display->boundaryReference = module->centerDirection;
 			display->sources.clear();
 			if (module->stereo) {
-				display->sources.push_back({module->centerDirection, "M", SOURCE_INACTIVE});
+				// Left to right, the order the XY/Z view lays them out on its z
+				// axis: the center source on the axis, L to its left, R to its right.
 				display->sources.push_back({module->leftDirection, "L", SOURCE_LEFT});
+				display->sources.push_back({module->centerDirection, "M", SOURCE_INACTIVE});
 				display->sources.push_back({module->rightDirection, "R", SOURCE_RIGHT});
 			}
 			else {
-				display->sources.push_back({module->centerDirection, "M", SOURCE_MONO});
+				display->sources.push_back({module->centerDirection, "M",
+				                           module->monoConnected ? SOURCE_MONO : SOURCE_INACTIVE});
 			}
 		}
 		ModuleWidget::step();

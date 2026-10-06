@@ -3,22 +3,31 @@
      Components layer holds VCV Rack placeholders (see
      https://vcvrack.com/manual/Panel#Adding-components); it is
      removed when the production panel is exported. -->
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="50.8mm" height="128.5mm" viewBox="0 0 50.8 128.5" id="svg49">
-  <sodipodi:namedview id="namedview49" inkscape:document-units="mm" showgrid="true" showguides="true">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="50.8mm" height="128.5mm" viewBox="0 0 50.8 128.5" id="svg49" sodipodi:docname="SP4TSource4InTest01.svg" inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)">
+  <sodipodi:namedview id="namedview49" inkscape:document-units="mm" showgrid="true" showguides="true" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" inkscape:zoom="0.83206311" inkscape:cx="-27.642134" inkscape:cy="242.16913" inkscape:window-width="1512" inkscape:window-height="916" inkscape:window-x="0" inkscape:window-y="38" inkscape:window-maximized="1" inkscape:current-layer="panel">
     <inkscape:grid id="grid59" units="mm" originx="0" originy="0" spacingx="0.26458333" spacingy="0.26458334" empcolor="#0099e5" empopacity="0.30196078" color="#0099e5" opacity="0.14901961" empspacing="5" enabled="true" visible="false" />
   </sodipodi:namedview>
   <defs id="component-defs">
+    <linearGradient id="linearGradient21" inkscape:collect="always">
+      <stop style="stop-color:#2a2e35;stop-opacity:1;" offset="0" id="stop21" />
+      <stop style="stop-color:#cfd3d9;stop-opacity:1;" offset="1" id="stop22" />
+    </linearGradient>
     <!-- ScrewSilver.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
     <!-- PJ301M.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
     <!-- SP4TRoundLargeKnob_bg.svg + SP4TRoundLargeKnob.svg (indicator at the default, centered position) -->
     <!-- SP4TRoundSmallKnob_bg.svg + SP4TRoundSmallKnob.svg (indicator at the default, centered position) -->
     <!-- SP4TSwitchThree_2.svg (top position, i.e., value 0) -->
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient21" id="linearGradient22" x1="14.3055" y1="59.001263" x2="14.3055" y2="65.365837" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.45377414,0,0,2.8144128,2.2497315,-96.187445)" />
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient21" id="linearGradient14" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.45377414,0,0,2.8144128,13.226428,-96.187445)" x1="14.3055" y1="59.001263" x2="14.3055" y2="65.365837" />
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient21" id="linearGradient15" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.45377414,0,0,2.8144128,24.322428,-96.187445)" x1="14.3055" y1="59.001263" x2="14.3055" y2="65.365837" />
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient21" id="linearGradient16" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.45377414,0,0,2.8144128,35.417428,-96.187445)" x1="14.3055" y1="59.001263" x2="14.3055" y2="65.365837" />
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient21" id="linearGradient32" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.45377414,0,0,2.8144128,35.417428,-117.18277)" x1="14.3055" y1="59.001263" x2="14.3055" y2="65.365837" />
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient21" id="linearGradient33" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.45377414,0,0,2.8144128,24.322428,-117.18277)" x1="14.3055" y1="59.001263" x2="14.3055" y2="65.365837" />
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient21" id="linearGradient34" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.45377414,0,0,2.8144128,13.226428,-117.18277)" x1="14.3055" y1="59.001263" x2="14.3055" y2="65.365837" />
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient21" id="linearGradient35" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.45377414,0,0,2.8144128,2.2497315,-117.18277)" x1="14.3055" y1="59.001263" x2="14.3055" y2="65.365837" />
   </defs>
   <g id="panel" inkscape:groupmode="layer" inkscape:label="Panel">
     <rect id="background" x="0" y="0" width="50.8" height="128.5" fill="#2a2e35" />
-    <use x="0" y="0" xlink:href="#rect33" id="use54" transform="translate(0,21.718)" />
-    <rect style="opacity:0.15;fill:#cfd3d9;stroke:none" id="rect33" width="21.141" height="19.948" x="3.735" y="54.749" rx="0.809" ry="1.552" />
-    <rect style="opacity:0.15;fill:#cfd3d9;stroke:none" id="rect52" width="21.141" height="19.948" x="25.924" y="54.749" rx="0.809" ry="1.552" />
     <rect style="fill:#4a5059;stroke:none" id="rect85" width="21.266" height="18.093" x="26.925" y="102.892" rx="1.374" ry="1.552" />
     <!-- just under the top screws -->
     <text id="title" x="25.4" y="9" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4.1" font-weight="700" text-anchor="middle" fill="#e6e1cf">SP<tspan fill="#59c2ff" id="title-accent">4</tspan>T · SOURCE4 IN</text>
@@ -33,47 +42,58 @@
     <!-- Ambisonic jack contour (jack radius 4 mm, ring inner edge under the jack: no gap). -->
     <!-- between the bottom screws -->
     <text id="brand" x="25.4" y="125.958" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4" font-weight="700" text-anchor="middle" fill="#bfbdb6">\nu.na.tak\</text>
-    <text x="8.784" y="53.045" id="text72" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan45" x="8.884" y="53.045">AZ</tspan></text>
-    <text x="19.754" y="53.045" id="text73" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan46" x="19.854" y="53.045">ELEV</tspan></text>
     <rect id="screen" x="1.728" y="11.5" width="47.344" height="34.039" rx="1.072" fill="#0d1017" style="stroke-width:1.1561" />
-    <text x="14.474" y="66.498" id="text50" style="font-weight:600;font-size:4.93889px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#9da5ae;fill-opacity:0.5"><tspan sodipodi:role="line" id="tspan50" x="14.574" y="66.498">1</tspan></text>
-    <text x="30.973" y="53.045" id="text51" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan51" x="31.073" y="53.045">AZ</tspan></text>
-    <text x="41.945" y="53.045" id="text52" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan52" x="42.045" y="53.045">ELEV</tspan></text>
-    <text x="36.545" y="66.498" id="text53" style="font-weight:600;font-size:4.93889px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#9da5ae;fill-opacity:0.5"><tspan sodipodi:role="line" id="tspan53" x="36.645" y="66.498">2</tspan></text>
-    <use x="0" y="0" xlink:href="#rect33" id="use55" transform="translate(22.189,21.718)" />
-    <text x="14.316" y="88.186" id="text55" style="font-weight:600;font-size:4.93889px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#9da5ae;fill-opacity:0.5"><tspan sodipodi:role="line" id="tspan57" x="14.416" y="88.186">3</tspan></text>
-    <text x="36.504" y="88.216" id="text56" style="font-weight:600;font-size:4.93889px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#9da5ae;fill-opacity:0.5"><tspan sodipodi:role="line" id="tspan58" x="36.604" y="88.216">4</tspan></text>
-    <path d="m 6.813,84.6028 a 3.816,3.816 0 1 1 3.8871,0" id="path36" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
-    <path d="m 17.9086,84.6028 a 3.816,3.816 0 1 1 3.8871,0" id="path51" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
-    <path d="m 40.1,84.6028 a 3.816,3.816 0 1 1 3.8871,0" id="path53" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
-    <path d="m 29.0043,84.6028 a 3.816,3.816 0 1 1 3.8871,0" id="path1" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
-    <path d="m 6.813,62.705 a 3.816,3.816 0 1 1 3.8871,0" id="path2" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
-    <path d="m 17.9086,62.705 a 3.816,3.816 0 1 1 3.8871,0" id="path3" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
-    <path d="m 40.1,62.705 a 3.816,3.816 0 1 1 3.8871,0" id="path4" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
-    <path d="m 29.0043,62.705 a 3.816,3.816 0 1 1 3.8871,0" id="path9" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
+    <text x="19.893" y="92.204" id="text53" style="font-weight:600;font-size:4.0005px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.162;text-anchor:middle;fill:#bfbdb6;fill-opacity:1;stroke-width:0.81"><tspan sodipodi:role="line" id="tspan53" x="19.974" y="92.204" style="stroke-width:0.81;fill:#bfbdb6;fill-opacity:1">2</tspan></text>
     <text x="34.023" y="112.151" id="text47" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:start;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan82" x="34.023" y="112.151">1</tspan></text>
     <text x="34.023" y="115.041" id="text48" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:start;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan83" x="34.023" y="115.041">2</tspan></text>
     <text x="34.023" y="117.911" id="text49" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:start;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan84" x="34.023" y="117.911">3</tspan></text>
+    <path d="m 6.813,77.6699 a 3.816,3.816 0 1 1 3.8871,0" id="path7" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
+    <path d="m 17.9086,77.6699 a 3.816,3.816 0 1 1 3.8871,0" id="path10" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
+    <path d="m 40.1,77.6699 a 3.816,3.816 0 1 1 3.8871,0" id="path11" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
+    <path d="m 29.0043,77.6699 a 3.816,3.816 0 1 1 3.8871,0" id="path12" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
+    <text x="25.026" y="70.051" id="text3" style="font-weight:600;font-size:3.135px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.19;text-anchor:middle;fill:#bfbdb6;stroke-width:0.95"><tspan sodipodi:role="line" id="tspan3" x="25.121" y="70.051" style="stroke-width:0.95">ELEV</tspan></text>
+    <text x="8.775" y="92.204" id="text6" style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:4.0005px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.162;text-anchor:middle;fill:#bfbdb6;fill-opacity:1;stroke-width:0.81"><tspan sodipodi:role="line" id="tspan9" x="8.856" y="92.204" style="stroke-width:0.81;fill:#bfbdb6;fill-opacity:1">1</tspan></text>
+    <text x="30.997" y="92.21" id="text8" style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:4.0005px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.162;text-anchor:middle;fill:#bfbdb6;fill-opacity:1;stroke-width:0.81"><tspan sodipodi:role="line" id="tspan10" x="31.078" y="92.21" style="stroke-width:0.81;fill:#bfbdb6;fill-opacity:1">3</tspan></text>
+    <text x="42.092" y="92.204" id="text9" style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:4.0005px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.162;text-anchor:middle;fill:#bfbdb6;fill-opacity:1;stroke-width:0.81"><tspan sodipodi:role="line" id="tspan11" x="42.173" y="92.204" style="stroke-width:0.81;fill:#bfbdb6;fill-opacity:1">4</tspan></text>
+    <path d="m 6.813,56.6746 a 3.816,3.816 0 1 1 3.8871,0" id="path17" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
+    <path d="m 17.9086,56.6746 a 3.816,3.816 0 1 1 3.8871,0" id="path18" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
+    <path d="m 40.1,56.6746 a 3.816,3.816 0 1 1 3.8871,0" id="path21" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
+    <path d="m 29.0043,56.6746 a 3.816,3.816 0 1 1 3.8871,0" id="path23" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
+    <g id="g36" style="display:none">
+      <rect style="opacity:0.15;fill:url(#linearGradient22);stroke:none;stroke-width:1.0807" id="rect33" width="9.325" height="18.368" x="4.213" y="69.722" rx="1.537" ry="1.537" />
+      <rect style="opacity:0.15;fill:url(#linearGradient14);stroke:none;stroke-width:1.0807" id="rect14" width="9.325" height="18.368" x="15.189" y="69.722" rx="1.537" ry="1.537" />
+      <rect style="opacity:0.15;fill:url(#linearGradient15);stroke:none;stroke-width:1.0807" id="rect15" width="9.325" height="18.368" x="26.285" y="69.722" rx="1.537" ry="1.537" />
+      <rect style="opacity:0.15;fill:url(#linearGradient16);stroke:none;stroke-width:1.0807" id="rect16" width="9.325" height="18.368" x="37.38" y="69.722" rx="1.537" ry="1.537" />
+      <rect style="opacity:0.15;fill:url(#linearGradient35);stroke:none;stroke-width:1.0807" id="rect17" width="9.325" height="18.368" x="4.213" y="48.726" rx="1.537" ry="1.537" />
+      <rect style="opacity:0.15;fill:url(#linearGradient34);stroke:none;stroke-width:1.0807" id="rect23" width="9.325" height="18.368" x="15.189" y="48.726" rx="1.537" ry="1.537" />
+      <rect style="opacity:0.15;fill:url(#linearGradient33);stroke:none;stroke-width:1.0807" id="rect24" width="9.325" height="18.368" x="26.285" y="48.726" rx="1.537" ry="1.537" />
+      <rect style="opacity:0.15;fill:url(#linearGradient32);stroke:none;stroke-width:1.0807" id="rect25" width="9.325" height="18.368" x="37.38" y="48.726" rx="1.537" ry="1.537" />
+    </g>
+    <text x="25.288" y="49.526" id="text1" style="font-weight:600;font-size:3.135px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.19;text-anchor:middle;fill:#bfbdb6;stroke-width:0.95"><tspan sodipodi:role="line" id="tspan1" x="25.383" y="49.526" style="stroke-width:0.95">AZ</tspan></text>
   </g>
   <g id="components" inkscape:groupmode="layer" inkscape:label="components" style="display:none">
     <circle id="ambi-output" inkscape:label="ambi-output" cx="42.043" cy="114" r="4.013" fill="#0000ff" />
-    <circle id="src3-az-param" inkscape:label="src3-az-param" cx="8.756" cy="81.319" r="3.084" fill="#ff0000" />
     <circle id="order-param" inkscape:label="order-param" cx="30.947" cy="114" r="2.278" fill="#ff0000" />
     <circle id="omni-input" inkscape:label="omni-input" cx="8.756" cy="114" r="4.013" fill="#00ff00" />
-    <circle id="src3-elev-param" inkscape:label="src3-elev-param" cx="19.852" cy="81.319" r="3.084" fill="#ff0000" />
-    <circle id="src4-elev-param" inkscape:label="src4-elev-param" cx="42.043" cy="81.319" r="3.084" fill="#ff0000" />
-    <circle id="src3-elev-cv-input" inkscape:label="src3-elev-cv-input" cx="19.852" cy="91.557" r="4.013" fill="#00ff00" />
-    <circle id="src3-az-cv-input" inkscape:label="src3-az-cv-input" cx="8.756" cy="91.557" r="4.013" fill="#00ff00" />
-    <circle id="src4-elev-cv-input" inkscape:label="src4-elev-cv-input" cx="42.043" cy="91.557" r="4.013" fill="#00ff00" />
-    <circle id="src4-az-cv-input" inkscape:label="src4-az-cv-input" cx="30.948" cy="91.557" r="4.013" fill="#00ff00" />
-    <circle id="src4-az-param" inkscape:label="src4-az-param" cx="30.948" cy="81.319" r="3.084" fill="#ff0000" />
-    <circle id="src1-az-param" inkscape:label="src1-az-param" cx="8.756" cy="59.421" r="3.084" fill="#ff0000" />
-    <circle id="src1-elev-param" inkscape:label="src1-elev-param" cx="19.852" cy="59.421" r="3.084" fill="#ff0000" />
-    <circle id="src2-elev-param" inkscape:label="src2-elev-param" cx="42.043" cy="59.421" r="3.084" fill="#ff0000" />
-    <circle id="src1-elev-cv-input" inkscape:label="src1-elev-cv-input" cx="19.852" cy="69.659" r="4.013" fill="#00ff00" />
-    <circle id="src1-az-cv-input" inkscape:label="src1-az-cv-input" cx="8.756" cy="69.659" r="4.013" fill="#00ff00" />
-    <circle id="src2-elev-cv-input" inkscape:label="src2-elev-cv-input" cx="42.043" cy="69.659" r="4.013" fill="#00ff00" />
-    <circle id="src2-az-cv-input" inkscape:label="src2-az-cv-input" cx="30.948" cy="69.659" r="4.013" fill="#00ff00" />
-    <circle id="src2-az-param" inkscape:label="src2-az-param" cx="30.948" cy="59.421" r="3.084" fill="#ff0000" />
+    <circle id="src2-input" inkscape:label="src2-input" cx="19.852" cy="97.458" r="4.013" fill="#00ff00" />
+    <circle id="src4-input" inkscape:label="src4-input" cx="42.043" cy="97.458" r="4.013" fill="#00ff00" />
+    <circle id="src3-input" inkscape:label="src3-input" cx="30.948" cy="97.458" r="4.013" fill="#00ff00" />
+    <circle id="src1-elev-param" inkscape:label="src1-elev-param" cx="8.756" cy="74.386" r="3.084" fill="#ff0000" />
+    <circle id="src2-elev-param" inkscape:label="src2-elev-param" cx="19.852" cy="74.386" r="3.084" fill="#ff0000" />
+    <circle id="src4-elev-param" inkscape:label="src4-elev-param" cx="42.043" cy="74.386" r="3.084" fill="#ff0000" />
+    <circle id="src2-elev-cv-input" inkscape:label="src2-elev-cv-input" cx="19.852" cy="83.2" r="4.013" fill="#00ff00" />
+    <circle id="src1-elev-cv-input" inkscape:label="src1-elev-cv-input" cx="8.756" cy="83.2" r="4.013" fill="#00ff00" />
+    <circle id="src4-elev-cv-input" inkscape:label="src4-elev-cv-input" cx="42.043" cy="83.2" r="4.013" fill="#00ff00" />
+    <circle id="src3-elev-cv-input" inkscape:label="src3-elev-cv-input" cx="30.948" cy="83.2" r="4.013" fill="#00ff00" />
+    <circle id="src3-elev-param" inkscape:label="src3-elev-param" cx="30.948" cy="74.386" r="3.084" fill="#ff0000" />
+    <circle id="src1-input" inkscape:label="src1-input" cx="8.756" cy="97.458" r="4.013" fill="#00ff00" />
+    <circle id="src1-az-param" inkscape:label="src1-az-param" cx="8.756" cy="53.39" r="3.084" fill="#ff0000" />
+    <circle id="src2-az-param" inkscape:label="src2-az-param" cx="19.852" cy="53.39" r="3.084" fill="#ff0000" />
+    <circle id="src4-az-param" inkscape:label="src4-az-param" cx="42.043" cy="53.39" r="3.084" fill="#ff0000" />
+    <circle id="src2-az-cv-input" inkscape:label="src2-az-cv-input" cx="19.852" cy="62.205" r="4.013" fill="#00ff00" />
+    <circle id="src1-az-cv-input" inkscape:label="src1-az-cv-input" cx="8.756" cy="62.205" r="4.013" fill="#00ff00" />
+    <circle id="src4-az-cv-input" inkscape:label="src4-az-cv-input" cx="42.043" cy="62.205" r="4.013" fill="#00ff00" />
+    <circle id="src3-az-cv-input" inkscape:label="src3-az-cv-input" cx="30.948" cy="62.205" r="4.013" fill="#00ff00" />
+    <circle id="src3-az-param" inkscape:label="src3-az-param" cx="30.948" cy="53.39" r="3.084" fill="#ff0000" />
   </g>
 </svg>

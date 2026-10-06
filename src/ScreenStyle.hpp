@@ -32,8 +32,8 @@ inline void drawText(NVGcontext* vg, const char* fontPath, float fontSize, NVGco
 
 
 /** Label above a plot (e.g., FRONT, REAR) or naming an axis. */
-inline void drawLabel(NVGcontext* vg, Vec p, const char* text, int align) {
-	drawText(vg, LABEL_FONT, 10.f, SCREEN_TEXT, align, p, text);
+inline void drawLabel(NVGcontext* vg, Vec p, const char* text, int align, float fontSize = 10.f) {
+	drawText(vg, LABEL_FONT, fontSize, SCREEN_TEXT, align, p, text);
 }
 
 

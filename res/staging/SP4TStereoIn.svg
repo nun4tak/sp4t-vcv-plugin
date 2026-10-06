@@ -17,10 +17,12 @@
   </defs>
   <g id="panel" inkscape:groupmode="layer" inkscape:label="Panel">
     <rect id="background" x="0" y="0" width="50.8" height="128.5" fill="#d8dbdf" />
+    <!-- Block behind the order switch and the ambisonic output, flush with the right margin
+       of the screen. -->
     <rect style="fill:#bbbfc3;stroke:none" id="rect138" width="22.848" height="19.948" x="26.224" y="101.335" rx="0.809" ry="1.552" />
     <!-- just under the top screws -->
     <text id="title" x="25.4" y="9" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4.1" font-weight="700" text-anchor="middle" fill="#2b3038">SP<tspan fill="#22a4e6" id="tspan32">4</tspan>T · STEREO IN</text>
-    <!-- Screen area, vertically centered between the title and the angle controls area;
+    <!-- Screen area, spanning the panel width minus a 1.728 mm margin on each side;
        its content is drawn by the module widget. -->
     <rect id="screen" x="1.728" y="11.5" width="47.344" height="34.039" rx="1.072" fill="#0d1017" style="stroke-width:1.1561" />
     <text x="8.707" y="107.4" id="text43" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">L/MONO</text>
@@ -28,6 +30,12 @@
     <text x="42.072" y="107.4" id="text46" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan85" x="42.172" y="107.4">AMB</tspan></text>
     <!-- between the bottom screws -->
     <text id="brand" x="25.4" y="125.958" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4" font-weight="700" text-anchor="middle" fill="#3a4049">\nu.na.tak\</text>
+    <!-- Angle controls, one column per angle: AZ at x=8.756, ELEV at x=19.852 (its large knob
+       centred on the panel at x=25.4) and SPREAD at x=42.043. Rows, top to bottom: the large knobs
+       at y=58.901, the SPREAD one lower at y=67.656 so its longer label fits above it, the azimuth
+       direction switch at (8.829, 72.418), the CV trims at y=84.492 and the CV inputs at y=94.903.
+       Thin lines link the components of a column, curved on the ELEV one; thin arcs around the
+       knobs (radius 5.775 mm) and the trims (radius 3.816 mm). -->
     <text x="8.781" y="50.985" id="text72" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan75" x="8.881" y="50.985">AZ</tspan></text>
     <text x="25.302" y="50.985" id="text73" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan76" x="25.402" y="50.985">ELEV</tspan></text>
     <text x="42.061" y="60.343" id="text74" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan74" x="42.161" y="60.343">SPREAD</tspan></text>

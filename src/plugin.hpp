@@ -18,3 +18,4 @@ extern Model* modelNun4takSP4TGain;
 extern Model* modelNun4takSP4TMute;
 extern Model* modelNun4takSP4TFlip;
 extern Model* modelNun4takSP4TSmear;
+extern Model* modelNun4takSP4TSource4In;

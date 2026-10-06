@@ -1,180 +1,1039 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- SP4T Source4 In panel, light theme. 10 HP. Units: mm.
      Prototype, not used by the build. -->
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="50.8mm" height="128.5mm" viewBox="0 0 50.8 128.5" id="svg49">
-  <sodipodi:namedview id="namedview49" inkscape:document-units="mm" showgrid="true" showguides="true">
-    <inkscape:grid id="grid59" units="mm" originx="0" originy="0" spacingx="0.26458333" spacingy="0.26458334" empcolor="#0099e5" empopacity="0.30196078" color="#0099e5" opacity="0.14901961" empspacing="5" enabled="true" visible="false" />
+
+<svg
+   version="1.1"
+   width="50.8mm"
+   height="128.5mm"
+   viewBox="0 0 50.8 128.5"
+   id="svg49"
+   sodipodi:docname="SP4TSource4InTest01.svg"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview49"
+     inkscape:document-units="mm"
+     showgrid="true"
+     showguides="true"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.83206311"
+     inkscape:cx="-27.642134"
+     inkscape:cy="242.16913"
+     inkscape:window-width="1512"
+     inkscape:window-height="916"
+     inkscape:window-x="0"
+     inkscape:window-y="38"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="panel">
+    <inkscape:grid
+       id="grid59"
+       units="mm"
+       originx="0"
+       originy="0"
+       spacingx="0.26458333"
+       spacingy="0.26458334"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       enabled="true"
+       visible="false" />
   </sodipodi:namedview>
-  <defs id="component-defs">
+  <defs
+     id="component-defs">
+    <linearGradient
+       id="linearGradient21"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#d8dbdf;stop-opacity:1;"
+         offset="0"
+         id="stop21" />
+      <stop
+         style="stop-color:#484c51;stop-opacity:1;"
+         offset="1"
+         id="stop22" />
+    </linearGradient>
     <!-- ScrewSilver.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
-    <linearGradient id="screw-g1" gradientUnits="userSpaceOnUse" x1="219.99944" y1="6477.3999" x2="232.99944" y2="6477.3999" gradientTransform="matrix(6.123234e-17 1 1 -6.123234e-17 -6469.8999 -219)">
-      <stop offset="0" stop-color="#ABA9A9" id="stop1" />
-      <stop offset="1" stop-color="#8F8F8F" id="stop2" />
+    <linearGradient
+       id="screw-g1"
+       gradientUnits="userSpaceOnUse"
+       x1="219.99944"
+       y1="6477.3999"
+       x2="232.99944"
+       y2="6477.3999"
+       gradientTransform="matrix(6.123234e-17 1 1 -6.123234e-17 -6469.8999 -219)">
+      <stop
+         offset="0"
+         stop-color="#ABA9A9"
+         id="stop1" />
+      <stop
+         offset="1"
+         stop-color="#8F8F8F"
+         id="stop2" />
     </linearGradient>
-    <linearGradient id="screw-g2" gradientUnits="userSpaceOnUse" x1="220.68697" y1="6477.3999" x2="232.31085" y2="6477.3999" gradientTransform="matrix(6.123234e-17 1 1 -6.123234e-17 -6469.8999 -219)">
-      <stop offset="0.00559" stop-color="#F5F5F5" id="stop3" />
-      <stop offset="1" stop-color="#C2C2C2" id="stop4" />
+    <linearGradient
+       id="screw-g2"
+       gradientUnits="userSpaceOnUse"
+       x1="220.68697"
+       y1="6477.3999"
+       x2="232.31085"
+       y2="6477.3999"
+       gradientTransform="matrix(6.123234e-17 1 1 -6.123234e-17 -6469.8999 -219)">
+      <stop
+         offset="0.00559"
+         stop-color="#F5F5F5"
+         id="stop3" />
+      <stop
+         offset="1"
+         stop-color="#C2C2C2"
+         id="stop4" />
     </linearGradient>
-    <linearGradient id="screw-g3" gradientUnits="userSpaceOnUse" x1="221.13403" y1="6477.3999" x2="231.86378" y2="6477.3999" gradientTransform="matrix(6.123234e-17 1 1 -6.123234e-17 -6469.8999 -219)">
-      <stop offset="0.00559" stop-color="#EBEBEB" id="stop5" />
-      <stop offset="1" stop-color="#CCCCCC" id="stop6" />
+    <linearGradient
+       id="screw-g3"
+       gradientUnits="userSpaceOnUse"
+       x1="221.13403"
+       y1="6477.3999"
+       x2="231.86378"
+       y2="6477.3999"
+       gradientTransform="matrix(6.123234e-17 1 1 -6.123234e-17 -6469.8999 -219)">
+      <stop
+         offset="0.00559"
+         stop-color="#EBEBEB"
+         id="stop5" />
+      <stop
+         offset="1"
+         stop-color="#CCCCCC"
+         id="stop6" />
     </linearGradient>
-    <symbol id="ScrewSilver" viewBox="0 0 15 14.9989">
-      <circle fill="url(#screw-g1)" cx="7.5" cy="7.49944" r="6.5" id="circle6" />
-      <circle fill="url(#screw-g2)" cx="7.5" cy="7.49891" r="5.81194" id="circle7" />
-      <circle fill="url(#screw-g3)" cx="7.5" cy="7.49891" r="5.36487" id="circle8" />
-      <path fill="#8C8C8C" d="M10.96889,6.80997L9.00528,6.57471C8.70384,6.5386,8.46626,6.30092,8.43027,5.99947L8.19598,4.03719c-0.01021-0.08553-0.08276-0.14993-0.1689-0.14993H6.97294c-0.08613,0-0.15867,0.06438-0.16889,0.1499l-0.23484,1.9634C6.53315,6.30204,6.29544,6.5397,5.99394,6.57569L4.03118,6.81003c-0.08554,0.01021-0.14993,0.08276-0.14993,0.1689v1.0542c0,0.08613,0.06438,0.15866,0.1499,0.16889l1.96299,0.2348C6.29557,8.47287,6.5332,8.7105,6.56925,9.01193l0.23479,1.96293c0.01023,0.08552,0.08277,0.1499,0.16889,0.1499h1.0542c0.08612,0,0.15865-0.06436,0.16889-0.14986l0.23521-1.96318c0.03611-0.30139,0.27372-0.53895,0.57512-0.57499l1.96249-0.2347c0.08552-0.01023,0.1499-0.08276,0.1499-0.16889V6.97886C11.11875,6.89275,11.05439,6.82022,10.96889,6.80997z" id="path8" />
+    <symbol
+       id="ScrewSilver"
+       viewBox="0 0 15 14.9989">
+      <circle
+         fill="url(#screw-g1)"
+         cx="7.5"
+         cy="7.49944"
+         r="6.5"
+         id="circle6" />
+      <circle
+         fill="url(#screw-g2)"
+         cx="7.5"
+         cy="7.49891"
+         r="5.81194"
+         id="circle7" />
+      <circle
+         fill="url(#screw-g3)"
+         cx="7.5"
+         cy="7.49891"
+         r="5.36487"
+         id="circle8" />
+      <path
+         fill="#8C8C8C"
+         d="M10.96889,6.80997L9.00528,6.57471C8.70384,6.5386,8.46626,6.30092,8.43027,5.99947L8.19598,4.03719c-0.01021-0.08553-0.08276-0.14993-0.1689-0.14993H6.97294c-0.08613,0-0.15867,0.06438-0.16889,0.1499l-0.23484,1.9634C6.53315,6.30204,6.29544,6.5397,5.99394,6.57569L4.03118,6.81003c-0.08554,0.01021-0.14993,0.08276-0.14993,0.1689v1.0542c0,0.08613,0.06438,0.15866,0.1499,0.16889l1.96299,0.2348C6.29557,8.47287,6.5332,8.7105,6.56925,9.01193l0.23479,1.96293c0.01023,0.08552,0.08277,0.1499,0.16889,0.1499h1.0542c0.08612,0,0.15865-0.06436,0.16889-0.14986l0.23521-1.96318c0.03611-0.30139,0.27372-0.53895,0.57512-0.57499l1.96249-0.2347c0.08552-0.01023,0.1499-0.08276,0.1499-0.16889V6.97886C11.11875,6.89275,11.05439,6.82022,10.96889,6.80997z"
+         id="path8" />
     </symbol>
     <!-- PJ301M.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
-    <linearGradient id="jack-g16" gradientUnits="userSpaceOnUse" x1="-602.15857" y1="1785.69116" x2="-578.78363" y2="1785.69116" gradientTransform="matrix(0 1 1 0 -1773.84119 602.39905)">
-      <stop offset="0" stop-color="#828181" id="stop8" />
-      <stop offset="1" stop-color="#575757" id="stop9" />
+    <linearGradient
+       id="jack-g16"
+       gradientUnits="userSpaceOnUse"
+       x1="-602.15857"
+       y1="1785.69116"
+       x2="-578.78363"
+       y2="1785.69116"
+       gradientTransform="matrix(0 1 1 0 -1773.84119 602.39905)">
+      <stop
+         offset="0"
+         stop-color="#828181"
+         id="stop8" />
+      <stop
+         offset="1"
+         stop-color="#575757"
+         id="stop9" />
     </linearGradient>
-    <linearGradient id="jack-g17" gradientUnits="userSpaceOnUse" x1="1062.06897" y1="-4091.68994" x2="1084.2738" y2="-4091.68994" gradientTransform="matrix(0 1 -1 0 -4079.83984 -1061.23169)">
-      <stop offset="0.00559" stop-color="#FFFFFF" id="stop10" />
-      <stop offset="1" stop-color="#7A7A7A" id="stop11" />
+    <linearGradient
+       id="jack-g17"
+       gradientUnits="userSpaceOnUse"
+       x1="1062.06897"
+       y1="-4091.68994"
+       x2="1084.2738"
+       y2="-4091.68994"
+       gradientTransform="matrix(0 1 -1 0 -4079.83984 -1061.23169)">
+      <stop
+         offset="0.00559"
+         stop-color="#FFFFFF"
+         id="stop10" />
+      <stop
+         offset="1"
+         stop-color="#7A7A7A"
+         id="stop11" />
     </linearGradient>
-    <linearGradient id="jack-g18" gradientUnits="userSpaceOnUse" x1="58.86181" y1="-54.6409" x2="58.86181" y2="-51.86816" gradientTransform="matrix(1 0 0 -1 -47.00625 -41.32658)">
-      <stop offset="0" stop-color="#FFFBFD" id="stop12" />
-      <stop offset="1" stop-color="#808080" id="stop13" />
+    <linearGradient
+       id="jack-g18"
+       gradientUnits="userSpaceOnUse"
+       x1="58.86181"
+       y1="-54.6409"
+       x2="58.86181"
+       y2="-51.86816"
+       gradientTransform="matrix(1 0 0 -1 -47.00625 -41.32658)">
+      <stop
+         offset="0"
+         stop-color="#FFFBFD"
+         id="stop12" />
+      <stop
+         offset="1"
+         stop-color="#808080"
+         id="stop13" />
     </linearGradient>
-    <linearGradient id="jack-g19" gradientUnits="userSpaceOnUse" x1="-1240.79248" y1="-381.89734" x2="-1223.31567" y2="-381.89734" gradientTransform="matrix(0 -1 -1 0 -370.04718 -1220.1261)">
-      <stop offset="0" stop-color="#B0AEAE" id="stop14" />
-      <stop offset="1" stop-color="#616161" id="stop15" />
+    <linearGradient
+       id="jack-g19"
+       gradientUnits="userSpaceOnUse"
+       x1="-1240.79248"
+       y1="-381.89734"
+       x2="-1223.31567"
+       y2="-381.89734"
+       gradientTransform="matrix(0 -1 -1 0 -370.04718 -1220.1261)">
+      <stop
+         offset="0"
+         stop-color="#B0AEAE"
+         id="stop14" />
+      <stop
+         offset="1"
+         stop-color="#616161"
+         id="stop15" />
     </linearGradient>
-    <linearGradient id="jack-g20" gradientUnits="userSpaceOnUse" x1="-1884.86365" y1="21.48288" x2="-1884.86365" y2="6.22048" gradientTransform="matrix(-1 0 0 -1 -1873.01343 25.77966)">
-      <stop offset="0" stop-color="#FFFEFE" id="stop16" />
-      <stop offset="1" stop-color="#545454" id="stop17" />
+    <linearGradient
+       id="jack-g20"
+       gradientUnits="userSpaceOnUse"
+       x1="-1884.86365"
+       y1="21.48288"
+       x2="-1884.86365"
+       y2="6.22048"
+       gradientTransform="matrix(-1 0 0 -1 -1873.01343 25.77966)">
+      <stop
+         offset="0"
+         stop-color="#FFFEFE"
+         id="stop16" />
+      <stop
+         offset="1"
+         stop-color="#545454"
+         id="stop17" />
     </linearGradient>
-    <symbol id="PJ301M" viewBox="0 0 23.7 23.7">
-      <path fill="url(#jack-g16)" d="M11.85025,23.61541c-6.44467,0-11.68796-5.24279-11.68796-11.68697c0-6.44517,5.24329-11.68796,11.68796-11.68796s11.68747,5.24279,11.68747,11.68797C23.53772,18.37262,18.29493,23.61541,11.85025,23.61541z" id="path19" />
-      <circle fill="url(#jack-g17)" cx="11.85" cy="11.93965" r="11.10243" id="circle19" />
-      <circle fill="#E0E0E0" cx="11.85" cy="11.93965" r="10.44346" id="circle20" />
-      <path fill="url(#jack-g18)" d="M1.52136,10.54158l-0.42968,0.41685C0.65175,11.5374,0.6549,12.3395,1.09936,12.915l0.39828,0.36948l20.70001,0.02984l0.40244-0.38429c0.45989-0.57286,0.46323-1.38741,0.00805-1.96402l-0.41049-0.40101L1.52136,10.54158z" id="path20" />
-      <circle fill="url(#jack-g19)" cx="11.85015" cy="11.92791" r="8.73843" id="circle21" />
-      <circle fill="#1F1F1F" cx="11.85015" cy="11.92791" r="8.16656" id="circle22" />
-      <path opacity="0.28" fill="#404040" d="M11.85015,4.29678c4.21318,0,7.62864,3.78218,7.62864,8.44773s-3.41546,9.28764-7.62864,9.28764s-7.62864-4.62209-7.62864-9.28764S7.63697,4.29678,11.85015,4.29678z" id="path22" />
-      <circle fill="url(#jack-g20)" cx="11.85015" cy="11.92798" r="7.6312" id="circle23" />
-      <circle fill="#E0E0E0" cx="11.85015" cy="11.92798" r="6.79996" id="circle24" />
-      <g opacity="0.43" id="g26">
-        <path fill="#404040" d="M11.85016,4.74578c4.17474,0,7.56128,3.25714,7.62286,7.29614c0.00055-0.03833,0.00574-0.0755,0.00574-0.11395c0-4.2146-3.41541-7.63116-7.6286-7.63116S4.2215,7.71337,4.2215,11.92797c0,0.03845,0.00519,0.07562,0.00574,0.11395C4.28882,8.00292,7.67542,4.74578,11.85016,4.74578z" id="path24" />
-        <path opacity="0.28" fill="#404040" d="M4.22723,12.04192c-0.00055,0.03723-0.00574,0.07324-0.00574,0.1106c0,4.09058,3.41547,7.40668,7.62866,7.40668C7.67542,19.55919,4.28882,16.20342,4.22723,12.04192z" id="path25" />
-        <path opacity="0.28" fill="#404040" d="M11.85016,19.55919c4.2132,0,7.6286-3.3161,7.6286-7.40668c0-0.03735-0.00519-0.07336-0.00574-0.1106C19.41144,16.20342,16.0249,19.55919,11.85016,19.55919z" id="path26" />
+    <symbol
+       id="PJ301M"
+       viewBox="0 0 23.7 23.7">
+      <path
+         fill="url(#jack-g16)"
+         d="M11.85025,23.61541c-6.44467,0-11.68796-5.24279-11.68796-11.68697c0-6.44517,5.24329-11.68796,11.68796-11.68796s11.68747,5.24279,11.68747,11.68797C23.53772,18.37262,18.29493,23.61541,11.85025,23.61541z"
+         id="path19" />
+      <circle
+         fill="url(#jack-g17)"
+         cx="11.85"
+         cy="11.93965"
+         r="11.10243"
+         id="circle19" />
+      <circle
+         fill="#E0E0E0"
+         cx="11.85"
+         cy="11.93965"
+         r="10.44346"
+         id="circle20" />
+      <path
+         fill="url(#jack-g18)"
+         d="M1.52136,10.54158l-0.42968,0.41685C0.65175,11.5374,0.6549,12.3395,1.09936,12.915l0.39828,0.36948l20.70001,0.02984l0.40244-0.38429c0.45989-0.57286,0.46323-1.38741,0.00805-1.96402l-0.41049-0.40101L1.52136,10.54158z"
+         id="path20" />
+      <circle
+         fill="url(#jack-g19)"
+         cx="11.85015"
+         cy="11.92791"
+         r="8.73843"
+         id="circle21" />
+      <circle
+         fill="#1F1F1F"
+         cx="11.85015"
+         cy="11.92791"
+         r="8.16656"
+         id="circle22" />
+      <path
+         opacity="0.28"
+         fill="#404040"
+         d="M11.85015,4.29678c4.21318,0,7.62864,3.78218,7.62864,8.44773s-3.41546,9.28764-7.62864,9.28764s-7.62864-4.62209-7.62864-9.28764S7.63697,4.29678,11.85015,4.29678z"
+         id="path22" />
+      <circle
+         fill="url(#jack-g20)"
+         cx="11.85015"
+         cy="11.92798"
+         r="7.6312"
+         id="circle23" />
+      <circle
+         fill="#E0E0E0"
+         cx="11.85015"
+         cy="11.92798"
+         r="6.79996"
+         id="circle24" />
+      <g
+         opacity="0.43"
+         id="g26">
+        <path
+           fill="#404040"
+           d="M11.85016,4.74578c4.17474,0,7.56128,3.25714,7.62286,7.29614c0.00055-0.03833,0.00574-0.0755,0.00574-0.11395c0-4.2146-3.41541-7.63116-7.6286-7.63116S4.2215,7.71337,4.2215,11.92797c0,0.03845,0.00519,0.07562,0.00574,0.11395C4.28882,8.00292,7.67542,4.74578,11.85016,4.74578z"
+           id="path24" />
+        <path
+           opacity="0.28"
+           fill="#404040"
+           d="M4.22723,12.04192c-0.00055,0.03723-0.00574,0.07324-0.00574,0.1106c0,4.09058,3.41547,7.40668,7.62866,7.40668C7.67542,19.55919,4.28882,16.20342,4.22723,12.04192z"
+           id="path25" />
+        <path
+           opacity="0.28"
+           fill="#404040"
+           d="M11.85016,19.55919c4.2132,0,7.6286-3.3161,7.6286-7.40668c0-0.03735-0.00519-0.07336-0.00574-0.1106C19.41144,16.20342,16.0249,19.55919,11.85016,19.55919z"
+           id="path26" />
       </g>
-      <circle fill="#000000" cx="11.85015" cy="11.92791" r="4.86733" id="circle26" />
+      <circle
+         fill="#000000"
+         cx="11.85015"
+         cy="11.92791"
+         r="4.86733"
+         id="circle26" />
     </symbol>
-    <symbol id="SP4TAmbiPort" viewBox="0 0 23.7 23.7">
-      <path fill="url(#jack-g16)" d="M11.85025,23.61541c-6.44467,0-11.68796-5.24279-11.68796-11.68697c0-6.44517,5.24329-11.68796,11.68796-11.68796s11.68747,5.24279,11.68747,11.68797C23.53772,18.37262,18.29493,23.61541,11.85025,23.61541z" id="path19-amb" />
-      <circle fill="url(#jack-g17)" cx="11.85" cy="11.93965" r="11.10243" id="circle19-amb" />
-      <circle fill="#22A4E6" cx="11.85" cy="11.93965" r="10.44346" id="circle20-amb" />
-      <path fill="url(#jack-g18)" d="M1.52136,10.54158l-0.42968,0.41685C0.65175,11.5374,0.6549,12.3395,1.09936,12.915l0.39828,0.36948l20.70001,0.02984l0.40244-0.38429c0.45989-0.57286,0.46323-1.38741,0.00805-1.96402l-0.41049-0.40101L1.52136,10.54158z" id="path20-amb" />
-      <circle fill="url(#jack-g19)" cx="11.85015" cy="11.92791" r="8.73843" id="circle21-amb" />
-      <circle fill="#1F1F1F" cx="11.85015" cy="11.92791" r="8.16656" id="circle22-amb" />
-      <path opacity="0.28" fill="#404040" d="M11.85015,4.29678c4.21318,0,7.62864,3.78218,7.62864,8.44773s-3.41546,9.28764-7.62864,9.28764s-7.62864-4.62209-7.62864-9.28764S7.63697,4.29678,11.85015,4.29678z" id="path22-amb" />
-      <circle fill="url(#jack-g20)" cx="11.85015" cy="11.92798" r="7.6312" id="circle23-amb" />
-      <circle fill="#E0E0E0" cx="11.85015" cy="11.92798" r="6.79996" id="circle24-amb" />
-      <g opacity="0.43" id="g26-amb">
-        <path fill="#404040" d="M11.85016,4.74578c4.17474,0,7.56128,3.25714,7.62286,7.29614c0.00055-0.03833,0.00574-0.0755,0.00574-0.11395c0-4.2146-3.41541-7.63116-7.6286-7.63116S4.2215,7.71337,4.2215,11.92797c0,0.03845,0.00519,0.07562,0.00574,0.11395C4.28882,8.00292,7.67542,4.74578,11.85016,4.74578z" id="path24-amb" />
-        <path opacity="0.28" fill="#404040" d="M4.22723,12.04192c-0.00055,0.03723-0.00574,0.07324-0.00574,0.1106c0,4.09058,3.41547,7.40668,7.62866,7.40668C7.67542,19.55919,4.28882,16.20342,4.22723,12.04192z" id="path25-amb" />
-        <path opacity="0.28" fill="#404040" d="M11.85016,19.55919c4.2132,0,7.6286-3.3161,7.6286-7.40668c0-0.03735-0.00519-0.07336-0.00574-0.1106C19.41144,16.20342,16.0249,19.55919,11.85016,19.55919z" id="path26-amb" />
+    <symbol
+       id="SP4TAmbiPort"
+       viewBox="0 0 23.7 23.7">
+      <path
+         fill="url(#jack-g16)"
+         d="M11.85025,23.61541c-6.44467,0-11.68796-5.24279-11.68796-11.68697c0-6.44517,5.24329-11.68796,11.68796-11.68796s11.68747,5.24279,11.68747,11.68797C23.53772,18.37262,18.29493,23.61541,11.85025,23.61541z"
+         id="path19-amb" />
+      <circle
+         fill="url(#jack-g17)"
+         cx="11.85"
+         cy="11.93965"
+         r="11.10243"
+         id="circle19-amb" />
+      <circle
+         fill="#22A4E6"
+         cx="11.85"
+         cy="11.93965"
+         r="10.44346"
+         id="circle20-amb" />
+      <path
+         fill="url(#jack-g18)"
+         d="M1.52136,10.54158l-0.42968,0.41685C0.65175,11.5374,0.6549,12.3395,1.09936,12.915l0.39828,0.36948l20.70001,0.02984l0.40244-0.38429c0.45989-0.57286,0.46323-1.38741,0.00805-1.96402l-0.41049-0.40101L1.52136,10.54158z"
+         id="path20-amb" />
+      <circle
+         fill="url(#jack-g19)"
+         cx="11.85015"
+         cy="11.92791"
+         r="8.73843"
+         id="circle21-amb" />
+      <circle
+         fill="#1F1F1F"
+         cx="11.85015"
+         cy="11.92791"
+         r="8.16656"
+         id="circle22-amb" />
+      <path
+         opacity="0.28"
+         fill="#404040"
+         d="M11.85015,4.29678c4.21318,0,7.62864,3.78218,7.62864,8.44773s-3.41546,9.28764-7.62864,9.28764s-7.62864-4.62209-7.62864-9.28764S7.63697,4.29678,11.85015,4.29678z"
+         id="path22-amb" />
+      <circle
+         fill="url(#jack-g20)"
+         cx="11.85015"
+         cy="11.92798"
+         r="7.6312"
+         id="circle23-amb" />
+      <circle
+         fill="#E0E0E0"
+         cx="11.85015"
+         cy="11.92798"
+         r="6.79996"
+         id="circle24-amb" />
+      <g
+         opacity="0.43"
+         id="g26-amb">
+        <path
+           fill="#404040"
+           d="M11.85016,4.74578c4.17474,0,7.56128,3.25714,7.62286,7.29614c0.00055-0.03833,0.00574-0.0755,0.00574-0.11395c0-4.2146-3.41541-7.63116-7.6286-7.63116S4.2215,7.71337,4.2215,11.92797c0,0.03845,0.00519,0.07562,0.00574,0.11395C4.28882,8.00292,7.67542,4.74578,11.85016,4.74578z"
+           id="path24-amb" />
+        <path
+           opacity="0.28"
+           fill="#404040"
+           d="M4.22723,12.04192c-0.00055,0.03723-0.00574,0.07324-0.00574,0.1106c0,4.09058,3.41547,7.40668,7.62866,7.40668C7.67542,19.55919,4.28882,16.20342,4.22723,12.04192z"
+           id="path25-amb" />
+        <path
+           opacity="0.28"
+           fill="#404040"
+           d="M11.85016,19.55919c4.2132,0,7.6286-3.3161,7.6286-7.40668c0-0.03735-0.00519-0.07336-0.00574-0.1106C19.41144,16.20342,16.0249,19.55919,11.85016,19.55919z"
+           id="path26-amb" />
       </g>
-      <circle fill="#000000" cx="11.85015" cy="11.92791" r="4.86733" id="circle26-amb" />
+      <circle
+         fill="#000000"
+         cx="11.85015"
+         cy="11.92791"
+         r="4.86733"
+         id="circle26-amb" />
     </symbol>
     <!-- SP4TRoundLargeKnob_bg.svg + SP4TRoundLargeKnob.svg (indicator at the default, centered position) -->
     <!-- SP4TRoundSmallKnob_bg.svg + SP4TRoundSmallKnob.svg (indicator at the default, centered position) -->
-    <symbol id="SP4TRoundSmallKnob" viewBox="0 0 20 20">
-      <circle fill="#23272E" stroke="#5C6370" stroke-width="0.8" cx="10" cy="10" r="9.6" id="circle28" />
-      <rect fill="#E6E1CF" x="9.4" y="1.7" width="1.2" height="7" rx="0.6" id="rect28" />
+    <symbol
+       id="SP4TRoundSmallKnob"
+       viewBox="0 0 20 20">
+      <circle
+         fill="#23272E"
+         stroke="#5C6370"
+         stroke-width="0.8"
+         cx="10"
+         cy="10"
+         r="9.6"
+         id="circle28" />
+      <rect
+         fill="#E6E1CF"
+         x="9.4"
+         y="1.7"
+         width="1.2"
+         height="7"
+         rx="0.6"
+         id="rect28" />
     </symbol>
     <!-- SP4TSwitchThree_2.svg (top position, i.e., value 0) -->
-    <symbol id="SP4TSwitchThree" viewBox="0 0 13.457 28.34766">
-      <rect fill="#15181D" x="0" y="0" width="13.457" height="28.34766" rx="1.41797" id="rect29" />
-      <rect fill="#0B0D11" x="1.25778" y="1.21638" width="10.94143" height="25.86174" rx="0.6" id="rect30" />
-      <rect fill="#6C7380" x="1.25778" y="1.21638" width="10.94143" height="8.84651" rx="0.6" id="rect31" />
-      <rect fill="#D9D7CE" x="2.6" y="5.20094" width="8.257" height="0.87738" id="rect32" />
+    <symbol
+       id="SP4TSwitchThree"
+       viewBox="0 0 13.457 28.34766">
+      <rect
+         fill="#15181D"
+         x="0"
+         y="0"
+         width="13.457"
+         height="28.34766"
+         rx="1.41797"
+         id="rect29" />
+      <rect
+         fill="#0B0D11"
+         x="1.25778"
+         y="1.21638"
+         width="10.94143"
+         height="25.86174"
+         rx="0.6"
+         id="rect30" />
+      <rect
+         fill="#6C7380"
+         x="1.25778"
+         y="1.21638"
+         width="10.94143"
+         height="8.84651"
+         rx="0.6"
+         id="rect31" />
+      <rect
+         fill="#D9D7CE"
+         x="2.6"
+         y="5.20094"
+         width="8.257"
+         height="0.87738"
+         id="rect32" />
     </symbol>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient21"
+       id="linearGradient22"
+       x1="14.3055"
+       y1="59.001263"
+       x2="14.3055"
+       y2="65.365837"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.45377414,0,0,2.8144128,2.2497315,-96.187445)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient21"
+       id="linearGradient14"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.45377414,0,0,2.8144128,13.226428,-96.187445)"
+       x1="14.3055"
+       y1="59.001263"
+       x2="14.3055"
+       y2="65.365837" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient21"
+       id="linearGradient15"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.45377414,0,0,2.8144128,24.322428,-96.187445)"
+       x1="14.3055"
+       y1="59.001263"
+       x2="14.3055"
+       y2="65.365837" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient21"
+       id="linearGradient16"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.45377414,0,0,2.8144128,35.417428,-96.187445)"
+       x1="14.3055"
+       y1="59.001263"
+       x2="14.3055"
+       y2="65.365837" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient21"
+       id="linearGradient32"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.45377414,0,0,2.8144128,35.417428,-117.18277)"
+       x1="14.3055"
+       y1="59.001263"
+       x2="14.3055"
+       y2="65.365837" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient21"
+       id="linearGradient33"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.45377414,0,0,2.8144128,24.322428,-117.18277)"
+       x1="14.3055"
+       y1="59.001263"
+       x2="14.3055"
+       y2="65.365837" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient21"
+       id="linearGradient34"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.45377414,0,0,2.8144128,13.226428,-117.18277)"
+       x1="14.3055"
+       y1="59.001263"
+       x2="14.3055"
+       y2="65.365837" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient21"
+       id="linearGradient35"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.45377414,0,0,2.8144128,2.2497315,-117.18277)"
+       x1="14.3055"
+       y1="59.001263"
+       x2="14.3055"
+       y2="65.365837" />
   </defs>
-  <g id="panel" inkscape:groupmode="layer" inkscape:label="Panel">
-    <rect id="background" x="0" y="0" width="50.8" height="128.5" fill="#d8dbdf" />
-    <use x="0" y="0" xlink:href="#rect33" id="use54" transform="translate(0,21.718)" />
-    <rect style="opacity:0.15;fill:#484c51;stroke:none" id="rect33" width="21.141" height="19.948" x="3.735" y="54.749" rx="0.809" ry="1.552" />
-    <rect style="opacity:0.15;fill:#484c51;stroke:none" id="rect52" width="21.141" height="19.948" x="25.924" y="54.749" rx="0.809" ry="1.552" />
-    <rect style="fill:#bbbec3;stroke:none" id="rect85" width="21.266" height="18.093" x="26.925" y="102.892" rx="1.374" ry="1.552" />
+  <g
+     id="panel"
+     inkscape:groupmode="layer"
+     inkscape:label="Panel">
+    <rect
+       id="background"
+       x="0"
+       y="0"
+       width="50.8"
+       height="128.5"
+       fill="#d8dbdf" />
+    <rect
+       style="fill:#bbbec3;stroke:none"
+       id="rect85"
+       width="21.266"
+       height="18.093"
+       x="26.925"
+       y="102.892"
+       rx="1.374"
+       ry="1.552" />
     <!-- just under the top screws -->
-    <text id="title" x="25.4" y="9" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4.1" font-weight="700" text-anchor="middle" fill="#2b3038">SP<tspan fill="#22a4e6" id="title-accent">4</tspan>T · SOURCE4 IN</text>
+    <text
+       id="title"
+       x="25.4"
+       y="9"
+       font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif"
+       font-size="4.1"
+       font-weight="700"
+       text-anchor="middle"
+       fill="#2b3038">SP<tspan
+   fill="#22a4e6"
+   id="title-accent">4</tspan>T · SOURCE4 IN</text>
     <!-- Screen area, vertically centered between the title and the angle controls area;
        its content is drawn by the module widget. -->
     <!-- Area encompassing the angle controls (same width and rounding as the screen). -->
     <!-- Angle rows at y=54.427 / 73.167 / 91.907 (4 mm margins): CV input (x=8.013), CV attenuverter
        (x=22.846), large knob (x=40.233). Thin lines link the components; thin arcs around the trims
        (radius 4.19 mm) and the knobs (radius 6.417 mm). -->
-    <text x="8.707" y="107.4" id="text43" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan2" x="8.807" y="107.4">OMNI</tspan></text>
-    <text x="42.072" y="107.4" id="text46" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan85" x="42.172" y="107.4">AMB</tspan></text>
+    <text
+       x="8.707"
+       y="107.4"
+       id="text43"
+       style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan
+         sodipodi:role="line"
+         id="tspan2"
+         x="8.807"
+         y="107.4">OMNI</tspan></text>
+    <text
+       x="42.072"
+       y="107.4"
+       id="text46"
+       style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan
+         sodipodi:role="line"
+         id="tspan85"
+         x="42.172"
+         y="107.4">AMB</tspan></text>
     <!-- Ambisonic jack contour (jack radius 4 mm, ring inner edge under the jack: no gap). -->
     <!-- between the bottom screws -->
-    <text id="brand" x="25.4" y="125.958" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4" font-weight="700" text-anchor="middle" fill="#3a4049">\nu.na.tak\</text>
-    <text x="8.784" y="53.045" id="text72" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan45" x="8.884" y="53.045">AZ</tspan></text>
-    <text x="19.754" y="53.045" id="text73" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan46" x="19.854" y="53.045">ELEV</tspan></text>
-    <rect id="screen" x="1.728" y="11.5" width="47.344" height="34.039" rx="1.072" fill="#0d1017" style="stroke-width:1.1561" />
-    <text x="14.474" y="66.498" id="text50" style="font-weight:600;font-size:4.93889px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#777a88;fill-opacity:0.5"><tspan sodipodi:role="line" id="tspan50" x="14.574" y="66.498">1</tspan></text>
-    <text x="30.973" y="53.045" id="text51" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan51" x="31.073" y="53.045">AZ</tspan></text>
-    <text x="41.945" y="53.045" id="text52" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan52" x="42.045" y="53.045">ELEV</tspan></text>
-    <text x="36.545" y="66.498" id="text53" style="font-weight:600;font-size:4.93889px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#777a88;fill-opacity:0.5"><tspan sodipodi:role="line" id="tspan53" x="36.645" y="66.498">2</tspan></text>
-    <use x="0" y="0" xlink:href="#rect33" id="use55" transform="translate(22.189,21.718)" />
-    <text x="14.316" y="88.186" id="text55" style="font-weight:600;font-size:4.93889px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#777a88;fill-opacity:0.5"><tspan sodipodi:role="line" id="tspan57" x="14.416" y="88.186">3</tspan></text>
-    <text x="36.504" y="88.216" id="text56" style="font-weight:600;font-size:4.93889px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#777a88;fill-opacity:0.5"><tspan sodipodi:role="line" id="tspan58" x="36.604" y="88.216">4</tspan></text>
-    <path d="m 6.813,84.6028 a 3.816,3.816 0 1 1 3.8871,0" id="path36" style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />
-    <path d="m 17.9086,84.6028 a 3.816,3.816 0 1 1 3.8871,0" id="path51" style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />
-    <path d="m 40.1,84.6028 a 3.816,3.816 0 1 1 3.8871,0" id="path53" style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />
-    <path d="m 29.0043,84.6028 a 3.816,3.816 0 1 1 3.8871,0" id="path1" style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />
-    <path d="m 6.813,62.705 a 3.816,3.816 0 1 1 3.8871,0" id="path2" style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />
-    <path d="m 17.9086,62.705 a 3.816,3.816 0 1 1 3.8871,0" id="path3" style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />
-    <path d="m 40.1,62.705 a 3.816,3.816 0 1 1 3.8871,0" id="path4" style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />
-    <path d="m 29.0043,62.705 a 3.816,3.816 0 1 1 3.8871,0" id="path9" style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />
-    <text x="34.023" y="112.151" id="text47" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:start;fill:#3a4049"><tspan sodipodi:role="line" id="tspan82" x="34.023" y="112.151">1</tspan></text>
-    <text x="34.023" y="115.041" id="text48" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:start;fill:#3a4049"><tspan sodipodi:role="line" id="tspan83" x="34.023" y="115.041">2</tspan></text>
-    <text x="34.023" y="117.911" id="text49" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:start;fill:#3a4049"><tspan sodipodi:role="line" id="tspan84" x="34.023" y="117.911">3</tspan></text>
+    <text
+       id="brand"
+       x="25.4"
+       y="125.958"
+       font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif"
+       font-size="4"
+       font-weight="700"
+       text-anchor="middle"
+       fill="#3a4049">\nu.na.tak\</text>
+    <rect
+       id="screen"
+       x="1.728"
+       y="11.5"
+       width="47.344"
+       height="34.039"
+       rx="1.072"
+       fill="#0d1017"
+       style="stroke-width:1.1561" />
+    <text
+       x="19.893171"
+       y="92.204208"
+       id="text53"
+       style="font-weight:600;font-size:4.0005px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.162;text-anchor:middle;fill:#3a4049;fill-opacity:1;stroke-width:0.81"><tspan
+         sodipodi:role="line"
+         id="tspan53"
+         x="19.974171"
+         y="92.204208"
+         style="stroke-width:0.81;fill:#3a4049;fill-opacity:1">2</tspan></text>
+    <text
+       x="34.023"
+       y="112.151"
+       id="text47"
+       style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:start;fill:#3a4049"><tspan
+         sodipodi:role="line"
+         id="tspan82"
+         x="34.023"
+         y="112.151">1</tspan></text>
+    <text
+       x="34.023"
+       y="115.041"
+       id="text48"
+       style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:start;fill:#3a4049"><tspan
+         sodipodi:role="line"
+         id="tspan83"
+         x="34.023"
+         y="115.041">2</tspan></text>
+    <text
+       x="34.023"
+       y="117.911"
+       id="text49"
+       style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:start;fill:#3a4049"><tspan
+         sodipodi:role="line"
+         id="tspan84"
+         x="34.023"
+         y="117.911">3</tspan></text>
+    <path
+       d="m 6.813,77.669906 a 3.816,3.816 0 1 1 3.8871,0"
+       id="path7"
+       style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />
+    <path
+       d="m 17.9086,77.669906 a 3.816,3.816 0 1 1 3.8871,0"
+       id="path10"
+       style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />
+    <path
+       d="m 40.1,77.669906 a 3.816,3.816 0 1 1 3.8871,0"
+       id="path11"
+       style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />
+    <path
+       d="m 29.0043,77.669906 a 3.816,3.816 0 1 1 3.8871,0"
+       id="path12"
+       style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />
+    <text
+       x="25.025692"
+       y="70.051064"
+       id="text3"
+       style="font-weight:600;font-size:3.135px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.19;text-anchor:middle;fill:#3a4049;stroke-width:0.95"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         x="25.120691"
+         y="70.051064"
+         style="stroke-width:0.95">ELEV</tspan></text>
+    <text
+       x="8.7745705"
+       y="92.204208"
+       id="text6"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:4.0005px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.162;text-anchor:middle;fill:#3a4049;fill-opacity:1;stroke-width:0.81"><tspan
+         sodipodi:role="line"
+         id="tspan9"
+         x="8.8555708"
+         y="92.204208"
+         style="stroke-width:0.81;fill:#3a4049;fill-opacity:1">1</tspan></text>
+    <text
+       x="30.996582"
+       y="92.209938"
+       id="text8"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:4.0005px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.162;text-anchor:middle;fill:#3a4049;fill-opacity:1;stroke-width:0.81"><tspan
+         sodipodi:role="line"
+         id="tspan10"
+         x="31.077581"
+         y="92.209938"
+         style="stroke-width:0.81;fill:#3a4049;fill-opacity:1">3</tspan></text>
+    <text
+       x="42.091808"
+       y="92.204208"
+       id="text9"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:4.0005px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0.162;text-anchor:middle;fill:#3a4049;fill-opacity:1;stroke-width:0.81"><tspan
+         sodipodi:role="line"
+         id="tspan11"
+         x="42.17281"
+         y="92.204208"
+         style="stroke-width:0.81;fill:#3a4049;fill-opacity:1">4</tspan></text>
+    <path
+       d="m 6.813,56.674586 a 3.816,3.816 0 1 1 3.8871,0"
+       id="path17"
+       style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />
+    <path
+       d="m 17.9086,56.674586 a 3.816,3.816 0 1 1 3.8871,0"
+       id="path18"
+       style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />
+    <path
+       d="m 40.1,56.674586 a 3.816,3.816 0 1 1 3.8871,0"
+       id="path21"
+       style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />
+    <path
+       d="m 29.0043,56.674586 a 3.816,3.816 0 1 1 3.8871,0"
+       id="path23"
+       style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />
+    <g
+       id="g36"
+       style="display:none">
+      <rect
+         style="opacity:0.15;fill:url(#linearGradient22);stroke:none;stroke-width:1.08065"
+         id="rect33"
+         width="9.3250237"
+         height="18.36813"
+         x="4.2127938"
+         y="69.721786"
+         rx="1.5369552"
+         ry="1.5369552" />
+      <rect
+         style="opacity:0.15;fill:url(#linearGradient14);stroke:none;stroke-width:1.08065"
+         id="rect14"
+         width="9.3250237"
+         height="18.36813"
+         x="15.18949"
+         y="69.721786"
+         rx="1.5369552"
+         ry="1.5369552" />
+      <rect
+         style="opacity:0.15;fill:url(#linearGradient15);stroke:none;stroke-width:1.08065"
+         id="rect15"
+         width="9.3250237"
+         height="18.36813"
+         x="26.28549"
+         y="69.721786"
+         rx="1.5369552"
+         ry="1.5369552" />
+      <rect
+         style="opacity:0.15;fill:url(#linearGradient16);stroke:none;stroke-width:1.08065"
+         id="rect16"
+         width="9.3250237"
+         height="18.36813"
+         x="37.380489"
+         y="69.721786"
+         rx="1.5369552"
+         ry="1.5369552" />
+      <rect
+         style="opacity:0.15;fill:url(#linearGradient35);stroke:none;stroke-width:1.08065"
+         id="rect17"
+         width="9.3250237"
+         height="18.36813"
+         x="4.2127938"
+         y="48.72646"
+         rx="1.5369552"
+         ry="1.5369552" />
+      <rect
+         style="opacity:0.15;fill:url(#linearGradient34);stroke:none;stroke-width:1.08065"
+         id="rect23"
+         width="9.3250237"
+         height="18.36813"
+         x="15.18949"
+         y="48.72646"
+         rx="1.5369552"
+         ry="1.5369552" />
+      <rect
+         style="opacity:0.15;fill:url(#linearGradient33);stroke:none;stroke-width:1.08065"
+         id="rect24"
+         width="9.3250237"
+         height="18.36813"
+         x="26.28549"
+         y="48.72646"
+         rx="1.5369552"
+         ry="1.5369552" />
+      <rect
+         style="opacity:0.15;fill:url(#linearGradient32);stroke:none;stroke-width:1.08065"
+         id="rect25"
+         width="9.3250237"
+         height="18.36813"
+         x="37.380489"
+         y="48.72646"
+         rx="1.5369552"
+         ry="1.5369552" />
+    </g>
+    <text
+       x="25.287628"
+       y="49.526043"
+       id="text1"
+       style="font-weight:600;font-size:3.135px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.19;text-anchor:middle;fill:#3a4049;stroke-width:0.95"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         x="25.382627"
+         y="49.526043"
+         style="stroke-width:0.95">AZ</tspan></text>
   </g>
-  <g id="components" inkscape:groupmode="layer" inkscape:label="Components">
-    <use id="ambi-output" xlink:href="#SP4TAmbiPort" x="37.287" y="109.987" width="8.026" height="8.026" transform="translate(0.743)" />
+  <g
+     id="components"
+     inkscape:groupmode="layer"
+     inkscape:label="Components">
+    <use
+       id="ambi-output"
+       xlink:href="#SP4TAmbiPort"
+       x="37.287"
+       y="109.987"
+       width="8.026"
+       height="8.026"
+       transform="translate(0.743)" />
     <!-- Rack widgets (positions from the module source); not part of the exported panel. -->
-    <use id="screw-top-left" xlink:href="#ScrewSilver" x="5.08" y="0" width="5.08" height="5.08" />
-    <use id="screw-top-right" xlink:href="#ScrewSilver" x="40.64" y="0" width="5.08" height="5.08" />
-    <use id="screw-bottom-left" xlink:href="#ScrewSilver" x="5.08" y="123.42" width="5.08" height="5.08" />
-    <use id="screw-bottom-right" xlink:href="#ScrewSilver" x="40.64" y="123.42" width="5.08" height="5.08" />
-    <g id="g51" transform="matrix(0.91074573,0,0,0.91074573,-12.0504,14.6822)">
-      <use id="src3-az-param" xlink:href="#SP4TRoundSmallKnob" x="19.4593" y="69.7803" width="6.7733" height="6.7733" />
+    <use
+       id="screw-top-left"
+       xlink:href="#ScrewSilver"
+       x="5.08"
+       y="0"
+       width="5.08"
+       height="5.08" />
+    <use
+       id="screw-top-right"
+       xlink:href="#ScrewSilver"
+       x="40.64"
+       y="0"
+       width="5.08"
+       height="5.08" />
+    <use
+       id="screw-bottom-left"
+       xlink:href="#ScrewSilver"
+       x="5.08"
+       y="123.42"
+       width="5.08"
+       height="5.08" />
+    <use
+       id="screw-bottom-right"
+       xlink:href="#ScrewSilver"
+       x="40.64"
+       y="123.42"
+       width="5.08"
+       height="5.08" />
+    <use
+       id="order-param"
+       xlink:href="#SP4TSwitchThree"
+       x="24.646"
+       y="109.2"
+       width="4.557"
+       height="9.6"
+       transform="translate(4.023,0)" />
+    <use
+       id="omni-input"
+       xlink:href="#PJ301M"
+       x="4"
+       y="109.987"
+       width="8.026"
+       height="8.026"
+       transform="translate(0.743)" />
+    <use
+       id="src2-input"
+       xlink:href="#PJ301M"
+       x="4"
+       y="69.153999"
+       width="8.026"
+       height="8.026"
+       transform="translate(11.839,24.291339)" />
+    <use
+       id="src4-input"
+       xlink:href="#PJ301M"
+       x="4"
+       y="50.414001"
+       width="8.026"
+       height="8.026"
+       transform="translate(34.03,43.031339)" />
+    <use
+       id="src3-input"
+       xlink:href="#PJ301M"
+       x="4"
+       y="50.414001"
+       width="8.026"
+       height="8.026"
+       transform="translate(22.935,43.031339)" />
+    <g
+       id="g12"
+       transform="matrix(0.91074573,0,0,0.91074573,-12.0504,7.7492061)">
+      <use
+         id="src1-elev-param"
+         xlink:href="#SP4TRoundSmallKnob"
+         x="19.459299"
+         y="69.780296"
+         width="6.7733002"
+         height="6.7733002" />
     </g>
-    <use id="order-param" xlink:href="#SP4TSwitchThree" x="24.646" y="109.2" width="4.557" height="9.6" transform="translate(4.023,0)" />
-    <use id="omni-input" xlink:href="#PJ301M" x="4" y="109.987" width="8.026" height="8.026" transform="translate(0.743)" />
-    <g id="g52" transform="matrix(0.91074573,0,0,0.91074573,-0.9547,14.6822)">
-      <use id="src3-elev-param" xlink:href="#SP4TRoundSmallKnob" x="19.4593" y="69.7803" width="6.7733" height="6.7733" />
+    <g
+       id="g13"
+       transform="matrix(0.91074573,0,0,0.91074573,-0.9547,7.7492061)">
+      <use
+         id="src2-elev-param"
+         xlink:href="#SP4TRoundSmallKnob"
+         x="19.459299"
+         y="69.780296"
+         width="6.7733002"
+         height="6.7733002" />
     </g>
-    <g id="g54" transform="matrix(0.91074573,0,0,0.91074573,21.2366,14.6822)">
-      <use id="src4-elev-param" xlink:href="#SP4TRoundSmallKnob" x="19.4593" y="69.7803" width="6.7733" height="6.7733" />
+    <g
+       id="g14"
+       transform="matrix(0.91074573,0,0,0.91074573,21.2366,7.7492061)">
+      <use
+         id="src4-elev-param"
+         xlink:href="#SP4TRoundSmallKnob"
+         x="19.459299"
+         y="69.780296"
+         width="6.7733002"
+         height="6.7733002" />
     </g>
-    <use id="src3-elev-cv-input" xlink:href="#PJ301M" x="4" y="69.154" width="8.026" height="8.026" transform="translate(11.839,18.39)" />
-    <use id="src3-az-cv-input" xlink:href="#PJ301M" x="4" y="87.894" width="8.026" height="8.026" transform="translate(0.743,-0.35)" />
-    <use id="src4-elev-cv-input" xlink:href="#PJ301M" x="4" y="50.414" width="8.026" height="8.026" transform="translate(34.03,37.13)" />
-    <use id="src4-az-cv-input" xlink:href="#PJ301M" x="4" y="50.414" width="8.026" height="8.026" transform="translate(22.935,37.13)" />
-    <g id="g2" transform="matrix(0.91074573,0,0,0.91074573,10.1409,14.6822)">
-      <use id="src4-az-param" xlink:href="#SP4TRoundSmallKnob" x="19.4593" y="69.7803" width="6.7733" height="6.7733" />
+    <use
+       id="src2-elev-cv-input"
+       xlink:href="#PJ301M"
+       x="4"
+       y="69.153999"
+       width="8.026"
+       height="8.026"
+       transform="translate(11.839,10.033171)" />
+    <use
+       id="src1-elev-cv-input"
+       xlink:href="#PJ301M"
+       x="4"
+       y="87.893997"
+       width="8.026"
+       height="8.026"
+       transform="translate(0.743,-8.7068289)" />
+    <use
+       id="src4-elev-cv-input"
+       xlink:href="#PJ301M"
+       x="4"
+       y="50.414001"
+       width="8.026"
+       height="8.026"
+       transform="translate(34.03,28.773171)" />
+    <use
+       id="src3-elev-cv-input"
+       xlink:href="#PJ301M"
+       x="4"
+       y="50.414001"
+       width="8.026"
+       height="8.026"
+       transform="translate(22.935,28.773171)" />
+    <g
+       id="g19"
+       transform="matrix(0.91074573,0,0,0.91074573,10.1409,7.7492061)">
+      <use
+         id="src3-elev-param"
+         xlink:href="#SP4TRoundSmallKnob"
+         x="19.459299"
+         y="69.780296"
+         width="6.7733002"
+         height="6.7733002" />
     </g>
-    <g id="g3" transform="matrix(0.91074573,0,0,0.91074573,-12.0504,-7.2157)">
-      <use id="src1-az-param" xlink:href="#SP4TRoundSmallKnob" x="19.4593" y="69.7803" width="6.7733" height="6.7733" />
+    <use
+       id="src1-input"
+       xlink:href="#PJ301M"
+       x="4"
+       y="69.153999"
+       width="8.026"
+       height="8.026"
+       transform="translate(0.743,24.291339)" />
+    <g
+       id="g25"
+       transform="matrix(0.91074573,0,0,0.91074573,-12.0504,-13.246114)">
+      <use
+         id="src1-az-param"
+         xlink:href="#SP4TRoundSmallKnob"
+         x="19.459299"
+         y="69.780296"
+         width="6.7733002"
+         height="6.7733002" />
     </g>
-    <g id="g4" transform="matrix(0.91074573,0,0,0.91074573,-0.9547,-7.2157)">
-      <use id="src1-elev-param" xlink:href="#SP4TRoundSmallKnob" x="19.4593" y="69.7803" width="6.7733" height="6.7733" />
+    <g
+       id="g27"
+       transform="matrix(0.91074573,0,0,0.91074573,-0.9547,-13.246114)">
+      <use
+         id="src2-az-param"
+         xlink:href="#SP4TRoundSmallKnob"
+         x="19.459299"
+         y="69.780296"
+         width="6.7733002"
+         height="6.7733002" />
     </g>
-    <g id="g5" transform="matrix(0.91074573,0,0,0.91074573,21.2366,-7.2157)">
-      <use id="src2-elev-param" xlink:href="#SP4TRoundSmallKnob" x="19.4593" y="69.7803" width="6.7733" height="6.7733" />
+    <g
+       id="g28"
+       transform="matrix(0.91074573,0,0,0.91074573,21.2366,-13.246114)">
+      <use
+         id="src4-az-param"
+         xlink:href="#SP4TRoundSmallKnob"
+         x="19.459299"
+         y="69.780296"
+         width="6.7733002"
+         height="6.7733002" />
     </g>
-    <use id="src1-elev-cv-input" xlink:href="#PJ301M" x="4" y="69.154" width="8.026" height="8.026" transform="translate(11.839,-3.508)" />
-    <use id="src1-az-cv-input" xlink:href="#PJ301M" x="4" y="87.894" width="8.026" height="8.026" transform="translate(0.743,-22.248)" />
-    <use id="src2-elev-cv-input" xlink:href="#PJ301M" x="4" y="50.414" width="8.026" height="8.026" transform="translate(34.03,15.232)" />
-    <use id="src2-az-cv-input" xlink:href="#PJ301M" x="4" y="50.414" width="8.026" height="8.026" transform="translate(22.935,15.232)" />
-    <g id="g10" transform="matrix(0.91074573,0,0,0.91074573,10.1409,-7.2157)">
-      <use id="src2-az-param" xlink:href="#SP4TRoundSmallKnob" x="19.4593" y="69.7803" width="6.7733" height="6.7733" />
+    <use
+       id="src2-az-cv-input"
+       xlink:href="#PJ301M"
+       x="4"
+       y="69.153999"
+       width="8.026"
+       height="8.026"
+       transform="translate(11.839,-10.962149)" />
+    <use
+       id="src1-az-cv-input"
+       xlink:href="#PJ301M"
+       x="4"
+       y="87.893997"
+       width="8.026"
+       height="8.026"
+       transform="translate(0.743,-29.702149)" />
+    <use
+       id="src4-az-cv-input"
+       xlink:href="#PJ301M"
+       x="4"
+       y="50.414001"
+       width="8.026"
+       height="8.026"
+       transform="translate(34.03,7.7778514)" />
+    <use
+       id="src3-az-cv-input"
+       xlink:href="#PJ301M"
+       x="4"
+       y="50.414001"
+       width="8.026"
+       height="8.026"
+       transform="translate(22.935,7.7778514)" />
+    <g
+       id="g32"
+       transform="matrix(0.91074573,0,0,0.91074573,10.1409,-13.246114)">
+      <use
+         id="src3-az-param"
+         xlink:href="#SP4TRoundSmallKnob"
+         x="19.459299"
+         y="69.780296"
+         width="6.7733002"
+         height="6.7733002" />
     </g>
   </g>
 </svg>

@@ -12,6 +12,27 @@ namespace sp4t {
 const Vec AmbisonicDisplay::REFERENCE_SIZE = mm2px(Vec(45.8f, 27.3f));
 
 
+namespace {
+
+/** Size of every label of the screen, axis names and source labels alike, in
+ * all the view modes. The graticule labels of the cartesian view keep their own
+ * smaller size.
+ *
+ * It is the size the axis names of the Rotate screen come out at: both screens
+ * are drawn in the same reference units and scaled to fit their own box, and
+ * both are limited by their width, so the 16 units of the Rotate names render
+ * here in the ratio of the two screen widths: 16 * 37.294 / 47.344 mm.
+ */
+const float LABEL_SIZE = 12.6f;
+
+/** Metrics of one glyph at that size, as fractions of it: cap height and the
+ * advance of the source font. */
+const float LABEL_HALF_HEIGHT = 0.35f * LABEL_SIZE;
+const float LABEL_SLOT = 0.6f * LABEL_SIZE;
+
+} // namespace
+
+
 std::vector<std::string> AmbisonicDisplay::getViewModeLabels() {
 	return {"Orthographic (front / rear)", "Hammer", "Cartesian", "3D sphere",
 	        "XY/Z projections"};
@@ -51,7 +72,8 @@ void AmbisonicDisplay::drawLayer(const DrawArgs& args, int layer) {
  * continues from the right edge of the front disk. */
 void AmbisonicDisplay::drawOrthographicPair(NVGcontext* vg, Vec size) {
 	const float pad = 3.f;
-	const float labelHeight = 11.f;
+	// The row the FRONT / REAR names sit in, above the disks.
+	const float labelHeight = 1.1f * LABEL_SIZE;
 	float r = std::min((size.x - 3 * pad) / 4, (size.y - labelHeight - 2 * pad) / 2);
 	float cy = (size.y + labelHeight) / 2;
 	Vec front(size.x / 2 - pad / 2 - r, cy);
@@ -59,8 +81,8 @@ void AmbisonicDisplay::drawOrthographicPair(NVGcontext* vg, Vec size) {
 
 	drawHemisphereGrid(vg, front, r);
 	drawHemisphereGrid(vg, rear, r);
-	drawLabel(vg, Vec(front.x, cy - r - 2), "FRONT", NVG_ALIGN_CENTER | NVG_ALIGN_BOTTOM);
-	drawLabel(vg, Vec(rear.x, cy - r - 2), "REAR", NVG_ALIGN_CENTER | NVG_ALIGN_BOTTOM);
+	drawLabel(vg, Vec(front.x, cy - r - 2), "FRONT", NVG_ALIGN_CENTER | NVG_ALIGN_BOTTOM, LABEL_SIZE);
+	drawLabel(vg, Vec(rear.x, cy - r - 2), "REAR", NVG_ALIGN_CENTER | NVG_ALIGN_BOTTOM, LABEL_SIZE);
 
 	// Sources on the front/rear boundary (azimuth or elevation at +/-90
 	// degrees, up to rounding errors) are shown on the same disk as the
@@ -216,7 +238,7 @@ void AmbisonicDisplay::drawCartesian(NVGcontext* vg, Vec size) {
 	}
 
 	// Keep the labels of sources at the edges (e.g., rear or poles) whole.
-	const Vec margin(4, 5);
+	const Vec margin(0.4f * LABEL_SIZE, 0.5f * LABEL_SIZE);
 	drawSources(vg, [&](const Direction& d) {
 		return project(d.azimuth, d.elevation).clamp(math::Rect(margin, size.minus(margin.mult(2))));
 	});
@@ -241,14 +263,14 @@ void AmbisonicDisplay::drawSphere3D(NVGcontext* vg, Vec size) {
 	Vec c = size.div(2);
 	// Radius of the sphere outline on the screen (not drawn, used for the
 	// layout), leaving room for the axis names.
-	float outlineRadius = std::min(c.y - 11, c.x - 8);
+	float outlineRadius = std::min(c.y - 1.1f * LABEL_SIZE, c.x - 0.8f * LABEL_SIZE);
 
 	// Axis names, just outside the outline in the screen direction of the
 	// positive axis ends.
 	const Vector3 axes[3] = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
 	const char* axisNames[3] = {"X", "Y", "Z"};
 	const float labelDistance = outlineRadius + 5;
-	const float labelHalfHeight = 3.5f;
+	const float labelHalfHeight = LABEL_HALF_HEIGHT;
 	auto axisDirection = [=](const Vector3& axis) {
 		return Vec(dot(axis, right), -dot(axis, up)).normalize();
 	};
@@ -351,7 +373,8 @@ void AmbisonicDisplay::drawSphere3D(NVGcontext* vg, Vec size) {
 	}
 
 	for (int i = 0; i < 3; i++)
-		drawLabel(vg, c.plus(axisDirection(axes[i]).mult(labelDistance)), axisNames[i], NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE);
+		drawLabel(vg, c.plus(axisDirection(axes[i]).mult(labelDistance)), axisNames[i],
+		          NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE, LABEL_SIZE);
 
 	drawSources(vg, [&](const Direction& d) {
 		Vector3 v = directionToVector(d.azimuth, d.elevation);
@@ -372,13 +395,7 @@ void AmbisonicDisplay::drawSphere3D(NVGcontext* vg, Vec size) {
  */
 void AmbisonicDisplay::drawXYandZProjections(NVGcontext* vg, Vec size) {
 	const float pad = 3.f;
-	/** Labels, at the size the axis names of the Rotate screen come out at.
-	 * Both screens are drawn in the same reference units and scaled to fit
-	 * their own box, and both are limited by their width, so the 16 units of
-	 * the Rotate names render here in the ratio of the two screen widths:
-	 * 16 * 37.294 / 47.344 mm. */
-	const float fontSize = 12.6f;
-	const float labelHalfHeight = 0.35f * fontSize;   // cap height
+	const float labelHalfHeight = LABEL_HALF_HEIGHT;
 	/** How far a source label sitting on a rim or on the z axis reaches past
 	 * it. */
 	const float sourceReach = labelHalfHeight;
@@ -388,8 +405,9 @@ void AmbisonicDisplay::drawXYandZProjections(NVGcontext* vg, Vec size) {
 	const float nameRoom = nameGap + labelHalfHeight;
 	/** Advance of one glyph of the source font, i.e. the width of one slot of
 	 * the z axis (see below). */
-	const float slot = 0.6f * fontSize;
-	/** The z axis takes the width of its three slots. */
+	const float slot = LABEL_SLOT;
+	/** The z axis takes the width of three slots, whatever the number of
+	 * sources it has to lay out (see below). */
 	const float columnHalfWidth = 1.5f * slot;
 	/** Between the circle and the z axis, with room for a source label on the
 	 * right rim of the circle. */
@@ -438,7 +456,7 @@ void AmbisonicDisplay::drawXYandZProjections(NVGcontext* vg, Vec size) {
 		nvgFillColor(vg, SCREEN_OUTLINE);
 		nvgFill(vg);
 
-		drawText(vg, LABEL_FONT, fontSize, SCREEN_TEXT, NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE,
+		drawText(vg, LABEL_FONT, LABEL_SIZE, SCREEN_TEXT, NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE,
 		         center.plus(u.mult(radius + nameGap)), name);
 	};
 
@@ -469,35 +487,38 @@ void AmbisonicDisplay::drawXYandZProjections(NVGcontext* vg, Vec size) {
 	nvgStrokeWidth(vg, 0.8f);
 	nvgStroke(vg);
 
-	// The sources on the z axis, in three slots side by side so that labels at
-	// the same height do not pile up, which the whole stereo pair is at
-	// whenever its elevation is zero: the center source on the axis, the left
-	// one to its left and the right one to its right, as on the circle. They
-	// come in that order from the module.
-	const float slots[3] = {0.f, -slot, slot};
-	for (size_t i = 0; i < sources.size() && i < 3; i++) {
+	// The sources on the z axis, in slots side by side so that labels at the
+	// same height do not pile up, which a whole set of them is whenever their
+	// elevations coincide. The slots are centered on the axis and keep the
+	// order the sources come in, so that a stereo pair reads as on the circle
+	// (the left source on the left). Past three sources they narrow to stay
+	// within the column and start to overlap, which reads better than labels
+	// running into the circle or off the screen.
+	int numSources = (int) sources.size();
+	float spacing = numSources > 1 ? std::min(slot, 2.f * slot / (numSources - 1)) : 0.f;
+	for (int i = 0; i < numSources; i++) {
 		const Source& source = sources[i];
 		float z = std::sin(source.direction.elevation * DEG2RAD);
-		Vec p(axisCenter.x + slots[i], axisCenter.y - z * axisRadius);
-		drawSourceLabel(vg, ProjectedSource(p), source, fontSize);
+		Vec p(axisCenter.x + (i - (numSources - 1) / 2.f) * spacing, axisCenter.y - z * axisRadius);
+		drawSourceLabel(vg, ProjectedSource(p), source);
 	}
 
 	drawSources(vg, [&](const Direction& d) {
 		Vector3 v = directionToVector(d.azimuth, d.elevation);
 		return Vec(c.x - v.y * r, c.y - v.x * r);
-	}, fontSize);
+	});
 }
 
 
 template <typename Project>
-void AmbisonicDisplay::drawSources(NVGcontext* vg, const Project& project, float fontSize) {
+void AmbisonicDisplay::drawSources(NVGcontext* vg, const Project& project) {
 	for (const Source& source : sources)
-		drawSourceLabel(vg, project(source.direction), source, fontSize);
+		drawSourceLabel(vg, project(source.direction), source);
 }
 
 
-void AmbisonicDisplay::drawSourceLabel(NVGcontext* vg, ProjectedSource p, const Source& source, float fontSize) {
-	drawText(vg, SOURCE_FONT, fontSize, nvgTransRGBAf(source.color, p.alpha), NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE,
+void AmbisonicDisplay::drawSourceLabel(NVGcontext* vg, ProjectedSource p, const Source& source) {
+	drawText(vg, SOURCE_FONT, LABEL_SIZE, nvgTransRGBAf(source.color, p.alpha), NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE,
 	         p.pos, source.label.c_str());
 }
 

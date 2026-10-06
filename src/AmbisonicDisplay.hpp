@@ -68,8 +68,8 @@ private:
 	void drawXYandZProjections(NVGcontext* vg, Vec size);
 
 	template <typename Project>
-	void drawSources(NVGcontext* vg, const Project& project, float fontSize = 11.f);
-	void drawSourceLabel(NVGcontext* vg, ProjectedSource p, const Source& source, float fontSize = 11.f);
+	void drawSources(NVGcontext* vg, const Project& project);
+	void drawSourceLabel(NVGcontext* vg, ProjectedSource p, const Source& source);
 };
 
 

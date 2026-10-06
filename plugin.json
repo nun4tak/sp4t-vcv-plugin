@@ -82,6 +82,13 @@
       "description": "Multi-channel Decorrelator",
       "manualUrl": "",
         "tags": ["Effect", "Polyphonic", "Reverb"]
+    },
+    {
+      "slug": "SP4T-Source4-In",
+      "name": "SP4T Source4 In",
+      "description": "Ambisonic 4-Source Encoder",
+      "manualUrl": "",
+        "tags": ["Utility", "Polyphonic", "Panning"]
     }
   ]
 }
