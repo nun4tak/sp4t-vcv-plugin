@@ -35,16 +35,24 @@ CMAKE_FLAGS += -DCMAKE_C_COMPILER="$(CC)" -DCMAKE_CXX_COMPILER="$(CXX)"
 # The tools the Rack plugin toolchain exports for the platform it targets. Its
 # CODESIGN is a command rather than a program ("rcodesign sign", which ad-hoc
 # signs Mach-O binaries off a Mac), so it is passed to CMake as a list.
+#
+# As absolute paths: the toolchain names them as programs on PATH, and CMake
+# resolves a bare name in a custom command against the build directory instead
+# of looking it up, which fails as "no such file or directory".
 empty :=
 space := $(empty) $(empty)
+where = $(or $(shell command -v $(1) 2>/dev/null),$(1))
+
 ifdef STRIP
-	CMAKE_FLAGS += -DCMAKE_STRIP="$(STRIP)"
+	CMAKE_FLAGS += -DCMAKE_STRIP="$(call where,$(STRIP))"
 endif
 ifdef INSTALL_NAME_TOOL
-	CMAKE_FLAGS += -DCMAKE_INSTALL_NAME_TOOL="$(INSTALL_NAME_TOOL)"
+	CMAKE_FLAGS += -DCMAKE_INSTALL_NAME_TOOL="$(call where,$(INSTALL_NAME_TOOL))"
 endif
 ifdef CODESIGN
-	CMAKE_FLAGS += -DRACK_CODESIGN="$(subst $(space),;,$(strip $(CODESIGN)))"
+	# First word is the program, the rest are its arguments.
+	codesign_cmd := $(call where,$(firstword $(CODESIGN))) $(wordlist 2,$(words $(CODESIGN)),$(CODESIGN))
+	CMAKE_FLAGS += -DRACK_CODESIGN="$(subst $(space),;,$(strip $(codesign_cmd)))"
 endif
 
 # Which operating system this make is running on, as arch.mk names them.
