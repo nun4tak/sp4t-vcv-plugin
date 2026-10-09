@@ -8,7 +8,9 @@ SDKs/Rack-SDK
 
 # CMake / Make build output
 build/
+build-*/
 dist/
+dep/
 compile_commands.json
 
 .cache/

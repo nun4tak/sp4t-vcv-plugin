@@ -181,9 +181,20 @@ if (APPLE)
   # can't resolve. Rack symlinks /tmp/Rack2 to its system dir at startup, so load
   # libRack through it. Done on the built library (not only in dist), so that the
   # build and install outputs are loadable too; re-sign after the edit.
+  # Through the toolchain's tools, not the host's: a cross build (the VCV
+  # Library builds plugins with one) has no `install_name_tool` of its own, and
+  # no `codesign` at all, in which case the signature is left to whoever
+  # notarizes the result.
+  find_program(RACK_CODESIGN codesign)
+  if (RACK_CODESIGN)
+    set(_rack_codesign COMMAND ${RACK_CODESIGN} -f -s - $<TARGET_FILE:${RACK_PLUGIN_LIB}>)
+  else ()
+    set(_rack_codesign "")
+    message(STATUS "No codesign: leaving ${RACK_PLUGIN_LIB} unsigned")
+  endif ()
   add_custom_command(TARGET ${RACK_PLUGIN_LIB} POST_BUILD
-      COMMAND install_name_tool -change libRack.dylib /tmp/Rack2/libRack.dylib $<TARGET_FILE:${RACK_PLUGIN_LIB}>
-      COMMAND codesign -f -s - $<TARGET_FILE:${RACK_PLUGIN_LIB}>
+      COMMAND "${CMAKE_INSTALL_NAME_TOOL}" -change libRack.dylib /tmp/Rack2/libRack.dylib $<TARGET_FILE:${RACK_PLUGIN_LIB}>
+      ${_rack_codesign}
       COMMENT "Resolving libRack.dylib through /tmp/Rack2")
 endif ()
 
@@ -265,12 +276,17 @@ else ()
     # libRack.dylib already resolves through /tmp/Rack2 (see the plugin target).
     # Stripping invalidates the signature (expected, hence the silenced warning),
     # so re-sign.
+    if (RACK_CODESIGN)
+      set(_rack_dist_codesign COMMAND ${RACK_CODESIGN} -f -s - "${_rack_dist_lib}")
+    else ()
+      set(_rack_dist_codesign "")
+    endif ()
     add_custom_command(TARGET plugin_dist POST_BUILD
-        COMMAND strip -no_code_signature_warning -S "${_rack_dist_lib}"
-        COMMAND codesign -f -s - "${_rack_dist_lib}")
+        COMMAND "${CMAKE_STRIP}" -no_code_signature_warning -S "${_rack_dist_lib}"
+        ${_rack_dist_codesign})
   else ()
     add_custom_command(TARGET plugin_dist POST_BUILD
-        COMMAND strip -s "${_rack_dist_lib}")
+        COMMAND "${CMAKE_STRIP}" -s "${_rack_dist_lib}")
   endif ()
 
   add_custom_command(TARGET plugin_dist POST_BUILD

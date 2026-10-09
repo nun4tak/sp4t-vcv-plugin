@@ -181,28 +181,6 @@ If the SDK lives elsewhere, pass `-DRACK_SDK_DIR=<path>` when configuring. To
 install to a different folder, pass `-DCMAKE_INSTALL_PREFIX=<path>`. For a debug
 build, configure with `-DCMAKE_BUILD_TYPE=Debug`.
 
-## Continuous integration
-
-`.github/workflows/build.yml` builds a distributable `.vcvplugin` bundle for
-each platform Rack publishes an SDK for — `lin-x64`, `win-x64`, `mac-x64` and
-`mac-arm64` — and uploads them as workflow artifacts; a run triggered by a
-release also attaches them to it, once it has checked that the tag matches the
-version in `plugin.json` (with or without a leading `v`). It runs on a release,
-on pushes and pull requests that touch the build configuration (CMake, pixi,
-`plugin.json`, `SDKs/`, the workflow itself), and on demand from the Actions
-tab.
-
-The bundles are self-contained, which the workflow checks: SAF's BLAS/LAPACK
-back end (`SAF_PERFORMANCE_LIB`) is Apple Accelerate on macOS and a statically
-linked OpenBLAS (BSD-3-Clause) on Linux and Windows, so a bundle only needs the
-libraries every machine already has. The Linux job builds OpenBLAS from source
-(cached between runs) with `NOFORTRAN=1`, which builds LAPACK from its
-f2c-translated C sources: the distribution's own build needs a Fortran runtime
-that Ubuntu does not ship in a position-independent form, so it cannot be
-linked into the plugin. SAF's own SIMD flags are disabled on Linux
-and Windows, where it would otherwise compile itself for the build machine's
-CPU (`-march=native`) and produce bundles that crash on older processors.
-
 ## Disclaimer
 
 The development of this plugin has been AI assisted. It has *not* been "vibe"

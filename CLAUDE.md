@@ -134,3 +134,43 @@ name + ".md" file extension) and the following sections:
   arranged, positioned and/or aligned on the panel, the size of the knobs (e.g.,
   big, normal, small trim), screen size (if any)
 - implementation: notes on the implementation details
+
+## Continuous integration and distribution
+
+The VCV Library builds open-source plugins itself from a commit hash, with
+VCVRack/rack-plugin-toolchain, which runs `make clean`, `make cleandep`,
+`make dep` and `make dist` in the plugin directory. The `Makefile` exists only
+for that: it translates RACK_DIR, CC, CXX and STRIP into a CMake invocation and
+leaves the build itself to CMake, so the sources are described in one place. It
+is not used for development; the pixi tasks are.
+
+`.github/workflows/build.yml` builds a `.vcvplugin` bundle per platform, on a
+release, on changes to the build configuration, and on demand. Those bundles
+are for direct download and for checking that the plugin still builds
+everywhere -- what users install through the Plugin Manager is VCV's own build.
+
+Decisions behind both, worth not re-deriving:
+
+- SAF needs a BLAS/LAPACK back end (`SAF_PERFORMANCE_LIB`). Apple Accelerate on
+  macOS, OpenBLAS elsewhere. Intel MKL is ruled out: SAF expects a custom-built
+  shared library for it, which Windows would not resolve from the plugin
+  directory at load time, on top of its proprietary licence and its size.
+- OpenBLAS is linked statically, so a bundle needs no library of its own. On
+  Linux it is built from source (`NOFORTRAN=1`, which builds LAPACK and LAPACKE
+  from the f2c-translated C sources): the distributions' builds are compiled
+  with gfortran, and Ubuntu ships no position-independent `libgfortran.a`, so
+  linking its runtime into the plugin fails on a TLS relocation in `async.o`.
+  LAPACK reaches that runtime through one symbol, `_gfortran_concat_string`,
+  which `dgesvd` and friends use. The Makefile's `dep` target builds the same
+  thing for the Library's cross builds.
+- `SAF_ENABLE_SIMD` is off on Linux and Windows: SAF compiles itself with
+  `-march=native` there (`framework/CMakeLists.txt`), which would tie a bundle
+  to the machine that built it. On macOS its flags are per-arch baselines.
+- Windows uses MSYS2's MINGW64 and not the UCRT64 that MSYS2 now recommends:
+  Rack and the plugins VCV builds target msvcrt, and Rack deletes widgets and
+  modules the plugin allocated, so a plugin on the other C runtime would free
+  its memory on the wrong heap.
+- There is no `lin-arm64` Rack SDK, so there is no Linux ARM bundle. The Linux
+  job builds on the oldest image GitHub offers, which sets the glibc floor
+  (2.35 on ubuntu-22.04, against VCV's own 2.23); an older container would
+  lower it if that ever matters.
