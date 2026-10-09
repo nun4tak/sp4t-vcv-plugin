@@ -63,7 +63,7 @@ jobs:
             runner: windows-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           submodules: recursive # SDKs/Spatial_Audio_Framework
 
@@ -123,11 +123,18 @@ jobs:
         with:
           cache: true
 
+      # MINGW64 and not the UCRT64 that MSYS2 now recommends: it is the only
+      # environment left that targets msvcrt, which is the C runtime Rack and
+      # the plugins VCV builds use (its toolchain is crosstool-ng's stock
+      # x86_64-w64-mingw32, i.e. mingw-w64's msvcrt default). Rack deletes
+      # widgets and modules the plugin allocated, so a plugin built against
+      # ucrtbase would be freeing its memory on the wrong heap.
       - name: Set up MSYS2
         if: runner.os == 'Windows'
         uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
+          suppress-deprecation-warnings: msystem-mingw64
           update: false
           install: >-
             mingw-w64-x86_64-gcc
@@ -150,7 +157,7 @@ jobs:
       - name: Cache OpenBLAS
         if: runner.os == 'Linux'
         id: openblas-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: openblas
           key: openblas-${{ env.OPENBLAS_VERSION }}-${{ matrix.arch }}-nehalem-nofortran
@@ -257,7 +264,7 @@ jobs:
 
       # ------------------------------------------------------------- delivery
       - name: Upload the bundle
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ steps.meta.outputs.slug }}-${{ matrix.arch }}
           path: build/dist/*.vcvplugin
