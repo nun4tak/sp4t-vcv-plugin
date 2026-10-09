@@ -99,7 +99,7 @@ jobs:
 
       - name: Cache the Rack SDK
         id: sdk-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: SDKs/Rack-SDK
           key: rack-sdk-${{ steps.meta.outputs.sdk-version }}-${{ matrix.arch }}
@@ -305,7 +305,7 @@ jobs:
 
       - name: Cache the Rack SDK
         id: sdk-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: SDKs/Rack-SDK
           key: rack-sdk-${{ steps.meta.outputs.sdk-version }}-win-x64
@@ -319,7 +319,7 @@ jobs:
 
       # What `make dep` builds, kept between runs: it is the only slow step.
       - name: Cache the OpenBLAS the Makefile builds
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: dep
           key: makefile-dep-${{ hashFiles('Makefile') }}-win-x64
