@@ -122,6 +122,14 @@ pixi run dist        # cmake --build build --target plugin_dist
 pixi run clean       # cmake -E rm -rf build
 ```
 
+Configuring also writes a `build/compile_commands.json` compilation database
+(`-DCMAKE_EXPORT_COMPILE_COMMANDS=ON`). `pixi run compile-commands` configures
+and symlinks it into the repository root, where language servers look for it:
+
+```sh
+pixi run compile-commands   # -> compile_commands.json (git-ignored symlink)
+```
+
 `build` and `dist` configure first, and `install` builds first, so
 `pixi run install` is enough from a clean checkout. Without pixi, run the CMake
 commands shown in the comments directly.
