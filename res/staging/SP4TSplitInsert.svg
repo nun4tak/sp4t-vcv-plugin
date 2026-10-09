@@ -41,6 +41,9 @@
     <text x="25.431" y="17.856" id="text13" style="font-weight:600;font-size:2.4057px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.1458;text-anchor:middle;fill:#adb2b8;stroke-width:0.729"><tspan sodipodi:role="line" id="tspan13" x="25.503" y="17.856">GAIN</tspan></text>
     <path style="fill:none;stroke:#737a83;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="M 8.5253,19.2431 V 16.9893 H 21.5541" id="path13" sodipodi:nodetypes="ccc" />
     <path style="fill:none;stroke:#737a83;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="M 42.0199,19.2431 V 16.9893 H 29.245" id="path14" sodipodi:nodetypes="ccc" />
+    <!-- Each insert's SEND is normalled to its RETURN: the triangle points from
+       the send jack to the return jack that falls back on it when unpatched. -->
+    <path style="fill:#737a83;stroke:none" d="M 26.15,28.039 L 24.65,27.289 L 24.65,28.789 Z" id="send-normal-1" />
     <path style="fill:none;stroke:#737a83;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 8.7565,32.0316 v 3.9162" id="path146" sodipodi:nodetypes="cc" />
     <text x="41.987" y="35.365" id="text16" style="font-weight:600;font-size:2.673px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.162;text-anchor:middle;fill:#adb2b8;stroke-width:0.81"><tspan sodipodi:role="line" id="tspan16" x="42.068" y="35.365">DELAY</tspan></text>
     <path d="m 40.1,44.2404 a 3.816,3.816 0 1 1 3.8871,0" id="path16" style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />
@@ -54,6 +57,7 @@
     <text x="25.431" y="51.974" id="text23" style="font-weight:600;font-size:2.4057px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.1458;text-anchor:middle;fill:#3a4049;stroke-width:0.729"><tspan sodipodi:role="line" id="tspan23" x="25.503" y="51.974">GAIN</tspan></text>
     <path style="fill:none;stroke:#737a83;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="M 8.5253,53.3604 V 51.1066 H 21.5541" id="path27" sodipodi:nodetypes="ccc" />
     <path style="fill:none;stroke:#737a83;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="M 42.0199,53.3604 V 51.1066 H 29.245" id="path28" sodipodi:nodetypes="ccc" />
+    <path style="fill:#737a83;stroke:none" d="M 26.15,62.157 L 24.65,61.407 L 24.65,62.907 Z" id="send-normal-2" />
     <path style="fill:none;stroke:#737a83;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 8.7565,66.1489 v 3.9162" id="path29" sodipodi:nodetypes="cc" />
     <text x="41.987" y="69.483" id="text29" style="font-weight:600;font-size:2.673px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.162;text-anchor:middle;fill:#3a4049;stroke-width:0.81"><tspan sodipodi:role="line" id="tspan29" x="42.068" y="69.483">DELAY</tspan></text>
     <path d="m 40.1,78.3577 a 3.816,3.816 0 1 1 3.8871,0" id="path30" style="fill:none;stroke:#737a83;stroke-width:0.2732;stroke-linecap:round" />

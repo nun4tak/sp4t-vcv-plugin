@@ -18,4 +18,5 @@ void init(Plugin* p) {
 	p->addModel(modelNun4takSP4TFlip);
 	p->addModel(modelNun4takSP4TSmear);
 	p->addModel(modelNun4takSP4TSource4In);
+	p->addModel(modelNun4takSP4TSplitInsert);
 }

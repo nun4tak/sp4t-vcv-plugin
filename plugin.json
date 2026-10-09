@@ -89,6 +89,13 @@
       "description": "Ambisonic 4-Source Encoder",
       "manualUrl": "",
         "tags": ["Utility", "Polyphonic", "Panning"]
+    },
+    {
+      "slug": "SP4T-Split-Insert",
+      "name": "SP4T Split Insert",
+      "description": "Ambisonic Dual Effect Inserts",
+      "manualUrl": "",
+        "tags": ["Utility", "Polyphonic", "Effect"]
     }
   ]
 }

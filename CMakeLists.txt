@@ -59,6 +59,7 @@ target_sources(${RACK_PLUGIN_LIB} PRIVATE
     src/SP4TMute.cpp
     src/SP4TFlip.cpp
     src/SP4TSmear.cpp
-    src/SP4TSource4In.cpp)
+    src/SP4TSource4In.cpp
+    src/SP4TSplitInsert.cpp)
 
 target_link_libraries(${RACK_PLUGIN_LIB} PRIVATE saf)
