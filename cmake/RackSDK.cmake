@@ -185,12 +185,22 @@ if (APPLE)
   # Library builds plugins with one) has no `install_name_tool` of its own, and
   # no `codesign` at all, in which case the signature is left to whoever
   # notarizes the result.
-  find_program(RACK_CODESIGN codesign)
+  # The whole signing command, since it is not always codesign: the Rack plugin
+  # toolchain cross-signs with "rcodesign sign" instead. Pass -DRACK_CODESIGN=
+  # (empty) to leave the library unsigned.
+  if (NOT DEFINED RACK_CODESIGN)
+    find_program(_rack_codesign_exe codesign)
+    if (_rack_codesign_exe)
+      set(RACK_CODESIGN "${_rack_codesign_exe};-f;-s;-" CACHE STRING "Command that signs the plugin library")
+    else ()
+      set(RACK_CODESIGN "" CACHE STRING "Command that signs the plugin library")
+      message(STATUS "No codesign: leaving ${RACK_PLUGIN_LIB} unsigned")
+    endif ()
+  endif ()
   if (RACK_CODESIGN)
-    set(_rack_codesign COMMAND ${RACK_CODESIGN} -f -s - $<TARGET_FILE:${RACK_PLUGIN_LIB}>)
+    set(_rack_codesign COMMAND ${RACK_CODESIGN} $<TARGET_FILE:${RACK_PLUGIN_LIB}>)
   else ()
     set(_rack_codesign "")
-    message(STATUS "No codesign: leaving ${RACK_PLUGIN_LIB} unsigned")
   endif ()
   add_custom_command(TARGET ${RACK_PLUGIN_LIB} POST_BUILD
       COMMAND "${CMAKE_INSTALL_NAME_TOOL}" -change libRack.dylib /tmp/Rack2/libRack.dylib $<TARGET_FILE:${RACK_PLUGIN_LIB}>
@@ -277,7 +287,7 @@ else ()
     # Stripping invalidates the signature (expected, hence the silenced warning),
     # so re-sign.
     if (RACK_CODESIGN)
-      set(_rack_dist_codesign COMMAND ${RACK_CODESIGN} -f -s - "${_rack_dist_lib}")
+      set(_rack_dist_codesign COMMAND ${RACK_CODESIGN} "${_rack_dist_lib}")
     else ()
       set(_rack_dist_codesign "")
     endif ()

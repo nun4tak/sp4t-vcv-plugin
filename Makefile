@@ -31,8 +31,20 @@ BUILD_DIR ?= build-$(ARCH_NAME)
 CMAKE_FLAGS += -DCMAKE_BUILD_TYPE=Release
 CMAKE_FLAGS += -DRACK_SDK_DIR="$(abspath $(RACK_DIR))"
 CMAKE_FLAGS += -DCMAKE_C_COMPILER="$(CC)" -DCMAKE_CXX_COMPILER="$(CXX)"
+
+# The tools the Rack plugin toolchain exports for the platform it targets. Its
+# CODESIGN is a command rather than a program ("rcodesign sign", which ad-hoc
+# signs Mach-O binaries off a Mac), so it is passed to CMake as a list.
+empty :=
+space := $(empty) $(empty)
 ifdef STRIP
 	CMAKE_FLAGS += -DCMAKE_STRIP="$(STRIP)"
+endif
+ifdef INSTALL_NAME_TOOL
+	CMAKE_FLAGS += -DCMAKE_INSTALL_NAME_TOOL="$(INSTALL_NAME_TOOL)"
+endif
+ifdef CODESIGN
+	CMAKE_FLAGS += -DRACK_CODESIGN="$(subst $(space),;,$(strip $(CODESIGN)))"
 endif
 
 # Which operating system this make is running on, as arch.mk names them.

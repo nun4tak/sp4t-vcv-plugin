@@ -276,3 +276,69 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh release upload "${{ github.event.release.tag_name }}" build/dist/*.vcvplugin --clobber
+
+  # The VCV Library does not take these bundles: it builds the plugin itself,
+  # by cross-compiling through the Makefile (see CLAUDE.md). That path is only
+  # exercised here, and only for Windows -- the distribution's own mingw-w64,
+  # not VCV's toolchain, so this says "the Makefile cross-compiles", not "the
+  # Library's build passes". Rehearse that one locally with
+  # VCVRack/rack-plugin-toolchain (v2 branch) before submitting a release.
+  library-build:
+    name: make dist (cross to win-x64)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive
+
+      - name: Read the build metadata
+        id: meta
+        run: |
+          version=$(sed -n 's/^set(RACK_SDK_VERSION \([^)]*\))/\1/p' cmake/RackSDK.cmake)
+          test -n "$version"
+          echo "sdk-version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Install the MinGW cross toolchain
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends mingw-w64
+
+      - name: Cache the Rack SDK
+        id: sdk-cache
+        uses: actions/cache@v4
+        with:
+          path: SDKs/Rack-SDK
+          key: rack-sdk-${{ steps.meta.outputs.sdk-version }}-win-x64
+
+      - name: Download the Rack SDK
+        if: steps.sdk-cache.outputs.cache-hit != 'true'
+        run: |
+          curl -fsSL -o Rack-SDK.zip \
+            "https://vcvrack.com/downloads/Rack-SDK-${{ steps.meta.outputs.sdk-version }}-win-x64.zip"
+          unzip -q -d SDKs Rack-SDK.zip
+
+      # What `make dep` builds, kept between runs: it is the only slow step.
+      - name: Cache the OpenBLAS the Makefile builds
+        uses: actions/cache@v4
+        with:
+          path: dep
+          key: makefile-dep-${{ hashFiles('Makefile') }}-win-x64
+
+      # The four targets the Library's toolchain calls, with the variables it
+      # sets for a Windows build.
+      - name: make dep && make dist
+        env:
+          RACK_DIR: SDKs/Rack-SDK
+          CC: x86_64-w64-mingw32-gcc
+          CXX: x86_64-w64-mingw32-g++
+          STRIP: x86_64-w64-mingw32-strip
+        run: |
+          make dep
+          make dist
+          ls -lh dist/
+          test -f dist/*.vcvplugin
+
+      - name: Check that the cross-built plugin is self-contained
+        run: |
+          x86_64-w64-mingw32-objdump -p dist/*/plugin.dll | grep 'DLL Name' | tee /tmp/deps.txt
+          ! grep -qiE 'openblas|gfortran|quadmath|gomp|winpthread|libstdc|libgcc' /tmp/deps.txt

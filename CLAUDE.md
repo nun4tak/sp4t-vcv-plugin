@@ -170,6 +170,12 @@ Decisions behind both, worth not re-deriving:
   Rack and the plugins VCV builds target msvcrt, and Rack deletes widgets and
   modules the plugin allocated, so a plugin on the other C runtime would free
   its memory on the wrong heap.
+- The workflow's `library-build` job cross-compiles to Windows through the
+  Makefile with the distribution's mingw-w64, as a cheap check that the
+  Library's build path still works; it is not VCV's toolchain. Building that
+  (VCVRack/rack-plugin-toolchain, the `v2` branch, not `master`, which is still
+  Rack v1) takes hours and needs a MacOSX SDK tarball extracted from Xcode for
+  its macOS half, so it is a local rehearsal before a submission, not CI.
 - There is no `lin-arm64` Rack SDK, so there is no Linux ARM bundle. The Linux
   job builds on the oldest image GitHub offers, which sets the glibc floor
   (2.35 on ubuntu-22.04, against VCV's own 2.23); an older container would
