@@ -124,17 +124,23 @@ struct SP4TStereoOutWidget : ModuleWidget {
 		addChild(createWidget<ThemedScrew>(Vec(RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<ThemedScrew>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-		addChild(createLightCentered<SP4TSignalLight>(mm2px(Vec(5.713, 30.611)), module, SP4TStereoOut::LEFT_LED_LIGHT));
-		addChild(createLightCentered<SP4TSignalLight>(mm2px(Vec(14.608, 30.611)), module, SP4TStereoOut::RIGHT_LED_LIGHT));
+		addChild(
+			createLightCentered<SP4TSignalLight>(mm2px(Vec(5.713, 30.611)), module, SP4TStereoOut::LEFT_LED_LIGHT));
+		addChild(
+			createLightCentered<SP4TSignalLight>(mm2px(Vec(14.608, 30.611)), module, SP4TStereoOut::RIGHT_LED_LIGHT));
 
-		addParam(createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(10.16, 55.627)), module, SP4TStereoOut::SPREAD_PARAM));
-		addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(10.16, 68.142)), module, SP4TStereoOut::SPREAD_CV_PARAM));
-		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(10.16, 78.621)), module, SP4TStereoOut::SPREAD_CV_INPUT));
+		addParam(
+			createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(10.16, 55.627)), module, SP4TStereoOut::SPREAD_PARAM));
+		addParam(
+			createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(10.16, 68.142)), module, SP4TStereoOut::SPREAD_CV_PARAM));
+		addInput(
+			createInputCentered<ThemedPJ301MPort>(mm2px(Vec(10.16, 78.621)), module, SP4TStereoOut::SPREAD_CV_INPUT));
 
 		addInput(createInputCentered<SP4TAmbiPort>(mm2px(Vec(10.16, 94.588)), module, SP4TStereoOut::AMBI_INPUT));
 
 		addOutput(createOutputCentered<ThemedPJ301MPort>(mm2px(Vec(5.745, 114.0)), module, SP4TStereoOut::LEFT_OUTPUT));
-		addOutput(createOutputCentered<ThemedPJ301MPort>(mm2px(Vec(14.574, 114.0)), module, SP4TStereoOut::RIGHT_OUTPUT));
+		addOutput(
+			createOutputCentered<ThemedPJ301MPort>(mm2px(Vec(14.574, 114.0)), module, SP4TStereoOut::RIGHT_OUTPUT));
 	}
 
 	void appendContextMenu(Menu* menu) override {

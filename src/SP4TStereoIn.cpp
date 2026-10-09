@@ -15,8 +15,7 @@ namespace {
  * along the horizontal tangent pointing toward increasing azimuth for the left
  * source.
  */
-void stereoPairDirections(float azimuth, float elevation, float spread,
-                          sp4t::Direction* left, sp4t::Direction* right) {
+void stereoPairDirections(float azimuth, float elevation, float spread, sp4t::Direction* left, sp4t::Direction* right) {
 	sp4t::Vector3 d = sp4t::directionToVector(azimuth, elevation);
 	float a = azimuth * sp4t::DEG2RAD;
 	sp4t::Vector3 t = {-std::sin(a), std::cos(a), 0.f};
@@ -63,7 +62,9 @@ struct SP4TStereoIn : Module {
 		LIGHTS_LEN
 	};
 
-	enum { MAX_NUM_SOURCES = 2 };
+	enum {
+		MAX_NUM_SOURCES = 2
+	};
 
 	sp4t::AmbiEncoder encoder;
 	dsp::ClockDivider controlDivider;
@@ -92,7 +93,11 @@ struct SP4TStereoIn : Module {
 		// left) is the default; the other position is more natural for eurorack
 		// users, for whom turning the knob to the right moves the source to the
 		// right.
-		configSwitch(AZIMUTH_CV_SWITCH_PARAM, 0.f, 1.f, 0.f, "Azimuth direction",
+		configSwitch(AZIMUTH_CV_SWITCH_PARAM,
+		             0.f,
+		             1.f,
+		             0.f,
+		             "Azimuth direction",
 		             {"Positive = left (Ambisonic)", "Positive = right"});
 
 		configInput(AZIMUTH_CV_INPUT, "Azimuth CV");
@@ -129,7 +134,8 @@ struct SP4TStereoIn : Module {
 		float azimuth = getAngle(AZIMUTH_PARAM, AZIMUTH_CV_PARAM, AZIMUTH_CV_INPUT, 180.f, 5.f);
 		if (params[AZIMUTH_CV_SWITCH_PARAM].getValue() > 0.5f)
 			azimuth = -azimuth;
-		float elevation = math::clamp(getAngle(ELEVATION_PARAM, ELEVATION_CV_PARAM, ELEVATION_CV_INPUT, 90.f, 5.f), -90.f, 90.f);
+		float elevation =
+			math::clamp(getAngle(ELEVATION_PARAM, ELEVATION_CV_PARAM, ELEVATION_CV_INPUT, 90.f, 5.f), -90.f, 90.f);
 		float spread = math::clamp(getAngle(SPREAD_PARAM, SPREAD_CV_PARAM, SPREAD_CV_INPUT, 90.f, 10.f), 0.f, 90.f);
 
 		// Stereo as soon as the right input is connected.
@@ -207,18 +213,28 @@ struct SP4TStereoInWidget : ModuleWidget {
 		display->sources = {{{0.f, 0.f}, "M", SOURCE_INACTIVE}};
 		addChild(display);
 
-		addParam(createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(8.757, 58.901)), module, SP4TStereoIn::AZIMUTH_PARAM));
-		addParam(createParamCentered<SP4TSwitchTwo>(mm2px(Vec(8.829, 72.418)), module, SP4TStereoIn::AZIMUTH_CV_SWITCH_PARAM));
-		addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(8.756, 84.492)), module, SP4TStereoIn::AZIMUTH_CV_PARAM));
-		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(8.756, 94.903)), module, SP4TStereoIn::AZIMUTH_CV_INPUT));
+		addParam(
+			createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(8.757, 58.901)), module, SP4TStereoIn::AZIMUTH_PARAM));
+		addParam(createParamCentered<SP4TSwitchTwo>(
+			mm2px(Vec(8.829, 72.418)), module, SP4TStereoIn::AZIMUTH_CV_SWITCH_PARAM));
+		addParam(
+			createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(8.756, 84.492)), module, SP4TStereoIn::AZIMUTH_CV_PARAM));
+		addInput(
+			createInputCentered<ThemedPJ301MPort>(mm2px(Vec(8.756, 94.903)), module, SP4TStereoIn::AZIMUTH_CV_INPUT));
 
-		addParam(createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(25.4, 58.901)), module, SP4TStereoIn::ELEVATION_PARAM));
-		addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(19.852, 84.492)), module, SP4TStereoIn::ELEVATION_CV_PARAM));
-		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(19.852, 94.903)), module, SP4TStereoIn::ELEVATION_CV_INPUT));
+		addParam(
+			createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(25.4, 58.901)), module, SP4TStereoIn::ELEVATION_PARAM));
+		addParam(createParamCentered<SP4TRoundSmallKnob>(
+			mm2px(Vec(19.852, 84.492)), module, SP4TStereoIn::ELEVATION_CV_PARAM));
+		addInput(createInputCentered<ThemedPJ301MPort>(
+			mm2px(Vec(19.852, 94.903)), module, SP4TStereoIn::ELEVATION_CV_INPUT));
 
-		addParam(createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(42.044, 67.656)), module, SP4TStereoIn::SPREAD_PARAM));
-		addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(42.043, 84.492)), module, SP4TStereoIn::SPREAD_CV_PARAM));
-		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(42.043, 94.903)), module, SP4TStereoIn::SPREAD_CV_INPUT));
+		addParam(
+			createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(42.044, 67.656)), module, SP4TStereoIn::SPREAD_PARAM));
+		addParam(
+			createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(42.043, 84.492)), module, SP4TStereoIn::SPREAD_CV_PARAM));
+		addInput(
+			createInputCentered<ThemedPJ301MPort>(mm2px(Vec(42.043, 94.903)), module, SP4TStereoIn::SPREAD_CV_INPUT));
 
 		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(8.756, 114.0)), module, SP4TStereoIn::LEFT_INPUT));
 		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(19.852, 114.0)), module, SP4TStereoIn::RIGHT_INPUT));
@@ -241,8 +257,8 @@ struct SP4TStereoInWidget : ModuleWidget {
 				display->sources.push_back({module->rightDirection, "R", SOURCE_RIGHT});
 			}
 			else {
-				display->sources.push_back({module->centerDirection, "M",
-				                           module->monoConnected ? SOURCE_MONO : SOURCE_INACTIVE});
+				display->sources.push_back(
+					{module->centerDirection, "M", module->monoConnected ? SOURCE_MONO : SOURCE_INACTIVE});
 			}
 		}
 		ModuleWidget::step();
@@ -252,9 +268,8 @@ struct SP4TStereoInWidget : ModuleWidget {
 		SP4TStereoIn* module = getModule<SP4TStereoIn>();
 
 		menu->addChild(new MenuSeparator);
-		menu->addChild(createIndexPtrSubmenuItem("3D view mode",
-			sp4t::AmbisonicDisplay::getViewModeLabels(),
-			&module->viewMode));
+		menu->addChild(
+			createIndexPtrSubmenuItem("3D view mode", sp4t::AmbisonicDisplay::getViewModeLabels(), &module->viewMode));
 	}
 };
 

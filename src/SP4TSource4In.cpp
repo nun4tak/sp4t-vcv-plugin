@@ -52,7 +52,9 @@ struct SP4TSource4In : Module {
 		LIGHTS_LEN
 	};
 
-	enum { NUM_SOURCES = 4 };
+	enum {
+		NUM_SOURCES = 4
+	};
 
 	sp4t::AmbiEncoder encoder;
 	dsp::ClockDivider controlDivider;
@@ -105,9 +107,7 @@ struct SP4TSource4In : Module {
 	}
 
 	/** Knob value plus the CV voltage in force, where 5 V spans `range` degrees. */
-	float getAngle(int paramId, float cv, float range) {
-		return params[paramId].getValue() + cv / 5.f * range;
-	}
+	float getAngle(int paramId, float cv, float range) { return params[paramId].getValue() + cv / 5.f * range; }
 
 	void updateControls() {
 		encoder.setOrder((int) params[ORDER_PARAM].getValue() + 1);
@@ -152,8 +152,7 @@ struct SP4TSource4In : Module {
 		// Nothing to encode, or nowhere to send it. The interpolation is reset so
 		// that reconnecting starts from the directions in force rather than
 		// gliding from stale gains.
-		if (!outputs[AMBI_OUTPUT].isConnected()
-		    || (numActiveSources == 0 && !inputs[OMNI_INPUT].isConnected())) {
+		if (!outputs[AMBI_OUTPUT].isConnected() || (numActiveSources == 0 && !inputs[OMNI_INPUT].isConnected())) {
 			if (!idle) {
 				idle = true;
 				encoder.reset();
@@ -222,11 +221,16 @@ struct SP4TSource4InWidget : ModuleWidget {
 			// to read: the sources sit at their default direction, unconnected.
 			display->sources.push_back({{0.f, 0.f}, string::f("%d", i + 1), SOURCE_INACTIVE});
 
-			addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(x[i], 53.39)), module, SP4TSource4In::SRC1_AZ_PARAM + i));
-			addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(x[i], 62.205)), module, SP4TSource4In::SRC1_AZ_CV_INPUT + i));
-			addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(x[i], 74.386)), module, SP4TSource4In::SRC1_ELEV_PARAM + i));
-			addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(x[i], 83.2)), module, SP4TSource4In::SRC1_ELEV_CV_INPUT + i));
-			addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(x[i], 97.458)), module, SP4TSource4In::SRC1_INPUT + i));
+			addParam(createParamCentered<SP4TRoundSmallKnob>(
+				mm2px(Vec(x[i], 53.39)), module, SP4TSource4In::SRC1_AZ_PARAM + i));
+			addInput(createInputCentered<ThemedPJ301MPort>(
+				mm2px(Vec(x[i], 62.205)), module, SP4TSource4In::SRC1_AZ_CV_INPUT + i));
+			addParam(createParamCentered<SP4TRoundSmallKnob>(
+				mm2px(Vec(x[i], 74.386)), module, SP4TSource4In::SRC1_ELEV_PARAM + i));
+			addInput(createInputCentered<ThemedPJ301MPort>(
+				mm2px(Vec(x[i], 83.2)), module, SP4TSource4In::SRC1_ELEV_CV_INPUT + i));
+			addInput(
+				createInputCentered<ThemedPJ301MPort>(mm2px(Vec(x[i], 97.458)), module, SP4TSource4In::SRC1_INPUT + i));
 		}
 
 		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(8.756, 114.0)), module, SP4TSource4In::OMNI_INPUT));
@@ -241,7 +245,8 @@ struct SP4TSource4InWidget : ModuleWidget {
 			display->viewMode = module->viewMode;
 			display->sources.clear();
 			for (int i = 0; i < SP4TSource4In::NUM_SOURCES; i++) {
-				display->sources.push_back({module->directions[i], string::f("%d", i + 1),
+				display->sources.push_back({module->directions[i],
+				                            string::f("%d", i + 1),
 				                            module->connected[i] ? SOURCE_ACTIVE : SOURCE_INACTIVE});
 			}
 		}
@@ -252,9 +257,8 @@ struct SP4TSource4InWidget : ModuleWidget {
 		SP4TSource4In* module = getModule<SP4TSource4In>();
 
 		menu->addChild(new MenuSeparator);
-		menu->addChild(createIndexPtrSubmenuItem("3D view mode",
-			sp4t::AmbisonicDisplay::getViewModeLabels(),
-			&module->viewMode));
+		menu->addChild(
+			createIndexPtrSubmenuItem("3D view mode", sp4t::AmbisonicDisplay::getViewModeLabels(), &module->viewMode));
 		menu->addChild(createBoolPtrMenuItem("Flip azimuth sign", "", &module->flipAzimuth));
 	}
 };

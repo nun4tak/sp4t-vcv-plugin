@@ -229,7 +229,8 @@ struct SP4TEarsOutWidget : ModuleWidget {
 		addChild(createWidget<ThemedScrew>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
 		addChild(createLightCentered<SP4TSignalLight>(mm2px(Vec(4.742, 30.152)), module, SP4TEarsOut::LEFT_LED_LIGHT));
-		addChild(createLightCentered<SP4TSignalLight>(mm2px(Vec(15.578, 30.152)), module, SP4TEarsOut::RIGHT_LED_LIGHT));
+		addChild(
+			createLightCentered<SP4TSignalLight>(mm2px(Vec(15.578, 30.152)), module, SP4TEarsOut::RIGHT_LED_LIGHT));
 
 		addInput(createInputCentered<SP4TAmbiPort>(mm2px(Vec(10.16, 94.588)), module, SP4TEarsOut::AMBI_INPUT));
 
@@ -242,9 +243,13 @@ struct SP4TEarsOutWidget : ModuleWidget {
 
 		menu->addChild(new MenuSeparator);
 
-		menu->addChild(createIndexSubmenuItem("Decoding method",
-			{"Least-squares", "Least-squares + diffuse-field EQ", "Spatial resampling",
-			 "Time-alignment", "Magnitude least-squares"},
+		menu->addChild(createIndexSubmenuItem(
+			"Decoding method",
+			{"Least-squares",
+			 "Least-squares + diffuse-field EQ",
+			 "Spatial resampling",
+			 "Time-alignment",
+			 "Magnitude least-squares"},
 			[=]() { return (int) module->options.method; },
 			[=](int index) {
 				SP4TEarsOut::Decoder::Options options = module->options;
@@ -252,7 +257,9 @@ struct SP4TEarsOutWidget : ModuleWidget {
 				module->setOptions(options);
 			}));
 
-		menu->addChild(createBoolMenuItem("Max-rE weighting", "",
+		menu->addChild(createBoolMenuItem(
+			"Max-rE weighting",
+			"",
 			[=]() { return module->options.maxRE; },
 			[=](bool enabled) {
 				SP4TEarsOut::Decoder::Options options = module->options;
@@ -260,7 +267,9 @@ struct SP4TEarsOutWidget : ModuleWidget {
 				module->setOptions(options);
 			}));
 
-		menu->addChild(createBoolMenuItem("Diffuse-field covariance matching", "",
+		menu->addChild(createBoolMenuItem(
+			"Diffuse-field covariance matching",
+			"",
 			[=]() { return module->options.diffuseMatching; },
 			[=](bool enabled) {
 				SP4TEarsOut::Decoder::Options options = module->options;
@@ -268,7 +277,9 @@ struct SP4TEarsOutWidget : ModuleWidget {
 				module->setOptions(options);
 			}));
 
-		menu->addChild(createBoolMenuItem("Truncation EQ (least-squares only)", "",
+		menu->addChild(createBoolMenuItem(
+			"Truncation EQ (least-squares only)",
+			"",
 			[=]() { return module->options.truncationEQ; },
 			[=](bool enabled) {
 				SP4TEarsOut::Decoder::Options options = module->options;
@@ -280,8 +291,7 @@ struct SP4TEarsOutWidget : ModuleWidget {
 		if (module->decoder.isReady()) {
 			int latency = module->decoder.getLatency();
 			float milliseconds = 1e3f * latency / APP->engine->getSampleRate();
-			menu->addChild(createMenuLabel(string::f("Latency: %d samples (%.2f ms)",
-			                                         latency, milliseconds)));
+			menu->addChild(createMenuLabel(string::f("Latency: %d samples (%.2f ms)", latency, milliseconds)));
 		}
 		else {
 			menu->addChild(createMenuLabel("Computing the decoding filters..."));

@@ -7,7 +7,11 @@
 namespace {
 
 /** Axes a flip can be applied across, as the bits of a channel sign mask. */
-enum FlipAxis { FLIP_X = 1, FLIP_Y = 2, FLIP_Z = 4 };
+enum FlipAxis {
+	FLIP_X = 1,
+	FLIP_Y = 2,
+	FLIP_Z = 4
+};
 
 /** Axes whose flip negates each ACN channel, as a mask of the bits above.
  *
@@ -48,7 +52,10 @@ const float FLIP_RAMP_RATE = 1.f / 0.005f;
 
 
 struct SP4TFlip : Module {
-	enum { NUM_AXES = 3, NUM_MASKS = 8 };
+	enum {
+		NUM_AXES = 3,
+		NUM_MASKS = 8
+	};
 
 	enum ParamId {
 		FLIP_X_BUTTON_PARAM,
@@ -106,9 +113,12 @@ struct SP4TFlip : Module {
 		configSwitch(FLIP_Z_BUTTON_PARAM, 0.f, 1.f, 0.f, "Flip across Z (top-bottom)", {"Off", "On"});
 		configParam(DRY_WET_PARAM, 0.f, 1.f, 1.f, "Dry/wet", "%", 0.f, 100.f);
 		configParam(DRY_WET_CV_PARAM, -1.f, 1.f, 0.f, "Dry/wet CV attenuverter", "%", 0.f, 100.f);
-		configSwitch(DRYWET_MODE_SWITCH_PARAM, 0.f, 1.f, 0.f, "Dry/wet crossfade",
-		             {"Equal power", "Through zero"});
-		configSwitch(TRIGGER_MODE_SWITCH_PARAM, 0.f, 1.f, 1.f, "Buttons and flip CV",
+		configSwitch(DRYWET_MODE_SWITCH_PARAM, 0.f, 1.f, 0.f, "Dry/wet crossfade", {"Equal power", "Through zero"});
+		configSwitch(TRIGGER_MODE_SWITCH_PARAM,
+		             0.f,
+		             1.f,
+		             1.f,
+		             "Buttons and flip CV",
 		             {"Momentary (gate)", "Latching (trigger)"});
 
 		configInput(AMBI_INPUT, "Ambisonic (ACN/SN3D)");
@@ -238,7 +248,7 @@ struct SP4TFlip : Module {
 			for (int a = 0; a < NUM_AXES; a++) {
 				float target = flipTargets[a];
 				flipAmounts[a] = flipAmounts[a] < target ? std::fmin(flipAmounts[a] + step, target)
-				                                        : std::fmax(flipAmounts[a] - step, target);
+				                                         : std::fmax(flipAmounts[a] - step, target);
 			}
 			updateMaskGains();
 		}
@@ -263,16 +273,20 @@ struct SP4TFlipWidget : ModuleWidget {
 
 		const float buttonY[] = {19.509f, 29.384f, 39.26f};
 		for (int a = 0; a < SP4TFlip::NUM_AXES; a++) {
-			SP4TModeButton* button = createParamCentered<SP4TModeButton>(mm2px(Vec(15.24, buttonY[a])), module, SP4TFlip::FLIP_X_BUTTON_PARAM + a);
+			SP4TModeButton* button = createParamCentered<SP4TModeButton>(
+				mm2px(Vec(15.24, buttonY[a])), module, SP4TFlip::FLIP_X_BUTTON_PARAM + a);
 			button->modeParamId = SP4TFlip::TRIGGER_MODE_SWITCH_PARAM;
 			addParam(button);
 		}
 
 		addParam(createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(15.239, 57.156)), module, SP4TFlip::DRY_WET_PARAM));
-		addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(6.411, 69.355)), module, SP4TFlip::DRY_WET_CV_PARAM));
-		addParam(createParamCentered<SP4TSwitchTwo>(mm2px(Vec(25.91, 69.355)), module, SP4TFlip::DRYWET_MODE_SWITCH_PARAM));
+		addParam(
+			createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(6.411, 69.355)), module, SP4TFlip::DRY_WET_CV_PARAM));
+		addParam(
+			createParamCentered<SP4TSwitchTwo>(mm2px(Vec(25.91, 69.355)), module, SP4TFlip::DRYWET_MODE_SWITCH_PARAM));
 		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(6.411, 79.833)), module, SP4TFlip::DRY_WET_CV_INPUT));
-		addParam(createParamCentered<SP4TSwitchTwo>(mm2px(Vec(25.91, 79.864)), module, SP4TFlip::TRIGGER_MODE_SWITCH_PARAM));
+		addParam(
+			createParamCentered<SP4TSwitchTwo>(mm2px(Vec(25.91, 79.864)), module, SP4TFlip::TRIGGER_MODE_SWITCH_PARAM));
 
 		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(6.411, 95.143)), module, SP4TFlip::X_CV_INPUT));
 		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(15.24, 95.143)), module, SP4TFlip::Y_CV_INPUT));

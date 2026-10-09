@@ -5,7 +5,9 @@
 
 
 struct SP4TSplit : Module {
-	enum { NUM_CHANNELS = 16 };
+	enum {
+		NUM_CHANNELS = 16
+	};
 
 	enum ParamId {
 		PARAMS_LEN
@@ -15,17 +17,41 @@ struct SP4TSplit : Module {
 		INPUTS_LEN
 	};
 	enum OutputId {
-		CH1_OUTPUT, CH2_OUTPUT, CH3_OUTPUT, CH4_OUTPUT,
-		CH5_OUTPUT, CH6_OUTPUT, CH7_OUTPUT, CH8_OUTPUT,
-		CH9_OUTPUT, CH10_OUTPUT, CH11_OUTPUT, CH12_OUTPUT,
-		CH13_OUTPUT, CH14_OUTPUT, CH15_OUTPUT, CH16_OUTPUT,
+		CH1_OUTPUT,
+		CH2_OUTPUT,
+		CH3_OUTPUT,
+		CH4_OUTPUT,
+		CH5_OUTPUT,
+		CH6_OUTPUT,
+		CH7_OUTPUT,
+		CH8_OUTPUT,
+		CH9_OUTPUT,
+		CH10_OUTPUT,
+		CH11_OUTPUT,
+		CH12_OUTPUT,
+		CH13_OUTPUT,
+		CH14_OUTPUT,
+		CH15_OUTPUT,
+		CH16_OUTPUT,
 		OUTPUTS_LEN
 	};
 	enum LightId {
-		CH1_LED_LIGHT, CH2_LED_LIGHT, CH3_LED_LIGHT, CH4_LED_LIGHT,
-		CH5_LED_LIGHT, CH6_LED_LIGHT, CH7_LED_LIGHT, CH8_LED_LIGHT,
-		CH9_LED_LIGHT, CH10_LED_LIGHT, CH11_LED_LIGHT, CH12_LED_LIGHT,
-		CH13_LED_LIGHT, CH14_LED_LIGHT, CH15_LED_LIGHT, CH16_LED_LIGHT,
+		CH1_LED_LIGHT,
+		CH2_LED_LIGHT,
+		CH3_LED_LIGHT,
+		CH4_LED_LIGHT,
+		CH5_LED_LIGHT,
+		CH6_LED_LIGHT,
+		CH7_LED_LIGHT,
+		CH8_LED_LIGHT,
+		CH9_LED_LIGHT,
+		CH10_LED_LIGHT,
+		CH11_LED_LIGHT,
+		CH12_LED_LIGHT,
+		CH13_LED_LIGHT,
+		CH14_LED_LIGHT,
+		CH15_LED_LIGHT,
+		CH16_LED_LIGHT,
 		LIGHTS_LEN
 	};
 
@@ -111,11 +137,13 @@ struct SP4TSplitWidget : ModuleWidget {
 		for (int c = 0; c < SP4TSplit::NUM_CHANNELS; c++) {
 			int row = c == 0 ? 0 : 1 + (c - 1) / 3;
 			int col = c == 0 ? 1 : (c - 1) % 3;
-			addOutput(createOutputCentered<ThemedPJ301MPort>(mm2px(Vec(jackX[col], jackY[row])), module, SP4TSplit::CH1_OUTPUT + c));
+			addOutput(createOutputCentered<ThemedPJ301MPort>(
+				mm2px(Vec(jackX[col], jackY[row])), module, SP4TSplit::CH1_OUTPUT + c));
 
 			// The LEDs sit close to the harmonic drawings and to the edge of
 			// their cell, so the glow stops right after the rim.
-			SP4TSignalLight* light = createLightCentered<SP4TSignalLight>(mm2px(Vec(ledX[col], ledY[row])), module, SP4TSplit::CH1_LED_LIGHT + c);
+			SP4TSignalLight* light = createLightCentered<SP4TSignalLight>(
+				mm2px(Vec(ledX[col], ledY[row])), module, SP4TSplit::CH1_LED_LIGHT + c);
 			light->haloSpread = 1.5f;
 			addChild(light);
 		}

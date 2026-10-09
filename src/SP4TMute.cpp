@@ -14,22 +14,48 @@ const float MUTE_FADE_RATE = 1.f / 0.005f;
 
 
 struct SP4TMute : Module {
-	enum { NUM_CHANNELS = 16 };
+	enum {
+		NUM_CHANNELS = 16
+	};
 
 	enum ParamId {
-		CH1_MUTE_BUTTON_PARAM, CH2_MUTE_BUTTON_PARAM, CH3_MUTE_BUTTON_PARAM, CH4_MUTE_BUTTON_PARAM,
-		CH5_MUTE_BUTTON_PARAM, CH6_MUTE_BUTTON_PARAM, CH7_MUTE_BUTTON_PARAM, CH8_MUTE_BUTTON_PARAM,
-		CH9_MUTE_BUTTON_PARAM, CH10_MUTE_BUTTON_PARAM, CH11_MUTE_BUTTON_PARAM, CH12_MUTE_BUTTON_PARAM,
-		CH13_MUTE_BUTTON_PARAM, CH14_MUTE_BUTTON_PARAM, CH15_MUTE_BUTTON_PARAM, CH16_MUTE_BUTTON_PARAM,
+		CH1_MUTE_BUTTON_PARAM,
+		CH2_MUTE_BUTTON_PARAM,
+		CH3_MUTE_BUTTON_PARAM,
+		CH4_MUTE_BUTTON_PARAM,
+		CH5_MUTE_BUTTON_PARAM,
+		CH6_MUTE_BUTTON_PARAM,
+		CH7_MUTE_BUTTON_PARAM,
+		CH8_MUTE_BUTTON_PARAM,
+		CH9_MUTE_BUTTON_PARAM,
+		CH10_MUTE_BUTTON_PARAM,
+		CH11_MUTE_BUTTON_PARAM,
+		CH12_MUTE_BUTTON_PARAM,
+		CH13_MUTE_BUTTON_PARAM,
+		CH14_MUTE_BUTTON_PARAM,
+		CH15_MUTE_BUTTON_PARAM,
+		CH16_MUTE_BUTTON_PARAM,
 		TRIGGER_MODE_SWITCH_PARAM,
 		PARAMS_LEN
 	};
 	enum InputId {
 		AMBI_INPUT,
-		CH1_MUTE_INPUT, CH2_MUTE_INPUT, CH3_MUTE_INPUT, CH4_MUTE_INPUT,
-		CH5_MUTE_INPUT, CH6_MUTE_INPUT, CH7_MUTE_INPUT, CH8_MUTE_INPUT,
-		CH9_MUTE_INPUT, CH10_MUTE_INPUT, CH11_MUTE_INPUT, CH12_MUTE_INPUT,
-		CH13_MUTE_INPUT, CH14_MUTE_INPUT, CH15_MUTE_INPUT, CH16_MUTE_INPUT,
+		CH1_MUTE_INPUT,
+		CH2_MUTE_INPUT,
+		CH3_MUTE_INPUT,
+		CH4_MUTE_INPUT,
+		CH5_MUTE_INPUT,
+		CH6_MUTE_INPUT,
+		CH7_MUTE_INPUT,
+		CH8_MUTE_INPUT,
+		CH9_MUTE_INPUT,
+		CH10_MUTE_INPUT,
+		CH11_MUTE_INPUT,
+		CH12_MUTE_INPUT,
+		CH13_MUTE_INPUT,
+		CH14_MUTE_INPUT,
+		CH15_MUTE_INPUT,
+		CH16_MUTE_INPUT,
 		INPUTS_LEN
 	};
 	enum OutputId {
@@ -37,10 +63,22 @@ struct SP4TMute : Module {
 		OUTPUTS_LEN
 	};
 	enum LightId {
-		CH1_LED_LIGHT, CH2_LED_LIGHT, CH3_LED_LIGHT, CH4_LED_LIGHT,
-		CH5_LED_LIGHT, CH6_LED_LIGHT, CH7_LED_LIGHT, CH8_LED_LIGHT,
-		CH9_LED_LIGHT, CH10_LED_LIGHT, CH11_LED_LIGHT, CH12_LED_LIGHT,
-		CH13_LED_LIGHT, CH14_LED_LIGHT, CH15_LED_LIGHT, CH16_LED_LIGHT,
+		CH1_LED_LIGHT,
+		CH2_LED_LIGHT,
+		CH3_LED_LIGHT,
+		CH4_LED_LIGHT,
+		CH5_LED_LIGHT,
+		CH6_LED_LIGHT,
+		CH7_LED_LIGHT,
+		CH8_LED_LIGHT,
+		CH9_LED_LIGHT,
+		CH10_LED_LIGHT,
+		CH11_LED_LIGHT,
+		CH12_LED_LIGHT,
+		CH13_LED_LIGHT,
+		CH14_LED_LIGHT,
+		CH15_LED_LIGHT,
+		CH16_LED_LIGHT,
 		LIGHTS_LEN
 	};
 
@@ -68,7 +106,11 @@ struct SP4TMute : Module {
 			configInput(CH1_MUTE_INPUT + c, channel + " mute gate/trigger");
 			configLight(CH1_LED_LIGHT + c, channel + " level");
 		}
-		configSwitch(TRIGGER_MODE_SWITCH_PARAM, 0.f, 1.f, 1.f, "Buttons and mute CV",
+		configSwitch(TRIGGER_MODE_SWITCH_PARAM,
+		             0.f,
+		             1.f,
+		             1.f,
+		             "Buttons and mute CV",
 		             {"Momentary (gate)", "Latching (trigger)"});
 
 		configInput(AMBI_INPUT, "Ambisonic (ACN/SN3D)");
@@ -141,8 +183,7 @@ struct SP4TMute : Module {
 			float step = args.sampleTime * MUTE_FADE_RATE;
 			for (int c = 0; c < numChannels; c++) {
 				float target = gainTargets[c];
-				gains[c] = gains[c] < target ? std::fmin(gains[c] + step, target)
-				                             : std::fmax(gains[c] - step, target);
+				gains[c] = gains[c] < target ? std::fmin(gains[c] + step, target) : std::fmax(gains[c] - step, target);
 			}
 		}
 
@@ -191,20 +232,24 @@ struct SP4TMuteWidget : ModuleWidget {
 			for (int col = 0; col < 4; col++) {
 				int c = 4 * row + col;
 
-				SP4TModeButton* button = createParamCentered<SP4TModeButton>(mm2px(Vec(buttonX[col], buttonY[row])), module, SP4TMute::CH1_MUTE_BUTTON_PARAM + c);
+				SP4TModeButton* button = createParamCentered<SP4TModeButton>(
+					mm2px(Vec(buttonX[col], buttonY[row])), module, SP4TMute::CH1_MUTE_BUTTON_PARAM + c);
 				button->modeParamId = SP4TMute::TRIGGER_MODE_SWITCH_PARAM;
 				addParam(button);
 
-				addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(inputX[col], inputY[row])), module, SP4TMute::CH1_MUTE_INPUT + c));
+				addInput(createInputCentered<ThemedPJ301MPort>(
+					mm2px(Vec(inputX[col], inputY[row])), module, SP4TMute::CH1_MUTE_INPUT + c));
 
-				SP4TSignalLight* light = createLightCentered<SP4TSignalLight>(mm2px(Vec(ledX[col], ledY[row])), module, SP4TMute::CH1_LED_LIGHT + c);
+				SP4TSignalLight* light = createLightCentered<SP4TSignalLight>(
+					mm2px(Vec(ledX[col], ledY[row])), module, SP4TMute::CH1_LED_LIGHT + c);
 				light->haloSpread = 1.5f;
 				addChild(light);
 			}
 		}
 
 		addInput(createInputCentered<SP4TAmbiPort>(mm2px(Vec(8.756, 114.0)), module, SP4TMute::AMBI_INPUT));
-		addParam(createParamCentered<SP4TSwitchTwo>(mm2px(Vec(19.852, 114.001)), module, SP4TMute::TRIGGER_MODE_SWITCH_PARAM));
+		addParam(createParamCentered<SP4TSwitchTwo>(
+			mm2px(Vec(19.852, 114.001)), module, SP4TMute::TRIGGER_MODE_SWITCH_PARAM));
 		addOutput(createOutputCentered<SP4TAmbiPort>(mm2px(Vec(42.043, 114.0)), module, SP4TMute::AMBI_OUTPUT));
 	}
 };

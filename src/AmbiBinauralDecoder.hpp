@@ -63,9 +63,8 @@ struct AmbiBinauralDecoder {
 		bool truncationEQ = true;
 
 		bool operator==(const Options& other) const {
-			return sampleRate == other.sampleRate && method == other.method
-			       && maxRE == other.maxRE && diffuseMatching == other.diffuseMatching
-			       && truncationEQ == other.truncationEQ;
+			return sampleRate == other.sampleRate && method == other.method && maxRE == other.maxRE
+			       && diffuseMatching == other.diffuseMatching && truncationEQ == other.truncationEQ;
 		}
 		bool operator!=(const Options& other) const { return !(*this == other); }
 	};

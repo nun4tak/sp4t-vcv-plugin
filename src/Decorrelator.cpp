@@ -69,9 +69,18 @@ void Decorrelator::setSampleRate(float newSampleRate) {
 	freqVector.resize(NUM_BANDS);
 	afSTFT_getCentreFreqs(hSTFT, sampleRate, NUM_BANDS, freqVector.data());
 
-	latticeDecorrelator_create(&hDecor, sampleRate, HOP_SIZE, freqVector.data(), NUM_BANDS,
-	                           MAX_NUM_CHANNELS, (int*) APF_ORDERS, (float*) APF_CUTOFFS, 4,
-	                           MAX_TF_DELAY, 0, ENERGY_COMP_COEFF);
+	latticeDecorrelator_create(&hDecor,
+	                           sampleRate,
+	                           HOP_SIZE,
+	                           freqVector.data(),
+	                           NUM_BANDS,
+	                           MAX_NUM_CHANNELS,
+	                           (int*) APF_ORDERS,
+	                           (float*) APF_CUTOFFS,
+	                           4,
+	                           MAX_TF_DELAY,
+	                           0,
+	                           ENERGY_COMP_COEFF);
 	transientDucker_create(&hDucker, MAX_NUM_CHANNELS, NUM_BANDS);
 
 	inputTD = (float**) calloc2d(MAX_NUM_CHANNELS, HOP_SIZE, sizeof(float));
@@ -146,20 +155,22 @@ void Decorrelator::setBypassTransients(bool enabled) {
 
 
 void Decorrelator::runHop() {
-	afSTFT_forward_knownDimensions(hSTFT, inputTD, HOP_SIZE, MAX_NUM_CHANNELS, 1,
-	                               (float_complex***) inputTF);
+	afSTFT_forward_knownDimensions(hSTFT, inputTD, HOP_SIZE, MAX_NUM_CHANNELS, 1, (float_complex***) inputTF);
 
 	// Only the residual left by the ducker is decorrelated; the transients it
 	// took out are added back below.
 	if (bypassTransients) {
-		transientDucker_apply(hDucker, (float_complex***) inputTF, 1, DUCKER_ALPHA, DUCKER_BETA,
-		                      (float_complex***) residualTF, (float_complex***) transientTF);
-		latticeDecorrelator_apply(hDecor, (float_complex***) residualTF, 1,
-		                          (float_complex***) outputTF);
+		transientDucker_apply(hDucker,
+		                      (float_complex***) inputTF,
+		                      1,
+		                      DUCKER_ALPHA,
+		                      DUCKER_BETA,
+		                      (float_complex***) residualTF,
+		                      (float_complex***) transientTF);
+		latticeDecorrelator_apply(hDecor, (float_complex***) residualTF, 1, (float_complex***) outputTF);
 	}
 	else {
-		latticeDecorrelator_apply(hDecor, (float_complex***) inputTF, 1,
-		                          (float_complex***) outputTF);
+		latticeDecorrelator_apply(hDecor, (float_complex***) inputTF, 1, (float_complex***) outputTF);
 	}
 
 	// The bands hold one time slot of every channel, as real and imaginary
@@ -180,8 +191,7 @@ void Decorrelator::runHop() {
 		}
 	}
 
-	afSTFT_backward_knownDimensions(hSTFT, (float_complex***) outputTF, HOP_SIZE,
-	                                MAX_NUM_CHANNELS, 1, outputTD);
+	afSTFT_backward_knownDimensions(hSTFT, (float_complex***) outputTF, HOP_SIZE, MAX_NUM_CHANNELS, 1, outputTD);
 }
 
 
@@ -194,8 +204,8 @@ void Decorrelator::process(const float* in, float* out) {
 
 	if (amount != amountTarget) {
 		float step = AMOUNT_GLIDE_RATE / sampleRate;
-		amount = amount < amountTarget ? std::fmin(amount + step, amountTarget)
-		                               : std::fmax(amount - step, amountTarget);
+		amount =
+			amount < amountTarget ? std::fmin(amount + step, amountTarget) : std::fmax(amount - step, amountTarget);
 		updateMix();
 	}
 

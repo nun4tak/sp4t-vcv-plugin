@@ -177,13 +177,18 @@ struct SP4TRotateWidget : ModuleWidget {
 		addParam(createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(20.32, 58.9)), module, SP4TRotate::PITCH_PARAM));
 		addParam(createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(33.102, 58.9)), module, SP4TRotate::ROLL_PARAM));
 
-		addParam(createParamCentered<SP4TSwitchTwo>(mm2px(Vec(8.306, 72.157)), module, SP4TRotate::YAW_CV_SWITCH_PARAM));
-		addParam(createParamCentered<SP4TSwitchTwo>(mm2px(Vec(20.319, 72.157)), module, SP4TRotate::PITCH_CV_SWITCH_PARAM));
-		addParam(createParamCentered<SP4TSwitchTwo>(mm2px(Vec(32.395, 72.157)), module, SP4TRotate::ROLL_CV_SWITCH_PARAM));
+		addParam(
+			createParamCentered<SP4TSwitchTwo>(mm2px(Vec(8.306, 72.157)), module, SP4TRotate::YAW_CV_SWITCH_PARAM));
+		addParam(
+			createParamCentered<SP4TSwitchTwo>(mm2px(Vec(20.319, 72.157)), module, SP4TRotate::PITCH_CV_SWITCH_PARAM));
+		addParam(
+			createParamCentered<SP4TSwitchTwo>(mm2px(Vec(32.395, 72.157)), module, SP4TRotate::ROLL_CV_SWITCH_PARAM));
 
 		addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(8.756, 84.493)), module, SP4TRotate::YAW_CV_PARAM));
-		addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(20.321, 84.493)), module, SP4TRotate::PITCH_CV_PARAM));
-		addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(31.885, 84.493)), module, SP4TRotate::ROLL_CV_PARAM));
+		addParam(
+			createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(20.321, 84.493)), module, SP4TRotate::PITCH_CV_PARAM));
+		addParam(
+			createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(31.885, 84.493)), module, SP4TRotate::ROLL_CV_PARAM));
 
 		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(8.756, 94.97)), module, SP4TRotate::YAW_CV_INPUT));
 		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(20.32, 94.97)), module, SP4TRotate::PITCH_CV_INPUT));

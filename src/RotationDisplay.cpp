@@ -21,8 +21,8 @@ const NVGcolor ROTATED_AXIS = nvgRGB(0xff, 0xb4, 0x54);
 void RotationDisplay::drawLayer(const DrawArgs& args, int layer) {
 	// Scaled as AmbisonicDisplay, so that strokes and fonts match the screens
 	// of the other modules.
-	float scale = std::min(box.size.x / AmbisonicDisplay::REFERENCE_SIZE.x,
-	                       box.size.y / AmbisonicDisplay::REFERENCE_SIZE.y);
+	float scale =
+		std::min(box.size.x / AmbisonicDisplay::REFERENCE_SIZE.x, box.size.y / AmbisonicDisplay::REFERENCE_SIZE.y);
 	if (layer == 1 && scale > 0) {
 		nvgSave(args.vg);
 		nvgScissor(args.vg, 0, 0, box.size.x, box.size.y);
@@ -40,7 +40,8 @@ void RotationDisplay::drawAxes3D(NVGcontext* vg, Vec size) {
 	const float camElevation = 30 * DEG2RAD;
 	const Vector3 right = {-std::sin(camAzimuth), std::cos(camAzimuth), 0.f};
 	const Vector3 up = {-std::sin(camElevation) * std::cos(camAzimuth),
-	                    -std::sin(camElevation) * std::sin(camAzimuth), std::cos(camElevation)};
+	                    -std::sin(camElevation) * std::sin(camAzimuth),
+	                    std::cos(camElevation)};
 
 	const Vector3 fieldAxes[3] = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
 	const char* names[3] = {"X", "Y", "Z"};
@@ -50,7 +51,7 @@ void RotationDisplay::drawAxes3D(NVGcontext* vg, Vec size) {
 	// over shorter axes: this screen holds six arrows and six names, and only
 	// their directions matter.
 	const float labelFontSize = 16.f;
-	const float labelHalfHeight = 0.35f * labelFontSize;   // cap height
+	const float labelHalfHeight = 0.35f * labelFontSize; // cap height
 	// Advance of one glyph of the screen font, generously, and how far a name
 	// reaches right of its anchor: a primed name is anchored on its first glyph
 	// (see below), so it extends one and a half glyphs past it.
@@ -96,12 +97,8 @@ void RotationDisplay::drawAxes3D(NVGcontext* vg, Vec size) {
 	// instead of a fixed ring keeps that gap constant while a rotation
 	// foreshortens the axis, which is otherwise visible as the name drifting
 	// toward and away from its arrow.
-	auto tipOffset = [=](const Vector3& v) {
-		return Vec(radius * dot(v, right), -radius * dot(v, up));
-	};
-	auto nameOffset = [=](const Vector3& v) {
-		return tipOffset(v).plus(screenDirection(v).mult(labelGap));
-	};
+	auto tipOffset = [=](const Vector3& v) { return Vec(radius * dot(v, right), -radius * dot(v, up)); };
+	auto nameOffset = [=](const Vector3& v) { return tipOffset(v).plus(screenDirection(v).mult(labelGap)); };
 
 	// Moves the origin part of the way onto the ink the field axes put on the
 	// screen. The axis lines are diameters and so symmetric about the origin,
@@ -130,9 +127,7 @@ void RotationDisplay::drawAxes3D(NVGcontext* vg, Vec size) {
 	c.x -= math::clamp(shift.x, -limit.x, limit.x);
 	c.y -= math::clamp(shift.y, -limit.y, limit.y);
 
-	auto project = [=](const Vector3& v) {
-		return c.plus(tipOffset(v));
-	};
+	auto project = [=](const Vector3& v) { return c.plus(tipOffset(v)); };
 
 	// Axis as a diameter, with an arrow at the positive end.
 	auto drawAxis = [&](const Vector3& axis, NVGcolor color) {
@@ -175,8 +170,7 @@ void RotationDisplay::drawAxes3D(NVGcontext* vg, Vec size) {
 		drawAxis(axes[i], ROTATED_AXIS);
 
 	auto drawAxisName = [&](Vec p, const char* text, NVGcolor color) {
-		drawText(vg, LABEL_FONT, labelFontSize, color,
-		         NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE, p, text);
+		drawText(vg, LABEL_FONT, labelFontSize, color, NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE, p, text);
 	};
 
 	for (int i = 0; i < 3; i++)
@@ -200,9 +194,13 @@ void RotationDisplay::drawAxes3D(NVGcontext* vg, Vec size) {
 	// left of the "X" it covers and read as a doubled letter.
 	for (int i = 0; i < 3; i++) {
 		Vec p = c.plus(nameOffset(axes[i]));
-		drawText(vg, LABEL_FONT, labelFontSize, ROTATED_AXIS,
+		drawText(vg,
+		         LABEL_FONT,
+		         labelFontSize,
+		         ROTATED_AXIS,
 		         NVG_ALIGN_LEFT | NVG_ALIGN_MIDDLE,
-		         Vec(p.x - nameAdvance(names[i]) / 2.f, p.y), rotatedNames[i]);
+		         Vec(p.x - nameAdvance(names[i]) / 2.f, p.y),
+		         rotatedNames[i]);
 	}
 }
 

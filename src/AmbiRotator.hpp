@@ -64,9 +64,7 @@ struct AmbiRotator {
 	 * altogether: the samples are bit-identical, as the matrix is the identity.
 	 * It stays false while a glide toward zero is still running, so that
 	 * returning the angles to zero does not cut the glide short. */
-	bool isIdentity() const {
-		return !dirty && glideRemaining == 0 && yaw == 0.f && pitch == 0.f && roll == 0.f;
-	}
+	bool isIdentity() const { return !dirty && glideRemaining == 0 && yaw == 0.f && pitch == 0.f && roll == 0.f; }
 
 	/** Where the x, y and z axes of the sound field end up under the rotation
 	 * given in degrees, in the order x, y, z. For the screen, which has to

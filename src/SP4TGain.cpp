@@ -5,21 +5,47 @@
 
 
 struct SP4TGain : Module {
-	enum { NUM_CHANNELS = 16 };
+	enum {
+		NUM_CHANNELS = 16
+	};
 
 	enum ParamId {
-		CH1_GAIN_PARAM, CH2_GAIN_PARAM, CH3_GAIN_PARAM, CH4_GAIN_PARAM,
-		CH5_GAIN_PARAM, CH6_GAIN_PARAM, CH7_GAIN_PARAM, CH8_GAIN_PARAM,
-		CH9_GAIN_PARAM, CH10_GAIN_PARAM, CH11_GAIN_PARAM, CH12_GAIN_PARAM,
-		CH13_GAIN_PARAM, CH14_GAIN_PARAM, CH15_GAIN_PARAM, CH16_GAIN_PARAM,
+		CH1_GAIN_PARAM,
+		CH2_GAIN_PARAM,
+		CH3_GAIN_PARAM,
+		CH4_GAIN_PARAM,
+		CH5_GAIN_PARAM,
+		CH6_GAIN_PARAM,
+		CH7_GAIN_PARAM,
+		CH8_GAIN_PARAM,
+		CH9_GAIN_PARAM,
+		CH10_GAIN_PARAM,
+		CH11_GAIN_PARAM,
+		CH12_GAIN_PARAM,
+		CH13_GAIN_PARAM,
+		CH14_GAIN_PARAM,
+		CH15_GAIN_PARAM,
+		CH16_GAIN_PARAM,
 		PARAMS_LEN
 	};
 	enum InputId {
 		AMBI_INPUT,
-		CH1_GAIN_CV_INPUT, CH2_GAIN_CV_INPUT, CH3_GAIN_CV_INPUT, CH4_GAIN_CV_INPUT,
-		CH5_GAIN_CV_INPUT, CH6_GAIN_CV_INPUT, CH7_GAIN_CV_INPUT, CH8_GAIN_CV_INPUT,
-		CH9_GAIN_CV_INPUT, CH10_GAIN_CV_INPUT, CH11_GAIN_CV_INPUT, CH12_GAIN_CV_INPUT,
-		CH13_GAIN_CV_INPUT, CH14_GAIN_CV_INPUT, CH15_GAIN_CV_INPUT, CH16_GAIN_CV_INPUT,
+		CH1_GAIN_CV_INPUT,
+		CH2_GAIN_CV_INPUT,
+		CH3_GAIN_CV_INPUT,
+		CH4_GAIN_CV_INPUT,
+		CH5_GAIN_CV_INPUT,
+		CH6_GAIN_CV_INPUT,
+		CH7_GAIN_CV_INPUT,
+		CH8_GAIN_CV_INPUT,
+		CH9_GAIN_CV_INPUT,
+		CH10_GAIN_CV_INPUT,
+		CH11_GAIN_CV_INPUT,
+		CH12_GAIN_CV_INPUT,
+		CH13_GAIN_CV_INPUT,
+		CH14_GAIN_CV_INPUT,
+		CH15_GAIN_CV_INPUT,
+		CH16_GAIN_CV_INPUT,
 		INPUTS_LEN
 	};
 	enum OutputId {
@@ -27,10 +53,22 @@ struct SP4TGain : Module {
 		OUTPUTS_LEN
 	};
 	enum LightId {
-		CH1_LED_LIGHT, CH2_LED_LIGHT, CH3_LED_LIGHT, CH4_LED_LIGHT,
-		CH5_LED_LIGHT, CH6_LED_LIGHT, CH7_LED_LIGHT, CH8_LED_LIGHT,
-		CH9_LED_LIGHT, CH10_LED_LIGHT, CH11_LED_LIGHT, CH12_LED_LIGHT,
-		CH13_LED_LIGHT, CH14_LED_LIGHT, CH15_LED_LIGHT, CH16_LED_LIGHT,
+		CH1_LED_LIGHT,
+		CH2_LED_LIGHT,
+		CH3_LED_LIGHT,
+		CH4_LED_LIGHT,
+		CH5_LED_LIGHT,
+		CH6_LED_LIGHT,
+		CH7_LED_LIGHT,
+		CH8_LED_LIGHT,
+		CH9_LED_LIGHT,
+		CH10_LED_LIGHT,
+		CH11_LED_LIGHT,
+		CH12_LED_LIGHT,
+		CH13_LED_LIGHT,
+		CH14_LED_LIGHT,
+		CH15_LED_LIGHT,
+		CH16_LED_LIGHT,
 		LIGHTS_LEN
 	};
 
@@ -61,8 +99,8 @@ struct SP4TGain : Module {
 		for (int c = 0; c < channels; c++) {
 			// The CV input is normalized to 5 V, so that the gain is unity with
 			// nothing patched and the knob at its mid position.
-			float gain = params[CH1_GAIN_PARAM + c].getValue()
-			             * inputs[CH1_GAIN_CV_INPUT + c].getNormalVoltage(5.f) / 5.f;
+			float gain =
+				params[CH1_GAIN_PARAM + c].getValue() * inputs[CH1_GAIN_CV_INPUT + c].getNormalVoltage(5.f) / 5.f;
 			float out = inputs[AMBI_INPUT].getVoltage(c) * gain;
 			outputs[AMBI_OUTPUT].setVoltage(out, c);
 			peaks[c] = std::fmax(peaks[c], std::fabs(out));
@@ -105,12 +143,15 @@ struct SP4TGainWidget : ModuleWidget {
 		for (int row = 0; row < 4; row++) {
 			for (int col = 0; col < 4; col++) {
 				int c = 4 * row + col;
-				addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(knobX[col], knobY[row])), module, SP4TGain::CH1_GAIN_PARAM + c));
-				addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(knobX[col], inputY[row])), module, SP4TGain::CH1_GAIN_CV_INPUT + c));
+				addParam(createParamCentered<SP4TRoundSmallKnob>(
+					mm2px(Vec(knobX[col], knobY[row])), module, SP4TGain::CH1_GAIN_PARAM + c));
+				addInput(createInputCentered<ThemedPJ301MPort>(
+					mm2px(Vec(knobX[col], inputY[row])), module, SP4TGain::CH1_GAIN_CV_INPUT + c));
 
 				// The LEDs sit close to the knobs and their arcs, so the glow
 				// stops right after the rim.
-				SP4TSignalLight* light = createLightCentered<SP4TSignalLight>(mm2px(Vec(ledX[col], ledY[row])), module, SP4TGain::CH1_LED_LIGHT + c);
+				SP4TSignalLight* light = createLightCentered<SP4TSignalLight>(
+					mm2px(Vec(ledX[col], ledY[row])), module, SP4TGain::CH1_LED_LIGHT + c);
 				light->haloSpread = 1.5f;
 				addChild(light);
 			}

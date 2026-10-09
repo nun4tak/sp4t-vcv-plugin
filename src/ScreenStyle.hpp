@@ -19,7 +19,8 @@ const char* const LABEL_FONT = "res/fonts/ShareTechMono-Regular.ttf";
 const char* const SOURCE_FONT = "res/fonts/Nunito-Bold.ttf";
 
 
-inline void drawText(NVGcontext* vg, const char* fontPath, float fontSize, NVGcolor color, int align, Vec p, const char* text) {
+inline void drawText(NVGcontext* vg, const char* fontPath, float fontSize, NVGcolor color, int align, Vec p,
+                     const char* text) {
 	std::shared_ptr<window::Font> font = APP->window->loadFont(asset::system(fontPath));
 	if (!font)
 		return;

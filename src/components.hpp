@@ -14,9 +14,7 @@ struct SP4TKnob : RoundKnob {
 	std::shared_ptr<window::Svg> darkBgSvg;
 	bool dark = false;
 
-	SP4TKnob() {
-		shadow->opacity = 0.f;
-	}
+	SP4TKnob() { shadow->opacity = 0.f; }
 
 	/** Loads res/components/<name>.svg (rotating part) and <name>_bg.svg /
 	 * <name>_bg-dark.svg (body, light and dark panels). */
@@ -41,25 +39,19 @@ struct SP4TKnob : RoundKnob {
 
 /** Flat variant of RoundBlackKnob (9.6 mm). */
 struct SP4TRoundKnob : SP4TKnob {
-	SP4TRoundKnob() {
-		loadSvgs("SP4TRoundKnob");
-	}
+	SP4TRoundKnob() { loadSvgs("SP4TRoundKnob"); }
 };
 
 
 /** Flat variant of RoundBlackKnob scaled at 117% (11.2 mm). */
 struct SP4TRoundLargeKnob : SP4TKnob {
-	SP4TRoundLargeKnob() {
-		loadSvgs("SP4TRoundLargeKnob");
-	}
+	SP4TRoundLargeKnob() { loadSvgs("SP4TRoundLargeKnob"); }
 };
 
 
 /** Flat, slightly smaller variant of RoundSmallBlackKnob (6.8 mm), e.g., for CV attenuverters. */
 struct SP4TRoundSmallKnob : SP4TKnob {
-	SP4TRoundSmallKnob() {
-		loadSvgs("SP4TRoundSmallKnob");
-	}
+	SP4TRoundSmallKnob() { loadSvgs("SP4TRoundSmallKnob"); }
 };
 
 
@@ -120,8 +112,7 @@ struct SP4TLatch : app::SvgSwitch {
 		// instead would darken what the glow is drawn over.
 		NVGcolor inner = haloColor;
 		inner.a = std::min(halo * haloGain, 1.f);
-		NVGpaint paint = nvgRadialGradient(args.vg, center.x, center.y, core, outer,
-		                                   inner, nvgRGBA(0, 0, 0, 0));
+		NVGpaint paint = nvgRadialGradient(args.vg, center.x, center.y, core, outer, inner, nvgRGBA(0, 0, 0, 0));
 		nvgBeginPath(args.vg);
 		nvgRect(args.vg, center.x - outer, center.y - outer, 2 * outer, 2 * outer);
 		nvgFillPaint(args.vg, paint);
@@ -213,9 +204,7 @@ struct SP4TSignalLight : app::ModuleLightWidget {
 		box.size = mm2px(Vec(1.134, 1.134));
 	}
 
-	float getRadius() const {
-		return std::min(box.size.x, box.size.y) / 2.f;
-	}
+	float getRadius() const { return std::min(box.size.x, box.size.y) / 2.f; }
 
 	/** The LED and its rim, lit by `drawLight()` and `drawHalo()` on top. */
 	void drawBackground(const DrawArgs& args) override {
@@ -223,9 +212,13 @@ struct SP4TSignalLight : app::ModuleLightWidget {
 		float radius = getRadius();
 
 		// Darker at the top, as if the LED was sunk into the panel.
-		NVGpaint rim = nvgLinearGradient(args.vg, center.x, center.y - radius - rimWidth,
-		                                 center.x, center.y + radius + rimWidth,
-		                                 nvgRGB(0x1c, 0x1f, 0x24), nvgRGB(0x6a, 0x72, 0x80));
+		NVGpaint rim = nvgLinearGradient(args.vg,
+		                                 center.x,
+		                                 center.y - radius - rimWidth,
+		                                 center.x,
+		                                 center.y + radius + rimWidth,
+		                                 nvgRGB(0x1c, 0x1f, 0x24),
+		                                 nvgRGB(0x6a, 0x72, 0x80));
 		nvgBeginPath(args.vg);
 		nvgCircle(args.vg, center.x, center.y, radius + rimWidth);
 		nvgFillPaint(args.vg, rim);
@@ -255,8 +248,7 @@ struct SP4TSignalLight : app::ModuleLightWidget {
 		// darken the LED, which the glow is drawn over.
 		NVGcolor inner = baseColors.empty() ? color : baseColors[0];
 		inner.a = std::min(color.a * halo * haloGain, 1.f);
-		NVGpaint paint = nvgRadialGradient(args.vg, center.x, center.y, core, outer,
-		                                   inner, nvgRGBA(0, 0, 0, 0));
+		NVGpaint paint = nvgRadialGradient(args.vg, center.x, center.y, core, outer, inner, nvgRGBA(0, 0, 0, 0));
 		nvgBeginPath(args.vg);
 		nvgRect(args.vg, center.x - outer, center.y - outer, 2 * outer, 2 * outer);
 		nvgFillPaint(args.vg, paint);

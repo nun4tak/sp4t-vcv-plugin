@@ -79,8 +79,8 @@ private:
 	std::vector<float> targetGains;
 	std::vector<float> gains;
 	std::vector<float> gainSteps;
-    /** By default number of input Ambisonic channels (order)
-     *  but may be limited to 2 in crude mode */
+	/** By default number of input Ambisonic channels (order)
+	 *  but may be limited to 2 in crude mode */
 	int numGains = 4;
 	int samplesUntilUpdate = 0;
 	bool dirty = true;

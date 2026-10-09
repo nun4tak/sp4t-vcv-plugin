@@ -5,17 +5,31 @@
 
 
 struct SP4TMerge : Module {
-	enum { NUM_CHANNELS = 16 };
+	enum {
+		NUM_CHANNELS = 16
+	};
 
 	enum ParamId {
 		ORDER_PARAM,
 		PARAMS_LEN
 	};
 	enum InputId {
-		CH1_INPUT, CH2_INPUT, CH3_INPUT, CH4_INPUT,
-		CH5_INPUT, CH6_INPUT, CH7_INPUT, CH8_INPUT,
-		CH9_INPUT, CH10_INPUT, CH11_INPUT, CH12_INPUT,
-		CH13_INPUT, CH14_INPUT, CH15_INPUT, CH16_INPUT,
+		CH1_INPUT,
+		CH2_INPUT,
+		CH3_INPUT,
+		CH4_INPUT,
+		CH5_INPUT,
+		CH6_INPUT,
+		CH7_INPUT,
+		CH8_INPUT,
+		CH9_INPUT,
+		CH10_INPUT,
+		CH11_INPUT,
+		CH12_INPUT,
+		CH13_INPUT,
+		CH14_INPUT,
+		CH15_INPUT,
+		CH16_INPUT,
 		INPUTS_LEN
 	};
 	enum OutputId {
@@ -28,7 +42,11 @@ struct SP4TMerge : Module {
 
 	SP4TMerge() {
 		config(PARAMS_LEN, INPUTS_LEN, OUTPUTS_LEN, LIGHTS_LEN);
-		configSwitch(ORDER_PARAM, 0.f, 2.f, 0.f, "Ambisonic order",
+		configSwitch(ORDER_PARAM,
+		             0.f,
+		             2.f,
+		             0.f,
+		             "Ambisonic order",
 		             {"1 (FOA, 4 channels)", "2 (HOA-2, 9 channels)", "3 (HOA-3, 16 channels)"});
 		for (int c = 0; c < NUM_CHANNELS; c++)
 			configInput(CH1_INPUT + c, string::f("Channel %d", c + 1));
@@ -74,7 +92,8 @@ struct SP4TMergeWidget : ModuleWidget {
 		for (int c = 0; c < SP4TMerge::NUM_CHANNELS; c++) {
 			int row = c == 0 ? 0 : 1 + (c - 1) / 3;
 			int col = c == 0 ? 1 : (c - 1) % 3;
-			addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(jackX[col], jackY[row])), module, SP4TMerge::CH1_INPUT + c));
+			addInput(createInputCentered<ThemedPJ301MPort>(
+				mm2px(Vec(jackX[col], jackY[row])), module, SP4TMerge::CH1_INPUT + c));
 		}
 
 		addParam(createParamCentered<SP4TSwitchThree>(mm2px(Vec(13.451, 114.027)), module, SP4TMerge::ORDER_PARAM));

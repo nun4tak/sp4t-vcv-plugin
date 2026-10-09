@@ -22,28 +22,30 @@ int delaySamples(float position) {
 
 /** Delay compensation knob: whole samples, with the taper above. */
 struct DelayQuantity : ParamQuantity {
-	float getDisplayValue() override {
-		return delaySamples(getValue());
-	}
+	float getDisplayValue() override { return delaySamples(getValue()); }
 
 	void setDisplayValue(float displayValue) override {
 		float samples = math::clamp(displayValue, 0.f, (float) MAX_DELAY);
 		setImmediateValue(std::sqrt(samples / MAX_DELAY));
 	}
 
-	std::string getUnit() override {
-		return getDisplayValue() == 1.f ? " sample" : " samples";
-	}
+	std::string getUnit() override { return getDisplayValue() == 1.f ? " sample" : " samples"; }
 };
 
 } // namespace
 
 
 struct SP4TSplitInsert : Module {
-	enum { NUM_CHANNELS = 16, NUM_INSERTS = 2 };
+	enum {
+		NUM_CHANNELS = 16,
+		NUM_INSERTS = 2
+	};
 
 	/** Insert 1 takes the omni-directional channel, insert 2 all the others. */
-	enum { OMNI = 0, DIRECTIONAL = 1 };
+	enum {
+		OMNI = 0,
+		DIRECTIONAL = 1
+	};
 
 	enum ParamId {
 		INSERT1_PRE_PARAM,
@@ -86,9 +88,7 @@ struct SP4TSplitInsert : Module {
 			writeIndex = 0;
 		}
 
-		void write(int channel, float value) {
-			buffer[channel][writeIndex] = value;
-		}
+		void write(int channel, float value) { buffer[channel][writeIndex] = value; }
 
 		/** Reads what was written `delay` samples ago, the sample just written
 		 * for a delay of 0. */
@@ -140,8 +140,7 @@ struct SP4TSplitInsert : Module {
 			std::string insert = inserts[i];
 			configParam(INSERT1_PRE_PARAM + i, 0.f, 2.f, 1.f, insert + " pre gain", "x");
 			configParam(INSERT1_POST_PARAM + i, 0.f, 2.f, 1.f, insert + " post gain", "x");
-			configParam<DelayQuantity>(INSERT1_DELAY_PARAM + i, 0.f, 1.f, 0.f,
-			                           insert + " delay compensation");
+			configParam<DelayQuantity>(INSERT1_DELAY_PARAM + i, 0.f, 1.f, 0.f, insert + " delay compensation");
 			configInput(INSERT1_PRE_CV_INPUT + i, insert + " pre gain CV");
 			configInput(INSERT1_RETURN_INPUT + i, insert + " return");
 			configOutput(INSERT1_SEND_OUTPUT + i, insert + " send");
@@ -183,8 +182,8 @@ struct SP4TSplitInsert : Module {
 		for (int i = 0; i < NUM_INSERTS; i++) {
 			// The pre-gain CV input is normalled to 5 V, so that the gain is the
 			// one of the knob with nothing patched.
-			preGains[i] = params[INSERT1_PRE_PARAM + i].getValue()
-			              * inputs[INSERT1_PRE_CV_INPUT + i].getNormalVoltage(5.f) / 5.f;
+			preGains[i] =
+				params[INSERT1_PRE_PARAM + i].getValue() * inputs[INSERT1_PRE_CV_INPUT + i].getNormalVoltage(5.f) / 5.f;
 			postGains[i] = params[INSERT1_POST_PARAM + i].getValue();
 
 			// The knob always counts, patched or not: a send normalled to its
@@ -246,9 +245,8 @@ struct SP4TSplitInsert : Module {
 
 			// The send is normalled to the return: with nothing patched the
 			// insert passes through, pre-gain and post-gain still in force.
-			float returned = returnPatched[insert]
-			                 ? inputs[INSERT1_RETURN_INPUT + insert].getVoltage(sendChannel)
-			                 : send;
+			float returned =
+				returnPatched[insert] ? inputs[INSERT1_RETURN_INPUT + insert].getVoltage(sendChannel) : send;
 
 			// Both signals come out delayed by the same number of samples, so
 			// the post-gain and the dry/wet mix act on what the two inserts
@@ -285,18 +283,27 @@ struct SP4TSplitInsertWidget : ModuleWidget {
 		const float cvY[] = {40.956f, 75.074f};
 
 		for (int i = 0; i < SP4TSplitInsert::NUM_INSERTS; i++) {
-			addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(8.756, sendY[i])), module, SP4TSplitInsert::INSERT1_PRE_PARAM + i));
-			addOutput(createOutputCentered<ThemedPJ301MPort>(mm2px(Vec(19.852, sendY[i])), module, SP4TSplitInsert::INSERT1_SEND_OUTPUT + i));
-			addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(30.948, sendY[i])), module, SP4TSplitInsert::INSERT1_RETURN_INPUT + i));
-			addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(42.043, sendY[i])), module, SP4TSplitInsert::INSERT1_POST_PARAM + i));
+			addParam(createParamCentered<SP4TRoundSmallKnob>(
+				mm2px(Vec(8.756, sendY[i])), module, SP4TSplitInsert::INSERT1_PRE_PARAM + i));
+			addOutput(createOutputCentered<ThemedPJ301MPort>(
+				mm2px(Vec(19.852, sendY[i])), module, SP4TSplitInsert::INSERT1_SEND_OUTPUT + i));
+			addInput(createInputCentered<ThemedPJ301MPort>(
+				mm2px(Vec(30.948, sendY[i])), module, SP4TSplitInsert::INSERT1_RETURN_INPUT + i));
+			addParam(createParamCentered<SP4TRoundSmallKnob>(
+				mm2px(Vec(42.043, sendY[i])), module, SP4TSplitInsert::INSERT1_POST_PARAM + i));
 
-			addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(8.756, cvY[i])), module, SP4TSplitInsert::INSERT1_PRE_CV_INPUT + i));
-			addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(42.043, cvY[i])), module, SP4TSplitInsert::INSERT1_DELAY_PARAM + i));
+			addInput(createInputCentered<ThemedPJ301MPort>(
+				mm2px(Vec(8.756, cvY[i])), module, SP4TSplitInsert::INSERT1_PRE_CV_INPUT + i));
+			addParam(createParamCentered<SP4TRoundSmallKnob>(
+				mm2px(Vec(42.043, cvY[i])), module, SP4TSplitInsert::INSERT1_DELAY_PARAM + i));
 		}
 
-		addParam(createParamCentered<SP4TRoundLargeKnob>(mm2px(Vec(10.424, 94.126)), module, SP4TSplitInsert::DRY_WET_PARAM));
-		addParam(createParamCentered<SP4TRoundSmallKnob>(mm2px(Vec(30.947, 94.19)), module, SP4TSplitInsert::DRY_WET_CV_PARAM));
-		addInput(createInputCentered<ThemedPJ301MPort>(mm2px(Vec(42.043, 94.1)), module, SP4TSplitInsert::DRY_WET_CV_INPUT));
+		addParam(createParamCentered<SP4TRoundLargeKnob>(
+			mm2px(Vec(10.424, 94.126)), module, SP4TSplitInsert::DRY_WET_PARAM));
+		addParam(createParamCentered<SP4TRoundSmallKnob>(
+			mm2px(Vec(30.947, 94.19)), module, SP4TSplitInsert::DRY_WET_CV_PARAM));
+		addInput(
+			createInputCentered<ThemedPJ301MPort>(mm2px(Vec(42.043, 94.1)), module, SP4TSplitInsert::DRY_WET_CV_INPUT));
 
 		addInput(createInputCentered<SP4TAmbiPort>(mm2px(Vec(8.756, 114.0)), module, SP4TSplitInsert::AMBI_INPUT));
 		addOutput(createOutputCentered<SP4TAmbiPort>(mm2px(Vec(42.043, 114.0)), module, SP4TSplitInsert::AMBI_OUTPUT));
@@ -310,8 +317,8 @@ struct SP4TSplitInsertWidget : ModuleWidget {
 		int latency = module->latency;
 		float milliseconds = 1e3f * latency / APP->engine->getSampleRate();
 		menu->addChild(new MenuSeparator);
-		menu->addChild(createMenuLabel(string::f("Latency for the insert chain: %d samples (%.1f ms)",
-		                                        latency, milliseconds)));
+		menu->addChild(
+			createMenuLabel(string::f("Latency for the insert chain: %d samples (%.1f ms)", latency, milliseconds)));
 	}
 };
 

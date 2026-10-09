@@ -54,9 +54,7 @@ struct SP4TSmear : Module {
 	/** The filterbank and the all-pass filters depend on the sample rate.
 	 * Rack also sends this event when the module is added, which is where they
 	 * are built: it allocates, so it cannot happen in process(). */
-	void onSampleRateChange(const SampleRateChangeEvent& e) override {
-		decorrelator.setSampleRate(e.sampleRate);
-	}
+	void onSampleRateChange(const SampleRateChangeEvent& e) override { decorrelator.setSampleRate(e.sampleRate); }
 
 	void onReset(const ResetEvent& e) override {
 		Module::onReset(e);
@@ -152,13 +150,17 @@ struct SP4TSmearWidget : ModuleWidget {
 		SP4TSmear* module = getModule<SP4TSmear>();
 
 		menu->addChild(new MenuSeparator);
-		menu->addChild(createBoolMenuItem("Bypass transients", "",
+		menu->addChild(createBoolMenuItem(
+			"Bypass transients",
+			"",
 			[=]() { return module->bypassTransients; },
 			[=](bool enabled) {
 				module->bypassTransients = enabled;
 				module->decorrelator.setBypassTransients(enabled);
 			}));
-		menu->addChild(createBoolMenuItem("Compensate level", "",
+		menu->addChild(createBoolMenuItem(
+			"Compensate level",
+			"",
 			[=]() { return module->compensateLevel; },
 			[=](bool enabled) {
 				module->compensateLevel = enabled;
@@ -167,8 +169,7 @@ struct SP4TSmearWidget : ModuleWidget {
 
 		int latency = module->decorrelator.getLatency();
 		float milliseconds = 1e3f * latency / APP->engine->getSampleRate();
-		menu->addChild(createMenuLabel(string::f("Latency: %d samples (%.1f ms)",
-		                                        latency, milliseconds)));
+		menu->addChild(createMenuLabel(string::f("Latency: %d samples (%.1f ms)", latency, milliseconds)));
 	}
 };
 

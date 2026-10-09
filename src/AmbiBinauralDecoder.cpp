@@ -35,11 +35,10 @@ int nextPow2(int n) {
 /** ambi_bin's truncation EQ: a per-bin gain compensating the high-frequency
  * roll-off that truncating the Ambisonic order (and the max-rE tapering)
  * introduces in the diffuse field. */
-void applyTruncationEQ(int order, int nSH, bool maxRE, const float* freqVector,
-                       int nBins, float_complex* decMtx) {
-	const int targetOrder = 42;       // the diffuse field it is equalised to
-	const float softThreshold = 9.f;  // dB, boost soft-clipped above it
-	const double radius = 0.085;      // head radius, m
+void applyTruncationEQ(int order, int nSH, bool maxRE, const float* freqVector, int nBins, float_complex* decMtx) {
+	const int targetOrder = 42;      // the diffuse field it is equalised to
+	const float softThreshold = 9.f; // dB, boost soft-clipped above it
+	const double radius = 0.085;     // head radius, m
 	const double soundSpeed = 343.0;
 
 	std::vector<double> kr(nBins);
@@ -68,16 +67,14 @@ void applyTruncationEQ(int order, int nSH, bool maxRE, const float* freqVector,
 } // namespace
 
 
-AmbiBinauralDecoder::AmbiBinauralDecoder()
-	: delayLines((size_t) MAX_NUM_SH * 2 * MAX_FILTER_LEN, 0.f) {}
+AmbiBinauralDecoder::AmbiBinauralDecoder() : delayLines((size_t) MAX_NUM_SH * 2 * MAX_FILTER_LEN, 0.f) {}
 
 
 void AmbiBinauralDecoder::build(const Options& options) {
 	const int nDirs = __default_N_hrir_dirs;
 	int fs = std::max((int) std::lround(options.sampleRate), 1);
 
-	std::vector<float> dirs((const float*) __default_hrir_dirs_deg,
-	                        (const float*) __default_hrir_dirs_deg + nDirs * 2);
+	std::vector<float> dirs((const float*) __default_hrir_dirs_deg, (const float*) __default_hrir_dirs_deg + nDirs * 2);
 
 	// Default HRIR set, resampled to the host sample rate when needed.
 	int hrirLen = __default_hrir_len;
@@ -86,8 +83,7 @@ void AmbiBinauralDecoder::build(const Options& options) {
 	if (fs != __default_hrir_fs) {
 		float* resampled = NULL;
 		int resampledLen = 0;
-		resampleHRIRs(hrirs.data(), nDirs, hrirLen, __default_hrir_fs, fs, 1,
-		              &resampled, &resampledLen);
+		resampleHRIRs(hrirs.data(), nDirs, hrirLen, __default_hrir_fs, fs, 1, &resampled, &resampledLen);
 		hrirLen = resampledLen;
 		hrirs.assign(resampled, resampled + (size_t) nDirs * NUM_EARS * hrirLen);
 		free(resampled);
@@ -107,8 +103,7 @@ void AmbiBinauralDecoder::build(const Options& options) {
 		angle *= SAF_PI / 180.f;
 	sphElev2incl(dirsRad.data(), nDirs, 0, dirsRad.data());
 	std::vector<float> weights(nDirs, 0.f);
-	float* weightsPtr = calculateGridWeights(dirsRad.data(), nDirs, -1, weights.data()) >= 1
-	                    ? weights.data() : NULL;
+	float* weightsPtr = calculateGridWeights(dirsRad.data(), nDirs, -1, weights.data()) >= 1 ? weights.data() : NULL;
 
 	std::vector<float> itds(nDirs, 0.f);
 	estimateITDs(hrirs.data(), nDirs, hrirLen, fs, itds.data());
@@ -134,10 +129,17 @@ void AmbiBinauralDecoder::build(const Options& options) {
 	for (int n = MIN_ORDER; n <= MAX_ORDER; n++) {
 		const int nSH = (n + 1) * (n + 1);
 		decMtx.assign((size_t) nBins * NUM_EARS * nSH, cmplxf(0.f, 0.f));
-		getBinauralAmbiDecoderMtx(hrtfs.data(), dirs.data(), nDirs, nBins,
-		                          safMethod(options.method), n, freqVector.data(),
-		                          itds.data(), weightsPtr,
-		                          options.diffuseMatching ? 1 : 0, options.maxRE ? 1 : 0,
+		getBinauralAmbiDecoderMtx(hrtfs.data(),
+		                          dirs.data(),
+		                          nDirs,
+		                          nBins,
+		                          safMethod(options.method),
+		                          n,
+		                          freqVector.data(),
+		                          itds.data(),
+		                          weightsPtr,
+		                          options.diffuseMatching ? 1 : 0,
+		                          options.maxRE ? 1 : 0,
 		                          decMtx.data());
 
 		if (options.truncationEQ && options.method == METHOD_LS)

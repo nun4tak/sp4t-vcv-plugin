@@ -34,8 +34,7 @@ const float LABEL_SLOT = 0.6f * LABEL_SIZE;
 
 
 std::vector<std::string> AmbisonicDisplay::getViewModeLabels() {
-	return {"Orthographic (front / rear)", "Hammer", "Cartesian", "3D sphere",
-	        "XY/Z projections"};
+	return {"Orthographic (front / rear)", "Hammer", "Cartesian", "3D sphere", "XY/Z projections"};
 }
 
 
@@ -139,8 +138,7 @@ void AmbisonicDisplay::drawHammer(NVGcontext* vg, Vec size) {
 		float halfLambda = azimuth * DEG2RAD / 2;
 		float phi = elevation * DEG2RAD;
 		float denom = std::sqrt(1 + std::cos(phi) * std::cos(halfLambda));
-		return Vec(c.x - a * std::cos(phi) * std::sin(halfLambda) / denom,
-		           c.y - b * std::sin(phi) / denom);
+		return Vec(c.x - a * std::cos(phi) * std::sin(halfLambda) / denom, c.y - b * std::sin(phi) / denom);
 	};
 
 	nvgBeginPath(vg);
@@ -173,9 +171,7 @@ void AmbisonicDisplay::drawHammer(NVGcontext* vg, Vec size) {
 	nvgStrokeWidth(vg, 0.8f);
 	nvgStroke(vg);
 
-	drawSources(vg, [&](const Direction& d) {
-		return project(d.azimuth, d.elevation);
-	});
+	drawSources(vg, [&](const Direction& d) { return project(d.azimuth, d.elevation); });
 }
 
 
@@ -232,9 +228,11 @@ void AmbisonicDisplay::drawCartesian(NVGcontext* vg, Vec size) {
 	for (int elevation = -90; elevation <= 90; elevation += 45) {
 		float y = project(0, elevation).y;
 		if (elevation > 0)
-			drawGridLabel(vg, Vec(c.x + offset, y + offset), string::f("%d", elevation), NVG_ALIGN_LEFT | NVG_ALIGN_TOP);
+			drawGridLabel(
+				vg, Vec(c.x + offset, y + offset), string::f("%d", elevation), NVG_ALIGN_LEFT | NVG_ALIGN_TOP);
 		else if (elevation < 0)
-			drawGridLabel(vg, Vec(c.x + offset, y - offset), string::f("%d", elevation), NVG_ALIGN_LEFT | NVG_ALIGN_BOTTOM);
+			drawGridLabel(
+				vg, Vec(c.x + offset, y - offset), string::f("%d", elevation), NVG_ALIGN_LEFT | NVG_ALIGN_BOTTOM);
 	}
 
 	// Keep the labels of sources at the edges (e.g., rear or poles) whole.
@@ -258,7 +256,8 @@ void AmbisonicDisplay::drawSphere3D(NVGcontext* vg, Vec size) {
 	const Vector3 eye = directionToVector(camAzimuth * RAD2DEG, camElevation * RAD2DEG);
 	const Vector3 right = {-std::sin(camAzimuth), std::cos(camAzimuth), 0.f};
 	const Vector3 up = {-std::sin(camElevation) * std::cos(camAzimuth),
-	                    -std::sin(camElevation) * std::sin(camAzimuth), std::cos(camElevation)};
+	                    -std::sin(camElevation) * std::sin(camAzimuth),
+	                    std::cos(camElevation)};
 
 	Vec c = size.div(2);
 	// Radius of the sphere outline on the screen (not drawn, used for the
@@ -271,9 +270,7 @@ void AmbisonicDisplay::drawSphere3D(NVGcontext* vg, Vec size) {
 	const char* axisNames[3] = {"X", "Y", "Z"};
 	const float labelDistance = outlineRadius + 5;
 	const float labelHalfHeight = LABEL_HALF_HEIGHT;
-	auto axisDirection = [=](const Vector3& axis) {
-		return Vec(dot(axis, right), -dot(axis, up)).normalize();
-	};
+	auto axisDirection = [=](const Vector3& axis) { return Vec(dot(axis, right), -dot(axis, up)).normalize(); };
 
 	// Centers the plot vertically on the screen, including the axis names
 	// (the Z name sticks out above the sphere).
@@ -289,28 +286,27 @@ void AmbisonicDisplay::drawSphere3D(NVGcontext* vg, Vec size) {
 	auto project = [=](const Vector3& v) {
 		return Vec(c.x + outlineRadius * dot(v, right), c.y - outlineRadius * dot(v, up));
 	};
-	auto isVisible = [=](const Vector3& v) {
-		return dot(v, eye) > 0;
-	};
+	auto isVisible = [=](const Vector3& v) { return dot(v, eye) > 0; };
 
 	// Graticules: parallels and meridians every 45 degrees, including the
 	// great circles in the XY, XZ and YZ planes.
 	using Curve = std::function<Vector3(float)>;
 	auto parallel = [](float elevation) -> Curve {
 		float e = elevation * DEG2RAD;
-		return [=](float t) {
-			return Vector3{std::cos(e) * std::cos(t), std::cos(e) * std::sin(t), std::sin(e)};
-		};
+		return [=](float t) { return Vector3{std::cos(e) * std::cos(t), std::cos(e) * std::sin(t), std::sin(e)}; };
 	};
 	auto meridian = [](float azimuth) -> Curve {
 		float a = azimuth * DEG2RAD;
-		return [=](float t) {
-			return Vector3{std::cos(t) * std::cos(a), std::cos(t) * std::sin(a), std::sin(t)};
-		};
+		return [=](float t) { return Vector3{std::cos(t) * std::cos(a), std::cos(t) * std::sin(a), std::sin(t)}; };
 	};
 	const std::vector<Curve> graticules = {
-		parallel(-45), parallel(0), parallel(45),
-		meridian(0), meridian(45), meridian(90), meridian(135),
+		parallel(-45),
+		parallel(0),
+		parallel(45),
+		meridian(0),
+		meridian(45),
+		meridian(90),
+		meridian(135),
 	};
 
 	// Strokes the curves as polylines, keeping only the segments on the hidden
@@ -373,8 +369,11 @@ void AmbisonicDisplay::drawSphere3D(NVGcontext* vg, Vec size) {
 	}
 
 	for (int i = 0; i < 3; i++)
-		drawLabel(vg, c.plus(axisDirection(axes[i]).mult(labelDistance)), axisNames[i],
-		          NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE, LABEL_SIZE);
+		drawLabel(vg,
+		          c.plus(axisDirection(axes[i]).mult(labelDistance)),
+		          axisNames[i],
+		          NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE,
+		          LABEL_SIZE);
 
 	drawSources(vg, [&](const Direction& d) {
 		Vector3 v = directionToVector(d.azimuth, d.elevation);
@@ -456,8 +455,13 @@ void AmbisonicDisplay::drawXYandZProjections(NVGcontext* vg, Vec size) {
 		nvgFillColor(vg, SCREEN_OUTLINE);
 		nvgFill(vg);
 
-		drawText(vg, LABEL_FONT, LABEL_SIZE, SCREEN_TEXT, NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE,
-		         center.plus(u.mult(radius + nameGap)), name);
+		drawText(vg,
+		         LABEL_FONT,
+		         LABEL_SIZE,
+		         SCREEN_TEXT,
+		         NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE,
+		         center.plus(u.mult(radius + nameGap)),
+		         name);
 	};
 
 	// Sources at 45 degrees of elevation, above or below, land on this circle:
@@ -510,16 +514,20 @@ void AmbisonicDisplay::drawXYandZProjections(NVGcontext* vg, Vec size) {
 }
 
 
-template <typename Project>
-void AmbisonicDisplay::drawSources(NVGcontext* vg, const Project& project) {
+template <typename Project> void AmbisonicDisplay::drawSources(NVGcontext* vg, const Project& project) {
 	for (const Source& source : sources)
 		drawSourceLabel(vg, project(source.direction), source);
 }
 
 
 void AmbisonicDisplay::drawSourceLabel(NVGcontext* vg, ProjectedSource p, const Source& source) {
-	drawText(vg, SOURCE_FONT, LABEL_SIZE, nvgTransRGBAf(source.color, p.alpha), NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE,
-	         p.pos, source.label.c_str());
+	drawText(vg,
+	         SOURCE_FONT,
+	         LABEL_SIZE,
+	         nvgTransRGBAf(source.color, p.alpha),
+	         NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE,
+	         p.pos,
+	         source.label.c_str());
 }
 
 

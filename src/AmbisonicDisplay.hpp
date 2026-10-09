@@ -67,8 +67,7 @@ private:
 	void drawSphere3D(NVGcontext* vg, Vec size);
 	void drawXYandZProjections(NVGcontext* vg, Vec size);
 
-	template <typename Project>
-	void drawSources(NVGcontext* vg, const Project& project);
+	template <typename Project> void drawSources(NVGcontext* vg, const Project& project);
 	void drawSourceLabel(NVGcontext* vg, ProjectedSource p, const Source& source);
 };
 

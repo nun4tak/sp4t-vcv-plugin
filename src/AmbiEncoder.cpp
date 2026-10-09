@@ -28,17 +28,16 @@ AmbiEncoder::AmbiEncoder(int maxNumSources, int blockSize)
 	  dirty(this->maxNumSources, 1),
 	  targetGains(MAX_NUM_SH * this->maxNumSources, 0.f),
 	  gains(MAX_NUM_SH * this->maxNumSources, 0.f),
-	  gainSteps(MAX_NUM_SH * this->maxNumSources, 0.f) {
-}
+	  gainSteps(MAX_NUM_SH * this->maxNumSources, 0.f) {}
 
 
 void AmbiEncoder::reset() {
 	std::fill(dirty.begin(), dirty.end(), 1);
 	samplesUntilUpdate = 0;
-    // TODO: reset should probably also avoid audio clicks in some/all cases.
-    // - setOrder: I guess the first channels still emit uninterrupted audio
-    //   with VCV rack when the number of polyphonic channel changes?
-    // - setNumSources: existing sources continue to emit audio
+	// TODO: reset should probably also avoid audio clicks in some/all cases.
+	// - setOrder: I guess the first channels still emit uninterrupted audio
+	//   with VCV rack when the number of polyphonic channel changes?
+	// - setNumSources: existing sources continue to emit audio
 	jumpToTarget = true;
 }
 
@@ -86,7 +85,7 @@ void AmbiEncoder::setSourceDirection(int index, float azimuth, float elevation) 
 
 
 void AmbiEncoder::updateGains() {
-    // recalulate SHs (only if encoding direction has changed)
+	// recalulate SHs (only if encoding direction has changed)
 	float sh[MAX_NUM_SH];
 	for (int i = 0; i < numSources; i++) {
 		if (!dirty[i])
@@ -99,9 +98,9 @@ void AmbiEncoder::updateGains() {
 		dirty[i] = 0;
 	}
 
-    // apply linear fade over `blockSize` number of samples
-    // unless jump to target is enabled
-    // (no effect if new `targetGains` are unchanged)
+	// apply linear fade over `blockSize` number of samples
+	// unless jump to target is enabled
+	// (no effect if new `targetGains` are unchanged)
 	float invBlockSize = 1.f / blockSize;
 	for (int j = 0; j < numSH; j++) {
 		for (int i = 0; i < numSources; i++) {
@@ -115,10 +114,10 @@ void AmbiEncoder::updateGains() {
 			}
 		}
 	}
-    jumpToTarget = false;
+	jumpToTarget = false;
 
-    // TODO: (benbovy) move this just after calling
-    // updateGains in the process method (makes better sense)
+	// TODO: (benbovy) move this just after calling
+	// updateGains in the process method (makes better sense)
 	samplesUntilUpdate = blockSize;
 }
 
