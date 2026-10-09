@@ -1,0 +1,18 @@
+# Commit hooks, run by prek (https://prek.j178.dev). Install them once with
+# `pixi run install-prek-hooks`, run them by hand with `pixi run prek`.
+#
+# Only the plugin sources in src/ are formatted: SDKs/ is third-party and res/
+# holds the panels, which have their own export script.
+exclude: ^(SDKs|res)/
+
+repos:
+  - repo: local
+    hooks:
+      - id: clang-format
+        name: clang-format (src/)
+        description: Format the plugin sources with the style of .clang-format
+        # clang-format comes from the pixi environment, so the hook uses the
+        # same version as `pixi run prek`, whatever is on PATH at commit time.
+        entry: pixi run -q clang-format -i
+        language: system
+        files: ^src/.*\.(cpp|hpp)$

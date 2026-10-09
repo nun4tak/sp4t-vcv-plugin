@@ -1,0 +1,41 @@
+# Formatting of the plugin sources in src/, close to the style VCV Rack itself
+# is written in: tabs to indent and spaces to align, attached braces with
+# `else` on its own line, enums one item per line.
+#
+# The column limit is low enough that the widget lines of a module panel all
+# wrap the same way. A higher one is worse, not better: the shorter lines then
+# stay whole while the longer ones break, so the block no longer reads as one
+# list of components.
+#
+# BinPackArguments is off so that an array or a vector that does not fit on one
+# line is written one item per line. clang-format formats a braced list exactly
+# as it would the arguments of a call, so this applies to both: a call that has
+# to wrap puts its arguments on one line of their own, or one per line when
+# even that does not fit.
+---
+Language: Cpp
+BasedOnStyle: LLVM
+
+ColumnLimit: 120
+UseTab: AlignWithSpaces
+TabWidth: 4
+IndentWidth: 4
+ContinuationIndentWidth: 4
+AccessModifierOffset: -4
+MaxEmptyLinesToKeep: 2
+
+PointerAlignment: Left
+SpaceAfterCStyleCast: true
+BreakBeforeBinaryOperators: NonAssignment
+PackConstructorInitializers: CurrentLine
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortEnumsOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: true
+IndentCaseLabels: true
+SortIncludes: Never
+
+BreakBeforeBraces: Custom
+BraceWrapping:
+  BeforeElse: true
+  BeforeCatch: true
+BinPackArguments: false
