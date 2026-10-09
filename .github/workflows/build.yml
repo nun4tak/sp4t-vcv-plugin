@@ -1,0 +1,249 @@
+# Builds a distributable .vcvplugin bundle for every platform Rack supports.
+#
+# The bundles are uploaded as workflow artifacts, and attached to the release
+# when the run comes from one. Each is self-contained: a Rack user unzips it
+# into their plugin folder, so the only shared libraries a bundle may depend on
+# are the ones every machine already has (see the "self-contained" step).
+name: Build
+
+on:
+  release:
+    types: [published]
+  # Only the files that decide what is built: the sources themselves are
+  # covered by the formatting hook and by building locally.
+  push:
+    branches: [main]
+    paths:
+      - CMakeLists.txt
+      - cmake/**
+      - pixi.toml
+      - pixi.lock
+      - plugin.json
+      - SDKs/**
+      - .gitmodules
+      - .github/workflows/build.yml
+  pull_request:
+    paths:
+      - CMakeLists.txt
+      - cmake/**
+      - pixi.toml
+      - pixi.lock
+      - plugin.json
+      - SDKs/**
+      - .gitmodules
+      - .github/workflows/build.yml
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: ${{ matrix.arch }}
+    runs-on: ${{ matrix.runner }}
+    permissions:
+      contents: write # only used to attach the bundles to a release
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Rack publishes an SDK for these four, and no other (there is no
+          # lin-arm64 SDK, so no Linux ARM bundle).
+          - arch: lin-x64
+            runner: ubuntu-22.04 # oldest image available: sets the glibc floor
+          - arch: mac-x64
+            runner: macos-15-intel
+          - arch: mac-arm64
+            runner: macos-15
+          - arch: win-x64
+            runner: windows-latest
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive # SDKs/Spatial_Audio_Framework
+
+      - name: Read the build metadata
+        id: meta
+        shell: bash
+        run: |
+          # The SDK version and the plugin slug live in the build files, not here.
+          sdk=$(sed -n 's/^set(RACK_SDK_VERSION \([^)]*\))/\1/p' cmake/RackSDK.cmake)
+          slug=$(sed -n 's/.*"slug": *"\([^"]*\)".*/\1/p' plugin.json | head -1)
+          version=$(sed -n 's/.*"version": *"\([^"]*\)".*/\1/p' plugin.json | head -1)
+          test -n "$sdk" && test -n "$slug" && test -n "$version"
+          echo "sdk-version=$sdk" >> "$GITHUB_OUTPUT"
+          echo "slug=$slug" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      # Checked before anything is built, so a mistyped tag fails in seconds.
+      - name: Check the release tag against the plugin version
+        if: github.event_name == 'release'
+        shell: bash
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+          VERSION: ${{ steps.meta.outputs.version }}
+        run: |
+          # The bundles are named after plugin.json, and the Rack library goes
+          # by that version too, so a tag that disagrees with it would publish
+          # files that do not match the release they hang under.
+          if [ "${TAG#v}" != "$VERSION" ]; then
+            echo "::error::release tag '$TAG' and the version in plugin.json '$VERSION' disagree"
+            exit 1
+          fi
+          echo "Release $TAG builds $VERSION."
+
+      - name: Cache the Rack SDK
+        id: sdk-cache
+        uses: actions/cache@v4
+        with:
+          path: SDKs/Rack-SDK
+          key: rack-sdk-${{ steps.meta.outputs.sdk-version }}-${{ matrix.arch }}
+
+      - name: Download the Rack SDK
+        if: steps.sdk-cache.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          curl -fsSL -o Rack-SDK.zip \
+            "https://vcvrack.com/downloads/Rack-SDK-${{ steps.meta.outputs.sdk-version }}-${{ matrix.arch }}.zip"
+          unzip -q -d SDKs Rack-SDK.zip
+          test -f SDKs/Rack-SDK/include/rack.hpp
+
+      # ------------------------------------------------------------ toolchain
+      # pixi provides the same CMake the project is developed with. It cannot
+      # provide the Windows toolchain: Rack plugins are built with MinGW (see
+      # cmake/RackSDK.cmake), which comes from MSYS2 instead.
+      - name: Set up pixi
+        if: runner.os != 'Windows'
+        uses: prefix-dev/setup-pixi@v0.11.0
+        with:
+          cache: true
+
+      - name: Set up MSYS2
+        if: runner.os == 'Windows'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: false
+          install: >-
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-gcc-fortran
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-ninja
+            mingw-w64-x86_64-openblas
+
+      - name: Install OpenBLAS and LAPACKE
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libopenblas-dev liblapacke-dev gfortran pkg-config
+
+      # ---------------------------------------------------------------- build
+      # SAF needs a BLAS/LAPACK implementation (SAF_PERFORMANCE_LIB):
+      # Accelerate on macOS, OpenBLAS elsewhere. Both are linked statically or
+      # are part of the system, so the bundle carries no library of its own.
+      #
+      # SAF_ENABLE_SIMD is off on Linux and Windows on purpose: SAF compiles
+      # itself with -march=native there, which would tie the bundle to whatever
+      # CPU the runner happens to have. On macOS its SIMD flags are per-arch
+      # baselines (nehalem / armv8-a), which every supported machine has.
+      - name: Build the bundle (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          pixi run configure \
+            -DRACK_SDK_DIR=SDKs/Rack-SDK \
+            -DCMAKE_OSX_ARCHITECTURES=${{ matrix.arch == 'mac-arm64' && 'arm64' || 'x86_64' }} \
+            -DSAF_PERFORMANCE_LIB=SAF_USE_APPLE_ACCELERATE_LP64
+          pixi run dist
+
+      - name: Build the bundle (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          openblas_inc=$(pkg-config --variable=includedir openblas)
+          openblas_lib=$(pkg-config --variable=libdir openblas)/libopenblas.a
+          lapacke_lib=$(pkg-config --variable=libdir lapacke)/liblapacke.a
+          ls -l "$openblas_lib" "$lapacke_lib" "$openblas_inc/cblas.h" /usr/include/lapacke.h
+
+          # LAPACKE calls into OpenBLAS, so it has to come first: SAF links the
+          # two in the order OPENBLAS_LIBRARY, LAPACKE_LIBRARY, which is the
+          # wrong way round for static archives. Passing both as the first
+          # variable, and nothing as the second, puts them in the right order.
+          pixi run configure \
+            -DRACK_SDK_DIR=SDKs/Rack-SDK \
+            -DSAF_PERFORMANCE_LIB=SAF_USE_OPEN_BLAS_AND_LAPACKE \
+            -DSAF_ENABLE_SIMD=OFF \
+            -DOPENBLAS_HEADER_PATH="$openblas_inc" \
+            -DLAPACKE_HEADER_PATH=/usr/include \
+            -DOPENBLAS_LIBRARY="$lapacke_lib;$openblas_lib;-l:libgfortran.a;-l:libquadmath.a;-lpthread;-lm" \
+            -DLAPACKE_LIBRARY=
+          pixi run dist
+
+      - name: Build the bundle (Windows)
+        if: runner.os == 'Windows'
+        shell: msys2 {0}
+        run: |
+          # MSYS2 rewrites arguments that look like paths, which would mangle
+          # the ";"-separated library list below.
+          export MSYS2_ARG_CONV_EXCL='*'
+          openblas_inc=$(cygpath -m /mingw64/include/openblas)
+          openblas_lib=$(cygpath -m /mingw64/lib/libopenblas.a)
+          ls -l "$(cygpath -u "$openblas_lib")" /mingw64/include/openblas/lapacke.h
+
+          # This OpenBLAS builds LAPACKE in, so there is no separate library.
+          # Its Fortran and OpenMP runtimes are linked statically as well,
+          # otherwise the plugin would need MSYS2's DLLs at load time.
+          cmake -S . -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DRACK_SDK_DIR=SDKs/Rack-SDK \
+            -DSAF_PERFORMANCE_LIB=SAF_USE_OPEN_BLAS_AND_LAPACKE \
+            -DSAF_ENABLE_SIMD=OFF \
+            -DOPENBLAS_HEADER_PATH="$openblas_inc" \
+            -DLAPACKE_HEADER_PATH="$openblas_inc" \
+            -DOPENBLAS_LIBRARY="$openblas_lib;-l:libgfortran.a;-l:libgomp.a;-l:libquadmath.a;-l:libwinpthread.a" \
+            -DLAPACKE_LIBRARY=
+          cmake --build build --parallel --target plugin_dist
+
+      # --------------------------------------------------------------- checks
+      - name: Check that the bundle is self-contained
+        shell: bash
+        run: |
+          cd "build/dist/${{ steps.meta.outputs.slug }}"
+          case "${{ runner.os }}" in
+            Linux)
+              ldd plugin.so | tee /tmp/deps.txt
+              # libRack is resolved through /tmp/Rack2, which Rack symlinks at
+              # startup, so it shows as "not found" here.
+              ! grep -qiE 'openblas|lapack|gfortran|quadmath|gomp|stdc\+\+' /tmp/deps.txt
+              ;;
+            macOS)
+              otool -L plugin.dylib | tee /tmp/deps.txt
+              ! grep -qiE 'openblas|lapack|gfortran|/opt/homebrew|/usr/local/lib' /tmp/deps.txt
+              ;;
+            Windows)
+              objdump -p plugin.dll | grep 'DLL Name' | tee /tmp/deps.txt
+              ! grep -qiE 'openblas|gfortran|quadmath|gomp|winpthread|libstdc|libgcc' /tmp/deps.txt
+              ;;
+          esac
+          echo "No library of its own: the bundle only needs what the system provides."
+
+      - name: Report the bundle size
+        shell: bash
+        run: |
+          du -sh "build/dist/${{ steps.meta.outputs.slug }}" | sed 's/^/unpacked  /'
+          ls -lh build/dist/*.vcvplugin | awk '{print "archive   " $5 "  " $9}'
+
+      # ------------------------------------------------------------- delivery
+      - name: Upload the bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.meta.outputs.slug }}-${{ matrix.arch }}
+          path: build/dist/*.vcvplugin
+          if-no-files-found: error
+
+      - name: Attach the bundle to the release
+        if: github.event_name == 'release'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" build/dist/*.vcvplugin --clobber

@@ -2,7 +2,7 @@
 authors = ["Benoit Bovy"]
 channels = ["conda-forge"]
 name = "nun4tak-vcv"
-platforms = ["osx-arm64"]
+platforms = ["osx-arm64", "linux-64", "osx-64"]
 version = "0.1.0"
 
 [tasks]
