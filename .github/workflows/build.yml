@@ -38,6 +38,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  OPENBLAS_VERSION: "0.3.34" # built from source for Linux, see below
+
 jobs:
   build:
     name: ${{ matrix.arch }}
@@ -133,16 +136,43 @@ jobs:
             mingw-w64-x86_64-ninja
             mingw-w64-x86_64-openblas
 
-      - name: Install OpenBLAS and LAPACKE
+      # Ubuntu's OpenBLAS is compiled with gfortran, and Ubuntu ships no
+      # position-independent libgfortran.a, so its Fortran runtime cannot go
+      # into a shared object: the link fails on an R_X86_64_TPOFF32 relocation
+      # in libgfortran's async.o, which LAPACK reaches through a single symbol
+      # (_gfortran_concat_string, used by dgesvd and friends).
+      #
+      # Building OpenBLAS here drops the Fortran runtime altogether, since
+      # NOFORTRAN=1 builds LAPACK from the f2c-translated C sources that ship
+      # with it, and pins what lands in the bundle: the CPU baseline Rack
+      # targets rather than every kernel OpenBLAS knows, and no threading layer
+      # under the audio thread.
+      - name: Cache OpenBLAS
         if: runner.os == 'Linux'
+        id: openblas-cache
+        uses: actions/cache@v4
+        with:
+          path: openblas
+          key: openblas-${{ env.OPENBLAS_VERSION }}-${{ matrix.arch }}-nehalem-nofortran
+
+      - name: Build OpenBLAS
+        if: runner.os == 'Linux' && steps.openblas-cache.outputs.cache-hit != 'true'
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends libopenblas-dev liblapacke-dev gfortran pkg-config
+          curl -fsSL -o OpenBLAS.tar.gz \
+            "https://github.com/OpenMathLib/OpenBLAS/releases/download/v$OPENBLAS_VERSION/OpenBLAS-$OPENBLAS_VERSION.tar.gz"
+          mkdir OpenBLAS-src && tar xf OpenBLAS.tar.gz -C OpenBLAS-src --strip-components=1
+          # USE_LOCKING, because a single-threaded build still has to be safe
+          # to call from Rack's audio and GUI threads.
+          flags="NOFORTRAN=1 NO_SHARED=1 NEED_PIC=1 DYNAMIC_ARCH=0 TARGET=NEHALEM USE_THREAD=0 USE_LOCKING=1 USE_OPENMP=0 NO_AFFINITY=1"
+          make -C OpenBLAS-src -j"$(nproc)" $flags
+          make -C OpenBLAS-src $flags PREFIX="$PWD/openblas" install
+          ls -l openblas/lib/libopenblas.a openblas/include/lapacke.h openblas/include/cblas.h
 
       # ---------------------------------------------------------------- build
       # SAF needs a BLAS/LAPACK implementation (SAF_PERFORMANCE_LIB):
-      # Accelerate on macOS, OpenBLAS elsewhere. Both are linked statically or
-      # are part of the system, so the bundle carries no library of its own.
+      # Accelerate on macOS, OpenBLAS elsewhere -- MSYS2's on Windows, the one
+      # built above on Linux. Both are either linked statically or part of the
+      # system, so the bundle carries no library of its own.
       #
       # SAF_ENABLE_SIMD is off on Linux and Windows on purpose: SAF compiles
       # itself with -march=native there, which would tie the bundle to whatever
@@ -157,25 +187,17 @@ jobs:
             -DSAF_PERFORMANCE_LIB=SAF_USE_APPLE_ACCELERATE_LP64
           pixi run dist
 
+      # This OpenBLAS builds LAPACKE in, so there is no separate library.
       - name: Build the bundle (Linux)
         if: runner.os == 'Linux'
         run: |
-          openblas_inc=$(pkg-config --variable=includedir openblas)
-          openblas_lib=$(pkg-config --variable=libdir openblas)/libopenblas.a
-          lapacke_lib=$(pkg-config --variable=libdir lapacke)/liblapacke.a
-          ls -l "$openblas_lib" "$lapacke_lib" "$openblas_inc/cblas.h" /usr/include/lapacke.h
-
-          # LAPACKE calls into OpenBLAS, so it has to come first: SAF links the
-          # two in the order OPENBLAS_LIBRARY, LAPACKE_LIBRARY, which is the
-          # wrong way round for static archives. Passing both as the first
-          # variable, and nothing as the second, puts them in the right order.
           pixi run configure \
             -DRACK_SDK_DIR=SDKs/Rack-SDK \
             -DSAF_PERFORMANCE_LIB=SAF_USE_OPEN_BLAS_AND_LAPACKE \
             -DSAF_ENABLE_SIMD=OFF \
-            -DOPENBLAS_HEADER_PATH="$openblas_inc" \
-            -DLAPACKE_HEADER_PATH=/usr/include \
-            -DOPENBLAS_LIBRARY="$lapacke_lib;$openblas_lib;-l:libgfortran.a;-l:libquadmath.a;-lpthread;-lm" \
+            -DOPENBLAS_HEADER_PATH="$PWD/openblas/include" \
+            -DLAPACKE_HEADER_PATH="$PWD/openblas/include" \
+            -DOPENBLAS_LIBRARY="$PWD/openblas/lib/libopenblas.a;-lm" \
             -DLAPACKE_LIBRARY=
           pixi run dist
 
