@@ -42,8 +42,12 @@ myst-parser = ">=4"
 furo = "*"
 
 [feature.doc.tasks.doc]
-cmd = "sphinx-build -b html doc doc/_build/html"
+cmd = "sphinx-build -b html -d doc/_build/doctrees doc doc/_build/html"
 description = "Build the HTML documentation into doc/_build/html"
+
+[feature.doc.tasks.doc-strict]
+cmd = "sphinx-build -b html --fail-on-warning -d doc/_build/doctrees doc doc/_build/html"
+description = "Build the documentation the way CI does: any Sphinx warning fails the build"
 
 [environments]
 doc = { features = ["doc"], no-default-feature = true }
