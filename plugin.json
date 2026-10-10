@@ -7,101 +7,101 @@
   "author": "Benoit Bovy",
   "authorEmail": "",
   "authorUrl": "http://www.nun4tak.net/",
-  "pluginUrl": "",
-  "manualUrl": "",
+  "pluginUrl": "https://sp4t.nun4tak.net/",
+  "manualUrl": "https://sp4t.nun4tak.net/",
   "sourceUrl": "https://github.com/nun4tak/sp4t-vcv-plugin",
   "donateUrl": "",
-  "changelogUrl": "",
+  "changelogUrl": "https://github.com/nun4tak/sp4t-vcv-plugin/releases",
   "modules": [
     {
       "slug": "SP4T-Stereo-In",
       "name": "SP4T Stereo In",
       "description": "Ambisonic Stereo Encoder",
-      "manualUrl": "",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-stereo-in",
         "tags": ["Utility", "Polyphonic", "Panning"]
     },
     {
       "slug": "SP4T-Stereo-Out",
       "name": "SP4T Stereo Out",
       "description": "Ambisonic Stereo Decoder",
-      "manualUrl": "",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-stereo-out",
         "tags": ["Utility", "Polyphonic", "Panning"]
     },
     {
       "slug": "SP4T-Ears-Out",
       "name": "SP4T Ears Out",
       "description": "Ambisonic Binaural Decoder",
-      "manualUrl": "",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-ears-out",
         "tags": ["Utility", "Polyphonic", "Panning"]
     },
     {
       "slug": "SP4T-Rotate",
       "name": "SP4T Rotate",
       "description": "Ambisonic Rotator",
-      "manualUrl": "",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-rotate",
         "tags": ["Utility", "Polyphonic", "Panning"]
     },
     {
       "slug": "SP4T-Split",
       "name": "SP4T Split",
       "description": "Ambisonic Channel Split",
-      "manualUrl": "",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-split",
         "tags": ["Utility", "Polyphonic", "Multiple"]
     },
     {
       "slug": "SP4T-Merge",
       "name": "SP4T Merge",
       "description": "Ambisonic Channel Merge",
-      "manualUrl": "",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-merge",
         "tags": ["Utility", "Polyphonic", "Multiple"]
     },
     {
       "slug": "SP4T-Gain",
       "name": "SP4T Gain",
       "description": "Ambisonic Gains",
-      "manualUrl": "",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-gain",
         "tags": ["Utility", "Polyphonic", "VCA"]
     },
     {
       "slug": "SP4T-Mute",
       "name": "SP4T Mute",
       "description": "Ambisonic Mutes",
-      "manualUrl": "",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-mute",
         "tags": ["Utility", "Polyphonic", "Switch"]
     },
     {
       "slug": "SP4T-Flip",
       "name": "SP4T Flip",
       "description": "Ambisonic Sound Field Flip",
-      "manualUrl": "",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-flip",
         "tags": ["Utility", "Polyphonic", "Panning"]
     },
     {
       "slug": "SP4T-Smear",
       "name": "SP4T Smear",
       "description": "Multi-channel Decorrelator",
-      "manualUrl": "",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-smear",
         "tags": ["Effect", "Polyphonic", "Reverb"]
     },
     {
       "slug": "SP4T-Source4-In",
       "name": "SP4T Source4 In",
       "description": "Ambisonic 4-Source Encoder",
-      "manualUrl": "",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-source4-in",
         "tags": ["Utility", "Polyphonic", "Panning"]
     },
     {
       "slug": "SP4T-Split-Insert",
       "name": "SP4T Split Insert",
       "description": "Ambisonic Dual Effect Inserts",
-      "manualUrl": "",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-split-insert",
         "tags": ["Utility", "Polyphonic", "Effect"]
     },
     {
       "slug": "SP4T-Blur-Sharp",
       "name": "SP4T Blur Sharp",
       "description": "Ambisonic Blur / Sharpen",
-      "manualUrl": "",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-blur-sharp",
         "tags": ["Utility", "Polyphonic", "Effect"]
     }
   ]
