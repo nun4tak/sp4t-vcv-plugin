@@ -44,6 +44,16 @@ article section > section:first-of-type > h3 {
     width: auto;
 }
 
+/* A list beside a floated panel. A float only shortens the line boxes inside a
+   block, so the list keeps its padding behind the panel: the items line up
+   with the paragraph text instead of indenting past it, and the bullets sit
+   under the image. Its own formatting context moves the whole box clear of
+   the panel, padding and bullets included. */
+article section > ul,
+article section > ol {
+    display: flow-root;
+}
+
 /* Too narrow to read beside a panel: stack them instead. */
 @media (max-width: 50em) {
     img.module-panel {
