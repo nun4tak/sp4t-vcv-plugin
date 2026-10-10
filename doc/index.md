@@ -15,6 +15,16 @@ ambisonics
 modules
 ```
 
+## Code repository
+
+The source lives at
+[github.com/benbovy/nun4tak-vcv-sp4t](https://github.com/benbovy/nun4tak-vcv-sp4t),
+under the GNU General Public License v3. Bugs, questions and ideas are welcome
+in the [issue
+tracker](https://github.com/benbovy/nun4tak-vcv-sp4t/issues).
+
+## Acknowledgment
+
 Most of the ambisonic DSP in these modules relies on the [Spatial Audio
 Framework](https://github.com/leomccormack/Spatial_Audio_Framework) (dual ISC /
 GNU GPLv2 licence), which also powers the
