@@ -180,3 +180,32 @@ Decisions behind both, worth not re-deriving:
   job builds on the oldest image GitHub offers, which sets the glibc floor
   (2.35 on ubuntu-22.04, against VCV's own 2.23); an older container would
   lower it if that ever matters.
+
+## Documentation
+
+`doc/` holds the manual: Sphinx with myst-parser (Markdown sources) and the
+Furo theme, in its own pixi environment (`pixi run doc`). All the modules are
+on one page, grouped into encoders, decoders, processors and utilities. Furo
+builds its left-hand menu from document titles alone, so a page's own sections
+never show up there; `conf.py` rebuilds that menu with sections included,
+through Furo's `get_navigation_tree`, which is also what adds the fold arrows.
+It is the one place the theme's internals are relied on. `doc/ambisonics.md`
+is generated from the first three sections of the README, verbatim apart from
+the figure paths, so edit the README and copy it over rather than the reverse.
+
+The module pictures are not screenshots: `doc/make_screenshots.py` rebuilds the
+panel plus its components, taking the positions from the `components` layer of
+the staging panels (which is why that layer is worth keeping accurate) and the
+artwork from `res/components/` and Rack's library, which it fetches. Re-run it
+after changing a panel or adding a module.
+
+It writes SVG, inlining every piece of artwork rather than linking it, so each
+picture stands alone and stays sharp at any size. Linking it and rasterising
+with Inkscape, as this did at first, blurs the panel: Inkscape rasterises a
+linked SVG before scaling it, whatever the export resolution.
+
+Inlining means the editor leftovers have to be stripped first (`sodipodi:` and
+`inkscape:` attributes, `<metadata>`): carried over, they put the picture in
+namespaces the document does not declare, which makes it invalid XML, and a
+browser then draws nothing at all while Inkscape still renders it happily. The
+script parses each picture before writing it, so that cannot ship again.

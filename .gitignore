@@ -14,3 +14,7 @@ dep/
 compile_commands.json
 
 .cache/
+
+# Sphinx
+doc/_build/
+doc/_art/

@@ -96,6 +96,15 @@ Subsequent channels, if any, represent Higher-Order Ambisonics (HOA). They are
 harder to interpret, since they correspond to more complex harmonics, most of
 which contain information across more than one axis (figure 1).
 
+## Documentation
+
+The manual — an ambisonics primer and a page on each module — is written in
+Markdown under `doc/` and built with Sphinx:
+
+```sh
+pixi run doc   # -> doc/_build/html
+```
+
 ## Requirements
 
 - [VCV Rack SDK](https://vcvrack.com/Rack#sdk) 2.6.6, unpacked as

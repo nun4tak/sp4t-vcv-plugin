@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- The omni (W) spherical harmonic of res/misc/b_format_W.svg, on a tile of
+     the dark panel colour. Generated once; edit the figure there, not here. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <radialGradient id="sphere"
+       gradientUnits="userSpaceOnUse"
+       cx="8.4776726"
+       cy="23.700687"
+       r="1.9057722"
+       fx="8.3382263"
+       fy="23.561241"
+       gradientTransform="matrix(12,0,0,12,-5.2019445,-159.88948)">
+<stop
+   offset="0"
+   stop-color="#ffffff" />
+<stop
+   offset="1"
+   stop-color="#b3bbc6" />
+
+</radialGradient>
+  </defs>
+  <rect x="0" y="0" width="32" height="32" rx="6" fill="#2a2e35" />
+  <g transform="translate(4,4) scale(0.86054)">
+    <g
+     transform="translate(-87.047922,-116.15209)">
+    <path
+       fill="url(#sphere)"
+       stroke="#ffffff"
+       d="m 102.22402,143.71576 h -2.45999 l -2.691447,-0.51514 -2.400935,-0.97139 -2.40411,-1.60147 -1.803082,-1.80308 -1.601788,-2.40411 -0.973931,-2.40411 -0.515144,-2.68828 v -2.4603 l 0.515144,-2.69113 0.973931,-2.40126 1.601788,-2.40379 1.803082,-1.80308 2.40411,-1.60179 2.400935,-0.97409 2.691447,-0.51498 h 2.45999 l 2.68827,0.51498 2.40411,0.97409 2.40411,1.60179 1.80309,1.80308 1.60178,2.40379 0.97092,2.40126 0.5153,2.69113 v 2.4603 l -0.5153,2.68828 -0.97092,2.40411 -1.60178,2.40411 -1.80309,1.80308 -2.40411,1.60147 -2.40411,0.97139 z"
+       style="display:inline;fill:url(#sphere);fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.651343;stroke-linejoin:round;stroke-opacity:1" />
+  </g>
+  </g>
+</svg>

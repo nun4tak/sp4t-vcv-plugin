@@ -1,0 +1,62 @@
+/* Module pages: the panel floats on the left, its description runs beside it.
+   A fixed height rather than a width, so that every panel is shown at the same
+   scale whatever its width in HP. */
+img.module-panel {
+    float: left;
+    height: 26rem;
+    width: auto;
+    margin: 0.25rem 1.75rem 1.25rem 0;
+}
+
+/* Headings and the page footer start below the panel, never beside it. */
+article h1,
+article h2,
+article h3,
+footer,
+.related-pages {
+    clear: both;
+}
+
+/* Room to breathe between one section and the next, a little more where a new
+   group of modules starts.
+
+   As padding and not margin: a heading below a module panel clears it, and
+   clearance swallows a top margin whenever the panel is the taller of the two,
+   which is most of the time here. */
+article h2 {
+    padding-top: 1.5rem;
+}
+
+article h3 {
+    padding-top: 1.25rem;
+}
+
+/* The first module of a group already has the group heading right above it. */
+article section > section:first-of-type > h3 {
+    padding-top: 0.5rem;
+}
+
+/* A table beside a floated panel. The theme gives its table wrapper both its
+   own formatting context, which keeps it clear of floats, and a full-column
+   width, which leaves it nowhere to go but below the panel. Letting it size to
+   its content puts it back in the text column, next to everything else. */
+[role="main"] .table-wrapper.container {
+    width: auto;
+}
+
+/* Too narrow to read beside a panel: stack them instead. */
+@media (max-width: 50em) {
+    img.module-panel {
+        float: none;
+        display: block;
+        height: 22rem;
+    }
+
+    article h2 {
+        padding-top: 1.25rem;
+    }
+
+    article h3 {
+        padding-top: 1rem;
+    }
+}

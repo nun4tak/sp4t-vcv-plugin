@@ -34,3 +34,16 @@ description = "Convert one panel's light and dark text to paths and drop its com
 cmake = ">=4.3.4,<5"
 prek = ">=0.5.5,<0.6"
 clang-format = ">=23.1.3,<24"
+
+[feature.doc.dependencies]
+python = ">=3.12"
+sphinx = ">=8"
+myst-parser = ">=4"
+furo = "*"
+
+[feature.doc.tasks.doc]
+cmd = "sphinx-build -b html doc doc/_build/html"
+description = "Build the HTML documentation into doc/_build/html"
+
+[environments]
+doc = { features = ["doc"], no-default-feature = true }
