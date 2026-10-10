@@ -18,10 +18,10 @@ modules
 ## Code repository
 
 The source lives at
-[github.com/benbovy/nun4tak-vcv-sp4t](https://github.com/benbovy/nun4tak-vcv-sp4t),
+[github.com/nun4tak/sp4t-vcv-plugin](https://github.com/nun4tak/sp4t-vcv-plugin),
 under the GNU General Public License v3. Bugs, questions and ideas are welcome
 in the [issue
-tracker](https://github.com/benbovy/nun4tak-vcv-sp4t/issues).
+tracker](https://github.com/nun4tak/sp4t-vcv-plugin/issues).
 
 ## Acknowledgment
 
