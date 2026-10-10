@@ -6,7 +6,7 @@ A [VCV Rack](https://vcvrack.com/) plugin providing
 Ambisonic input/output signals use the ACN channel ordering and SN3D normalization
 conventions (ambiX), unless otherwise specified.
 
-<img src="https://github.com/nun4tak/sp4t-vcv-plugin/blob/main/doc/images/sp4t-modules-20261010.png">
+<img src="doc/images/sp4t-modules-20261010.png">
 
 ## What is ambisonics?
 
@@ -18,7 +18,7 @@ with the usual *channel-based* encoding (1 channel = 1 speaker) and
 *object-based* techniques such as Dolby Atmos, where each object carries its own
 audio stream plus positional metadata.
 
-<img src="https://github.com/nun4tak/sp4t-vcv-plugin/blob/main/res/misc/spherical_functions.svg?sanatize=true">
+<img src="res/misc/spherical_functions.svg">
 
 *Figure 1: Spherical harmonic functions up to order 3.*
 
@@ -80,10 +80,10 @@ A First-Order Ambisonic (FOA) signal has 4 channels W,X,Y,Z (the so-called
 
 | Channel (ACN) | Order | Axis | Direction | Plot |
 |---|---|---|---|---|
-| 0 | 0th | (W) | isotropic / omnidirectional | <img src="https://github.com/nun4tak/sp4t-vcv-plugin/blob/main/res/misc/b_format_W.svg?sanatize=true" width="50px"> |
-| 1 | 1st | Y   | left–right | <img src="https://github.com/nun4tak/sp4t-vcv-plugin/blob/main/res/misc/b_format_Y.svg?sanatize=true" width="50px"> |
-| 2 | 1st | Z   | top–bottom | <img src="https://github.com/nun4tak/sp4t-vcv-plugin/blob/main/res/misc/b_format_Z.svg?sanatize=true" width="30px"> |
-| 3 | 1st | X   | front–rear | <img src="https://github.com/nun4tak/sp4t-vcv-plugin/blob/main/res/misc/b_format_X.svg?sanatize=true" width="50px"> |
+| 0 | 0th | (W) | isotropic / omnidirectional | <img src="res/misc/b_format_W.svg" width="50px"> |
+| 1 | 1st | Y   | left–right | <img src="res/misc/b_format_Y.svg" width="50px"> |
+| 2 | 1st | Z   | top–bottom | <img src="res/misc/b_format_Z.svg" width="30px"> |
+| 3 | 1st | X   | front–rear | <img src="res/misc/b_format_X.svg" width="50px"> |
 
 In idealized settings the first channel corresponds to the sound that would be
 picked by an omnidirectional microphone while the other three channels relate to
