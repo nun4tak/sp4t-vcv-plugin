@@ -135,8 +135,14 @@ message(STATUS "Using CMAKE_CXX_STANDARD=${CMAKE_CXX_STANDARD}")
 
 # The plugin's compiler may differ from Rack's, so link the C++ runtime
 # statically to avoid ABI mismatches.
+#
+# libgcc too on Windows, where plugin.mk links it dynamically: Rack ships
+# libgcc_s_seh-1.dll next to Rack.exe and Windows searches the application
+# directory, so a plugin can rely on it being there. Not relying on it keeps
+# the bundle self-contained whatever the toolchain and however Rack is
+# packaged, as it already is on the other two platforms.
 add_link_options($<$<CXX_COMPILER_ID:GNU>:-static-libstdc++>
-                 $<$<PLATFORM_ID:Linux>:-static-libgcc>)
+                 $<$<OR:$<PLATFORM_ID:Linux>,$<PLATFORM_ID:Windows>>:-static-libgcc>)
 
 # ------------------------------------------------------- SDK interface -------
 
