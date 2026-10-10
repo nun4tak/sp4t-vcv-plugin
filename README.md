@@ -112,6 +112,7 @@ which contain information across more than one axis (figure 1).
 
 - **SP4T Rotate** — Rotates the whole sound field.
 - **SP4T Flip** — Mirrors the sound field across one or more axes.
+- **SP4T Blur Sharp** — Blurs or sharpens the sound field.
 
 ### Utilities
 

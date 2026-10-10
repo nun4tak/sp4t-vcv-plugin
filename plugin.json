@@ -96,6 +96,13 @@
       "description": "Ambisonic Dual Effect Inserts",
       "manualUrl": "",
         "tags": ["Utility", "Polyphonic", "Effect"]
+    },
+    {
+      "slug": "SP4T-Blur-Sharp",
+      "name": "SP4T Blur Sharp",
+      "description": "Ambisonic Blur / Sharpen",
+      "manualUrl": "",
+        "tags": ["Utility", "Polyphonic", "Effect"]
     }
   ]
 }

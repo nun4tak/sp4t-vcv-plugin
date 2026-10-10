@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SP4T Blur Sharp panel, dark theme. 4 HP. Units: mm.
+     Components layer holds VCV Rack placeholders (see
+     https://vcvrack.com/manual/Panel#Adding-components); it is
+     removed when the production panel is exported. -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" version="1.1" width="20.32mm" height="128.5mm" viewBox="0 0 20.32 128.5" id="svg8" sodipodi:docname="SP4TBlurTest01.svg" inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)">
+  <sodipodi:namedview id="namedview8" inkscape:document-units="mm" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" inkscape:zoom="1.4204287" inkscape:cx="171.42711" inkscape:cy="220.004" inkscape:window-width="2375" inkscape:window-height="1152" inkscape:window-x="0" inkscape:window-y="25" inkscape:window-maximized="0" inkscape:current-layer="panel" />
+  <defs id="component-defs">
+    <!-- ScrewSilver.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <!-- PJ301M.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <!-- SP4TAmbiPort.svg (PJ301M with the Ayu-blue outer ring) -->
+    <!-- SP4TRoundLargeKnob_bg.svg + SP4TRoundLargeKnob.svg (indicator at the default, centered position) -->
+    <!-- SP4TRoundSmallKnob_bg.svg + SP4TRoundSmallKnob.svg (indicator at the default, centered position) -->
+  </defs>
+  <g id="panel" inkscape:groupmode="layer" inkscape:label="Panel">
+    <rect id="background" x="0" y="0" width="20.32" height="128.5" fill="#2a2e35" style="stroke-width:0.8165" />
+    <rect style="fill:#4a5059;stroke:none" id="rect138" width="8.9" height="19.948" x="10.16" y="101.335" rx="0.716" ry="1.552" />
+    <!-- just under the top screws -->
+    <text id="title" x="10.016" y="9" style="font-weight:bold;font-size:4.1px;font-family:'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif;text-anchor:middle;fill:#e6e1cf;-inkscape-font-specification:'Rounded Mplus 1c, Arial Rounded MT Bold, sans-serif, Bold';font-style:normal;font-stretch:normal;font-variant:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan sodipodi:role="line" id="tspan48">BLUR</tspan><tspan sodipodi:role="line" id="tspan49">SHARP</tspan></text>
+    <!-- between the bottom screws -->
+    <text id="brand" x="14.862" y="125.958" style="font-weight:bold;font-size:4px;font-family:'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan156" x="14.862" y="125.958">\n.tk\</tspan></text>
+    <text x="5.683" y="107.4" id="text43" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-style:normal;font-stretch:normal;font-variant:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan sodipodi:role="line" id="tspan42">AMB</tspan></text>
+    <text x="10.188" y="23.956" id="text46" style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan50" x="10.288" y="23.956">AMOUNT</tspan></text>
+    <text id="text150" x="14.848" y="3.728" style="font-weight:bold;font-size:3.321px;font-family:'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif;text-anchor:middle;fill:#e6e1cf;stroke-width:0.81"><tspan sodipodi:role="line" id="tspan153" x="14.848" y="3.728" style="stroke-width:0.81">SP<tspan fill="#59c2ff" id="title-accent">4</tspan>T</tspan></text>
+    <text x="14.511" y="107.4" id="text158" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-style:normal;font-stretch:normal;font-variant:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan sodipodi:role="line" id="tspan43">AMB</tspan></text>
+    <path d="m 8.2165,53.707 a 3.816,3.816 0 1 1 3.8871,0" id="path36" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
+    <path style="fill:none;stroke:#61676f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 10.16,54.6003 v 1.6128" id="path146" sodipodi:nodetypes="cc" />
+    <g id="g58-4" transform="matrix(0.9,0,0,0.9,-26.0497,-16.9949)">
+      <path d="m 36.9655,59.95 a 6.417,6.417 0 1 1 6.535,0" id="path58" style="fill:none;stroke:#61676f;stroke-width:0.3;stroke-linecap:round" />
+    </g>
+    <path style="fill:none;stroke:#61676f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="M 10.1595,38.5789 V 45.1681" id="path178" sodipodi:nodetypes="cc" />
+    <!-- Blur indicator, the counterpart of the sharp dot opposite: a
+         Gaussian falloff baked into flat concentric circles, drawn
+         outermost first so that their opacities stack. Rack renders
+         neither SVG filters nor radial gradients, so a blur has to be
+         artwork. Generated; the step between two circles is under
+         4/255 on the panel background, i.e. below banding. -->
+    <g id="blur-dot">
+      <circle style="fill:#bfbdb6;opacity:0.0206" cx="5.59" cy="40.532" r="2.559" />
+      <circle style="fill:#bfbdb6;opacity:0.0250" cx="5.59" cy="40.532" r="2.288" />
+      <circle style="fill:#bfbdb6;opacity:0.0247" cx="5.59" cy="40.532" r="2.144" />
+      <circle style="fill:#bfbdb6;opacity:0.0251" cx="5.59" cy="40.532" r="2.039" />
+      <circle style="fill:#bfbdb6;opacity:0.0255" cx="5.59" cy="40.532" r="1.955" />
+      <circle style="fill:#bfbdb6;opacity:0.0264" cx="5.59" cy="40.532" r="1.883" />
+      <circle style="fill:#bfbdb6;opacity:0.0267" cx="5.59" cy="40.532" r="1.82" />
+      <circle style="fill:#bfbdb6;opacity:0.0278" cx="5.59" cy="40.532" r="1.764" />
+      <circle style="fill:#bfbdb6;opacity:0.0283" cx="5.59" cy="40.532" r="1.711" />
+      <circle style="fill:#bfbdb6;opacity:0.0293" cx="5.59" cy="40.532" r="1.662" />
+      <circle style="fill:#bfbdb6;opacity:0.0301" cx="5.59" cy="40.532" r="1.616" />
+      <circle style="fill:#bfbdb6;opacity:0.0311" cx="5.59" cy="40.532" r="1.572" />
+      <circle style="fill:#bfbdb6;opacity:0.0319" cx="5.59" cy="40.532" r="1.53" />
+      <circle style="fill:#bfbdb6;opacity:0.0333" cx="5.59" cy="40.532" r="1.49" />
+      <circle style="fill:#bfbdb6;opacity:0.0343" cx="5.59" cy="40.532" r="1.45" />
+      <circle style="fill:#bfbdb6;opacity:0.0354" cx="5.59" cy="40.532" r="1.412" />
+      <circle style="fill:#bfbdb6;opacity:0.0366" cx="5.59" cy="40.532" r="1.374" />
+      <circle style="fill:#bfbdb6;opacity:0.0382" cx="5.59" cy="40.532" r="1.338" />
+      <circle style="fill:#bfbdb6;opacity:0.0397" cx="5.59" cy="40.532" r="1.301" />
+      <circle style="fill:#bfbdb6;opacity:0.0413" cx="5.59" cy="40.532" r="1.265" />
+      <circle style="fill:#bfbdb6;opacity:0.0431" cx="5.59" cy="40.532" r="1.229" />
+      <circle style="fill:#bfbdb6;opacity:0.0449" cx="5.59" cy="40.532" r="1.193" />
+      <circle style="fill:#bfbdb6;opacity:0.0472" cx="5.59" cy="40.532" r="1.157" />
+      <circle style="fill:#bfbdb6;opacity:0.0496" cx="5.59" cy="40.532" r="1.12" />
+      <circle style="fill:#bfbdb6;opacity:0.0517" cx="5.59" cy="40.532" r="1.084" />
+      <circle style="fill:#bfbdb6;opacity:0.0549" cx="5.59" cy="40.532" r="1.047" />
+      <circle style="fill:#bfbdb6;opacity:0.0581" cx="5.59" cy="40.532" r="1.009" />
+      <circle style="fill:#bfbdb6;opacity:0.0616" cx="5.59" cy="40.532" r="0.97" />
+      <circle style="fill:#bfbdb6;opacity:0.0662" cx="5.59" cy="40.532" r="0.93" />
+      <circle style="fill:#bfbdb6;opacity:0.0698" cx="5.59" cy="40.532" r="0.889" />
+      <circle style="fill:#bfbdb6;opacity:0.0764" cx="5.59" cy="40.532" r="0.847" />
+      <circle style="fill:#bfbdb6;opacity:0.0812" cx="5.59" cy="40.532" r="0.802" />
+      <circle style="fill:#bfbdb6;opacity:0.0898" cx="5.59" cy="40.532" r="0.755" />
+      <circle style="fill:#bfbdb6;opacity:0.0975" cx="5.59" cy="40.532" r="0.705" />
+      <circle style="fill:#bfbdb6;opacity:0.1094" cx="5.59" cy="40.532" r="0.65" />
+      <circle style="fill:#bfbdb6;opacity:0.1213" cx="5.59" cy="40.532" r="0.591" />
+      <circle style="fill:#bfbdb6;opacity:0.1399" cx="5.59" cy="40.532" r="0.524" />
+      <circle style="fill:#bfbdb6;opacity:0.1629" cx="5.59" cy="40.532" r="0.446" />
+      <circle style="fill:#bfbdb6;opacity:0.1988" cx="5.59" cy="40.532" r="0.349" />
+      <circle style="fill:#bfbdb6;opacity:0.1995" cx="5.59" cy="40.532" r="0.208" />
+    </g>
+    <circle style="fill:#bfbdb6;fill-opacity:1;stroke:#4a5059;stroke-width:0.281;stroke-opacity:1" id="circle15" cx="14.746" cy="40.532" r="1.188" />
+    <path d="m 8.2165,82.2559 a 3.816,3.816 0 1 1 3.8871,0" id="path50" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
+    <text x="10.188" y="72.934" id="text52" style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;-inkscape-font-specification:'Barlow Condensed, Arial Narrow, sans-serif, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan52">SLOPE</tspan></text>
+  </g>
+  <g id="components" inkscape:groupmode="layer" inkscape:label="components" style="display:none">
+    <circle id="amount-param" inkscape:label="amount-param" cx="10.16" cy="31.99" r="5.054" fill="#ff0000" />
+    <circle id="amount-cv-param" inkscape:label="amount-cv-param" cx="10.16" cy="50.422" r="3.084" fill="#ff0000" />
+    <circle id="amount-cv-input" inkscape:label="amount-cv-input" cx="10.16" cy="60.901" r="4.013" fill="#00ff00" />
+    <circle id="ambi-input" inkscape:label="ambi-input" cx="5.745" cy="114" r="4.013" fill="#00ff00" />
+    <circle id="ambi-output" inkscape:label="ambi-output" cx="14.574" cy="114" r="4.013" fill="#0000ff" />
+    <circle id="slope-param" inkscape:label="slope-param" cx="10.16" cy="78.971" r="3.084" fill="#ff0000" />
+    <circle id="slope-cv-input" inkscape:label="slope-cv-input" cx="10.16" cy="89.45" r="4.013" fill="#00ff00" />
+  </g>
+</svg>

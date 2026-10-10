@@ -180,6 +180,53 @@ the switch selects.
 - **Switches**: crossfade curve; whether the buttons and CV inputs are
   momentary (gate) or latching (trigger, the default)
 
+### SP4T Blur Sharp
+
+```{image} images/modules/SP4TBlurSharp.svg
+:alt: SP4T Blur Sharp
+:class: only-light module-panel
+```
+
+```{image} images/modules/SP4TBlurSharp-dark.svg
+:alt: SP4T Blur Sharp
+:class: only-dark module-panel
+```
+
+*Blurs or sharpens the sound field.*
+
+Changes how sharply the field is drawn without changing its order: the output
+has as many channels as the input. **AMOUNT** is the whole module — left of
+centre blurs, right of centre sharpens, and the middle passes the signal
+through untouched.
+
+Blurring fades the higher harmonics out, from the top down, until only the
+omni channel is left: the sound field widens and loses its direction, as a
+lower-order one would. What survives is turned up as the rest goes, so the
+field does not simply get quieter — but only partly, and never by more than +3
+dB. Compensating in full, as the energy of a recorded field would ask for,
+means +12 dB on the omni channel at full left on a 3rd-order signal, which
+clips the moment a patch is anywhere near a normal level. **SLOPE** sets how
+wide the fade between harmonics is, from nearly step-like muting to a soft
+progression; it has nothing to span on a 1st-order signal, and nothing to do
+at all on the sharpen side.
+
+Sharpening tilts the balance the other way, towards the higher harmonics: the
+image narrows a little and its side lobes come up. The top harmonics stay at
+unity, so nothing is added, and the overall level drops as the omni channel is
+turned down. Full right keeps some of it, which is where the effect is still
+musical and what makes it undoable.
+
+This is a filter on the sphere, not on frequency: it acts on the whole field at
+once, direct sound and diffuse alike, and whichever way the field is later
+turned or decoded.
+
+- **In**: AMB, AMOUNT CV, SLOPE CV — **Out**: AMB
+- **Knobs**: AMOUNT (−100% blur to +100% sharpen, default 0), with a CV input
+  and an attenuverter; SLOPE (0.25 to the order of the input, default 1), with
+  a unipolar CV input
+- **Level**: no setting makes any channel louder than +3 dB, and the sharpen
+  side never goes above unity
+
 ## Utilities
 
 Work on the channels a sound field is made of, or on any polyphonic cable.
