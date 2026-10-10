@@ -192,19 +192,23 @@ if (APPLE)
   # no `codesign` at all, in which case the signature is left to whoever
   # notarizes the result.
   # The whole signing command, since it is not always codesign: the Rack plugin
-  # toolchain cross-signs with "rcodesign sign" instead. Pass -DRACK_CODESIGN=
-  # (empty) to leave the library unsigned.
-  if (NOT DEFINED RACK_CODESIGN)
-    find_program(_rack_codesign_exe codesign)
-    if (_rack_codesign_exe)
-      set(RACK_CODESIGN "${_rack_codesign_exe};-f;-s;-" CACHE STRING "Command that signs the plugin library")
+  # toolchain cross-signs with "rcodesign sign" instead. Pass
+  # -DRACK_CODESIGN_COMMAND= (empty) to leave the library unsigned.
+  #
+  # Only the program is cached, the command is rebuilt at every configure: a
+  # cached command would survive a change to the arguments below, and sign with
+  # the previous ones.
+  if (NOT DEFINED RACK_CODESIGN_COMMAND)
+    find_program(RACK_CODESIGN_EXE codesign)
+    if (RACK_CODESIGN_EXE)
+      set(RACK_CODESIGN_COMMAND "${RACK_CODESIGN_EXE};-f;-s;-")
     else ()
-      set(RACK_CODESIGN "" CACHE STRING "Command that signs the plugin library")
+      set(RACK_CODESIGN_COMMAND "")
       message(STATUS "No codesign: leaving ${RACK_PLUGIN_LIB} unsigned")
     endif ()
   endif ()
-  if (RACK_CODESIGN)
-    set(_rack_codesign COMMAND ${RACK_CODESIGN} $<TARGET_FILE:${RACK_PLUGIN_LIB}>)
+  if (RACK_CODESIGN_COMMAND)
+    set(_rack_codesign COMMAND ${RACK_CODESIGN_COMMAND} $<TARGET_FILE:${RACK_PLUGIN_LIB}>)
   else ()
     set(_rack_codesign "")
   endif ()
@@ -292,8 +296,8 @@ else ()
     # libRack.dylib already resolves through /tmp/Rack2 (see the plugin target).
     # Stripping invalidates the signature (expected, hence the silenced warning),
     # so re-sign.
-    if (RACK_CODESIGN)
-      set(_rack_dist_codesign COMMAND ${RACK_CODESIGN} "${_rack_dist_lib}")
+    if (RACK_CODESIGN_COMMAND)
+      set(_rack_dist_codesign COMMAND ${RACK_CODESIGN_COMMAND} "${_rack_dist_lib}")
     else ()
       set(_rack_dist_codesign "")
     endif ()

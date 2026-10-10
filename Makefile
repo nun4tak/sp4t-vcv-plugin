@@ -52,7 +52,7 @@ endif
 ifdef CODESIGN
 	# First word is the program, the rest are its arguments.
 	codesign_cmd := $(call where,$(firstword $(CODESIGN))) $(wordlist 2,$(words $(CODESIGN)),$(CODESIGN))
-	CMAKE_FLAGS += -DRACK_CODESIGN="$(subst $(space),;,$(strip $(codesign_cmd)))"
+	CMAKE_FLAGS += -DRACK_CODESIGN_COMMAND="$(subst $(space),;,$(strip $(codesign_cmd)))"
 endif
 
 # Which operating system this make is running on, as arch.mk names them.
