@@ -96,15 +96,6 @@ Subsequent channels, if any, represent Higher-Order Ambisonics (HOA). They are
 harder to interpret, since they correspond to more complex harmonics, most of
 which contain information across more than one axis (figure 1).
 
-## Documentation
-
-The manual — an ambisonics primer and a page on each module — is written in
-Markdown under `doc/` and built with Sphinx:
-
-```sh
-pixi run doc   # -> doc/_build/html
-```
-
 ## Requirements
 
 - [VCV Rack SDK](https://vcvrack.com/Rack#sdk) 2.6.6, unpacked as
@@ -143,21 +134,6 @@ pixi run compile-commands   # -> compile_commands.json (git-ignored symlink)
 `pixi run install` is enough from a clean checkout. Without pixi, run the CMake
 commands shown in the comments directly.
 
-## Code formatting
-
-The plugin sources in `src/` are formatted with clang-format, following
-`.clang-format`: a style close to the one VCV Rack itself is written in, with a
-120-column limit, tabs to indent and spaces to align.
-
-A [prek](https://prek.j178.dev) commit hook formats the sources being
-committed; nothing else is touched (`.pre-commit-config.yaml`). Install it once
-per clone, and run the hooks by hand over the whole repository with `prek`:
-
-```sh
-pixi run install-prek-hooks   # prek install -> .git/hooks/pre-commit
-pixi run prek                 # prek run --all-files
-```
-
 ## Module panels
 
 Panel SVGs are edited in `res/staging/`, where text is kept as editable text
@@ -189,6 +165,26 @@ copies it into the Rack user plugin folder, which defaults to
 If the SDK lives elsewhere, pass `-DRACK_SDK_DIR=<path>` when configuring. To
 install to a different folder, pass `-DCMAKE_INSTALL_PREFIX=<path>`. For a debug
 build, configure with `-DCMAKE_BUILD_TYPE=Debug`.
+
+## Code formatting and linting
+
+A [prek](https://prek.j178.dev) commit hooks (e.g., code formatting) are
+configured in `.pre-commit-config.yaml`). Install it once per clone, and run the
+hooks by hand over the whole repository with `prek`:
+
+```sh
+pixi run install-prek-hooks   # prek install -> .git/hooks/pre-commit
+pixi run prek                 # prek run --all-files
+```
+
+## Build documentation
+
+The manual — an ambisonics primer and a page on each module — is written in
+Markdown under `doc/` and built with Sphinx:
+
+```sh
+pixi run doc   # -> doc/_build/html
+```
 
 ## Disclaimer
 
