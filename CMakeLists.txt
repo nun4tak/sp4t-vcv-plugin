@@ -47,6 +47,7 @@ target_sources(${RACK_PLUGIN_LIB} PRIVATE
     src/AmbiBinauralDecoder.cpp
     src/AmbiRotator.cpp
     src/Decorrelator.cpp
+    src/VelvetDecorrelator.cpp
     src/AmbisonicDisplay.cpp
     src/RotationDisplay.cpp
     src/SP4TStereoIn.cpp

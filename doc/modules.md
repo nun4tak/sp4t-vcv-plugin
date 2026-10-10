@@ -315,12 +315,21 @@ and inputs beyond the chosen order are ignored.
 
 *Decorrelates the channels of a polyphonic signal.*
 
-Randomised time-frequency delays and cascaded all-pass filters make the
-channels less alike without changing what each of them sounds like. On an
-ambisonic signal it widens and blurs the image; it works on any polyphonic
-cable.
+Makes the channels less alike without changing what each of them sounds like.
+On an ambisonic signal it widens and blurs the image; it works on any
+polyphonic cable.
+
+Two decorrelators to choose from in the right-click menu. **Velvet noise**, the
+default, spreads each channel over a few tens of milliseconds through a sparse
+pattern of its own: no latency, and a few times cheaper, though still not
+free. **Time-frequency** takes the
+channels apart band by band instead, which is finer and lets transients pass
+untouched, but delays the signal by some 35 ms and costs several times more.
+
+Below the bass split frequency the velvet noise engine leaves the signal alone:
+smeared low end is what makes a decorrelator sound loose.
 
 - **In**: polyphonic, AMOUNT CV — **Out**: polyphonic
 - **Knob**: AMOUNT (0–1, default 0.5), with a CV input and a trim
-- **Right-click**: bypass transients (sends them straight through instead of
-  smearing them), compensate level, and the latency it introduces
+- **Right-click**: decorrelator, bass split (velvet noise), bypass transients
+  (time-frequency), compensate level, and the latency in force

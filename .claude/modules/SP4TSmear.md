@@ -4,8 +4,20 @@
 
 Decorrelator.
 
-A simple multi-channel (I/O polyphonic cables) signal decorrelator based on
-randomised time-frequency delays and cascaded all-pass filters.
+A simple multi-channel (I/O polyphonic cables) signal decorrelator.
+
+Two engines, selected from the right-click menu:
+
+- velvet noise (default): each channel is convolved with a sparse sequence of
+  +1/-1 impulses of its own, a thousand or so per second over a few tens of
+  milliseconds. No latency, and a few dozen additions per sample per channel.
+  Below the bass split frequency (right-click menu, 200 Hz by default) the
+  signal passes through untouched, since smearing the low end is what makes a
+  decorrelator sound loose.
+- time-frequency: randomised delays and cascaded all-pass filters in an afSTFT
+  filterbank (SAF). Finer, with per-band control and a transient ducker, at the
+  cost of a 1664-sample latency and of running all 16 channels whatever the
+  input carries.
 
 ## Specifications
 
@@ -17,10 +29,13 @@ randomised time-frequency delays and cascaded all-pass filters.
   - amount (unipolar)
 - 1 jack input (polyphonic) 
 - 1 jack output (polyphonic) 
-- 2 right-click menu options, both boolean and disabled by default:
+- Right-click menu options:
+  - decorrelator: velvet noise (default) or time-frequency
+  - bass split: off, 100, 200 (default), 400 or 800 Hz; velvet noise only
   - bypass transients: the transients are sent straight to the output instead
-    of through the decorrelator, which smears them
-  - compensate level
+    of through the decorrelator, which smears them; time-frequency only,
+    disabled by default
+  - compensate level, disabled by default
 
 ## Panel design
 

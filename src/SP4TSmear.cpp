@@ -1,6 +1,11 @@
 #include "plugin.hpp"
 #include "components.hpp"
 #include "Decorrelator.hpp"
+#include "VelvetDecorrelator.hpp"
+
+
+/** Frequencies the bass split of the velvet noise engine offers, 0 being off. */
+static const float BASS_SPLITS[] = {0.f, 100.f, 200.f, 400.f, 800.f};
 
 
 struct SP4TSmear : Module {
@@ -22,8 +27,24 @@ struct SP4TSmear : Module {
 		LIGHTS_LEN
 	};
 
+	/** Which of the two decorrelators the module runs. */
+	enum Engine {
+		VELVET_ENGINE,
+		SPECTRAL_ENGINE,
+	};
+
+	sp4t::VelvetDecorrelator velvet;
 	sp4t::Decorrelator decorrelator;
 	dsp::ClockDivider controlDivider;
+
+	/** Which engine decorrelates, and the frequency below which the velvet
+	 * noise one leaves the signal alone. Right-click menu, saved with the
+	 * patch. */
+	int engine = VELVET_ENGINE;
+	float bassSplit = 200.f;
+	/** The engine the audio thread last ran, to drop the tail of the other one
+	 * when the menu switches between them. */
+	int runningEngine = VELVET_ENGINE;
 
 	/** Sends the transients straight through instead of decorrelating them.
 	 * Right-click menu, saved with the patch. */
@@ -35,6 +56,15 @@ struct SP4TSmear : Module {
 
 	/** Set while there is nothing to decorrelate or nowhere to send it. */
 	bool idle = false;
+
+	/** Index of `bassSplit` among the frequencies the menu offers. */
+	int bassSplitIndex() const {
+		for (int i = 0; i < (int) (sizeof(BASS_SPLITS) / sizeof(*BASS_SPLITS)); i++) {
+			if (bassSplit == BASS_SPLITS[i])
+				return i;
+		}
+		return 0;
+	}
 
 	SP4TSmear() {
 		config(PARAMS_LEN, INPUTS_LEN, OUTPUTS_LEN, LIGHTS_LEN);
@@ -54,7 +84,11 @@ struct SP4TSmear : Module {
 	/** The filterbank and the all-pass filters depend on the sample rate.
 	 * Rack also sends this event when the module is added, which is where they
 	 * are built: it allocates, so it cannot happen in process(). */
-	void onSampleRateChange(const SampleRateChangeEvent& e) override { decorrelator.setSampleRate(e.sampleRate); }
+	void onSampleRateChange(const SampleRateChangeEvent& e) override {
+		decorrelator.setSampleRate(e.sampleRate);
+		velvet.setSampleRate(e.sampleRate);
+		velvet.setBassSplit(bassSplit);
+	}
 
 	void onReset(const ResetEvent& e) override {
 		Module::onReset(e);
@@ -62,7 +96,12 @@ struct SP4TSmear : Module {
 		decorrelator.setBypassTransients(false);
 		compensateLevel = false;
 		decorrelator.setCompensateLevel(false);
+		velvet.setCompensateLevel(false);
+		engine = VELVET_ENGINE;
+		bassSplit = 200.f;
+		velvet.setBassSplit(bassSplit);
 		decorrelator.reset();
+		velvet.reset();
 		updateControls();
 	}
 
@@ -72,9 +111,11 @@ struct SP4TSmear : Module {
 		float amount = params[AMOUNT_PARAM].getValue()
 		               + params[AMOUNT_CV_PARAM].getValue() * inputs[AMOUNT_CV_INPUT].getVoltage() / 10.f;
 		decorrelator.setAmount(amount);
+		velvet.setAmount(amount);
 
 		int channels = inputs[POLY_INPUT].getChannels();
 		decorrelator.setNumChannels(channels);
+		velvet.setNumChannels(channels);
 		outputs[POLY_OUTPUT].setChannels(channels);
 	}
 
@@ -89,6 +130,7 @@ struct SP4TSmear : Module {
 			if (!idle) {
 				idle = true;
 				decorrelator.reset();
+				velvet.reset();
 			}
 			return;
 		}
@@ -100,7 +142,18 @@ struct SP4TSmear : Module {
 		for (int c = 0; c < channels; c++)
 			in[c] = inputs[POLY_INPUT].getVoltage(c);
 
-		decorrelator.process(in, out);
+		// Switched from the menu: what the other engine was still spreading out
+		// is dropped rather than played when it is selected again.
+		if (engine != runningEngine) {
+			runningEngine = engine;
+			decorrelator.reset();
+			velvet.reset();
+		}
+
+		if (engine == VELVET_ENGINE)
+			velvet.process(in, out);
+		else
+			decorrelator.process(in, out);
 
 		for (int c = 0; c < channels; c++)
 			outputs[POLY_OUTPUT].setVoltage(out[c], c);
@@ -110,6 +163,8 @@ struct SP4TSmear : Module {
 		json_t* rootJ = json_object();
 		json_object_set_new(rootJ, "bypassTransients", json_boolean(bypassTransients));
 		json_object_set_new(rootJ, "compensateLevel", json_boolean(compensateLevel));
+		json_object_set_new(rootJ, "engine", json_integer(engine));
+		json_object_set_new(rootJ, "bassSplit", json_real(bassSplit));
 		return rootJ;
 	}
 
@@ -123,6 +178,15 @@ struct SP4TSmear : Module {
 		if (compensateLevelJ) {
 			compensateLevel = json_boolean_value(compensateLevelJ);
 			decorrelator.setCompensateLevel(compensateLevel);
+			velvet.setCompensateLevel(compensateLevel);
+		}
+		json_t* engineJ = json_object_get(rootJ, "engine");
+		if (engineJ)
+			engine = runningEngine = (int) json_integer_value(engineJ);
+		json_t* bassSplitJ = json_object_get(rootJ, "bassSplit");
+		if (bassSplitJ) {
+			bassSplit = json_real_value(bassSplitJ);
+			velvet.setBassSplit(bassSplit);
 		}
 	}
 };
@@ -149,15 +213,39 @@ struct SP4TSmearWidget : ModuleWidget {
 	void appendContextMenu(Menu* menu) override {
 		SP4TSmear* module = getModule<SP4TSmear>();
 
+		bool velvet = module->engine == SP4TSmear::VELVET_ENGINE;
+
 		menu->addChild(new MenuSeparator);
-		menu->addChild(createBoolMenuItem(
+		menu->addChild(createIndexSubmenuItem(
+			"Decorrelator",
+			{"Velvet noise (cheaper, no latency)", "Time-frequency (finer, latency)"},
+			[=]() { return module->engine; },
+			[=](int index) { module->engine = index; }));
+
+		// Velvet noise smears the bass as readily as the rest, which is what
+		// makes a decorrelator sound loose, so it is held back below here.
+		MenuItem* split = createIndexSubmenuItem(
+			"Bass split",
+			{"Off", "100 Hz", "200 Hz", "400 Hz", "800 Hz"},
+			[=]() { return module->bassSplitIndex(); },
+			[=](int index) {
+				module->bassSplit = BASS_SPLITS[index];
+				module->velvet.setBassSplit(module->bassSplit);
+			});
+		split->disabled = !velvet;
+		menu->addChild(split);
+
+		MenuItem* transients = createBoolMenuItem(
 			"Bypass transients",
 			"",
 			[=]() { return module->bypassTransients; },
 			[=](bool enabled) {
 				module->bypassTransients = enabled;
 				module->decorrelator.setBypassTransients(enabled);
-			}));
+			});
+		transients->disabled = velvet;
+		menu->addChild(transients);
+
 		menu->addChild(createBoolMenuItem(
 			"Compensate level",
 			"",
@@ -165,9 +253,10 @@ struct SP4TSmearWidget : ModuleWidget {
 			[=](bool enabled) {
 				module->compensateLevel = enabled;
 				module->decorrelator.setCompensateLevel(enabled);
+				module->velvet.setCompensateLevel(enabled);
 			}));
 
-		int latency = module->decorrelator.getLatency();
+		int latency = velvet ? module->velvet.getLatency() : module->decorrelator.getLatency();
 		float milliseconds = 1e3f * latency / APP->engine->getSampleRate();
 		menu->addChild(createMenuLabel(string::f("Latency: %d samples (%.1f ms)", latency, milliseconds)));
 	}
