@@ -96,6 +96,32 @@ Subsequent channels, if any, represent Higher-Order Ambisonics (HOA). They are
 harder to interpret, since they correspond to more complex harmonics, most of
 which contain information across more than one axis (figure 1).
 
+## Plugin Modules
+
+### Encoders
+
+- **SP4T Stereo In** — Ambisonic encoder for one panned mono or stereo source.
+- **SP4T Source4 In** — Ambisonic encoder for up to four point sources.
+
+### Decoders
+
+- **SP4T Stereo Out** — Decodes the sound field to a pair of stereo speakers.
+- **SP4T Ears Out** — Decodes the sound field to headphones (binaural).
+
+### Processors
+
+- **SP4T Rotate** — Rotates the whole sound field.
+- **SP4T Flip** — Mirrors the sound field across one or more axes.
+
+### Utilities
+
+- **SP4T Gain** — A gain per ambisonic channel.
+- **SP4T Mute** — A mute per ambisonic channel.
+- **SP4T Split Insert** — Two effect inserts, one for the omni part of the field and one for the rest.
+- **SP4T Split** — Splits an ambisonic signal into its separate channels.
+- **SP4T Merge** — Builds an ambisonic signal from separate channels.
+- **SP4T Smear** — Decorrelates the channels of a polyphonic signal.
+
 ## Requirements
 
 - [VCV Rack SDK](https://vcvrack.com/Rack#sdk) 2.6.6, unpacked as
