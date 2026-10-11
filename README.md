@@ -6,7 +6,7 @@ A [VCV Rack](https://vcvrack.com/) plugin providing
 Ambisonic input/output signals use the ACN channel ordering and SN3D normalization
 conventions (ambiX), unless otherwise specified.
 
-<img src="doc/images/sp4t-modules-20261010.png">
+<img src="doc/images/sp4t-modules-20261010.png" width="75%">
 
 ## What is ambisonics?
 
