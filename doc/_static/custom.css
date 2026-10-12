@@ -1,6 +1,82 @@
-/* Module pages: the panel floats on the left, its description runs beside it.
-   A fixed height rather than a width, so that every panel is shown at the same
-   scale whatever its width in HP. */
+body {
+    --font-stack: "Albert Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-stack--headings: "Quicksand", var(--font-stack);
+    font-size: 1.0rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+article {
+    line-height: 1.6;
+}
+
+article h1,
+article h2,
+article h3,
+article h4 {
+    font-weight: 600;
+}
+
+article h2 {
+    font-size: 1.5em;
+    letter-spacing: 0.01em;
+    line-height: 1.25;
+}
+
+article h3 {
+    font-size: 1.25em;
+    letter-spacing: 0.01em;
+    line-height: 1.25;
+}
+
+article h4 {
+    font-size: 1.0625em;
+    letter-spacing: 0.01em;
+}
+
+article h1 {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+}
+
+article h1::after {
+    content: "";
+    flex: 1 1 auto;
+    height: 1px;
+    margin-top: 0.14em;
+    margin-left: 1.25rem;
+    background: var(--color-background-border);
+}
+
+.sidebar-brand-text {
+    font-family: var(--font-stack--headings);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+}
+
+.toc-title {
+    font-family: var(--font-stack--headings);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+}
+
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6 {
+    color: var(--color-foreground-primary);
+}
+
+article a.headerlink {
+    color: var(--color-brand-primary);
+}
+
 img.module-panel {
     float: left;
     height: 26rem;
@@ -8,7 +84,6 @@ img.module-panel {
     margin: 0.25rem 1.75rem 1.25rem 0;
 }
 
-/* Headings and the page footer start below the panel, never beside it. */
 article h1,
 article h2,
 article h3,
@@ -17,12 +92,6 @@ footer,
     clear: both;
 }
 
-/* Room to breathe between one section and the next, a little more where a new
-   group of modules starts.
-
-   As padding and not margin: a heading below a module panel clears it, and
-   clearance swallows a top margin whenever the panel is the taller of the two,
-   which is most of the time here. */
 article h2 {
     padding-top: 1.5rem;
 }
@@ -31,30 +100,19 @@ article h3 {
     padding-top: 1.25rem;
 }
 
-/* The first module of a group already has the group heading right above it. */
 article section > section:first-of-type > h3 {
     padding-top: 0.5rem;
 }
 
-/* A table beside a floated panel. The theme gives its table wrapper both its
-   own formatting context, which keeps it clear of floats, and a full-column
-   width, which leaves it nowhere to go but below the panel. Letting it size to
-   its content puts it back in the text column, next to everything else. */
 [role="main"] .table-wrapper.container {
     width: auto;
 }
 
-/* A list beside a floated panel. A float only shortens the line boxes inside a
-   block, so the list keeps its padding behind the panel: the items line up
-   with the paragraph text instead of indenting past it, and the bullets sit
-   under the image. Its own formatting context moves the whole box clear of
-   the panel, padding and bullets included. */
 article section > ul,
 article section > ol {
     display: flow-root;
 }
 
-/* Too narrow to read beside a panel: stack them instead. */
 @media (max-width: 50em) {
     img.module-panel {
         float: none;

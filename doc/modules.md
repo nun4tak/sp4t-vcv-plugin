@@ -16,12 +16,7 @@ Turn ordinary audio into an ambisonic sound field.
 
 ```{image} images/modules/SP4TStereoIn.svg
 :alt: SP4T Stereo In
-:class: only-light module-panel
-```
-
-```{image} images/modules/SP4TStereoIn-dark.svg
-:alt: SP4T Stereo In
-:class: only-dark module-panel
+:class: module-panel
 ```
 
 *Ambisonic encoder for one panned mono or stereo source.*
@@ -54,12 +49,7 @@ view modes are available via the right-click menu.
 
 ```{image} images/modules/SP4TSource4In.svg
 :alt: SP4T Source4 In
-:class: only-light module-panel
-```
-
-```{image} images/modules/SP4TSource4In-dark.svg
-:alt: SP4T Source4 In
-:class: only-dark module-panel
+:class: module-panel
 ```
 
 *Ambisonic encoder for up to four point sources.*
@@ -96,12 +86,7 @@ Turn a sound field back into something to listen to.
 
 ```{image} images/modules/SP4TStereoOut.svg
 :alt: SP4T Stereo Out
-:class: only-light module-panel
-```
-
-```{image} images/modules/SP4TStereoOut-dark.svg
-:alt: SP4T Stereo Out
-:class: only-dark module-panel
+:class: module-panel
 ```
 
 *Decodes the sound field to a pair of stereo speakers.*
@@ -127,12 +112,7 @@ headphones, you may want to use the [Ears Out](#sp4t-ears-out) module instead
 
 ```{image} images/modules/SP4TEarsOut.svg
 :alt: SP4T Ears Out
-:class: only-light module-panel
-```
-
-```{image} images/modules/SP4TEarsOut-dark.svg
-:alt: SP4T Ears Out
-:class: only-dark module-panel
+:class: module-panel
 ```
 
 *Decodes the sound field to headphones (binaural).*
@@ -156,12 +136,7 @@ Act on the sound field as a whole, keeping it a sound field.
 
 ```{image} images/modules/SP4TRotate.svg
 :alt: SP4T Rotate
-:class: only-light module-panel
-```
-
-```{image} images/modules/SP4TRotate-dark.svg
-:alt: SP4T Rotate
-:class: only-dark module-panel
+:class: module-panel
 ```
 
 *Rotates the whole sound field.*
@@ -190,12 +165,7 @@ The screen shows the original X,Y,Z axes (grey) and the rotated X',Y',Z' axes
 
 ```{image} images/modules/SP4TFlip.svg
 :alt: SP4T Flip
-:class: only-light module-panel
-```
-
-```{image} images/modules/SP4TFlip-dark.svg
-:alt: SP4T Flip
-:class: only-dark module-panel
+:class: module-panel
 ```
 
 *Mirrors the sound field across one or more axes.*
@@ -217,12 +187,7 @@ The second switch selects the behavior of the buttons and CV inputs: MOM
 
 ```{image} images/modules/SP4TBlurSharp.svg
 :alt: SP4T Blur Sharp
-:class: only-light module-panel
-```
-
-```{image} images/modules/SP4TBlurSharp-dark.svg
-:alt: SP4T Blur Sharp
-:class: only-dark module-panel
+:class: module-panel
 ```
 
 *Blurs or sharpens the sound field.*
@@ -265,12 +230,7 @@ Work on the channels a sound field is made of, or on any polyphonic cable.
 
 ```{image} images/modules/SP4TGain.svg
 :alt: SP4T Gain
-:class: only-light module-panel
-```
-
-```{image} images/modules/SP4TGain-dark.svg
-:alt: SP4T Gain
-:class: only-dark module-panel
+:class: module-panel
 ```
 
 *A gain per ambisonic channel.*
@@ -290,12 +250,7 @@ channels is not a spatially meaningful operation in general.
 
 ```{image} images/modules/SP4TMute.svg
 :alt: SP4T Mute
-:class: only-light module-panel
-```
-
-```{image} images/modules/SP4TMute-dark.svg
-:alt: SP4T Mute
-:class: only-dark module-panel
+:class: module-panel
 ```
 
 *A mute per ambisonic channel.*
@@ -317,12 +272,7 @@ channels is not a spatially meaningful operation in general.
 
 ```{image} images/modules/SP4TSplitInsert.svg
 :alt: SP4T Split Insert
-:class: only-light module-panel
-```
-
-```{image} images/modules/SP4TSplitInsert-dark.svg
-:alt: SP4T Split Insert
-:class: only-dark module-panel
+:class: module-panel
 ```
 
 *Two effect inserts, one for the omni part of the field and one for the rest.*
@@ -348,12 +298,7 @@ signal and the other loop are held back to match.
 
 ```{image} images/modules/SP4TSplit.svg
 :alt: SP4T Split
-:class: only-light module-panel
-```
-
-```{image} images/modules/SP4TSplit-dark.svg
-:alt: SP4T Split
-:class: only-dark module-panel
+:class: module-panel
 ```
 
 *Splits an ambisonic signal into its separate channels.*
@@ -370,12 +315,7 @@ bottom-right. The output channels that are not covered by the input signal
 
 ```{image} images/modules/SP4TMerge.svg
 :alt: SP4T Merge
-:class: only-light module-panel
-```
-
-```{image} images/modules/SP4TMerge-dark.svg
-:alt: SP4T Merge
-:class: only-dark module-panel
+:class: module-panel
 ```
 
 *Builds an ambisonic signal from separate channels.*
@@ -392,12 +332,7 @@ are 0 V and inputs beyond the chosen order are ignored.
 
 ```{image} images/modules/SP4TSmear.svg
 :alt: SP4T Smear
-:class: only-light module-panel
-```
-
-```{image} images/modules/SP4TSmear-dark.svg
-:alt: SP4T Smear
-:class: only-dark module-panel
+:class: module-panel
 ```
 
 *Decorrelates the channels of a polyphonic signal.*
