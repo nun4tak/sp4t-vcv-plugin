@@ -13,8 +13,8 @@ conventions (ambiX), unless otherwise specified.
 Ambisonics encodes a full 3D sound field using spherical harmonic decomposition
 (figure 1): it is a multi-channel audio encoding technique where each channel
 carries a given harmonic function sampled at the audio rate (see below for more
-details how to interpret those signals). This *scene-based* encoding contrasts
-with the usual *channel-based* encoding (1 channel = 1 speaker) and
+details on how to interpret those signals). This *scene-based* encoding
+contrasts with the usual *channel-based* encoding (1 channel = 1 speaker) and
 *object-based* techniques such as Dolby Atmos, where each object carries its own
 audio stream plus positional metadata.
 
@@ -44,8 +44,8 @@ It also has a few limitations:
   the finite spatial resolution and sharpness of the encoded sound field. Lower
   orders are subject to spatial blur.
 
-To each order *N* corresponds of fixed number *(N+1)²* of ambisonic audio
-channels: 1st-order = 4, 2nd order = 9, 3rd order = 16 (figure 1).
+To each order *N* corresponds a fixed number *(N+1)²* of ambisonic audio
+channels: 1st order = 4, 2nd order = 9, 3rd order = 16 (figure 1).
 
 ## Why ambisonics in modular synthesis / VCV Rack?
 
@@ -62,16 +62,16 @@ turning spatial operations into a powerful sound-design tool. And why not try
 using it with CV signals? There's no limitation, really.
 
 Modular synthesis has the right workflow for exploring the full range of
-ambisonic possibilities. VCV Rack's polyphonic cables make it also very
+ambisonic possibilities. VCV Rack's polyphonic cables also make it very
 convenient to carry ambisonic signals between modules (up to 3rd order = 16
 channels, hopefully more in the future?).
 
-This VCV Rack plugin aims at providing a comprehensive set of modules for
+This VCV Rack plugin aims to provide a comprehensive set of modules for
 typical ambisonic operations such as **encoding** one or more sources into a 3D
-sound field - or directly **synthesize** the sound field -, **rotate, flip,
-decouple and process** that field, and finally **decode** it to a mono, stereo
-or binaural signal or to any array of speakers. In the spirit of modular
-synthesis, almost anything can be controlled and CV modulated!
+sound field — or directly **synthesizing** the sound field — **rotating,
+flipping, decoupling and processing** that field, and finally **decoding** it
+to a mono, stereo or binaural signal or to any array of speakers. In the spirit
+of modular synthesis, almost anything can be controlled and CV modulated!
 
 ## How to interpret the ambisonic channels?
 
@@ -85,9 +85,10 @@ A First-Order Ambisonic (FOA) signal has 4 channels W,X,Y,Z (the so-called
 | 2 | 1st | Z   | top–bottom | <img src="res/misc/b_format_Z.svg" width="30px"> |
 | 3 | 1st | X   | front–rear | <img src="res/misc/b_format_X.svg" width="50px"> |
 
-In idealized settings the first channel corresponds to the sound that would be
-picked by an omnidirectional microphone while the other three channels relate to
-what would be picked by figure-8 microphones oriented along the X,Y,Z axes.
+In idealized settings, the first channel corresponds to the sound that would be
+picked up by an omnidirectional microphone, while the other three channels
+relate to what would be picked up by figure-8 microphones oriented along the
+X,Y,Z axes.
 
 The first two ACN channels W,Y are thus equivalent — up to some gain
 normalization — to the familiar "mid-side" representation of a stereo signal.

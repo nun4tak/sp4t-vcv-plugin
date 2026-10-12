@@ -23,10 +23,10 @@ under the GNU General Public License v3. Bugs, questions and ideas are welcome
 in the [issue
 tracker](https://github.com/nun4tak/sp4t-vcv-plugin/issues).
 
-## Acknowledgment
+## Acknowledgement
 
 Most of the ambisonic DSP in these modules relies on the [Spatial Audio
 Framework](https://github.com/leomccormack/Spatial_Audio_Framework) (dual ISC /
 GNU GPLv2 licence), which also powers the
 [SPARTA](https://leomccormack.github.io/sparta-site/) audio plugins. Many thanks to
-its developers for making it available publicly!
+its developers for making it publicly available!
