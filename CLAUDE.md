@@ -198,6 +198,22 @@ Decisions behind both, worth not re-deriving:
 - `SAF_ENABLE_SIMD` is off on Linux and Windows: SAF compiles itself with
   `-march=native` there (`framework/CMakeLists.txt`), which would tie a bundle
   to the machine that built it. On macOS its flags are per-arch baselines.
+  Enabling it would mean replacing that `-march=native` with Rack's own
+  baseline, which is the only thing in the way -- its AVX and AVX-512 paths are
+  gated on `__AVX__`/`__AVX512F__`, which `-march=nehalem` does not define, so
+  nothing above the baseline can be emitted. The gain would be confined to the
+  element-wise helpers in `saf_utility_veclib.c` that OpenBLAS does not
+  provide (`utility_svvmul` and `utility_svvcopy` are the two afSTFT uses),
+  whose fallbacks GCC already auto-vectorises, so it is worth measuring before
+  believing in.
+- `saf` is given `RACK_ARCH_MARCH` in `CMakeLists.txt`, because SAF is
+  configured before `RackSDK.cmake` adds that flag for the directory (which is
+  deliberate: a single `-march` would break SAF's universal macOS build, so the
+  macOS slices get theirs from the patch in `SDKs/`). Without it the library
+  was built for the compiler's default architecture -- plain x86-64 on the
+  Library's Linux and Windows builds -- while the plugin's own sources were
+  built for nehalem. PIC is not part of this: SAF sets
+  `CMAKE_POSITION_INDEPENDENT_CODE` itself.
 - Windows uses MSYS2's MINGW64 and not the UCRT64 that MSYS2 now recommends:
   Rack and the plugins VCV builds target msvcrt, and Rack deletes widgets and
   modules the plugin allocated, so a plugin on the other C runtime would free

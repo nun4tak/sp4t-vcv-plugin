@@ -11,7 +11,8 @@
 #                                     ship (e.g. res/staging)
 #
 # Defines the target ${RACK_PLUGIN_LIB} ("plugin"); add your sources to it with
-# target_sources().
+# target_sources(), and RACK_ARCH_OS / RACK_ARCH_CPU / RACK_ARCH_NAME plus
+# RACK_ARCH_MARCH, the -march flag for the CPU baseline Rack targets.
 
 set(RACK_SDK_VERSION 2.6.6)
 message(STATUS "Load RackSDK.cmake (mapping based on Rack-SDK ${RACK_SDK_VERSION})")
@@ -60,11 +61,11 @@ endif ()
 
 if (_rack_cpu MATCHES "^(arm64|aarch64)$")
   set(RACK_ARCH_CPU arm64)
-  set(_rack_march -march=armv8-a+fp+simd)
+  set(RACK_ARCH_MARCH -march=armv8-a+fp+simd)
   set(_rack_arch_define ARCH_ARM64)
 elseif (_rack_cpu MATCHES "^(x86_64|amd64|AMD64)$")
   set(RACK_ARCH_CPU x64)
-  set(_rack_march -march=nehalem)
+  set(RACK_ARCH_MARCH -march=nehalem)
   set(_rack_arch_define ARCH_X64)
 else ()
   message(FATAL_ERROR "Could not determine the CPU architecture from '${_rack_cpu}'.\
@@ -112,7 +113,7 @@ endif ()
 add_compile_options(-fPIC)
 # Debugger symbols. These are removed by `strip` in the dist target.
 add_compile_options(-g)
-add_compile_options(${_rack_march})
+add_compile_options(${RACK_ARCH_MARCH})
 add_compile_options(-Wall -Wextra -Wno-unused-parameter)
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")

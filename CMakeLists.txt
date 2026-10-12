@@ -65,3 +65,16 @@ target_sources(${RACK_PLUGIN_LIB} PRIVATE
     src/SP4TBlurSharp.cpp)
 
 target_link_libraries(${RACK_PLUGIN_LIB} PRIVATE saf)
+
+# The CPU baseline Rack targets, for SAF as well as for the plugin's own
+# sources. SAF is configured above, before RackSDK.cmake sets that flag for
+# this directory, so without this it would be built for the compiler's default
+# architecture -- plain x86-64 on the Library's Linux and Windows builds, where
+# the plugin's own code gets nehalem.
+#
+# Not on macOS: SAF builds itself as a universal arm64+x86_64 binary there, and
+# one -march cannot serve both slices. The per-slice baselines come from the
+# patch in SDKs/ instead (see SDKs/README.md).
+if (NOT APPLE)
+  target_compile_options(saf PRIVATE ${RACK_ARCH_MARCH})
+endif ()
