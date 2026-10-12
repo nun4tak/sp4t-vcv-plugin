@@ -162,7 +162,21 @@ Decisions behind both, worth not re-deriving:
   linking its runtime into the plugin fails on a TLS relocation in `async.o`.
   LAPACK reaches that runtime through one symbol, `_gfortran_concat_string`,
   which `dgesvd` and friends use. The Makefile's `dep` target builds the same
-  thing for the Library's cross builds.
+  thing for the Library's cross builds. Only `libs netlib`: the default target
+  goes on to link OpenBLAS's own test programs, which the plugin has no use
+  for.
+- The Makefile calls a build cross when the target *machine* differs from the
+  host, the CPU included, and not only when the operating system does. The
+  toolchain image runs on whatever the host is: on an arm64 Mac its lin-x64
+  compiler cross-compiles as well, and without `CMAKE_SYSTEM_NAME` CMake takes
+  the host's processor for the target's -- which had `RackSDK.cmake` hand an
+  x86_64 compiler `-march=armv8-a+fp+simd`.
+- The toolchain builds all four platforms from the one plugin directory in
+  turn, and its `make cleandep` only clears the prefix of the platform it is
+  about to build, so the Makefile gives each one its own (`dep-$(ARCH_NAME)`)
+  and unpacks OpenBLAS inside it. Shared, the Windows build's objects were
+  still there for the Linux build that follows it, which then failed to link
+  against mingw symbols.
 - `SAF_ENABLE_SIMD` is off on Linux and Windows: SAF compiles itself with
   `-march=native` there (`framework/CMakeLists.txt`), which would tie a bundle
   to the machine that built it. On macOS its flags are per-arch baselines.

@@ -20,6 +20,15 @@ VERSION := $(shell jq -r .version plugin.json)
 # MACHINE (from `$(CC) -dumpmachine`), ARCH_OS, ARCH_CPU and ARCH_NAME, plus
 # DEP_PATH and the dep/cleandep targets the toolchain calls.
 include $(RACK_DIR)/arch.mk
+
+# One dependency prefix per architecture (dep.mk's default is a single `dep`,
+# and it has to be set before including it). The toolchain builds every
+# platform from this one directory in turn -- mac-x64, mac-arm64, win-x64,
+# lin-x64 -- and its `make cleandep` only removes the prefix of the platform
+# it is about to build, so a shared one would hand each platform the
+# libraries, headers and object files of the one built before it.
+DEP_LOCAL := dep-$(ARCH_NAME)
+
 include $(RACK_DIR)/dep.mk
 
 # Not `build`, so that running this by hand leaves the pixi build directory
@@ -55,7 +64,7 @@ ifdef CODESIGN
 	CMAKE_FLAGS += -DRACK_CODESIGN_COMMAND="$(subst $(space),;,$(strip $(codesign_cmd)))"
 endif
 
-# Which operating system this make is running on, as arch.mk names them.
+# Which machine this make is running on, as arch.mk names them.
 HOST_KERNEL := $(shell uname -s)
 ifneq (,$(findstring Darwin,$(HOST_KERNEL)))
 	HOST_OS := mac
@@ -65,9 +74,23 @@ else
 	HOST_OS := win
 endif
 
-# Only when the target is not the host: setting CMAKE_SYSTEM_NAME is what puts
-# CMake in cross-compiling mode, and a native build should not be in it.
-ifneq ($(ARCH_OS),$(HOST_OS))
+HOST_MACHINE := $(shell uname -m)
+ifneq (,$(filter arm64 aarch64,$(HOST_MACHINE)))
+	HOST_CPU := arm64
+else
+	HOST_CPU := x64
+endif
+
+# Only when the target machine is not the host machine: setting
+# CMAKE_SYSTEM_NAME is what puts CMake in cross-compiling mode, and a native
+# build should not be in it.
+#
+# The CPU is part of that comparison and not just the operating system,
+# because the Library's toolchain image runs on whatever the host happens to
+# be: on an arm64 Mac, its lin-x64 compiler is a cross compiler too. Told
+# nothing, CMake takes the host's processor for the target's, and RackSDK.cmake
+# then hands an x86_64 compiler `-march=armv8-a+fp+simd`.
+ifneq ($(ARCH_OS)-$(ARCH_CPU),$(HOST_OS)-$(HOST_CPU))
 	ifdef ARCH_WIN
 		CMAKE_FLAGS += -DCMAKE_SYSTEM_NAME=Windows
 	endif
@@ -114,6 +137,11 @@ OPENBLAS_VERSION := 0.3.34
 OPENBLAS_SHA256 := cd7e129868320cc2d033afa920e31202dfe0b8066a5b66661900ccc0f197dfed
 OPENBLAS_DIR := OpenBLAS-$(OPENBLAS_VERSION)
 OPENBLAS_TAR := $(OPENBLAS_DIR).tar.gz
+OPENBLAS_URL := https://github.com/OpenMathLib/OpenBLAS/releases/download/v$(OPENBLAS_VERSION)/$(OPENBLAS_TAR)
+
+# Downloaded and unpacked under the dependency prefix, not in the plugin
+# directory, so that `make cleandep` takes the source tree with it.
+OPENBLAS_SRC := $(DEP_PATH)/$(OPENBLAS_DIR)
 
 ifdef ARCH_X64
 	OPENBLAS_TARGET := NEHALEM
@@ -132,12 +160,19 @@ ifndef ARCH_MAC
 DEPS += $(DEP_PATH)/lib/libopenblas.a
 endif
 
+# `libs netlib` and not the default target, which goes on to build OpenBLAS's
+# test and benchmark programs: they are of no use to the plugin, and they are
+# linked, not just compiled, which a cross build cannot be relied on to do.
 $(DEP_PATH)/lib/libopenblas.a:
-	$(WGET) "https://github.com/OpenMathLib/OpenBLAS/releases/download/v$(OPENBLAS_VERSION)/$(OPENBLAS_TAR)"
-	$(SHA256) $(OPENBLAS_TAR) $(OPENBLAS_SHA256)
-	$(UNTAR) $(OPENBLAS_TAR)
-	$(MAKE) -C $(OPENBLAS_DIR) $(OPENBLAS_FLAGS)
-	$(MAKE) -C $(OPENBLAS_DIR) $(OPENBLAS_FLAGS) PREFIX="$(DEP_PATH)" install
+	cd "$(DEP_PATH)" && $(WGET) "$(OPENBLAS_URL)"
+	$(SHA256) "$(DEP_PATH)/$(OPENBLAS_TAR)" $(OPENBLAS_SHA256)
+	$(UNTAR) "$(DEP_PATH)/$(OPENBLAS_TAR)" -C "$(DEP_PATH)"
+	$(MAKE) -C "$(OPENBLAS_SRC)" $(OPENBLAS_FLAGS) libs netlib
+	$(MAKE) -C "$(OPENBLAS_SRC)" $(OPENBLAS_FLAGS) PREFIX="$(DEP_PATH)" install
+
+# Again, because dep.mk expands the prerequisites of its own `dep` rule where
+# it declares them, which is before DEPS is appended to above.
+dep: $(DEPS)
 
 # ------------------------------------------------------------------ targets ---
 

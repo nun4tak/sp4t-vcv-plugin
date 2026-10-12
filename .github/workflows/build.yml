@@ -173,7 +173,9 @@ jobs:
           # USE_LOCKING, because a single-threaded build still has to be safe
           # to call from Rack's audio and GUI threads.
           flags="NOFORTRAN=1 NO_SHARED=1 NEED_PIC=1 DYNAMIC_ARCH=0 TARGET=NEHALEM USE_THREAD=0 USE_LOCKING=1 USE_OPENMP=0 NO_AFFINITY=1"
-          make -C OpenBLAS-src -j"$(nproc)" $flags
+          # libs netlib, so that OpenBLAS's own test programs, which the
+          # plugin has no use for, are not built.
+          make -C OpenBLAS-src -j"$(nproc)" $flags libs netlib
           make -C OpenBLAS-src $flags PREFIX="$PWD/openblas" install
           ls -l openblas/lib/libopenblas.a openblas/include/lapacke.h openblas/include/cblas.h
 
