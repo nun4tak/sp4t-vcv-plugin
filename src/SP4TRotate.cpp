@@ -143,7 +143,7 @@ struct SP4TRotate : Module {
 			return;
 		}
 
-		float in[sp4t::AmbiRotator::MAX_NUM_SH];
+		float in[sp4t::AmbiRotator::MAX_NUM_SH] = {};
 		for (int c = 0; c < channels; c++)
 			in[c] = inputs[AMBI_INPUT].getVoltage(c);
 

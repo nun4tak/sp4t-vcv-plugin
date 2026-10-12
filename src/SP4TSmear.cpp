@@ -137,7 +137,7 @@ struct SP4TSmear : Module {
 		idle = false;
 
 		int channels = decorrelator.getNumChannels();
-		float in[sp4t::Decorrelator::MAX_NUM_CHANNELS];
+		float in[sp4t::Decorrelator::MAX_NUM_CHANNELS] = {};
 		float out[sp4t::Decorrelator::MAX_NUM_CHANNELS];
 		for (int c = 0; c < channels; c++)
 			in[c] = inputs[POLY_INPUT].getVoltage(c);

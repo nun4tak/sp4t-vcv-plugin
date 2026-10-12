@@ -161,7 +161,7 @@ struct SP4TEarsOut : Module {
 		}
 		idle = false;
 
-		float in[Decoder::MAX_NUM_SH];
+		float in[Decoder::MAX_NUM_SH] = {};
 		for (int c = 0; c < decoder.getNumSH(); c++)
 			in[c] = inputs[AMBI_INPUT].getVoltage(c);
 

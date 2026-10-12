@@ -118,6 +118,24 @@ add one-line comments to clearly distinguish the parts of long blocks of code.
 If a comment is useful in general (project-scope), it is better to update this
 section instead.
 
+The per-sample `in` buffers the modules hand to a kernel's
+`process(const float* in, float* out)` are zero-initialised (`= {}`), and have
+to stay that way. The channel count they are filled up to comes from the
+kernel, which clamps it, so they are always written in full -- but cppcheck
+cannot see that across translation units and reports `uninitvar` at the call,
+which fails the toolchain's `make plugin-analyze` -- a check of one's own
+before a submission, not part of what the Library builds.
+Inline suppressions are no use: that command does not pass `--inline-suppr`.
+
+`--error-exitcode=1` fires on any finding, information severity included, so
+`plugin-analyze` fails on the `normalCheckLevelMaxBranches` notices as well --
+cppcheck saying it limited its own branch analysis, nothing about the code.
+They are not printed at `--check-level=exhaustive`, which is also how to run
+the same check here, cppcheck itself needing no install:
+
+    pixi exec --spec cppcheck -- cppcheck src/ -isrc/dep --std=c++11 -j 4 \
+        --check-level=exhaustive --error-exitcode=1
+
 ## Module Design and implementation
 
 For each module of this plugin, there's a corresponding design document found in
