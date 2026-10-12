@@ -79,8 +79,9 @@ article a.headerlink {
 
 img.module-panel {
     float: left;
-    height: 26rem;
+    height: 20.8rem;
     width: auto;
+    max-width: none;
     margin: 0.25rem 1.75rem 1.25rem 0;
 }
 
@@ -117,7 +118,6 @@ article section > ol {
     img.module-panel {
         float: none;
         display: block;
-        height: 22rem;
     }
 
     article h2 {
