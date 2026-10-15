@@ -9,6 +9,8 @@ extensions = ["myst_parser"]
 myst_enable_extensions = ["html_image"]
 myst_heading_anchors = 3
 
+numfig = True
+
 exclude_patterns = ["_build", "_art", "make_screenshots.py", "README.md"]
 
 html_theme = "furo"
