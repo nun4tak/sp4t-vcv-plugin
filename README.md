@@ -119,7 +119,8 @@ which contain information across more than one axis (figure 1).
 ### Encoders
 
 - **SP4T Stereo In** — Ambisonic encoder for one panned mono or stereo source.
-- **SP4T Source4 In** — Ambisonic encoder for up to four point sources.
+- **SP4T Source4 In** — Ambisonic encoder for up to four point sources, or 64
+  with polyphonic cables.
 
 ### Decoders
 

@@ -7,10 +7,9 @@
 
 namespace {
 
-// Colors of the sources on the screen (Ayu dark), the active one being the color
-// of the mono source of the Stereo In module.
-const NVGcolor SOURCE_ACTIVE = nvgRGB(0xff, 0xb4, 0x54);
-const NVGcolor SOURCE_INACTIVE = nvgRGB(0x56, 0x5b, 0x66);
+// Color of the sources on the screen (Ayu dark), the same the mono source of
+// the Stereo In module is drawn in.
+const NVGcolor SOURCE_COLOR = nvgRGB(0xff, 0xb4, 0x54);
 
 } // namespace
 
@@ -53,21 +52,28 @@ struct SP4TSource4In : Module {
 	};
 
 	enum {
-		NUM_SOURCES = 4
+		/** Source inputs, i.e., columns of the panel. */
+		NUM_SOURCE_INPUTS = 4,
+		/** Each of them is a point source per channel of the cable patched into it. */
+		MAX_SOURCES = NUM_SOURCE_INPUTS * PORT_MAX_CHANNELS
+	};
+
+	/** One point source: a single channel of one source input. */
+	struct Source {
+		sp4t::Direction direction;
+		int input;
+		int channel;
 	};
 
 	sp4t::AmbiEncoder encoder;
 	dsp::ClockDivider controlDivider;
 
-	// Source directions and connection states shown on the screen, updated by
-	// the engine thread.
-	sp4t::Direction directions[NUM_SOURCES] = {};
-	bool connected[NUM_SOURCES] = {};
-
-	// The encoder takes a contiguous range of sources, so the connected ones are
-	// packed into its first `numActiveSources` slots.
-	int sourceOfSlot[NUM_SOURCES] = {};
-	int numActiveSources = 0;
+	// The point sources being encoded, in the order of the encoder slots they
+	// occupy: the encoder takes a contiguous range, so the channels of the
+	// patched inputs are packed into its first `numSources` slots. Also what the
+	// screen shows, read from the UI thread.
+	Source sources[MAX_SOURCES] = {};
+	int numSources = 0;
 
 	bool flipAzimuth = false;
 	bool idle = false;
@@ -75,9 +81,9 @@ struct SP4TSource4In : Module {
 	/** sp4t::AmbisonicDisplay::ViewMode */
 	int viewMode = sp4t::AmbisonicDisplay::VIEW_XY_Z_PROJECTIONS;
 
-	SP4TSource4In() : encoder(NUM_SOURCES) {
+	SP4TSource4In() : encoder(MAX_SOURCES) {
 		config(PARAMS_LEN, INPUTS_LEN, OUTPUTS_LEN, LIGHTS_LEN);
-		for (int i = 0; i < NUM_SOURCES; i++) {
+		for (int i = 0; i < NUM_SOURCE_INPUTS; i++) {
 			std::string source = string::f("Source %d ", i + 1);
 			configParam(SRC1_AZ_PARAM + i, -180.f, 180.f, 0.f, source + "azimuth", "°");
 			configParam(SRC1_ELEV_PARAM + i, -90.f, 90.f, 0.f, source + "elevation", "°");
@@ -113,36 +119,47 @@ struct SP4TSource4In : Module {
 		encoder.setOrder((int) params[ORDER_PARAM].getValue() + 1);
 
 		// The AZ and ELEV CV inputs are normalled from left to right (sources 1
-		// to 4): an unpatched one takes the voltage of the nearest patched jack
-		// of its row on its left, and 0 V when there is none.
-		float azCv = 0.f;
-		float elevCv = 0.f;
+		// to 4): an unpatched one takes the signal of the nearest patched jack
+		// of its row on its left, and no CV at all when there is none. Which
+		// jack that is, rather than its voltage, because the signal taken from
+		// it is read per channel below.
+		int azCvInput = -1;
+		int elevCvInput = -1;
 
-		numActiveSources = 0;
-		for (int i = 0; i < NUM_SOURCES; i++) {
+		numSources = 0;
+		for (int i = 0; i < NUM_SOURCE_INPUTS; i++) {
 			if (inputs[SRC1_AZ_CV_INPUT + i].isConnected())
-				azCv = inputs[SRC1_AZ_CV_INPUT + i].getVoltage();
+				azCvInput = i;
 			if (inputs[SRC1_ELEV_CV_INPUT + i].isConnected())
-				elevCv = inputs[SRC1_ELEV_CV_INPUT + i].getVoltage();
+				elevCvInput = i;
 
-			// Beyond +/-180 degrees, the azimuth wraps around. The elevation
-			// doesn't go past the poles (the rear is reached with the azimuth).
-			float azimuth = getAngle(SRC1_AZ_PARAM + i, azCv, 180.f);
-			if (flipAzimuth)
-				azimuth = -azimuth;
-			float elevation = math::clamp(getAngle(SRC1_ELEV_PARAM + i, elevCv, 90.f), -90.f, 90.f);
+			// A point source per channel of the cable patched into this input,
+			// all of them taking that column's two knobs, each its own channel
+			// of the two CV signals in force (channel 1 of a monophonic one,
+			// and 0 V past the last channel of a shorter polyphonic one).
+			int channels = inputs[SRC1_INPUT + i].getChannels();
+			for (int c = 0; c < channels; c++) {
+				float azCv = azCvInput < 0 ? 0.f : inputs[SRC1_AZ_CV_INPUT + azCvInput].getPolyVoltage(c);
+				float elevCv = elevCvInput < 0 ? 0.f : inputs[SRC1_ELEV_CV_INPUT + elevCvInput].getPolyVoltage(c);
 
-			directions[i] = sp4t::vectorToDirection(sp4t::directionToVector(azimuth, elevation));
-			connected[i] = inputs[SRC1_INPUT + i].isConnected();
-			if (connected[i])
-				sourceOfSlot[numActiveSources++] = i;
+				// Beyond +/-180 degrees, the azimuth wraps around. The elevation
+				// doesn't go past the poles (the rear is reached with the azimuth).
+				float azimuth = getAngle(SRC1_AZ_PARAM + i, azCv, 180.f);
+				if (flipAzimuth)
+					azimuth = -azimuth;
+				float elevation = math::clamp(getAngle(SRC1_ELEV_PARAM + i, elevCv, 90.f), -90.f, 90.f);
+
+				Source& source = sources[numSources];
+				source.direction = sp4t::vectorToDirection(sp4t::directionToVector(azimuth, elevation));
+				source.input = i;
+				source.channel = c;
+				numSources++;
+			}
 		}
 
-		encoder.setNumSources(numActiveSources);
-		for (int s = 0; s < numActiveSources; s++) {
-			const sp4t::Direction& direction = directions[sourceOfSlot[s]];
-			encoder.setSourceDirection(s, direction.azimuth, direction.elevation);
-		}
+		encoder.setNumSources(numSources);
+		for (int s = 0; s < numSources; s++)
+			encoder.setSourceDirection(s, sources[s].direction.azimuth, sources[s].direction.elevation);
 	}
 
 	void process(const ProcessArgs& args) override {
@@ -152,7 +169,7 @@ struct SP4TSource4In : Module {
 		// Nothing to encode, or nowhere to send it. The interpolation is reset so
 		// that reconnecting starts from the directions in force rather than
 		// gliding from stale gains.
-		if (!outputs[AMBI_OUTPUT].isConnected() || (numActiveSources == 0 && !inputs[OMNI_INPUT].isConnected())) {
+		if (!outputs[AMBI_OUTPUT].isConnected() || (numSources == 0 && !inputs[OMNI_INPUT].isConnected())) {
 			if (!idle) {
 				idle = true;
 				encoder.reset();
@@ -163,10 +180,10 @@ struct SP4TSource4In : Module {
 		idle = false;
 
 		float out[sp4t::AmbiEncoder::MAX_NUM_SH] = {};
-		if (numActiveSources > 0) {
-			float in[NUM_SOURCES];
-			for (int s = 0; s < numActiveSources; s++)
-				in[s] = inputs[SRC1_INPUT + sourceOfSlot[s]].getVoltageSum();
+		if (numSources > 0) {
+			float in[MAX_SOURCES] = {};
+			for (int s = 0; s < numSources; s++)
+				in[s] = inputs[SRC1_INPUT + sources[s].input].getVoltage(sources[s].channel);
 			encoder.process(in, out);
 		}
 		// An omni-directional source feeds the omni channel (ACN 0) only, with
@@ -214,13 +231,11 @@ struct SP4TSource4InWidget : ModuleWidget {
 		display->box.size = mm2px(Vec(47.344, 34.039));
 		addChild(display);
 
-		// One column per source, left to right.
-		static const float x[SP4TSource4In::NUM_SOURCES] = {8.756f, 19.852f, 30.948f, 42.043f};
-		for (int i = 0; i < SP4TSource4In::NUM_SOURCES; i++) {
-			// Also the screen of the module browser, where step() has no module
-			// to read: the sources sit at their default direction, unconnected.
-			display->sources.push_back({{0.f, 0.f}, string::f("%d", i + 1), SOURCE_INACTIVE});
-
+		// One column per source input, left to right. The screen is left empty:
+		// it shows the sources being encoded, and there are none until something
+		// is patched (the module browser included).
+		static const float x[SP4TSource4In::NUM_SOURCE_INPUTS] = {8.756f, 19.852f, 30.948f, 42.043f};
+		for (int i = 0; i < SP4TSource4In::NUM_SOURCE_INPUTS; i++) {
 			addParam(createParamCentered<SP4TRoundSmallKnob>(
 				mm2px(Vec(x[i], 53.39)), module, SP4TSource4In::SRC1_AZ_PARAM + i));
 			addInput(createInputCentered<ThemedPJ301MPort>(
@@ -238,17 +253,22 @@ struct SP4TSource4InWidget : ModuleWidget {
 		addOutput(createOutputCentered<SP4TAmbiPort>(mm2px(Vec(42.043, 114.0)), module, SP4TSource4In::AMBI_OUTPUT));
 	}
 
-	/** Shows the view mode and the source directions of the module. */
+	/** Shows the view mode and the sources being encoded by the module.
+	 *
+	 * The sources are numbered from 1 in the order they are encoded in, which
+	 * runs from the first input to the fourth and, within one input, follows the
+	 * channels of its cable. A given number therefore belongs to no fixed input:
+	 * patching a cable, or one with a different number of channels, renumbers
+	 * the sources to its right.
+	 */
 	void step() override {
 		SP4TSource4In* module = getModule<SP4TSource4In>();
 		if (module) {
 			display->viewMode = module->viewMode;
 			display->sources.clear();
-			for (int i = 0; i < SP4TSource4In::NUM_SOURCES; i++) {
-				display->sources.push_back({module->directions[i],
-				                            string::f("%d", i + 1),
-				                            module->connected[i] ? SOURCE_ACTIVE : SOURCE_INACTIVE});
-			}
+			int numSources = math::clamp(module->numSources, 0, (int) SP4TSource4In::MAX_SOURCES);
+			for (int s = 0; s < numSources; s++)
+				display->sources.push_back({module->sources[s].direction, string::f("%d", s + 1), SOURCE_COLOR});
 		}
 		ModuleWidget::step();
 	}

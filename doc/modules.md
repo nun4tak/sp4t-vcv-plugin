@@ -52,11 +52,17 @@ Different view modes are available via the right-click menu.
 :class: module-panel
 ```
 
-*Ambisonic encoder for up to four point sources.*
+*Ambisonic encoder for up to four point sources, or 64 with polyphonic cables.*
 
 One column per source (input at the bottom), each with its own **AZ** and
 **ELEV** knobs and CV inputs. In addition, the **OMNI** input can be used to add
 an omni-directional source (sound coming from everywhere in 3D space).
+
+A source input also takes a polyphonic cable (up to 16 sources per column, 64 in
+total). The **AZ** and **ELEV** CV inputs are read channel per channel, so a
+polyphonic CV spreads the channels of a column over as many directions, while a
+monophonic one — or the knob on its own — sends them all to the same place.
+Channels past the end of a shorter CV stay on the knob direction.
 
 Each CV row is normalled from left to right: a jack with nothing patched takes
 the signal of the nearest patched jack on its left.
@@ -71,11 +77,12 @@ via the right-click menu: the default sign follows the ambisonic convention (a
 positive angle turns the source to the left) while the flipped sign may be more
 intuitive (turning the knob right moves the source to the right).
 
-The screen shows the positions — directions — of the sources. Different
-view modes are available via the right-click menu.
+The screen shows the positions — directions — of the sources being encoded,
+numbered from 1 in the order they are encoded in. Different view modes are
+available via the right-click menu.
 
 - **Width**: 10 HP
-- **In**: 4 sources, OMNI — **Out**: AMB
+- **In**: 4 sources (polyphonic, up to 16 channels each), OMNI — **Out**: AMB
 - **Knobs**: AZ (±180°) and ELEV (±90°) per source, each with a CV input
 
 ## Decoders
