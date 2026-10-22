@@ -189,6 +189,25 @@ Decisions behind both, worth not re-deriving:
   compiler cross-compiles as well, and without `CMAKE_SYSTEM_NAME` CMake takes
   the host's processor for the target's -- which had `RackSDK.cmake` hand an
   x86_64 compiler `-march=armv8-a+fp+simd`.
+- The Makefile also names the `ar` and `ranlib` belonging to the toolchain
+  `CC` comes from. The toolchain exports neither, and CMake, left to search for
+  them, falls back from the compiler's prefixed name to a plain `ar` -- on a
+  Linux build host, binutils, which writes archives in the GNU format. Apple's
+  linker reads only the BSD format, so it skipped `libsaf.a` with an "ignoring
+  file" warning instead of failing; `-undefined dynamic_lookup`, which the SDK
+  links plugins with, then allowed the unresolved symbols and the plugin linked
+  with none of SAF in it. The first sign of that is Rack refusing to load the
+  bundle, which is why it reached the Library's build before anyone noticed.
+- `dist` strips a copy of the plugin taken before the signing step (`presign/`
+  in the build directory), not the signed library. Stripping invalidates a
+  signature, since the signature covers the bytes of the file; Apple's `strip`
+  only warns and drops it, but the cctools `strip` of a cross toolchain can
+  stop with "code signature data out of place", because `rcodesign sign` aligns
+  the signature and leaves padding where `strip` expects none. Whether there is
+  padding depends on where the binary's link edit data ends, so it hits about
+  half of all binaries -- the local toolchain rehearsal passed and the
+  Library's build of the same commit did not. Strip, then sign is also the
+  order the SDK's own `plugin.mk` uses.
 - The toolchain builds all four platforms from the one plugin directory in
   turn, and its `make cleandep` only clears the prefix of the platform it is
   about to build, so the Makefile gives each one its own (`dep-$(ARCH_NAME)`)

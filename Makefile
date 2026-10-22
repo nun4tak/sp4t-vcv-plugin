@@ -64,6 +64,35 @@ ifdef CODESIGN
 	CMAKE_FLAGS += -DRACK_CODESIGN_COMMAND="$(subst $(space),;,$(strip $(codesign_cmd)))"
 endif
 
+# Which `ar` and `ranlib` build the static libraries (libsaf.a). The toolchain
+# exports CC, CXX and STRIP but not these, so CMake searches for them itself:
+# it tries the compiler's own prefix first (x86_64-apple-darwin21.4-ar) and
+# falls back to a plain `ar`, which on a Linux build host is the one from
+# binutils.
+#
+# That fallback is wrong for a macOS target, and quietly so. binutils writes
+# archives in the GNU format, Apple's linker reads only the BSD one, so it
+# skips the library with an "ignoring file" warning rather than failing. The
+# SDK links plugins with -undefined dynamic_lookup, which allows unresolved
+# symbols, so the plugin then links and the bundle is built with none of SAF in
+# it -- and nothing says so until Rack tries to load it.
+#
+# Hence: name the ar and ranlib that belong to $(CC) whenever they exist.
+# TOOL_PREFIX is $(CC) minus its last word -- "x86_64-apple-darwin21.4-" for
+# "x86_64-apple-darwin21.4-clang" -- and empty for a plain "cc" or "clang",
+# where CMake's own search is already right.
+TOOL_PREFIX := $(shell printf '%s' '$(notdir $(CC))' | sed -E 's/(clang|gcc|cc)$$//')
+cross_tool = $(shell command -v $(TOOL_PREFIX)$(1) 2>/dev/null)
+
+ifneq (,$(TOOL_PREFIX))
+	ifneq (,$(call cross_tool,ar))
+		CMAKE_FLAGS += -DCMAKE_AR="$(call cross_tool,ar)"
+	endif
+	ifneq (,$(call cross_tool,ranlib))
+		CMAKE_FLAGS += -DCMAKE_RANLIB="$(call cross_tool,ranlib)"
+	endif
+endif
+
 # Which machine this make is running on, as arch.mk names them.
 HOST_KERNEL := $(shell uname -s)
 ifneq (,$(findstring Darwin,$(HOST_KERNEL)))

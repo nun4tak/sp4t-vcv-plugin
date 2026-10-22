@@ -213,8 +213,14 @@ if (APPLE)
   else ()
     set(_rack_codesign "")
   endif ()
+  # A copy of the library as the linker left it, kept aside before the signing
+  # above. The dist target strips that copy instead of the signed one -- the
+  # reason is with the strip command itself, below.
+  set(_rack_presign_lib
+      "${PROJECT_BINARY_DIR}/presign/$<TARGET_FILE_NAME:${RACK_PLUGIN_LIB}>")
   add_custom_command(TARGET ${RACK_PLUGIN_LIB} POST_BUILD
       COMMAND "${CMAKE_INSTALL_NAME_TOOL}" -change libRack.dylib /tmp/Rack2/libRack.dylib $<TARGET_FILE:${RACK_PLUGIN_LIB}>
+      COMMAND "${CMAKE_COMMAND}" -E copy $<TARGET_FILE:${RACK_PLUGIN_LIB}> "${_rack_presign_lib}"
       ${_rack_codesign}
       COMMENT "Resolving libRack.dylib through /tmp/Rack2")
 endif ()
@@ -295,15 +301,35 @@ else ()
   set(_rack_dist_lib "${_rack_dist_dir}/${PLUGIN_NAME}/$<TARGET_FILE_NAME:${RACK_PLUGIN_LIB}>")
   if (APPLE)
     # libRack.dylib already resolves through /tmp/Rack2 (see the plugin target).
-    # Stripping invalidates the signature (expected, hence the silenced warning),
-    # so re-sign.
+    #
+    # Strip the debugger symbols first and sign afterwards, the order the SDK's
+    # own plugin.mk uses. The other way round cannot work: a signature covers
+    # the bytes of the file, so removing symbols invalidates it. Apple's strip
+    # only warns and drops the signature, but the cctools strip that comes with
+    # a cross toolchain can refuse the file outright --
+    #
+    #     strip: fatal error: file not in an order that can be processed
+    #     (code signature data out of place)
+    #
+    # -- as it expects the signature to start right after the rest of the link
+    # edit data, and `rcodesign sign` (what the Rack plugin toolchain signs
+    # with, having no Apple codesign) aligns it, leaving padding in between.
+    # Whether there is any padding depends on where that data happens to end,
+    # so this hits about half of all binaries: one build going through proves
+    # nothing about the next.
+    #
+    # The copy from before the signing step (see the plugin target above) is
+    # what gets stripped, therefore, and the stripped result is signed. The
+    # ad-hoc signature the linker itself puts on arm64 binaries in a native
+    # macOS build is no obstacle: strip handles that one.
     if (RACK_CODESIGN_COMMAND)
       set(_rack_dist_codesign COMMAND ${RACK_CODESIGN_COMMAND} "${_rack_dist_lib}")
     else ()
       set(_rack_dist_codesign "")
     endif ()
     add_custom_command(TARGET plugin_dist POST_BUILD
-        COMMAND "${CMAKE_STRIP}" -no_code_signature_warning -S "${_rack_dist_lib}"
+        COMMAND "${CMAKE_COMMAND}" -E copy "${_rack_presign_lib}" "${_rack_dist_lib}"
+        COMMAND "${CMAKE_STRIP}" -S "${_rack_dist_lib}"
         ${_rack_dist_codesign})
   else ()
     add_custom_command(TARGET plugin_dist POST_BUILD
