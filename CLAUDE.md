@@ -180,9 +180,19 @@ Decisions behind both, worth not re-deriving:
   linking its runtime into the plugin fails on a TLS relocation in `async.o`.
   LAPACK reaches that runtime through one symbol, `_gfortran_concat_string`,
   which `dgesvd` and friends use. The Makefile's `dep` target builds the same
-  thing for the Library's cross builds. Only `libs netlib`: the default target
-  goes on to link OpenBLAS's own test programs, which the plugin has no use
-  for.
+  thing for the Library's cross builds. Only `libs` and `netlib`: the default
+  target goes on to link OpenBLAS's own test programs, which the plugin has
+  no use for.
+- OpenBLAS is asked for `libs` and then `netlib` in two separate make
+  invocations, never both at once. Both write the same archive -- the BLAS
+  subdirectories with `ar -ru`, lapack-netlib with `ar` and `ranlib` -- and
+  OpenBLAS orders the pair only along the way to its own default target
+  (`shared : libs netlib` plus `.NOTPARALLEL : shared`), which naming them as
+  goals never goes through. GNU make brings up the goals it is given in
+  parallel under `-j`, which the Library's `make dep` passes down, so the two
+  raced and ranlib took a SIGBUS off an archive the other `ar` was rewriting
+  under it. Nothing is lost by splitting them: each invocation is still
+  parallel inside itself.
 - The Makefile calls a build cross when the target *machine* differs from the
   host, the CPU included, and not only when the operating system does. The
   toolchain image runs on whatever the host is: on an arm64 Mac its lin-x64

@@ -189,14 +189,19 @@ ifndef ARCH_MAC
 DEPS += $(DEP_PATH)/lib/libopenblas.a
 endif
 
-# `libs netlib` and not the default target, which goes on to build OpenBLAS's
-# test and benchmark programs: they are of no use to the plugin, and they are
-# linked, not just compiled, which a cross build cannot be relied on to do.
+# `libs` and `netlib` and not the default target, which goes on to build
+# OpenBLAS's test and benchmark programs: they are of no use to the plugin,
+# and they are linked, not just compiled, which a cross build cannot be relied
+# on to do.
+#
+# One invocation each, to keep make from running the two in parallel: both
+# write to the same output archive. Each is still parallel inside itself.
 $(DEP_PATH)/lib/libopenblas.a:
 	cd "$(DEP_PATH)" && $(WGET) "$(OPENBLAS_URL)"
 	$(SHA256) "$(DEP_PATH)/$(OPENBLAS_TAR)" $(OPENBLAS_SHA256)
 	$(UNTAR) "$(DEP_PATH)/$(OPENBLAS_TAR)" -C "$(DEP_PATH)"
-	$(MAKE) -C "$(OPENBLAS_SRC)" $(OPENBLAS_FLAGS) libs netlib
+	$(MAKE) -C "$(OPENBLAS_SRC)" $(OPENBLAS_FLAGS) libs
+	$(MAKE) -C "$(OPENBLAS_SRC)" $(OPENBLAS_FLAGS) netlib
 	$(MAKE) -C "$(OPENBLAS_SRC)" $(OPENBLAS_FLAGS) PREFIX="$(DEP_PATH)" install
 
 # Again, because dep.mk expands the prerequisites of its own `dep` rule where
@@ -224,6 +229,12 @@ install: all
 
 clean:
 	rm -rf "$(BUILD_DIR)" dist
+
+# Serial whatever -j the caller passes, as the toolchain's own Makefile is:
+# most of these targets configure and build the same CMake directory, and two
+# at once would race on it. The recursive makes above and `cmake --parallel`
+# still use every core.
+.NOTPARALLEL:
 
 .PHONY: all dist install clean
 .DEFAULT_GOAL := all
