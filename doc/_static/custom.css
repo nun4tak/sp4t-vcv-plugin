@@ -128,3 +128,8 @@ article section > ol {
         padding-top: 1rem;
     }
 }
+
+.custom-figure-spacing {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
