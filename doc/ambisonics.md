@@ -59,7 +59,9 @@ signal, the spherical harmonics expansion has to be truncated at a given order
 - 3rd order: 16 channels
 
 Increasing the order `N` increases the level of details of the sound field
-captured and carried by the ambisonic signal.
+carried by the ambisonic signal but also drastically increases the number of its
+channels, which requires to make trade-offs between spatial accuracy / sharpness
+and processing load.
 
 Hopefully it is now easy to make the link between this core idea of representing
 any complex 3D sound field using spherical harmonics expansion, and the idea of
