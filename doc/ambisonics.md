@@ -60,21 +60,22 @@ signal, the spherical harmonics expansion has to be truncated at a given order
 
 Increasing the order `N` increases the level of details of the sound field
 carried by the ambisonic signal but also drastically increases the number of its
-channels, which requires to make trade-offs between spatial accuracy / sharpness
+channels, which may require to make a tradeoff between spatial "sharpness"
 and processing load.
 
-Hopefully it is now easy to make the link between this core idea of representing
-any complex 3D sound field using spherical harmonics expansion, and the idea of
-representing any complex audio waveform as an expansion of simple sine waves
-(Fourier series).
+```{note}
+Ambisonics' core idea of representing any complex 3D sound field using spherical harmonics
+expansion is very similar to the idea of representing any complex audio waveform as an
+expansion of simple sine waves (Fourier series).
+```
 
 (ambisonics-speaker-agnostic)=
 ### Scene-based, speaker-agnostic encoding
 
 Ambisonics is a **scene-based** encoding technique, which greatly differs from
-the usual **channel-based** encoding (1 channel = 1 speaker) and which contrasts
-with **object-based** immersive techniques such as Dolby Atmos, where each
-object carries its own audio stream plus positional metadata.
+the usual **channel-based** encoding (1 channel = 1 speaker) and which also
+contrasts with **object-based** immersive techniques such as Dolby Atmos (where
+each object carries its own audio stream plus positional metadata).
 
 Ambisonic channels are not meant to be listened directly, they have to be
 decoded first into a channel-based format, exactly like mid/side encoded stereo
@@ -93,10 +94,10 @@ audio signals first need to go through an ambisonic encoder.
 
 It is worth noting that standard ambisonics does not natively integrate the
 concept of distance to a sound source. Instead, it assumes that the sound is
-coming from all directions to the listening point as plane waves. This makes
-the maths simpler: a full-sphere sound field can then be represented simply by
-real spherical harmonics expansion. A sphere is 3D geometric object but
-spherical harmonics functions are defined on the *surface* of the sphere; it may
+coming from all directions to the listening point as plane waves. This makes the
+maths simpler: a full-sphere sound field can then be represented simply by real
+spherical harmonics expansion. A sphere is 3D geometric object but spherical
+harmonics functions are defined on the *surface* of the sphere; it might
 therefore be more accurate to define ambisonics as a "2.5D" technique rather
 than a full 3D spatial audio technique.
 
