@@ -32,9 +32,13 @@ Ambisonics can go beyond the three primary X, Y, Z axes mentioned above to
 encode a full-sphere sound field centered at a listening point, capturing finer
 spatial detail through Higher-Order Ambisonics (HOA).
 
-The core idea of ambisonics is to represent the sound field using **spherical
-harmonics expansion** ({numref}`fig:sh`): each ambisonic channel carries a given
-harmonic function sampled at the audio rate, which represents either the acoustic
+If you are familiar with the concept of using an expansion of simple sine waves
+(Fourier series) to represent any complex audio waveform, you should also easily
+grasp the core principle of ambisonics: using a **spherical harmonic
+expansion** to represent any complex 3D sound field ({numref}`fig:sh`).
+
+Each ambisonic channel carries the time-varying weight of a specific harmonic
+function---sampled at the audio rate---representing either the acoustic
 pressure or one of its spatial derivatives at the listening point.
 
 ```{figure} ../res/misc/spherical_functions.svg
@@ -52,28 +56,21 @@ As illustrated in {numref}`fig:sh`, spherical harmonics are organized as
 hierarchical **orders**:
 
 - 0th order: represents the overall sound pressure (omnidirectional)
-- 1th order: represents the pressure gradients along the primary X,Y,Z axes
+- 1th order: represents the pressure gradients along the primary X, Y, Z axes
 - 2nd and higher orders: represent increasingly complex and detailed directional patterns 
 
-Since we cannot use an infinite number of audio channels to carry an ambisonic
-signal, the spherical harmonics expansion has to be truncated at a given order
-`N` that corresponds to a fixed number `(N+1)²` of ambisonic channels:
+To carry an ambisonic signal in practice, the spherical harmonic expansion has
+to be truncated at a given order `N` that corresponds to a fixed number `(N+1)²`
+of ambisonic channels:
 
 - 1st order: 4 channels
 - 2nd order: 9 channels
 - 3rd order: 16 channels
 - and so on...
 
-Increasing the order `N` increases the level of details of the sound field
-carried by the ambisonic signal but also drastically increases the number of its
-channels, which involves a tradeoff between spatial "sharpness" and
-computational load.
-
-```{note}
-Ambisonics' core principle of representing any complex 3D sound field using spherical harmonics
-expansion is very similar to the principle of representing any complex audio waveform as an
-expansion of simple sine waves (Fourier series).
-```
+Increasing the order `N` increases the level of detail in the sound field
+carried by the ambisonic signal, although that extra spatial "sharpness" comes
+at the cost of a rapidly growing channel count and higher computational load.
 
 (ambisonics-speaker-agnostic)=
 ### Scene-based, speaker-agnostic encoding
@@ -102,8 +99,8 @@ It is worth noting that standard ambisonics does not natively integrate the
 concept of distance to a sound source. Instead, it assumes that the sound is
 coming from all directions to the listening point as plane waves. This makes the
 maths simpler: a full-sphere sound field can then be represented simply by real
-spherical harmonics expansion. A sphere is 3D geometric object but spherical
-harmonics functions are defined on the *surface* of the sphere; it might
+spherical harmonic expansion. A sphere is 3D geometric object but spherical
+harmonic functions are defined on the *surface* of the sphere; it might
 therefore be more accurate to define ambisonics as a "2.5D" technique rather
 than a full 3D spatial audio technique.
 
