@@ -8,31 +8,34 @@
 
 ## What is ambisonics?
 
-Ambisonics is a multi-channel surround sound format.
+Ambisonics is a full-sphere, speaker-independent spatial audio format.
 
-It has been proposed a few decades ago but has been relatively overlooked until
-recently. It is used especially in VR audio applications.
+It was proposed several decades ago, although it was mostly overlooked until
+recently. Today, it is primarily used in VR audio applications.
 
 ### Generalization of mid/side encoding
 
-The easiest way to explain ambisonics to someone who is already familiar
-with mid/side processing of a stereo audio signal is as follows:
+If you are already familiar with Mid/Side (M/S) stereo processing, First-Order
+Ambisonics (FOA) is the exact same concept generalized to 3D space:
 
-It is the same concept but generalized to a 3D space where the "sides" are taken
-along each of the three axes *left-right* (Y), *top-bottom* (Z) and *front-rear*
-(X), and where the "mid" becomes the omni-directional component (see
-[below](ambisonics-interpret) for more details).
+- The "Mid" becomes an omnidirectional component (W) capturing overall sound
+  pressure.
+- The "Sides" become three bidirectional (figure-of-eight) components along each
+  axis: *front-rear* (X), *left-right* (Y), and *top-bottom* (Z).
+
+See [below](ambisonics-interpret) for more details.
 
 (ambisonics-order)=
 ### Spherical harmonics and ambisonic order
 
-Ambisonics can go beyond the three primary axes mentioned above and encode a
-full-sphere sound field centered at a listening point in space, with finer details.
+Ambisonics can go beyond the three primary X, Y, Z axes mentioned above to
+encode a full-sphere sound field centered at a listening point, capturing finer
+spatial detail through Higher-Order Ambisonics (HOA).
 
 The core idea of ambisonics is to represent the sound field using **spherical
 harmonics expansion** ({numref}`fig:sh`): each ambisonic channel carries a given
-harmonic function -- sampled at the audio rate -- representing the sound
-pressure or sound pressure gradients at the listening point.
+harmonic function sampled at the audio rate, which represents either the acoustic
+pressure or one of its spatial derivatives at the listening point.
 
 ```{figure} ../res/misc/spherical_functions.svg
 :scale: 100 %
@@ -40,13 +43,15 @@ pressure or sound pressure gradients at the listening point.
 :alt: spherical harmonics
 :class: custom-figure-spacing
 
-Representation of spherical harmonic functions up to order 3.
+Representation of spherical harmonic functions up to order 3. You can think these
+function shapes as (virtual) microphone polar patterns, where the bright vs. dark
+colors represent positive vs. inverted polarity.
 ```
 
-As illustrated in {numref}`fig:sh`, spherical harmonics are organized hierarchically
-as **orders**:
+As illustrated in {numref}`fig:sh`, spherical harmonics are organized as
+hierarchical **orders**:
 
-- 0th order: represents the overall sound pressure (omni-directional)
+- 0th order: represents the overall sound pressure (omnidirectional)
 - 1th order: represents the pressure gradients along the primary X,Y,Z axes
 - 2nd and higher orders: represent increasingly complex and detailed directional patterns 
 
@@ -57,15 +62,16 @@ signal, the spherical harmonics expansion has to be truncated at a given order
 - 1st order: 4 channels
 - 2nd order: 9 channels
 - 3rd order: 16 channels
+- and so on...
 
 Increasing the order `N` increases the level of details of the sound field
 carried by the ambisonic signal but also drastically increases the number of its
-channels, which may require to make a tradeoff between spatial "sharpness"
-and processing load.
+channels, which involves a tradeoff between spatial "sharpness" and
+computational load.
 
 ```{note}
-Ambisonics' core idea of representing any complex 3D sound field using spherical harmonics
-expansion is very similar to the idea of representing any complex audio waveform as an
+Ambisonics' core principle of representing any complex 3D sound field using spherical harmonics
+expansion is very similar to the principle of representing any complex audio waveform as an
 expansion of simple sine waves (Fourier series).
 ```
 
@@ -74,16 +80,16 @@ expansion of simple sine waves (Fourier series).
 
 Ambisonics is a **scene-based** encoding technique, which greatly differs from
 the usual **channel-based** encoding (1 channel = 1 speaker) and which also
-contrasts with **object-based** immersive techniques such as Dolby Atmos (where
+contrasts with **object-based** immersive techniques such as Dolby Atmos (i.e.,
 each object carries its own audio stream plus positional metadata).
 
-Ambisonic channels are not meant to be listened directly, they have to be
-decoded first into a channel-based format, exactly like mid/side encoded stereo
-channels need to be decoded back to left/right channels. This constraint is also
-one of the greatest advantages of the ambisonic format: its representation of
-the 3D sound field is **speaker-independent**, i.e., the same ambisonic signal
-can be decoded into any channel-based format (L/R stereo speakers, binaural,
-quadraphonic or 5.1 surround systems, etc.).
+Ambisonic channels aren't intended for direct playback; instead, they need to be
+decoded into a channel-based format first (just like Mid/Side encoded stereo
+channels need to be decoded back to Left/Right channels). This constraint is
+also one of the greatest advantages of the ambisonic format: its representation
+of the 3D sound field is **speaker-independent**, i.e., the same ambisonic
+signal can be decoded into any channel-based format such as L/R stereo speakers,
+binaural, quadraphonic or 5.1 surround systems, dome of speakers, etc.
 
 Likewise, the audio signals captured by an array of microphones placed at a
 listening point do not directly translate into an ambisonic signal. Those raw
@@ -161,7 +167,7 @@ design and audio synthesis:
   exact (lossless) field rotation or mirroring. It is an advanced panning tool.
 - Applications go well beyond panning: for example, the omni vs. directional
   components of the sound field can be easily decoupled and processed
-  independently.
+  independently (just like Mid/Side processing).
 
 It also has a few limitations:
 
