@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 200" width="920" height="200" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+  <style>
+    .box { fill: #C5CAD2; stroke: #8A9199; stroke-width: 1.5; }
+    .ftitle { fill: #1F2328; font-size: 18px; font-weight: bold; }
+    .fsub { fill: #2D3238; font-size: 15px; }
+    .amb { stroke: #399EE6; stroke-width: 2; }
+    .chn { stroke: #E6B450; stroke-width: 2; }
+  </style>
+    <marker id="headBlue" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#399EE6"/>
+    </marker>
+    <marker id="headYellow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#E6B450"/>
+    </marker>
+  </defs>
+
+  <!-- Incoming channel-format signals (e.g. raw microphone signals) -->
+  <g class="chn" marker-end="url(#headYellow)">
+    <line x1="20" y1="70" x2="78" y2="70"/>
+    <line x1="20" y1="90" x2="78" y2="90"/>
+    <line x1="20" y1="110" x2="78" y2="110"/>
+    <line x1="20" y1="130" x2="78" y2="130"/>
+  </g>
+
+  <!-- Encoder -->
+  <rect class="box" x="80" y="20" width="200" height="160" rx="8"/>
+  <text text-anchor="middle" x="180">
+    <tspan class="ftitle" x="180" y="88">Ambisonic encoder</tspan>
+    <tspan class="fsub" x="180" y="110">(point sources,</tspan>
+    <tspan class="fsub" x="180" y="127">microphone array, etc.)</tspan>
+  </text>
+
+  <!-- First-order ambisonic channels (W, X, Y, Z) -->
+  <g class="amb" marker-end="url(#headBlue)">
+    <line x1="282" y1="70" x2="358" y2="70"/>
+    <line x1="282" y1="90" x2="358" y2="90"/>
+    <line x1="282" y1="110" x2="358" y2="110"/>
+    <line x1="282" y1="130" x2="358" y2="130"/>
+  </g>
+
+  <!-- Processor -->
+  <rect class="box" x="360" y="20" width="200" height="160" rx="8"/>
+  <text text-anchor="middle" x="460">
+    <tspan class="ftitle" x="460" y="88">Ambisonic processor</tspan>
+    <tspan class="fsub" x="460" y="110">(rotation, mirroring,</tspan>
+    <tspan class="fsub" x="460" y="127">etc.)</tspan>
+  </text>
+
+  <!-- First-order ambisonic channels (W, X, Y, Z) -->
+  <g class="amb" marker-end="url(#headBlue)">
+    <line x1="562" y1="70" x2="638" y2="70"/>
+    <line x1="562" y1="90" x2="638" y2="90"/>
+    <line x1="562" y1="110" x2="638" y2="110"/>
+    <line x1="562" y1="130" x2="638" y2="130"/>
+  </g>
+
+  <!-- Decoder -->
+  <rect class="box" x="640" y="20" width="200" height="160" rx="8"/>
+  <text text-anchor="middle" x="740">
+    <tspan class="ftitle" x="740" y="88">Ambisonic decoder</tspan>
+    <tspan class="fsub" x="740" y="110">(L/R stereo, binaural,</tspan>
+    <tspan class="fsub" x="740" y="127">quadraphonic, 5.1, etc.)</tspan>
+  </text>
+
+  <!-- Outgoing channel-format signals (e.g. binaural L/R) -->
+  <g class="chn" marker-end="url(#headYellow)">
+    <line x1="842" y1="90" x2="900" y2="90"/>
+    <line x1="842" y1="110" x2="900" y2="110"/>
+  </g>
+</svg>  
