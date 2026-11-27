@@ -135,6 +135,97 @@ or may have more latency.
 - **Width**: 4 HP
 - **In**: AMB — **Out**: L, R
 
+### SP4T XY-MS Out
+
+```{image} images/modules/SP4TXY-MSOut.svg
+:alt: SP4T XY-MS Out
+:class: module-panel
+```
+
+*Decodes the sound field to stereo with a pair of virtual coincident
+microphones (X/Y or M/S).*
+
+Renders the sound field as if it had been recorded with a pair of coincident
+microphones placed at the centre of the scene, in the horizontal plane. The
+switch picks the pair:
+
+- **X/Y**: two identical microphones, angled apart by **SPREAD** (the angle
+  between each of them and the front axis).
+- **M/S**: a forward-facing mid microphone and a sideways (left-facing)
+  figure-8, **SPREAD** setting their balance, i.e. the stereo width — 0° is the
+  mid microphone alone (mono), 45° the classic M/S balance, 90° the side
+  microphone alone.
+
+**PATTERN** sweeps the microphone pattern continuously from omni through
+cardioid and hypercardioid to figure-8, so all the classic coincident
+techniques are available from the same two knobs (see the table below). In M/S
+mode it is the pattern of the mid microphone; the side one is always a
+figure-8.
+
+| Pattern | PATTERN | Front/rear pickup |
+|---|---|---|
+| Omni | 0 | equal all around |
+| Subcardioid | 0.3 | front-weighted, no null |
+| Cardioid | 0.5 | null at the rear |
+| Supercardioid | 0.634 | nulls at ±125°, small inverted rear lobe |
+| Hypercardioid | 0.75 | nulls at ±110°, larger inverted rear lobe |
+| Figure-8 | 1 | nulls at the sides, rear lobe inverted |
+
+The screen draws the two patterns in the horizontal plane, on a fixed scale
+where the outline circle is a gain of 1 and the graticule circle a gain of 0.5,
+so a change of level shows as the lobes growing or shrinking. Lobes of inverted
+polarity are dashed. The active mode is named in the bottom left corner and the
+pattern, abbreviated, in the bottom right one — prefixed with `~` while the
+knob sits between two named patterns. The LED in each capsule of the drawing
+below shows the level of that microphone.
+
+The module takes an input of any order but uses only the first-order horizontal
+channels. This is exact rather than a shortcut: a first-order microphone only
+picks up the first-order part of the sound field. There is no orientation
+control — use the [Rotate](#sp4t-rotate) module before this one to aim or tilt
+the pair. For a loudspeaker-panning rendering, see
+[Stereo Out](#sp4t-stereo-out); for headphones, see [Ears Out](#sp4t-ears-out).
+
+Turning **PATTERN** up also makes the microphones quieter in a diffuse field,
+by up to 4.8 dB for a figure-8. The "diffuse-field level compensation" option
+of the right-click menu takes that out, so that the overall loudness stays
+roughly the same across the range. It is off by default: the plain microphone
+behaviour is the reference.
+
+Usual techniques:
+
+| Technique | Mode | PATTERN | SPREAD | What it captures / stereo image | Mono and phase |
+|---|---|---|---|---|---|
+| X/Y cardioid 90° | X/Y | 0.5 | 45° | Front-weighted, rear rejected. Stable, fairly narrow image, little room sound. | Excellent mono, no inverted lobes. |
+| X/Y cardioid 110–135° | X/Y | 0.5 | 55–67.5° | Wider image, slightly weaker centre. | Very good; the centre drops a little in mono. |
+| X/Y super/hypercardioid | X/Y | 0.634–0.75 | 50–60° | Tighter, more focused image; the small rear lobes add some room sound. | Rear sources partly inverted: diffuse, slightly phasey. |
+| Blumlein | X/Y (or M/S with a figure-8 mid) | 1 | 45° | Full 360° pickup. Very accurate front image; rear quadrant mirrored (rear-left shows up on the right); lots of room sound. | Side quadrants inverted between L and R: phasey reverb, side sources vanish in mono. |
+| M/S cardioid | M/S | 0.5 | 30–60° | Natural image, width adjustable with SPREAD; centre always solid. | Perfect: the mono sum is the mid microphone. |
+| M/S hypercardioid | M/S | 0.75 | 30–60° | Drier, more focused centre. | Mid rear lobe inverted; mono still clean. |
+| M/S omni | M/S | 0 | 45° | Equivalent to two back-to-back cardioids at ±90°: very wide and spacious, room sound from all around, vague centre. | Mono = omni, very clean. |
+| M/S figure-8 | M/S | 1 | any | Identical to an X/Y figure-8 pair at ±SPREAD (Blumlein at 45°). | As Blumlein. |
+| Omni / subcardioid pair | X/Y | 0 / 0.3 | any | Omni gives plain mono; subcardioid a very roomy, narrow image. | Clean. |
+
+All these techniques are coincident: L and R differ only in level and polarity,
+never in time, so there is no comb filtering in mono. Mono issues come only
+from inverted lobes (supercardioid, hypercardioid, figure-8), which partly
+cancel and make some sources or reverb sound phasey. In M/S mode, **SPREAD**
+never changes what reaches the mono sum (always the mid microphone, scaled down
+as the spread goes up), so the width can be adjusted without affecting mono
+compatibility; this is not the case in X/Y mode. The virtual microphones have
+ideal, frequency-independent patterns: with a recording made by a real
+first-order microphone, the patterns are less accurate at high frequencies.
+
+For separate M/S processing downstream, use M/S mode at **SPREAD** 45° and any
+M/S encoder after the L and R outputs: their sum and difference give back the
+mid and side signals at equal level.
+
+- **Width**: 8 HP
+- **In**: AMB, PATTERN CV, SPREAD CV — **Out**: L, R
+- **Knobs**: PATTERN (0–1, default 0.5 = cardioid), SPREAD (0–90°, default
+  45°), each with a CV input and a trim
+- **Switch**: X/Y or M/S
+
 ## Processors
 
 Act on the sound field as a whole, keeping it a sound field.

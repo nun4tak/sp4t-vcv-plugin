@@ -405,14 +405,18 @@ def collect(root):
                               SVG + 'ellipse'):
                     geo = centre_and_size(ch, m)
                     if geo:
-                        found.append(geo)
+                        found.append((geo, ch.get('id') or ''))
                     continue
                 walk_led(ch, mul(m, parse_tf(ch.get('transform'))))
         walk_led(leds, parse_tf(leds.get('transform')))
-        found.sort(key=lambda g: (round(g[1], 1), g[0]))
+        found.sort(key=lambda f: (round(f[0][1], 1), f[0][0]))
         names = (['left-led', 'right-led'] if len(found) == 2
                  else ['ch%d-led' % (i + 1) for i in range(len(found))])
-        for name, g in zip(names, found):
+        for name, (g, led_id) in zip(names, found):
+            # A proto that names its LEDs keeps those names; one drawing them
+            # as bare Inkscape paths gets the positional names above.
+            if led_id.endswith('-led'):
+                name = led_id
             out.append(('light', name, g[0], g[1], min(g[2], g[3]) / 2.0))
     return out
 
@@ -500,7 +504,10 @@ def process(src, outdir, log):
     stem = os.path.splitext(os.path.basename(src))[0]
     module = stem[:-6] if stem.endswith('Test01') else stem
     width = float(root.get('viewBox').split()[2])
-    pretty = re.sub(r'(?<!^)(?=[A-Z0-9])', ' ', module[4:]).strip()
+    # CamelCase to words, leaving a run of capitals together ("XY-MSOut" ->
+    # "XY-MS Out").
+    pretty = re.sub(r'(?<=[a-z])(?=[A-Z0-9])|(?<=[0-9])(?=[A-Z])'
+                    r'|(?<=[A-Z])(?=[A-Z][a-z])', ' ', module[4:])
 
     items = collect(root)
     rebuild_components(root, items, log)

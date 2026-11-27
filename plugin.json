@@ -103,6 +103,13 @@
       "description": "Ambisonic Blur / Sharpen",
       "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-blur-sharp",
         "tags": ["Utility", "Polyphonic", "Effect"]
+    },
+    {
+      "slug": "SP4T-XY-MS-Out",
+      "name": "SP4T XY-MS Out",
+      "description": "Ambisonic Coincident Microphone Pair Decoder",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-xy-ms-out",
+        "tags": ["Utility", "Polyphonic", "Panning"]
     }
   ]
 }

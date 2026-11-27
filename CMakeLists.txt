@@ -44,12 +44,14 @@ target_sources(${RACK_PLUGIN_LIB} PRIVATE
     src/plugin.cpp
     src/AmbiEncoder.cpp
     src/AmbiStereoDecoder.cpp
+    src/AmbiMicPairDecoder.cpp
     src/AmbiBinauralDecoder.cpp
     src/AmbiRotator.cpp
     src/Decorrelator.cpp
     src/VelvetDecorrelator.cpp
     src/AmbisonicDisplay.cpp
     src/RotationDisplay.cpp
+    src/MicPatternDisplay.cpp
     src/SP4TStereoIn.cpp
     src/SP4TStereoOut.cpp
     src/SP4TEarsOut.cpp
@@ -62,7 +64,8 @@ target_sources(${RACK_PLUGIN_LIB} PRIVATE
     src/SP4TSmear.cpp
     src/SP4TSource4In.cpp
     src/SP4TSplitInsert.cpp
-    src/SP4TBlurSharp.cpp)
+    src/SP4TBlurSharp.cpp
+    src/SP4TXY-MSOut.cpp)
 
 target_link_libraries(${RACK_PLUGIN_LIB} PRIVATE saf)
 

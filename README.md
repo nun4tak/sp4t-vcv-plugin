@@ -126,6 +126,8 @@ which contain information across more than one axis (figure 1).
 
 - **SP4T Stereo Out** — Decodes the sound field to a pair of stereo speakers.
 - **SP4T Ears Out** — Decodes the sound field to headphones (binaural).
+- **SP4T XY-MS Out** — Decodes the sound field to stereo with a pair of virtual
+  coincident microphones (X/Y or M/S).
 
 ### Processors
 

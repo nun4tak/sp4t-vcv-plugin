@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SP4T XY-MS Out panel, dark theme. 8 HP. Units: mm.
+     Components layer holds VCV Rack placeholders (see
+     https://vcvrack.com/manual/Panel#Adding-components); it is
+     removed when the production panel is exported. -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" version="1.1" width="40.64mm" height="128.5mm" viewBox="0 0 40.64 128.5" id="svg8">
+  <sodipodi:namedview id="namedview8" inkscape:document-units="mm" />
+  <defs id="component-defs">
+    <!-- ScrewSilver.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <!-- SP4TSwitchTwo_0.svg (top position, i.e. value 0) -->
+    <!-- SP4TAmbiPort.svg (PJ301M with the Ayu-blue outer ring) -->
+    <!-- PJ301M.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <!-- SP4TRoundLargeKnob_bg.svg + SP4TRoundLargeKnob.svg (indicator at the default, centered position) -->
+    <!-- SP4TRoundSmallKnob_bg.svg + SP4TRoundSmallKnob.svg (indicator at the default, centered position) -->
+  </defs>
+  <g id="panel" inkscape:groupmode="layer" inkscape:label="Panel">
+    <rect id="background" x="0" y="0" width="40.64" height="128.5" fill="#2a2e35" />
+    <!-- just under the top screws -->
+    <text id="title" x="20.32" y="9" style="font-weight:bold;font-size:4.1px;font-family:'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif;text-anchor:middle;fill:#e6e1cf"><tspan sodipodi:role="line" id="tspan8" x="20.32" y="9">SP<tspan fill="#59c2ff" id="title-accent">4</tspan>T · XY-MS OUT</tspan></text>
+    <!-- between the bottom screws -->
+    <text id="brand" x="20.32" y="125.958" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4" font-weight="700" text-anchor="middle" fill="#bfbdb6">\nu.na.tak\</text>
+    <rect id="screen" x="1.728" y="11.5" width="37.294" height="34.039" rx="0.844" fill="#0d1017" />
+    <!-- Microphone pairs, X/Y on the left and M/S on the right, each below the
+       half of the screen naming it. A pair is two capsules (circles of radius
+       1.665, centres 2.4 apart) drawn as one outline, and two bodies (2.035 x
+       7.03 for X/Y, shortened to 5.1289 for M/S so that both pairs reach the
+       same depth), each hinged on its capsule centre. A dot marks where the
+       module widget puts the LED of the capsule. -->
+    <g id="mic-pairs" style="fill:#2a2e35;stroke:#9da5ae;stroke-width:0.25;stroke-linejoin:round">
+      <g id="xy-pair">
+        <rect id="xy-right-body" x="7.1725" y="50.39" width="2.035" height="7.03" rx="0.8325" transform="rotate(45,8.19,49.65)" />
+        <rect id="xy-left-body" x="4.7725" y="50.39" width="2.035" height="7.03" rx="0.8325" transform="rotate(-45,5.79,49.65)" />
+        <path id="xy-capsules" d="m 6.99,48.4958 a 1.665,1.665 0 1 0 0,2.3084 a 1.665,1.665 0 1 0 0,-2.3084 z" />
+        <circle id="xy-left-dot" cx="5.79" cy="49.65" r="0.666" style="fill:#9da5ae;stroke:none" />
+        <circle id="xy-right-dot" cx="8.19" cy="49.65" r="0.666" style="fill:#9da5ae;stroke:none" />
+      </g>
+      <g id="ms-pair">
+        <rect id="ms-side-body" x="17.4825000000000017053" y="50.39000000000000056843" width="2.03500000000000014211" height="5.12889999999999979252" rx="0.83250000000000001776" transform="rotate(-90,18.5,49.65)" />
+        <rect id="ms-mid-body" x="15.082" y="50.39" width="2.035" height="5.129" rx="0.833" />
+        <path id="ms-capsules" d="m 17.3,48.4958 a 1.665,1.665 0 1 0 0,2.3084 a 1.665,1.665 0 1 0 0,-2.3084 z" />
+        <circle id="ms-mid-dot" cx="16.1" cy="49.65" r="0.666" style="fill:#9da5ae;stroke:none" />
+        <circle id="ms-side-dot" cx="18.5" cy="49.65" r="0.666" style="fill:#9da5ae;stroke:none" />
+      </g>
+    </g>
+    <text x="31.705" y="51.139" id="text118" style="font-weight:600;font-size:2.46944px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;text-align:end;letter-spacing:0.2;text-anchor:end;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan6" x="31.705" y="51.139">X/Y</tspan></text>
+    <text x="31.705" y="54.282" id="text119" style="font-weight:600;font-size:2.46944px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;text-align:end;letter-spacing:0.2;text-anchor:end;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan7" x="31.705" y="54.282">M/S</tspan></text>
+    <text x="11.42" y="62.759" id="text105" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan1" x="11.52" y="62.759">PATTERN</tspan></text>
+    <text x="29.22" y="62.759" id="text73" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan3" x="29.32" y="62.759">SPREAD</tspan></text>
+    <path d="m 8.4793,75.0545 a 5.7753,5.7753 0 1 1 5.8815,0" id="path38" style="fill:none;stroke:#61676f;stroke-width:0.27;stroke-linecap:round" />
+    <path d="m 26.2793,75.0545 a 5.7753,5.7753 0 1 1 5.8815,0" id="path57-5" style="fill:none;stroke:#61676f;stroke-width:0.27;stroke-linecap:round" />
+    <path d="m 9.4765,87.276 a 3.816,3.816 0 1 1 3.8871,0" id="path36" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
+    <path d="m 27.2765,87.276 a 3.816,3.816 0 1 1 3.8871,0" id="path51-6" style="fill:none;stroke:#61676f;stroke-width:0.2732;stroke-linecap:round" />
+    <path style="fill:none;stroke:#61676f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 11.42,76.005 v 3.221" id="path9" sodipodi:nodetypes="cc" />
+    <path style="fill:none;stroke:#61676f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 29.22,76.005 v 3.221" id="path7" sodipodi:nodetypes="cc" />
+    <path style="fill:none;stroke:#61676f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 11.42,88.169 v 1.6128" id="path146" sodipodi:nodetypes="cc" />
+    <path style="fill:none;stroke:#61676f;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter" d="m 29.22,88.169 v 1.6128" id="path1" sodipodi:nodetypes="cc" />
+    <text x="7.486" y="107.4" id="text43" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan2" x="7.586" y="107.4">AMB</tspan></text>
+    <rect style="fill:#4a5059;stroke:none" id="rect138" width="17.8" height="19.948" x="20.02" y="101.335" rx="1.433" ry="1.552" />
+    <text x="24.443" y="107.4" id="text43-8" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan157" x="24.543" y="107.4">L</tspan></text>
+    <text x="33.272" y="107.4" id="text158" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6"><tspan sodipodi:role="line" id="tspan158" x="33.372" y="107.4">R</tspan></text>
+  </g>
+  <g id="components" inkscape:groupmode="layer" inkscape:label="components" style="display:none">
+    <circle id="mode-param" inkscape:label="mode-param" cx="34.78" cy="51.83" r="2.279" fill="#ff0000" />
+    <circle id="pattern-param" inkscape:label="pattern-param" cx="11.42" cy="70.084" r="5.054" fill="#ff0000" />
+    <circle id="spread-param" inkscape:label="spread-param" cx="29.22" cy="70.084" r="5.054" fill="#ff0000" />
+    <circle id="pattern-cv-param" inkscape:label="pattern-cv-param" cx="11.42" cy="83.992" r="3.084" fill="#ff0000" />
+    <circle id="spread-cv-param" inkscape:label="spread-cv-param" cx="29.22" cy="83.992" r="3.084" fill="#ff0000" />
+    <circle id="pattern-cv-input" inkscape:label="pattern-cv-input" cx="11.42" cy="94.469" r="4.013" fill="#00ff00" />
+    <circle id="spread-cv-input" inkscape:label="spread-cv-input" cx="29.22" cy="94.469" r="4.013" fill="#00ff00" />
+    <circle id="ambi-input" inkscape:label="ambi-input" cx="7.419" cy="114" r="4.013" fill="#00ff00" />
+    <circle id="left-output" inkscape:label="left-output" cx="24.505" cy="114" r="4.013" fill="#0000ff" />
+    <circle id="right-output" inkscape:label="right-output" cx="33.335" cy="114" r="4.013" fill="#0000ff" />
+    <circle id="xy-left-led" inkscape:label="xy-left-led" cx="5.79" cy="49.65" r="0.567" fill="#ff00ff" />
+    <circle id="xy-right-led" inkscape:label="xy-right-led" cx="8.19" cy="49.65" r="0.567" fill="#ff00ff" />
+    <circle id="ms-mid-led" inkscape:label="ms-mid-led" cx="16.1" cy="49.65" r="0.567" fill="#ff00ff" />
+    <circle id="ms-side-led" inkscape:label="ms-side-led" cx="18.5" cy="49.65" r="0.567" fill="#ff00ff" />
+  </g>
+</svg>
