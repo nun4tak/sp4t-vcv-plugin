@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SP4T Uhj Out panel, light theme. 4 HP. Units: mm.
+     Components layer holds VCV Rack placeholders (see
+     https://vcvrack.com/manual/Panel#Adding-components); it is
+     removed when the production panel is exported. -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" version="1.1" width="20.32mm" height="128.5mm" viewBox="0 0 20.32 128.5" id="svg8" sodipodi:docname="SP4TUhjOutTest01.svg" inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)">
+  <sodipodi:namedview id="namedview8" inkscape:document-units="mm" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" inkscape:zoom="1.435686" inkscape:cx="17.413278" inkscape:cy="231.5966" inkscape:window-width="1512" inkscape:window-height="916" inkscape:window-x="0" inkscape:window-y="38" inkscape:window-maximized="1" inkscape:current-layer="panel" />
+  <defs id="component-defs">
+    <!-- ScrewSilver.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <!-- PJ301M.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <!-- SP4TAmbiPort.svg (PJ301M with the Ayu-blue outer ring) -->
+  </defs>
+  <g id="panel" inkscape:groupmode="layer" inkscape:label="Panel">
+    <rect id="background" x="0" y="0" width="20.32" height="128.5" fill="#d8dbdf" style="stroke-width:0.8165" />
+    <rect style="fill:#bbbfc3;stroke:none" id="rect138" width="17.8" height="19.948" x="1.26" y="101.335" rx="1.433" ry="1.552" />
+    <!-- just under the top screws -->
+    <text id="title" x="10.016" y="9" style="font-weight:bold;font-size:4.1px;font-family:'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif;text-anchor:middle;fill:#2b3038;-inkscape-font-specification:'Rounded Mplus 1c, Arial Rounded MT Bold, sans-serif, Bold';font-style:normal;font-stretch:normal;font-variant:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"><tspan sodipodi:role="line" id="tspan1">UHJ</tspan></text>
+    <!-- between the bottom screws -->
+    <text id="brand" x="14.862" y="125.958" style="font-weight:bold;font-size:4px;font-family:'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan156" x="14.862" y="125.958">\n.tk\</tspan></text>
+    <text x="5.683" y="107.4" id="text43" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan157" x="5.783" y="107.4">L</tspan></text>
+    <text x="10.227" y="88.84" id="text46" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan85" x="10.327" y="88.84">AMB</tspan></text>
+    <text id="text150" x="14.848" y="3.728" style="font-weight:bold;font-size:3.321px;font-family:'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif;text-anchor:middle;fill:#2b3038;stroke-width:0.81"><tspan sodipodi:role="line" id="tspan153" x="14.848" y="3.728" style="stroke-width:0.81">SP<tspan fill="#22a4e6" id="title-accent">4</tspan>T</tspan></text>
+    <text x="14.511" y="107.4" id="text158" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049"><tspan sodipodi:role="line" id="tspan158" x="14.611" y="107.4">R</tspan></text>
+    <text id="text160" x="10.016" y="14.125" style="font-weight:bold;font-size:4.1px;font-family:'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif;text-anchor:middle;fill:#2b3038"><tspan sodipodi:role="line" id="tspan160" x="10.016" y="14.125">OUT</tspan></text>
+    <rect id="screen" x="1.26" y="16.484" width="17.8" height="26.052" rx="0.403" fill="#0d1017" style="stroke-width:0.6201" />
+    <g fill="none" stroke="#cfd3d8" stroke-width="2" stroke-linecap="round" id="g2" transform="matrix(0.23544034,0,0,0.23544034,-3.9334,7.2377)">
+      <!-- rear ring (faded, dashed) -->
+      <circle cx="60" cy="113" r="26" stroke-dasharray="3, 5" opacity="0.4" id="circle1" />
+      <!-- front ring, broken around each LED -->
+      <path d="m 81.7,62.69 a 26,26 0 1 1 -43.4,0" id="path1-8" />
+      <path d="m 49.68,53.14 a 26,26 0 0 1 20.64,0" id="path2" />
+    </g>
+  </g>
+  <g id="components" inkscape:groupmode="layer" inkscape:label="components" style="display:none">
+    <circle id="right-output" inkscape:label="right-output" cx="14.574" cy="114" r="4.013" fill="#0000ff" />
+    <circle id="left-output" inkscape:label="left-output" cx="5.745" cy="114" r="4.013" fill="#0000ff" />
+    <circle id="ambi-input" inkscape:label="ambi-input" cx="10.16" cy="94.588" r="4.013" fill="#00ff00" />
+    <circle id="left-led" inkscape:label="left-led" cx="6.261" cy="20.681" r="0.567" fill="#ff00ff" />
+    <circle id="right-led" inkscape:label="right-led" cx="14.125" cy="20.681" r="0.567" fill="#ff00ff" />
+  </g>
+</svg>

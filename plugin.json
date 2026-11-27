@@ -110,6 +110,13 @@
       "description": "Ambisonic Coincident Microphone Pair Decoder",
       "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-xy-ms-out",
         "tags": ["Utility", "Polyphonic", "Panning"]
+    },
+    {
+      "slug": "SP4T-Uhj-Out",
+      "name": "SP4T UHJ Out",
+      "description": "Ambisonic Two-Channel UHJ Stereo Decoder",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-uhj-out",
+        "tags": ["Utility", "Polyphonic", "Panning"]
     }
   ]
 }

@@ -30,3 +30,7 @@ Framework](https://github.com/leomccormack/Spatial_Audio_Framework) (dual ISC /
 GNU GPLv2 licence), which also powers the
 [SPARTA](https://leomccormack.github.io/sparta-site/) audio plugins. Many thanks to
 its developers for making it publicly available!
+
+The [UHJ Out](modules.md#sp4t-uhj-out) module is implemented thanks to the
+[HIIR](http://ldesoras.free.fr/prod.html) library (WTFPL, vendored in this
+repository).

@@ -22,3 +22,4 @@ extern Model* modelNun4takSP4TSource4In;
 extern Model* modelNun4takSP4TSplitInsert;
 extern Model* modelNun4takSP4TBlurSharp;
 extern Model* modelNun4takSP4TXYMSOut;
+extern Model* modelNun4takSP4TUhjOut;

@@ -21,4 +21,5 @@ void init(Plugin* p) {
 	p->addModel(modelNun4takSP4TSplitInsert);
 	p->addModel(modelNun4takSP4TBlurSharp);
 	p->addModel(modelNun4takSP4TXYMSOut);
+	p->addModel(modelNun4takSP4TUhjOut);
 }

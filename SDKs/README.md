@@ -35,3 +35,33 @@ update --remote`), try re-apply the patch:
 cd SDKs/Spatial_Audio_Framework
 patch -p1 < ../spatial-audio-framework-universal-simd.patch
 ```
+
+## HIIR
+
+[`hiir`](hiir) is [HIIR](http://ldesoras.free.fr/prod.html) 1.30 by Laurent de
+Soras, an oversampling and Hilbert transform library, under the WTFPL
+(`hiir/license.txt`). Copied in rather than added as a submodule: upstream is
+distributed as a zip. These files come from the header-only fork at
+<https://github.com/unevens/hiir>, which is the same 1.30 with the
+`PolyphaseIir2Designer` implementation moved into its header.
+
+`sp4t::UhjEncoder` uses `hiir::PhaseHalfPiFpu` for the pair of allpass chains
+that give it its 90° phase shift, so only the files that one needs are here,
+not the whole library:
+
+    def.h  fnc.h  fnc.hpp  StageProcFpu.h  StageProcFpu.hpp
+    PhaseHalfPiFpu.h  PhaseHalfPiFpuTpl.h  PhaseHalfPiFpuTpl.hpp
+    PolyphaseIir2Designer.h
+
+The SIMD implementations are left out: `PhaseHalfPiFpu` is 16 allpass sections
+per sample and the plugin runs three of them.
+
+Its headers include each other as `"hiir/<file>"`, so `CMakeLists.txt` puts
+this directory (not `SDKs/hiir`) on the plugin's include path, and the plugin's
+own sources include it the same way.
+
+### Local change
+
+`PhaseHalfPiFpuTpl.hpp` calls `assert()` without including `<cassert>`, which
+does not compile on its own. The include was added, marked with a comment in
+the file.

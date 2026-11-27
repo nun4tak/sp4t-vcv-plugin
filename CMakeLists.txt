@@ -44,6 +44,7 @@ target_sources(${RACK_PLUGIN_LIB} PRIVATE
     src/plugin.cpp
     src/AmbiEncoder.cpp
     src/AmbiStereoDecoder.cpp
+    src/UhjEncoder.cpp
     src/AmbiMicPairDecoder.cpp
     src/AmbiBinauralDecoder.cpp
     src/AmbiRotator.cpp
@@ -65,9 +66,14 @@ target_sources(${RACK_PLUGIN_LIB} PRIVATE
     src/SP4TSource4In.cpp
     src/SP4TSplitInsert.cpp
     src/SP4TBlurSharp.cpp
-    src/SP4TXY-MSOut.cpp)
+    src/SP4TXY-MSOut.cpp
+    src/SP4TUhjOut.cpp)
 
 target_link_libraries(${RACK_PLUGIN_LIB} PRIVATE saf)
+
+# HIIR, header-only, is included as "hiir/<file>" -- the path its own headers
+# use to include each other. See SDKs/README.md.
+target_include_directories(${RACK_PLUGIN_LIB} PRIVATE SDKs)
 
 # The CPU baseline Rack targets, for SAF as well as for the plugin's own
 # sources. SAF is configured above, before RackSDK.cmake sets that flag for

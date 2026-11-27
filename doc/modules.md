@@ -226,6 +226,56 @@ mid and side signals at equal level.
   45°), each with a CV input and a trim
 - **Switch**: X/Y or M/S
 
+### SP4T UHJ Out
+
+```{image} images/modules/SP4TUhjOut.svg
+:alt: SP4T UHJ Out
+:class: module-panel
+```
+
+*Decodes the sound field to two-channel UHJ stereo.*
+
+Turns the sound field into the two channels of the standard two-channel UHJ
+format (Gerzon, 1985), to be played straight through a pair of speakers or
+headphones. Going from B-format to UHJ is strictly speaking an *encoding* —
+UHJ carries a sound field rather than feeding speakers — but with no UHJ
+decoder to follow it, the module simply ends an ambisonic chain, as Stereo Out
+and Ears Out do.
+
+Where [Stereo Out](#sp4t-stereo-out) decodes to two virtual speakers in front
+of the listener, UHJ keeps the whole horizontal sound field in the phase
+relationship between the two channels:
+
+- played as plain stereo, front and side sources are sharply imaged and the
+  stage often sounds wider than the speakers themselves. Rear sources are
+  folded into the front stage, where they keep a less focused, recessed
+  quality of their own.
+- the mono sum is clean, with no comb filtering: summing L and R gives a
+  single, slightly forward-oriented pickup, in which a rear source sits about
+  5 dB below the same source in front.
+
+Only the first-order horizontal channels are used: height and everything above
+first order are discarded. There is no orientation control — the front is the
++X axis, so use the [Rotate](#sp4t-rotate) module before this one to aim the
+field.
+
+The wide-band +90° phase shift that UHJ is built on is made of allpass
+filters, which add no latency of their own (an FIR Hilbert transformer would
+need a delay of thousands of samples to reach down to 20 Hz). Their group
+delay is frequency-dependent instead: negligible above a few hundred hertz,
+longest at the bottom of the band. Both outputs go through filters of the same
+kind, so L and R stay aligned with each other and the mono sum is unaffected;
+mixing these outputs with an unprocessed copy of the same material — Stereo
+Out fed from the same signal, say — may colour the low end.
+
+A fixed make-up gain of 2 is applied to both channels, which brings a front
+source within half a decibel of what Stereo Out decodes the same source to.
+Being identical on L and R, it leaves the UHJ relationship between them
+untouched.
+
+- **Width**: 4 HP
+- **In**: AMB — **Out**: L, R
+
 ## Processors
 
 Act on the sound field as a whole, keeping it a sound field.
