@@ -121,7 +121,7 @@ jobs:
       # cmake/RackSDK.cmake), which comes from MSYS2 instead.
       - name: Set up pixi
         if: runner.os != 'Windows'
-        uses: prefix-dev/setup-pixi@v0.11.0
+        uses: prefix-dev/setup-pixi@v0.11.2
         with:
           cache: true
 
