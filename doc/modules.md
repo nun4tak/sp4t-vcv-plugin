@@ -10,7 +10,8 @@ order = 9, 3rd order = 16).
 
 ## Encoders
 
-Turn ordinary audio into an ambisonic sound field.
+Modules that turn ordinary audio streams into a sound field (input: one or more
+regular audio channels --- output: an ambisonic signal).
 
 ### SP4T Stereo In
 
@@ -87,7 +88,9 @@ available via the right-click menu.
 
 ## Decoders
 
-Turn a sound field back into something to listen to.
+Modules that turn an sound field back into something we can listen to (input: an
+ambisonic signal --- output: one or more regular audio channels suitable for
+playback).
 
 ### SP4T Stereo Out
 
@@ -278,7 +281,8 @@ untouched.
 
 ## Processors
 
-Act on the sound field as a whole, keeping it a sound field.
+Modules that act on the sound field as a whole (input: an ambisonic signal ---
+output: the processed ambisonic signal).
 
 ### SP4T Rotate
 
@@ -372,7 +376,9 @@ also has no effect on a 1st-order ambisonic signal.
 
 ## Utilities
 
-Work on the channels a sound field is made of, or on any polyphonic cable.
+Utility modules to split, merge or process (groups of) ambisonic channels
+independently of each other. Some modules accept any polyphonic cable (not
+necessarily carrying an ambisonic signal).
 
 ### SP4T Gain
 
