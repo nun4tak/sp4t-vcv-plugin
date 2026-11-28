@@ -22,4 +22,5 @@ void init(Plugin* p) {
 	p->addModel(modelNun4takSP4TBlurSharp);
 	p->addModel(modelNun4takSP4TXYMSOut);
 	p->addModel(modelNun4takSP4TUhjOut);
+	p->addModel(modelNun4takSP4TSpeakersOut);
 }

@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SP4T Speakers Out panel, light theme. 14 HP. Units: mm.
+     Prototype draft, not used by the build. -->
+<svg
+   version="1.1"
+   width="71.12mm"
+   height="128.5mm"
+   viewBox="0 0 71.12 128.5"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs id="component-defs">
+    <!-- ScrewSilver.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <linearGradient
+       id="screw-g1"
+       gradientUnits="userSpaceOnUse"
+       x1="219.99944"
+       y1="6477.3999"
+       x2="232.99944"
+       y2="6477.3999"
+       gradientTransform="matrix(6.123234e-17 1 1 -6.123234e-17 -6469.8999 -219)">
+      <stop
+         offset="0"
+         stop-color="#ABA9A9"
+         id="stop1" />
+      <stop
+         offset="1"
+         stop-color="#8F8F8F"
+         id="stop2" />
+    </linearGradient>
+    <linearGradient
+       id="screw-g2"
+       gradientUnits="userSpaceOnUse"
+       x1="220.68697"
+       y1="6477.3999"
+       x2="232.31085"
+       y2="6477.3999"
+       gradientTransform="matrix(6.123234e-17 1 1 -6.123234e-17 -6469.8999 -219)">
+      <stop
+         offset="0.00559"
+         stop-color="#F5F5F5"
+         id="stop3" />
+      <stop
+         offset="1"
+         stop-color="#C2C2C2"
+         id="stop4" />
+    </linearGradient>
+    <linearGradient
+       id="screw-g3"
+       gradientUnits="userSpaceOnUse"
+       x1="221.13403"
+       y1="6477.3999"
+       x2="231.86378"
+       y2="6477.3999"
+       gradientTransform="matrix(6.123234e-17 1 1 -6.123234e-17 -6469.8999 -219)">
+      <stop
+         offset="0.00559"
+         stop-color="#EBEBEB"
+         id="stop5" />
+      <stop
+         offset="1"
+         stop-color="#CCCCCC"
+         id="stop6" />
+    </linearGradient>
+    <symbol
+       id="ScrewSilver"
+       viewBox="0 0 15 14.9989">
+      <circle
+         fill="url(#screw-g1)"
+         cx="7.5"
+         cy="7.49944"
+         r="6.5"
+         id="circle6" />
+      <circle
+         fill="url(#screw-g2)"
+         cx="7.5"
+         cy="7.49891"
+         r="5.81194"
+         id="circle7" />
+      <circle
+         fill="url(#screw-g3)"
+         cx="7.5"
+         cy="7.49891"
+         r="5.36487"
+         id="circle8" />
+      <path
+         fill="#8C8C8C"
+         d="M10.96889,6.80997L9.00528,6.57471C8.70384,6.5386,8.46626,6.30092,8.43027,5.99947L8.19598,4.03719c-0.01021-0.08553-0.08276-0.14993-0.1689-0.14993H6.97294c-0.08613,0-0.15867,0.06438-0.16889,0.1499l-0.23484,1.9634C6.53315,6.30204,6.29544,6.5397,5.99394,6.57569L4.03118,6.81003c-0.08554,0.01021-0.14993,0.08276-0.14993,0.1689v1.0542c0,0.08613,0.06438,0.15866,0.1499,0.16889l1.96299,0.2348C6.29557,8.47287,6.5332,8.7105,6.56925,9.01193l0.23479,1.96293c0.01023,0.08552,0.08277,0.1499,0.16889,0.1499h1.0542c0.08612,0,0.15865-0.06436,0.16889-0.14986l0.23521-1.96318c0.03611-0.30139,0.27372-0.53895,0.57512-0.57499l1.96249-0.2347c0.08552-0.01023,0.1499-0.08276,0.1499-0.16889V6.97886C11.11875,6.89275,11.05439,6.82022,10.96889,6.80997z"
+         id="path8" />
+    </symbol>
+    <!-- PJ301M.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <linearGradient
+       id="jack-g16"
+       gradientUnits="userSpaceOnUse"
+       x1="-602.15857"
+       y1="1785.69116"
+       x2="-578.78363"
+       y2="1785.69116"
+       gradientTransform="matrix(0 1 1 0 -1773.84119 602.39905)">
+      <stop
+         offset="0"
+         stop-color="#828181"
+         id="stop8" />
+      <stop
+         offset="1"
+         stop-color="#575757"
+         id="stop9" />
+    </linearGradient>
+    <linearGradient
+       id="jack-g17"
+       gradientUnits="userSpaceOnUse"
+       x1="1062.06897"
+       y1="-4091.68994"
+       x2="1084.2738"
+       y2="-4091.68994"
+       gradientTransform="matrix(0 1 -1 0 -4079.83984 -1061.23169)">
+      <stop
+         offset="0.00559"
+         stop-color="#FFFFFF"
+         id="stop10" />
+      <stop
+         offset="1"
+         stop-color="#7A7A7A"
+         id="stop11" />
+    </linearGradient>
+    <linearGradient
+       id="jack-g18"
+       gradientUnits="userSpaceOnUse"
+       x1="58.86181"
+       y1="-54.6409"
+       x2="58.86181"
+       y2="-51.86816"
+       gradientTransform="matrix(1 0 0 -1 -47.00625 -41.32658)">
+      <stop
+         offset="0"
+         stop-color="#FFFBFD"
+         id="stop12" />
+      <stop
+         offset="1"
+         stop-color="#808080"
+         id="stop13" />
+    </linearGradient>
+    <linearGradient
+       id="jack-g19"
+       gradientUnits="userSpaceOnUse"
+       x1="-1240.79248"
+       y1="-381.89734"
+       x2="-1223.31567"
+       y2="-381.89734"
+       gradientTransform="matrix(0 -1 -1 0 -370.04718 -1220.1261)">
+      <stop
+         offset="0"
+         stop-color="#B0AEAE"
+         id="stop14" />
+      <stop
+         offset="1"
+         stop-color="#616161"
+         id="stop15" />
+    </linearGradient>
+    <linearGradient
+       id="jack-g20"
+       gradientUnits="userSpaceOnUse"
+       x1="-1884.86365"
+       y1="21.48288"
+       x2="-1884.86365"
+       y2="6.22048"
+       gradientTransform="matrix(-1 0 0 -1 -1873.01343 25.77966)">
+      <stop
+         offset="0"
+         stop-color="#FFFEFE"
+         id="stop16" />
+      <stop
+         offset="1"
+         stop-color="#545454"
+         id="stop17" />
+    </linearGradient>
+    <symbol
+       id="PJ301M"
+       viewBox="0 0 23.7 23.7">
+      <path
+         fill="url(#jack-g16)"
+         d="M11.85025,23.61541c-6.44467,0-11.68796-5.24279-11.68796-11.68697c0-6.44517,5.24329-11.68796,11.68796-11.68796s11.68747,5.24279,11.68747,11.68797C23.53772,18.37262,18.29493,23.61541,11.85025,23.61541z"
+         id="path19" />
+      <circle
+         fill="url(#jack-g17)"
+         cx="11.85"
+         cy="11.93965"
+         r="11.10243"
+         id="circle19" />
+      <circle
+         fill="#E0E0E0"
+         cx="11.85"
+         cy="11.93965"
+         r="10.44346"
+         id="circle20" />
+      <path
+         fill="url(#jack-g18)"
+         d="M1.52136,10.54158l-0.42968,0.41685C0.65175,11.5374,0.6549,12.3395,1.09936,12.915l0.39828,0.36948l20.70001,0.02984l0.40244-0.38429c0.45989-0.57286,0.46323-1.38741,0.00805-1.96402l-0.41049-0.40101L1.52136,10.54158z"
+         id="path20" />
+      <circle
+         fill="url(#jack-g19)"
+         cx="11.85015"
+         cy="11.92791"
+         r="8.73843"
+         id="circle21" />
+      <circle
+         fill="#1F1F1F"
+         cx="11.85015"
+         cy="11.92791"
+         r="8.16656"
+         id="circle22" />
+      <path
+         opacity="0.28"
+         fill="#404040"
+         d="M11.85015,4.29678c4.21318,0,7.62864,3.78218,7.62864,8.44773s-3.41546,9.28764-7.62864,9.28764s-7.62864-4.62209-7.62864-9.28764S7.63697,4.29678,11.85015,4.29678z"
+         id="path22" />
+      <circle
+         fill="url(#jack-g20)"
+         cx="11.85015"
+         cy="11.92798"
+         r="7.6312"
+         id="circle23" />
+      <circle
+         fill="#E0E0E0"
+         cx="11.85015"
+         cy="11.92798"
+         r="6.79996"
+         id="circle24" />
+      <g
+         opacity="0.43"
+         id="g26">
+        <path
+           fill="#404040"
+           d="M11.85016,4.74578c4.17474,0,7.56128,3.25714,7.62286,7.29614c0.00055-0.03833,0.00574-0.0755,0.00574-0.11395c0-4.2146-3.41541-7.63116-7.6286-7.63116S4.2215,7.71337,4.2215,11.92797c0,0.03845,0.00519,0.07562,0.00574,0.11395C4.28882,8.00292,7.67542,4.74578,11.85016,4.74578z"
+           id="path24" />
+        <path
+           opacity="0.28"
+           fill="#404040"
+           d="M4.22723,12.04192c-0.00055,0.03723-0.00574,0.07324-0.00574,0.1106c0,4.09058,3.41547,7.40668,7.62866,7.40668C7.67542,19.55919,4.28882,16.20342,4.22723,12.04192z"
+           id="path25" />
+        <path
+           opacity="0.28"
+           fill="#404040"
+           d="M11.85016,19.55919c4.2132,0,7.6286-3.3161,7.6286-7.40668c0-0.03735-0.00519-0.07336-0.00574-0.1106C19.41144,16.20342,16.0249,19.55919,11.85016,19.55919z"
+           id="path26" />
+      </g>
+      <circle
+         fill="#000000"
+         cx="11.85015"
+         cy="11.92791"
+         r="4.86733"
+         id="circle26" />
+    </symbol>
+    <symbol
+       id="SP4TAmbiPort"
+       viewBox="0 0 23.7 23.7">
+      <path
+         fill="url(#jack-g16)"
+         d="M11.85025,23.61541c-6.44467,0-11.68796-5.24279-11.68796-11.68697c0-6.44517,5.24329-11.68796,11.68796-11.68796s11.68747,5.24279,11.68747,11.68797C23.53772,18.37262,18.29493,23.61541,11.85025,23.61541z"
+         id="path19-amb" />
+      <circle
+         fill="url(#jack-g17)"
+         cx="11.85"
+         cy="11.93965"
+         r="11.10243"
+         id="circle19-amb" />
+      <circle
+         fill="#22A4E6"
+         cx="11.85"
+         cy="11.93965"
+         r="10.44346"
+         id="circle20-amb" />
+      <path
+         fill="url(#jack-g18)"
+         d="M1.52136,10.54158l-0.42968,0.41685C0.65175,11.5374,0.6549,12.3395,1.09936,12.915l0.39828,0.36948l20.70001,0.02984l0.40244-0.38429c0.45989-0.57286,0.46323-1.38741,0.00805-1.96402l-0.41049-0.40101L1.52136,10.54158z"
+         id="path20-amb" />
+      <circle
+         fill="url(#jack-g19)"
+         cx="11.85015"
+         cy="11.92791"
+         r="8.73843"
+         id="circle21-amb" />
+      <circle
+         fill="#1F1F1F"
+         cx="11.85015"
+         cy="11.92791"
+         r="8.16656"
+         id="circle22-amb" />
+      <path
+         opacity="0.28"
+         fill="#404040"
+         d="M11.85015,4.29678c4.21318,0,7.62864,3.78218,7.62864,8.44773s-3.41546,9.28764-7.62864,9.28764s-7.62864-4.62209-7.62864-9.28764S7.63697,4.29678,11.85015,4.29678z"
+         id="path22-amb" />
+      <circle
+         fill="url(#jack-g20)"
+         cx="11.85015"
+         cy="11.92798"
+         r="7.6312"
+         id="circle23-amb" />
+      <circle
+         fill="#E0E0E0"
+         cx="11.85015"
+         cy="11.92798"
+         r="6.79996"
+         id="circle24-amb" />
+      <g
+         opacity="0.43"
+         id="g26-amb">
+        <path
+           fill="#404040"
+           d="M11.85016,4.74578c4.17474,0,7.56128,3.25714,7.62286,7.29614c0.00055-0.03833,0.00574-0.0755,0.00574-0.11395c0-4.2146-3.41541-7.63116-7.6286-7.63116S4.2215,7.71337,4.2215,11.92797c0,0.03845,0.00519,0.07562,0.00574,0.11395C4.28882,8.00292,7.67542,4.74578,11.85016,4.74578z"
+           id="path24-amb" />
+        <path
+           opacity="0.28"
+           fill="#404040"
+           d="M4.22723,12.04192c-0.00055,0.03723-0.00574,0.07324-0.00574,0.1106c0,4.09058,3.41547,7.40668,7.62866,7.40668C7.67542,19.55919,4.28882,16.20342,4.22723,12.04192z"
+           id="path25-amb" />
+        <path
+           opacity="0.28"
+           fill="#404040"
+           d="M11.85016,19.55919c4.2132,0,7.6286-3.3161,7.6286-7.40668c0-0.03735-0.00519-0.07336-0.00574-0.1106C19.41144,16.20342,16.0249,19.55919,11.85016,19.55919z"
+           id="path26-amb" />
+      </g>
+      <circle
+         fill="#000000"
+         cx="11.85015"
+         cy="11.92791"
+         r="4.86733"
+         id="circle26-amb" />
+    </symbol>
+    <!-- SP4TButton_0.svg (released position) -->
+    <symbol id="SP4TButton" viewBox="0 0 20 20">
+      <circle cx="10" cy="10" r="9.6" fill="#15181d" />
+      <circle cx="10" cy="10" r="6.4" fill="#6C7380" />
+    </symbol>
+  </defs>
+  <g id="panel" inkscape:groupmode="layer" inkscape:label="Panel">
+    <rect id="background" x="0" y="0" width="71.12" height="128.5" fill="#d8dbdf" />
+    <!-- just under the top screws -->
+    <text id="title" x="35.56" y="9" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4.1" font-weight="700" text-anchor="middle" fill="#2b3038">SP<tspan fill="#22a4e6" id="title-accent">4</tspan>T · SPEAKERS OUT</text>
+    <!-- between the bottom screws -->
+    <text id="brand" x="35.56" y="125.958" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4" font-weight="700" text-anchor="middle" fill="#3a4049">\nu.na.tak\</text>
+    <!-- Screens (#0d1017): 3D view, layout preset name (LedDisplayChoice),
+         channel table (16 rows, 4 per page: channel number, AZ and ELEV
+         text fields, LFE toggle). Row states: speaker (AZ / ELEV values,
+         LFE "/"), LFE (AZ / ELEV "/", LFE "LFE"), unused (dim number, dim
+         dash placeholders). Their content is drawn by the module widget.
+         The page LEDs show the current page; all 4 pages are reachable. -->
+    <rect id="screen" x="1.728" y="11.500" width="45.600" height="34.039" rx="1.072" fill="#0d1017" />
+    <text x="24.528" y="51.600" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">LAYOUT</text>
+    <rect id="layout-screen" x="10.728" y="52.800" width="27.600" height="6.000" rx="0.8" fill="#0d1017" />
+    <path id="layout-prev-arrow" d="M 8.128,55.800 L 9.328,55.200 L 9.328,56.400 Z" style="fill:#737a83;stroke:none" />
+    <path id="layout-next-arrow" d="M 40.928,55.800 L 39.728,55.200 L 39.728,56.400 Z" style="fill:#737a83;stroke:none" />
+    <text x="5.228" y="69.000" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">CH</text>
+    <text x="16.428" y="69.000" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">AZ</text>
+    <text x="31.828" y="69.000" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">ELEV</text>
+    <text x="43.428" y="69.000" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">LFE</text>
+    <rect id="table-screen" x="1.728" y="70.400" width="45.600" height="29.600" rx="1.072" fill="#0d1017" />
+    <text x="8.756" y="107.400" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">AMB</text>
+    <text x="32.600" y="107.400" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">PAGE</text>
+    <path id="page-prev-arrow" d="M 17.900,114.000 L 19.100,113.400 L 19.100,114.600 Z" style="fill:#737a83;stroke:none" />
+    <path id="page-next-arrow" d="M 47.300,114.000 L 46.100,113.400 L 46.100,114.600 Z" style="fill:#737a83;stroke:none" />
+    <rect id="outputs-block" x="49.25" y="11.5" width="20.370" height="109.500" rx="1.374" ry="1.552" style="fill:#bbbec3;stroke:none" />
+    <text x="54.350" y="14.550" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">1</text>
+    <text x="64.600" y="14.550" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">2</text>
+    <text x="54.350" y="25.800" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">3</text>
+    <text x="64.600" y="25.800" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">4</text>
+    <text x="54.350" y="37.050" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">5</text>
+    <text x="64.600" y="37.050" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">6</text>
+    <text x="54.350" y="48.300" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">7</text>
+    <text x="64.600" y="48.300" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">8</text>
+    <text x="54.350" y="59.550" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">9</text>
+    <text x="64.600" y="59.550" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">10</text>
+    <text x="54.350" y="70.800" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">11</text>
+    <text x="64.600" y="70.800" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">12</text>
+    <text x="54.350" y="82.050" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">13</text>
+    <text x="64.600" y="82.050" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">14</text>
+    <text x="54.350" y="93.300" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">15</text>
+    <text x="64.600" y="93.300" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">16</text>
+    <text x="59.475" y="107.400" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">POLY</text>
+  </g>
+  <g id="components" inkscape:groupmode="layer" inkscape:label="Components">
+    <!-- Rack widgets (positions from the module source); not part of the exported panel. -->
+    <use id="screw-top-left" xlink:href="#ScrewSilver" x="5.08" y="0" width="5.08" height="5.08" />
+    <use id="screw-top-right" xlink:href="#ScrewSilver" x="60.96" y="0" width="5.08" height="5.08" />
+    <use id="screw-bottom-left" xlink:href="#ScrewSilver" x="5.08" y="123.42" width="5.08" height="5.08" />
+    <use id="screw-bottom-right" xlink:href="#ScrewSilver" x="60.96" y="123.42" width="5.08" height="5.08" />
+    <use id="prev-layout-param" xlink:href="#SP4TButton" x="1.832" y="53.154" width="5.292" height="5.292" />
+    <use id="next-layout-param" xlink:href="#SP4TButton" x="41.932" y="53.154" width="5.292" height="5.292" />
+    <use id="ambi-input" xlink:href="#SP4TAmbiPort" x="4.743" y="109.987" width="8.026" height="8.026" />
+    <use id="prev-page-param" xlink:href="#SP4TButton" x="19.954" y="111.354" width="5.292" height="5.292" />
+    <use id="next-page-param" xlink:href="#SP4TButton" x="39.954" y="111.354" width="5.292" height="5.292" />
+    <use id="ch1-output" xlink:href="#PJ301M" x="50.337" y="15.387" width="8.026" height="8.026" />
+    <use id="ch2-output" xlink:href="#PJ301M" x="60.587" y="15.387" width="8.026" height="8.026" />
+    <use id="ch3-output" xlink:href="#PJ301M" x="50.337" y="26.637" width="8.026" height="8.026" />
+    <use id="ch4-output" xlink:href="#PJ301M" x="60.587" y="26.637" width="8.026" height="8.026" />
+    <use id="ch5-output" xlink:href="#PJ301M" x="50.337" y="37.887" width="8.026" height="8.026" />
+    <use id="ch6-output" xlink:href="#PJ301M" x="60.587" y="37.887" width="8.026" height="8.026" />
+    <use id="ch7-output" xlink:href="#PJ301M" x="50.337" y="49.137" width="8.026" height="8.026" />
+    <use id="ch8-output" xlink:href="#PJ301M" x="60.587" y="49.137" width="8.026" height="8.026" />
+    <use id="ch9-output" xlink:href="#PJ301M" x="50.337" y="60.387" width="8.026" height="8.026" />
+    <use id="ch10-output" xlink:href="#PJ301M" x="60.587" y="60.387" width="8.026" height="8.026" />
+    <use id="ch11-output" xlink:href="#PJ301M" x="50.337" y="71.637" width="8.026" height="8.026" />
+    <use id="ch12-output" xlink:href="#PJ301M" x="60.587" y="71.637" width="8.026" height="8.026" />
+    <use id="ch13-output" xlink:href="#PJ301M" x="50.337" y="82.887" width="8.026" height="8.026" />
+    <use id="ch14-output" xlink:href="#PJ301M" x="60.587" y="82.887" width="8.026" height="8.026" />
+    <use id="ch15-output" xlink:href="#PJ301M" x="50.337" y="94.137" width="8.026" height="8.026" />
+    <use id="ch16-output" xlink:href="#PJ301M" x="60.587" y="94.137" width="8.026" height="8.026" />
+    <use id="poly-output" xlink:href="#PJ301M" x="55.462" y="109.987" width="8.026" height="8.026" />
+  </g>
+  <g id="leds" inkscape:groupmode="layer" inkscape:label="LEDs">
+    <circle id="page1-led" cx="27.500" cy="114.000" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="page2-led" cx="30.900" cy="114.000" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="page3-led" cx="34.300" cy="114.000" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="page4-led" cx="37.700" cy="114.000" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="ch1-led" cx="51.250" cy="13.550" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="ch2-led" cx="61.500" cy="13.550" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="ch3-led" cx="51.250" cy="24.800" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="ch4-led" cx="61.500" cy="24.800" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="ch5-led" cx="51.250" cy="36.050" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="ch6-led" cx="61.500" cy="36.050" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="ch7-led" cx="51.250" cy="47.300" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="ch8-led" cx="61.500" cy="47.300" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="ch9-led" cx="51.250" cy="58.550" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="ch10-led" cx="61.500" cy="58.550" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="ch11-led" cx="51.250" cy="69.800" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="ch12-led" cx="61.500" cy="69.800" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="ch13-led" cx="51.250" cy="81.050" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="ch14-led" cx="61.500" cy="81.050" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="ch15-led" cx="51.250" cy="92.300" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+    <circle id="ch16-led" cx="61.500" cy="92.300" r="0.567" style="fill:#fdc685;stroke:#23272e;stroke-width:0.0271" />
+  </g>
+</svg>

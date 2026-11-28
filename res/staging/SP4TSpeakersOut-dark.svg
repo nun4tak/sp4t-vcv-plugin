@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SP4T Speakers Out panel, dark theme. 14 HP. Units: mm.
+     Components layer holds VCV Rack placeholders (see
+     https://vcvrack.com/manual/Panel#Adding-components); it is
+     removed when the production panel is exported. -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="71.12mm" height="128.5mm" viewBox="0 0 71.12 128.5">
+  <defs id="component-defs">
+    <!-- ScrewSilver.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <!-- PJ301M.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <!-- SP4TButton_0.svg (released position) -->
+  </defs>
+  <g id="panel" inkscape:groupmode="layer" inkscape:label="Panel">
+    <rect id="background" x="0" y="0" width="71.12" height="128.5" fill="#2a2e35" />
+    <!-- just under the top screws -->
+    <text id="title" x="35.56" y="9" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4.1" font-weight="700" text-anchor="middle" fill="#e6e1cf">SP<tspan fill="#59c2ff" id="title-accent">4</tspan>T · SPEAKERS OUT</text>
+    <!-- between the bottom screws -->
+    <text id="brand" x="35.56" y="125.958" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4" font-weight="700" text-anchor="middle" fill="#bfbdb6">\nu.na.tak\</text>
+    <!-- Screens (#0d1017): 3D view, layout preset name (LedDisplayChoice),
+         channel table (16 rows, 4 per page: channel number, AZ and ELEV
+         text fields, LFE toggle). Row states: speaker (AZ / ELEV values,
+         LFE "/"), LFE (AZ / ELEV "/", LFE "LFE"), unused (dim number, dim
+         dash placeholders). Their content is drawn by the module widget.
+         The page LEDs show the current page; all 4 pages are reachable. -->
+    <rect id="screen" x="1.728" y="11.5" width="45.6" height="34.039" rx="1.072" fill="#0d1017" />
+    <text x="24.528" y="51.6" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">LAYOUT</text>
+    <rect id="layout-screen" x="10.728" y="52.8" width="27.6" height="6" rx="0.8" fill="#0d1017" />
+    <path id="layout-prev-arrow" d="M 8.128,55.8 L 9.328,55.2 L 9.328,56.4 Z" style="fill:#61676f;stroke:none" />
+    <path id="layout-next-arrow" d="M 40.928,55.8 L 39.728,55.2 L 39.728,56.4 Z" style="fill:#61676f;stroke:none" />
+    <text x="5.228" y="69" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">CH</text>
+    <text x="16.428" y="69" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">AZ</text>
+    <text x="31.828" y="69" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">ELEV</text>
+    <text x="43.428" y="69" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">LFE</text>
+    <rect id="table-screen" x="1.728" y="70.4" width="45.6" height="29.6" rx="1.072" fill="#0d1017" />
+    <text x="8.756" y="107.4" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">AMB</text>
+    <text x="32.6" y="107.4" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">PAGE</text>
+    <path id="page-prev-arrow" d="M 17.9,114 L 19.1,113.4 L 19.1,114.6 Z" style="fill:#61676f;stroke:none" />
+    <path id="page-next-arrow" d="M 47.3,114 L 46.1,113.4 L 46.1,114.6 Z" style="fill:#61676f;stroke:none" />
+    <rect id="outputs-block" x="49.25" y="11.5" width="20.37" height="109.5" rx="1.374" ry="1.552" style="fill:#4a5059;stroke:none" />
+    <text x="54.35" y="14.55" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">1</text>
+    <text x="64.6" y="14.55" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">2</text>
+    <text x="54.35" y="25.8" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">3</text>
+    <text x="64.6" y="25.8" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">4</text>
+    <text x="54.35" y="37.05" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">5</text>
+    <text x="64.6" y="37.05" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">6</text>
+    <text x="54.35" y="48.3" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">7</text>
+    <text x="64.6" y="48.3" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">8</text>
+    <text x="54.35" y="59.55" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">9</text>
+    <text x="64.6" y="59.55" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">10</text>
+    <text x="54.35" y="70.8" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">11</text>
+    <text x="64.6" y="70.8" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">12</text>
+    <text x="54.35" y="82.05" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">13</text>
+    <text x="64.6" y="82.05" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">14</text>
+    <text x="54.35" y="93.3" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">15</text>
+    <text x="64.6" y="93.3" style="font-weight:600;font-size:2.9px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">16</text>
+    <text x="59.475" y="107.4" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#bfbdb6">POLY</text>
+  </g>
+  <g id="components" inkscape:groupmode="layer" inkscape:label="components" style="display:none">
+    <circle id="prev-layout-param" inkscape:label="prev-layout-param" cx="4.478" cy="55.8" r="2.646" fill="#ff0000" />
+    <circle id="next-layout-param" inkscape:label="next-layout-param" cx="44.578" cy="55.8" r="2.646" fill="#ff0000" />
+    <circle id="ambi-input" inkscape:label="ambi-input" cx="8.756" cy="114" r="4.013" fill="#00ff00" />
+    <circle id="prev-page-param" inkscape:label="prev-page-param" cx="22.6" cy="114" r="2.646" fill="#ff0000" />
+    <circle id="next-page-param" inkscape:label="next-page-param" cx="42.6" cy="114" r="2.646" fill="#ff0000" />
+    <circle id="ch1-output" inkscape:label="ch1-output" cx="54.35" cy="19.4" r="4.013" fill="#0000ff" />
+    <circle id="ch2-output" inkscape:label="ch2-output" cx="64.6" cy="19.4" r="4.013" fill="#0000ff" />
+    <circle id="ch3-output" inkscape:label="ch3-output" cx="54.35" cy="30.65" r="4.013" fill="#0000ff" />
+    <circle id="ch4-output" inkscape:label="ch4-output" cx="64.6" cy="30.65" r="4.013" fill="#0000ff" />
+    <circle id="ch5-output" inkscape:label="ch5-output" cx="54.35" cy="41.9" r="4.013" fill="#0000ff" />
+    <circle id="ch6-output" inkscape:label="ch6-output" cx="64.6" cy="41.9" r="4.013" fill="#0000ff" />
+    <circle id="ch7-output" inkscape:label="ch7-output" cx="54.35" cy="53.15" r="4.013" fill="#0000ff" />
+    <circle id="ch8-output" inkscape:label="ch8-output" cx="64.6" cy="53.15" r="4.013" fill="#0000ff" />
+    <circle id="ch9-output" inkscape:label="ch9-output" cx="54.35" cy="64.4" r="4.013" fill="#0000ff" />
+    <circle id="ch10-output" inkscape:label="ch10-output" cx="64.6" cy="64.4" r="4.013" fill="#0000ff" />
+    <circle id="ch11-output" inkscape:label="ch11-output" cx="54.35" cy="75.65" r="4.013" fill="#0000ff" />
+    <circle id="ch12-output" inkscape:label="ch12-output" cx="64.6" cy="75.65" r="4.013" fill="#0000ff" />
+    <circle id="ch13-output" inkscape:label="ch13-output" cx="54.35" cy="86.9" r="4.013" fill="#0000ff" />
+    <circle id="ch14-output" inkscape:label="ch14-output" cx="64.6" cy="86.9" r="4.013" fill="#0000ff" />
+    <circle id="ch15-output" inkscape:label="ch15-output" cx="54.35" cy="98.15" r="4.013" fill="#0000ff" />
+    <circle id="ch16-output" inkscape:label="ch16-output" cx="64.6" cy="98.15" r="4.013" fill="#0000ff" />
+    <circle id="poly-output" inkscape:label="poly-output" cx="59.475" cy="114" r="4.013" fill="#0000ff" />
+    <circle id="ch1-led" inkscape:label="ch1-led" cx="51.25" cy="13.55" r="0.567" fill="#ff00ff" />
+    <circle id="ch2-led" inkscape:label="ch2-led" cx="61.5" cy="13.55" r="0.567" fill="#ff00ff" />
+    <circle id="ch3-led" inkscape:label="ch3-led" cx="51.25" cy="24.8" r="0.567" fill="#ff00ff" />
+    <circle id="ch4-led" inkscape:label="ch4-led" cx="61.5" cy="24.8" r="0.567" fill="#ff00ff" />
+    <circle id="ch5-led" inkscape:label="ch5-led" cx="51.25" cy="36.05" r="0.567" fill="#ff00ff" />
+    <circle id="ch6-led" inkscape:label="ch6-led" cx="61.5" cy="36.05" r="0.567" fill="#ff00ff" />
+    <circle id="ch7-led" inkscape:label="ch7-led" cx="51.25" cy="47.3" r="0.567" fill="#ff00ff" />
+    <circle id="ch8-led" inkscape:label="ch8-led" cx="61.5" cy="47.3" r="0.567" fill="#ff00ff" />
+    <circle id="ch9-led" inkscape:label="ch9-led" cx="51.25" cy="58.55" r="0.567" fill="#ff00ff" />
+    <circle id="ch10-led" inkscape:label="ch10-led" cx="61.5" cy="58.55" r="0.567" fill="#ff00ff" />
+    <circle id="ch11-led" inkscape:label="ch11-led" cx="51.25" cy="69.8" r="0.567" fill="#ff00ff" />
+    <circle id="ch12-led" inkscape:label="ch12-led" cx="61.5" cy="69.8" r="0.567" fill="#ff00ff" />
+    <circle id="ch13-led" inkscape:label="ch13-led" cx="51.25" cy="81.05" r="0.567" fill="#ff00ff" />
+    <circle id="ch14-led" inkscape:label="ch14-led" cx="61.5" cy="81.05" r="0.567" fill="#ff00ff" />
+    <circle id="ch15-led" inkscape:label="ch15-led" cx="51.25" cy="92.3" r="0.567" fill="#ff00ff" />
+    <circle id="ch16-led" inkscape:label="ch16-led" cx="61.5" cy="92.3" r="0.567" fill="#ff00ff" />
+    <circle id="page1-led" inkscape:label="page1-led" cx="27.5" cy="114" r="0.567" fill="#ff00ff" />
+    <circle id="page2-led" inkscape:label="page2-led" cx="30.9" cy="114" r="0.567" fill="#ff00ff" />
+    <circle id="page3-led" inkscape:label="page3-led" cx="34.3" cy="114" r="0.567" fill="#ff00ff" />
+    <circle id="page4-led" inkscape:label="page4-led" cx="37.7" cy="114" r="0.567" fill="#ff00ff" />
+  </g>
+</svg>

@@ -46,6 +46,7 @@ target_sources(${RACK_PLUGIN_LIB} PRIVATE
     src/AmbiStereoDecoder.cpp
     src/UhjEncoder.cpp
     src/AmbiMicPairDecoder.cpp
+    src/AmbiSpeakerDecoder.cpp
     src/AmbiBinauralDecoder.cpp
     src/AmbiRotator.cpp
     src/Decorrelator.cpp
@@ -67,7 +68,8 @@ target_sources(${RACK_PLUGIN_LIB} PRIVATE
     src/SP4TSplitInsert.cpp
     src/SP4TBlurSharp.cpp
     src/SP4TXY-MSOut.cpp
-    src/SP4TUhjOut.cpp)
+    src/SP4TUhjOut.cpp
+    src/SP4TSpeakersOut.cpp)
 
 target_link_libraries(${RACK_PLUGIN_LIB} PRIVATE saf)
 

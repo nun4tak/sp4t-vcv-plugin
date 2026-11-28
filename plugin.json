@@ -117,6 +117,13 @@
       "description": "Ambisonic Two-Channel UHJ Stereo Decoder",
       "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-uhj-out",
         "tags": ["Utility", "Polyphonic", "Panning"]
+    },
+    {
+      "slug": "SP4T-Speakers-Out",
+      "name": "SP4T Speakers Out",
+      "description": "Ambisonic Multi-Speaker Decoder",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-speakers-out",
+        "tags": ["Utility", "Polyphonic", "Panning"]
     }
   ]
 }

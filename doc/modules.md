@@ -279,6 +279,106 @@ untouched.
 - **Width**: 4 HP
 - **In**: AMB — **Out**: L, R
 
+### SP4T Speakers Out
+
+```{image} images/modules/SP4TSpeakersOut.svg
+:alt: SP4T Speakers Out
+:class: module-panel
+```
+
+*Decodes the sound field to a layout of up to 16 speakers.*
+
+A multi-speaker decoder: it turns the sound field into one signal per speaker
+of a real or virtual rig, with optional LFE channels. Each channel has its own
+jack, numbered 1 to 16, and all of them are on the **POLY** output as well, in
+the same order — that one carries as many channels as the highest one in use.
+
+The speaker positions are typed in, not modulated: there is no CV over them.
+To move a sound, modulate the sources going into an encoder
+([Source4 In](#sp4t-source4-in)) or turn the whole field with
+[Rotate](#sp4t-rotate). What this module gives instead is precision, through
+the table of angles on the panel and a set of common layouts.
+
+**LAYOUT** names the speaker layout and the buttons on either side step
+through the presets; clicking the name opens the list, which is also in the
+right-click menu. Editing anything afterwards shows "Custom".
+
+| Preset | Channels | |
+|---|---|---|
+| Stereo, LCR, Quad | 2, 3, 4 | the usual front pairs and a quadraphonic square |
+| 5.0, 5.1, 7.0, 7.1 | 5 to 8 | SMPTE channel order: L R C LFE Ls Rs … |
+| 5.1.4, 7.1.4 | 10, 12 | the same, with four height speakers at 45° |
+| Hexagon, Octagon, Ring 12, Ring 16 | 6 to 16 | horizontal rings, first speaker dead ahead |
+| Octahedron, Cube, Icosahedron | 6, 8, 12 | regular solids, for full-sphere rigs |
+
+The table below it holds the 16 channels, four at a time; **PAGE** turns to the
+next four and the LEDs between the buttons show where you are. Each row is one
+channel:
+
+- **AZ** and **ELEV** are the direction of the speaker, in degrees — azimuth
+  positive to the left, elevation positive upwards. Type a value and press
+  Enter. Setting one of the two on an unused channel sets the other to zero, so
+  that a row is never half filled in.
+- **LFE** turns the channel into an LFE feed, which has no direction of its
+  own. Click it, or press Space once it has the focus. Turning it off again
+  brings back the angles the channel had.
+- Emptying a field, or "Clear channel" in the row's right-click menu, gives the
+  channel up: it then shows `---` and stays silent, even when channels above it
+  are in use.
+
+Tab and Shift-Tab walk along the angle fields, skipping the LFE rows and
+turning the page at either end. Out-of-range values are clamped and anything
+unparsable goes back to what it was.
+
+The screen above shows where the speakers are, each labelled with its channel
+number; the LFE channels are listed in the corner instead, having no direction.
+The view modes of the right-click menu are the same as on the encoders.
+
+The decoder is designed with the
+[Spatial Audio Framework](https://github.com/leomccormack/Spatial_Audio_Framework),
+as SPARTA's AmbiDEC is, but it runs in the time domain and so adds no latency.
+Three methods are on the right-click menu:
+
+- **AllRAD** (the default) maps the field onto a dense virtual array and pans
+  that onto the real speakers with VBAP. The most forgiving of an irregular or
+  incomplete layout, and the one to keep unless there is a reason not to.
+- **EPAD** preserves the energy of the field, which suits a regular layout.
+- **SAD** is a sampling decoder — one virtual microphone per speaker. The
+  cheapest and the bluntest.
+
+**Max-rE weighting** (on by default) trades a little localisation sharpness
+for a steadier image away from the sweet spot. With dual-band decoding on it
+becomes one switch per band: the textbook arrangement weights the high band
+only, the ear taking its direction from energy up there and from amplitude
+further down.
+
+The decoding order is capped by what the layout can carry: a horizontal ring
+needs 2N+1 speakers for order N, a full-sphere rig (N+1)². A 3rd-order signal
+on a quad is decoded at 1st order, and the extra channels are simply not used.
+
+**Dual-band decoding** (off by default) splits the signal at the **crossover
+frequency** (200 to 1600 Hz, 800 by default) and decodes each half its own way:
+the low band with amplitude matching, which is what the ear uses for direction
+down there, the high band with energy matching. Each band also gets its own
+order and its own max-rE switch, so the low one can be left broad and the high
+one sharp. The split is a 4th-order Linkwitz-Riley crossover with no latency of
+its own; expect the per-speaker level of the low band to sit well below the
+high one, the low band being spread over more speakers on purpose.
+
+**LFE feed** decides what the LFE channels carry: silence by default, or the
+omni (W) channel through a 120 Hz low-pass. Every LFE channel carries the same
+signal.
+
+Levels follow the usual convention: a source at 5 V comes out below 5 V on
+every speaker, whatever the layout and order.
+
+For a rig of more than 16 speakers, or for bass management and distance
+compensation, decode outside of VCV Rack with dedicated tools instead.
+
+- **Width**: 14 HP
+- **In**: AMB — **Out**: 1 to 16, POLY
+- **Buttons**: previous / next layout, previous / next table page
+
 ## Processors
 
 Modules that act on the sound field as a whole (input: an ambisonic signal ---
