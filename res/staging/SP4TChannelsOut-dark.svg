@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- SP4T Speakers Out panel, dark theme. 14 HP. Units: mm.
+<!-- SP4T Channels Out panel, dark theme. 14 HP. Units: mm.
      Components layer holds VCV Rack placeholders (see
      https://vcvrack.com/manual/Panel#Adding-components); it is
      removed when the production panel is exported. -->
@@ -12,7 +12,7 @@
   <g id="panel" inkscape:groupmode="layer" inkscape:label="Panel">
     <rect id="background" x="0" y="0" width="71.12" height="128.5" fill="#2a2e35" />
     <!-- just under the top screws -->
-    <text id="title" x="35.56" y="9" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4.1" font-weight="700" text-anchor="middle" fill="#e6e1cf">SP<tspan fill="#59c2ff" id="title-accent">4</tspan>T · SPEAKERS OUT</text>
+    <text id="title" x="35.56" y="9" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4.1" font-weight="700" text-anchor="middle" fill="#e6e1cf">SP<tspan fill="#59c2ff" id="title-accent">4</tspan>T · CHANNELS OUT</text>
     <!-- between the bottom screws -->
     <text id="brand" x="35.56" y="125.958" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4" font-weight="700" text-anchor="middle" fill="#bfbdb6">\nu.na.tak\</text>
     <!-- Screens (#0d1017): 3D view, layout preset name (LedDisplayChoice),

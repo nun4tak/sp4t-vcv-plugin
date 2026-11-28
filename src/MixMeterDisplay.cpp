@@ -13,14 +13,14 @@ namespace sp4t {
 namespace {
 
 /** Colour of each input, Ayu dark: the orange of the sources of Source4 In,
- * the purple of the speakers of Speakers Out, and a green of its own. */
+ * the purple of the channel directions of Channels Out, and a green of its own. */
 const NVGcolor INPUT_COLOR[MixMeterDisplay::NUM_INPUTS] = {
 	nvgRGB(0xff, 0xb4, 0x54),
 	nvgRGB(0xd4, 0xbf, 0xff),
 	nvgRGB(0xaa, 0xd9, 0x4c),
 };
 
-/** Channels that carry nothing, as dim as the unused rows of Speakers Out. */
+/** Channels that carry nothing, as dim as the unused rows of Channels Out. */
 const NVGcolor UNUSED_COLOR = nvgRGB(0x4d, 0x53, 0x5c);
 
 /** Size of the input numbers, the same as every other screen label. */

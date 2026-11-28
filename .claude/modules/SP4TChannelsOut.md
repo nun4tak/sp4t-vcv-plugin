@@ -1,12 +1,14 @@
-# SP4TSpeakersOut Module
+# SP4TChannelsOut Module
 
 ## Description
 
-A multi-speaker Ambisonic decoder.
+A multi-channel Ambisonic decoder.
 
 The module takes an ambisonic input signal (polyphonic cable) and decodes it
-into up to 16 output channels, one per speaker of a real or virtual speaker
-layout, with optional LFE channels. Inspired by SPARTA's AmbiDEC
+into up to 16 output channels, one per direction of a layout, with optional
+LFE channels. A channel is a direction rather than a speaker as such: feeding
+a real or virtual rig is the usual use, but SAD, for one, points a virtual
+microphone along each direction instead of panning onto speakers. Inspired by SPARTA's AmbiDEC
 (https://leomccormack.github.io/sparta-site/docs/plugins/sparta-suite/#ambidec)
 and built on the same SAF decoder designs, but simpler: no binauralisation, no
 SOFA import, at most 16 channels, and no latency (purely time-domain processing,
@@ -63,7 +65,7 @@ signal outside of VCV Rack and decode it with dedicated tools in a DAW.
 
 ## Panel design
 
-The design of the panel is done in the SP4TSpeakersOut SVG files.
+The design of the panel is done in the SP4TChannelsOut SVG files.
 
 The panel has two parts:
 

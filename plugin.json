@@ -119,10 +119,10 @@
         "tags": ["Utility", "Polyphonic", "Panning"]
     },
     {
-      "slug": "SP4T-Speakers-Out",
-      "name": "SP4T Speakers Out",
-      "description": "Ambisonic Multi-Speaker Decoder",
-      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-speakers-out",
+      "slug": "SP4T-Channels-Out",
+      "name": "SP4T Channels Out",
+      "description": "Ambisonic Multi-Channel Decoder",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-channels-out",
         "tags": ["Utility", "Polyphonic", "Panning"]
     },
     {

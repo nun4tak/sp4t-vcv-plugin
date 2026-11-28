@@ -279,27 +279,33 @@ untouched.
 - **Width**: 4 HP
 - **In**: AMB — **Out**: L, R
 
-### SP4T Speakers Out
+### SP4T Channels Out
 
-```{image} images/modules/SP4TSpeakersOut.svg
-:alt: SP4T Speakers Out
+```{image} images/modules/SP4TChannelsOut.svg
+:alt: SP4T Channels Out
 :class: module-panel
 ```
 
-*Decodes the sound field to a layout of up to 16 speakers.*
+*Decodes the sound field to a layout of up to 16 output channels.*
 
-A multi-speaker decoder: it turns the sound field into one signal per speaker
-of a real or virtual rig, with optional LFE channels. Each channel has its own
-jack, numbered 1 to 16, and all of them are on the **POLY** output as well, in
-the same order — that one carries as many channels as the highest one in use.
+A multi-channel decoder: it turns the sound field into one signal per channel
+of a layout, with optional LFE channels. Each channel has its own jack,
+numbered 1 to 16, and all of them are on the **POLY** output as well, in the
+same order — that one carries as many channels as the highest one in use.
 
-The speaker positions are typed in, not modulated: there is no CV over them.
+A channel is a *direction*, not necessarily a speaker. Feeding a real or
+virtual rig is the usual use, and many of the layout presets are named after
+such rigs, but what each decoding method actually builds differs: AllRAD and EPAD
+pan the field onto the directions, while SAD points a virtual microphone along
+each of them. The channels are what they are made to drive.
+
+The channel directions are typed in, not modulated: there is no CV over them.
 To move a sound, modulate the sources going into an encoder
 ([Source4 In](#sp4t-source4-in)) or turn the whole field with
 [Rotate](#sp4t-rotate). What this module gives instead is precision, through
 the table of angles on the panel and a set of common layouts.
 
-**LAYOUT** names the speaker layout and the buttons on either side step
+**LAYOUT** names the layout and the buttons on either side step
 through the presets; clicking the name opens the list, which is also in the
 right-click menu. Editing anything afterwards shows "Custom".
 
@@ -307,15 +313,28 @@ right-click menu. Editing anything afterwards shows "Custom".
 |---|---|---|
 | Stereo, LCR, Quad | 2, 3, 4 | the usual front pairs and a quadraphonic square |
 | 5.0, 5.1, 7.0, 7.1 | 5 to 8 | SMPTE channel order: L R C LFE Ls Rs … |
-| 5.1.4, 7.1.4 | 10, 12 | the same, with four height speakers at 45° |
-| Hexagon, Octagon, Ring 12, Ring 16 | 6 to 16 | horizontal rings, first speaker dead ahead |
-| Octahedron, Cube, Icosahedron | 6, 8, 12 | regular solids, for full-sphere rigs |
+| 5.1.4, 7.1.4 | 10, 12 | the same, with four height channels at 45° |
+| Hexagon, Octagon, Ring 12, Ring 16 | 6 to 16 | horizontal rings, first channel dead ahead |
+| Tetrahedron, Octahedron, Cube, Icosahedron | 4, 6, 8, 12 | regular solids, for full-sphere rigs |
+| T-design 1 to 5 | 2, 4, 6, 12, 12 | spherical t-designs, every degree that fits in 16 channels |
+
+A spherical *t*-design spreads its directions so evenly that a decoder built
+on it is exact up to ambisonic order ⌊t/2⌋; degree 5 is the highest whose
+design fits in 16 channels, so these stop at 2nd order. Degree 1 is the
+degenerate pair, one channel ahead and one behind.
+
+Some presets hold the same layout under two names, which is the point of
+having both: the tetrahedron *is* the degree-2 design, and the degree-4 and
+degree-5 designs are the same twelve directions. **LAYOUT** keeps the name you
+picked until you change the layout. The octahedron and the degree-3 design are
+the same six directions but hand them to the channels in a different order, so
+those stay two layouts.
 
 The table below it holds the 16 channels, four at a time; **PAGE** turns to the
 next four and the LEDs between the buttons show where you are. Each row is one
 channel:
 
-- **AZ** and **ELEV** are the direction of the speaker, in degrees — azimuth
+- **AZ** and **ELEV** are the direction of the channel, in degrees — azimuth
   positive to the left, elevation positive upwards. Type a value and press
   Enter. Setting one of the two on an unused channel sets the other to zero, so
   that a row is never half filled in.
@@ -330,7 +349,7 @@ Tab and Shift-Tab walk along the angle fields, skipping the LFE rows and
 turning the page at either end. Out-of-range values are clamped and anything
 unparsable goes back to what it was.
 
-The screen above shows where the speakers are, each labelled with its channel
+The screen above shows where the channels point, each labelled with its
 number; the LFE channels are listed in the corner instead, having no direction.
 The view modes of the right-click menu are the same as on the encoders.
 
@@ -340,10 +359,11 @@ as SPARTA's AmbiDEC is, but it runs in the time domain and so adds no latency.
 Three methods are on the right-click menu:
 
 - **AllRAD** (the default) maps the field onto a dense virtual array and pans
-  that onto the real speakers with VBAP. The most forgiving of an irregular or
-  incomplete layout, and the one to keep unless there is a reason not to.
+  that onto the channels of the layout with VBAP. The most forgiving of an
+  irregular or incomplete layout, and the one to keep unless there is a reason
+  not to.
 - **EPAD** preserves the energy of the field, which suits a regular layout.
-- **SAD** is a sampling decoder — one virtual microphone per speaker. The
+- **SAD** is a sampling decoder — one virtual microphone per channel. The
   cheapest and the bluntest.
 
 **Max-rE weighting** (on by default) trades a little localisation sharpness
@@ -353,7 +373,7 @@ only, the ear taking its direction from energy up there and from amplitude
 further down.
 
 The decoding order is capped by what the layout can carry: a horizontal ring
-needs 2N+1 speakers for order N, a full-sphere rig (N+1)². A 3rd-order signal
+needs 2N+1 channels for order N, a full-sphere layout (N+1)². A 3rd-order signal
 on a quad is decoded at 1st order, and the extra channels are simply not used.
 
 **Dual-band decoding** (off by default) splits the signal at the **crossover
@@ -362,17 +382,17 @@ the low band with amplitude matching, which is what the ear uses for direction
 down there, the high band with energy matching. Each band also gets its own
 order and its own max-rE switch, so the low one can be left broad and the high
 one sharp. The split is a 4th-order Linkwitz-Riley crossover with no latency of
-its own; expect the per-speaker level of the low band to sit well below the
-high one, the low band being spread over more speakers on purpose.
+its own; expect the per-channel level of the low band to sit well below the
+high one, the low band being spread over more channels on purpose.
 
 **LFE feed** decides what the LFE channels carry: silence by default, or the
 omni (W) channel through a 120 Hz low-pass. Every LFE channel carries the same
 signal.
 
 Levels follow the usual convention: a source at 5 V comes out below 5 V on
-every speaker, whatever the layout and order.
+every channel, whatever the layout and order.
 
-For a rig of more than 16 speakers, or for bass management and distance
+For a rig of more than 16 channels, or for bass management and distance
 compensation, decode outside of VCV Rack with dedicated tools instead.
 
 - **Width**: 14 HP

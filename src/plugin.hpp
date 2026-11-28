@@ -23,5 +23,5 @@ extern Model* modelNun4takSP4TSplitInsert;
 extern Model* modelNun4takSP4TBlurSharp;
 extern Model* modelNun4takSP4TXYMSOut;
 extern Model* modelNun4takSP4TUhjOut;
-extern Model* modelNun4takSP4TSpeakersOut;
+extern Model* modelNun4takSP4TChannelsOut;
 extern Model* modelNun4takSP4TMix3;

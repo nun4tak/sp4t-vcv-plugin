@@ -77,12 +77,24 @@ struct LayoutPreset {
  *
  * The surround layouts follow the SMPTE channel order (L R C LFE Ls Rs ...),
  * not the order of SAF's own arrays, which differs from one preset to the
- * next. The rings start with a speaker dead ahead, as ambisonic rings usually
+ * next. The rings start with a channel dead ahead, as ambisonic rings usually
  * do, while the surround layouts start with a front pair.
+ *
+ * The t-designs are SAF's arrays verbatim, order included: every degree whose
+ * design fits in 16 channels. Some of them are a layout another preset also
+ * offers under a friendlier name -- the degree-2 design is the tetrahedron --
+ * which is deliberate: `lastPreset` keeps whichever name was picked.
  */
 const float TOP = 45.f;
-const float CUBE_ELEV = 35.264f;
+/** Elevation of a cube vertex, which the tetrahedron takes four of, to the
+ * precision of SAF's own t-design. */
+const float CUBE_ELEV = 35.2643897f;
 const float ICO_ELEV = 26.565f;
+
+/** The degree-4 and degree-5 t-designs of SAF are the same twelve points. */
+const float TD5_A = 31.7174744f;
+const float TD5_B = 58.2825256f;
+const float TD5_C = 121.7174744f;
 
 const LayoutPreset LAYOUT_PRESETS[] = {
 	{"Stereo", 2, {{30, 0, false}, {-30, 0, false}}},
@@ -180,6 +192,9 @@ const LayoutPreset LAYOUT_PRESETS[] = {
 	  {-67.5f, 0, false},
 	  {-45, 0, false},
 	  {-22.5f, 0, false}}},
+	{"Tetrahedron",
+	 4,
+	 {{45, CUBE_ELEV, false}, {-45, -CUBE_ELEV, false}, {135, -CUBE_ELEV, false}, {-135, CUBE_ELEV, false}}},
 	{"Octahedron",
 	 6,
 	 {{0, 0, false}, {90, 0, false}, {180, 0, false}, {-90, 0, false}, {0, 90, false}, {0, -90, false}}},
@@ -207,6 +222,41 @@ const LayoutPreset LAYOUT_PRESETS[] = {
 	  {-108, -ICO_ELEV, false},
 	  {-36, -ICO_ELEV, false},
 	  {0, -90, false}}},
+	{"T-design 1", 2, {{0, 0, false}, {180, 0, false}}},
+	{"T-design 2",
+	 4,
+	 {{45, CUBE_ELEV, false}, {-45, -CUBE_ELEV, false}, {135, -CUBE_ELEV, false}, {-135, CUBE_ELEV, false}}},
+	{"T-design 3",
+	 6,
+	 {{0, 0, false}, {180, 0, false}, {90, 0, false}, {-90, 0, false}, {0, 90, false}, {0, -90, false}}},
+	{"T-design 4",
+	 12,
+	 {{0, -TD5_A, false},
+	  {-TD5_B, 0, false},
+	  {-90, TD5_B, false},
+	  {0, TD5_A, false},
+	  {-TD5_C, 0, false},
+	  {90, -TD5_B, false},
+	  {180, -TD5_A, false},
+	  {TD5_C, 0, false},
+	  {90, TD5_B, false},
+	  {180, TD5_A, false},
+	  {TD5_B, 0, false},
+	  {-90, -TD5_B, false}}},
+	{"T-design 5",
+	 12,
+	 {{0, -TD5_A, false},
+	  {-TD5_B, 0, false},
+	  {-90, TD5_B, false},
+	  {0, TD5_A, false},
+	  {-TD5_C, 0, false},
+	  {90, -TD5_B, false},
+	  {180, -TD5_A, false},
+	  {TD5_C, 0, false},
+	  {90, TD5_B, false},
+	  {180, TD5_A, false},
+	  {TD5_B, 0, false},
+	  {-90, -TD5_B, false}}},
 };
 
 const int NUM_LAYOUT_PRESETS = (int) (sizeof(LAYOUT_PRESETS) / sizeof(LAYOUT_PRESETS[0]));
@@ -215,8 +265,8 @@ const int DEFAULT_PRESET = 2; // Quad
 
 // -------------------------------------------------------------- screen ----
 
-/** Ayu purple, telling the speakers of this module apart from the orange
- * sources of the encoders. */
+/** Ayu purple, telling the channel directions of this module apart from the
+ * orange sources of the encoders. */
 const NVGcolor SPEAKER_COLOR = nvgRGB(0xd4, 0xbf, 0xff);
 /** Ayu orange, for the LFE channels. */
 const NVGcolor LFE_COLOR = nvgRGB(0xff, 0xb4, 0x54);
@@ -244,7 +294,7 @@ const float VALUE_FONT_SIZE = 10.5f;
 } // namespace
 
 
-struct SP4TSpeakersOut : Module {
+struct SP4TChannelsOut : Module {
 	enum ParamId {
 		PREV_LAYOUT_PARAM,
 		NEXT_LAYOUT_PARAM,
@@ -277,6 +327,11 @@ struct SP4TSpeakersOut : Module {
 
 	/** Page of the channel table on show: UI state, saved with the patch. */
 	int page = 0;
+	/** The preset the layout was last loaded from. Several presets can hold
+	 * the same layout (the tetrahedron is the degree-2 t-design), so the one
+	 * that was picked is remembered rather than looked up, and the display
+	 * keeps its name until the channels no longer match it. */
+	int lastPreset = DEFAULT_PRESET;
 	/** sp4t::AmbisonicDisplay::ViewMode */
 	int viewMode = sp4t::AmbisonicDisplay::VIEW_XY_Z_PROJECTIONS;
 	int lfeMode = LFE_SILENT;
@@ -307,7 +362,7 @@ struct SP4TSpeakersOut : Module {
 	bool workerDirty = false;
 	bool workerQuit = false;
 
-	SP4TSpeakersOut() {
+	SP4TChannelsOut() {
 		config(PARAMS_LEN, INPUTS_LEN, OUTPUTS_LEN, LIGHTS_LEN);
 
 		configButton(PREV_LAYOUT_PARAM, "Previous layout");
@@ -332,7 +387,7 @@ struct SP4TSpeakersOut : Module {
 			             (float) (NUM_CHANNEL_STATES - 1),
 			             (float) state,
 			             string::f("Channel %d", c + 1),
-			             {"Unused", "Speaker", "LFE", "LFE"});
+			             {"Unused", "Directional", "LFE", "LFE"});
 
 			// A layout is typed in, not rolled: "Randomize" leaves it alone.
 			paramQuantities[CH_AZ_PARAM + c]->randomizeEnabled = false;
@@ -351,10 +406,10 @@ struct SP4TSpeakersOut : Module {
 		controlDivider.setDivision(16);
 		lightDivider.setDivision(256);
 
-		worker = std::thread(&SP4TSpeakersOut::workerLoop, this);
+		worker = std::thread(&SP4TChannelsOut::workerLoop, this);
 	}
 
-	~SP4TSpeakersOut() {
+	~SP4TChannelsOut() {
 		{
 			std::lock_guard<std::mutex> lock(workerMutex);
 			workerQuit = true;
@@ -429,6 +484,7 @@ struct SP4TSpeakersOut : Module {
 	void onReset(const ResetEvent& e) override {
 		Module::onReset(e);
 		page = 0;
+		lastPreset = DEFAULT_PRESET;
 		viewMode = sp4t::AmbisonicDisplay::VIEW_XY_Z_PROJECTIONS;
 		lfeMode = LFE_SILENT;
 
@@ -527,6 +583,7 @@ struct SP4TSpeakersOut : Module {
 	json_t* dataToJson() override {
 		json_t* rootJ = json_object();
 		json_object_set_new(rootJ, "page", json_integer(page));
+		json_object_set_new(rootJ, "lastPreset", json_integer(lastPreset));
 		json_object_set_new(rootJ, "viewMode", json_integer(viewMode));
 		json_object_set_new(rootJ, "lfeMode", json_integer(lfeMode));
 		json_object_set_new(rootJ, "method", json_integer(options.method));
@@ -545,6 +602,9 @@ struct SP4TSpeakersOut : Module {
 		json_t* pageJ = json_object_get(rootJ, "page");
 		if (pageJ)
 			page = math::clamp((int) json_integer_value(pageJ), 0, NUM_PAGES - 1);
+		json_t* lastPresetJ = json_object_get(rootJ, "lastPreset");
+		if (lastPresetJ)
+			lastPreset = math::clamp((int) json_integer_value(lastPresetJ), -1, NUM_LAYOUT_PRESETS - 1);
 		json_t* viewModeJ = json_object_get(rootJ, "viewMode");
 		if (viewModeJ)
 			viewMode = math::clamp((int) json_integer_value(viewModeJ), 0, sp4t::AmbisonicDisplay::VIEW_MODES_LEN - 1);
@@ -585,7 +645,7 @@ struct SP4TSpeakersOut : Module {
 namespace {
 
 /** State of a channel; without a module (the browser) the default layout. */
-int channelState(SP4TSpeakersOut* module, int channel) {
+int channelState(SP4TChannelsOut* module, int channel) {
 	if (module)
 		return module->getChannelState(channel);
 	const LayoutPreset& preset = LAYOUT_PRESETS[DEFAULT_PRESET];
@@ -595,9 +655,9 @@ int channelState(SP4TSpeakersOut* module, int channel) {
 }
 
 /** Angle of a channel; without a module, the default layout's. */
-float channelAngle(SP4TSpeakersOut* module, int channel, bool elevation) {
+float channelAngle(SP4TChannelsOut* module, int channel, bool elevation) {
 	if (module)
-		return module->params[(elevation ? SP4TSpeakersOut::CH_ELEV_PARAM : SP4TSpeakersOut::CH_AZ_PARAM) + channel]
+		return module->params[(elevation ? SP4TChannelsOut::CH_ELEV_PARAM : SP4TChannelsOut::CH_AZ_PARAM) + channel]
 		    .getValue();
 	const LayoutPreset& preset = LAYOUT_PRESETS[DEFAULT_PRESET];
 	if (channel >= preset.numChannels)
@@ -605,41 +665,50 @@ float channelAngle(SP4TSpeakersOut* module, int channel, bool elevation) {
 	return elevation ? preset.channels[channel].elevation : preset.channels[channel].azimuth;
 }
 
-/** Index of the preset the channels match, or -1 for a custom layout. */
-int matchingPreset(SP4TSpeakersOut* module) {
+/** Whether the channels hold the layout of preset `p`. */
+bool presetMatches(SP4TChannelsOut* module, int p) {
+	const LayoutPreset& preset = LAYOUT_PRESETS[p];
+	bool match = true;
+	for (int c = 0; c < NUM_CHANNELS && match; c++) {
+		int state = module->getChannelState(c);
+		if (c >= preset.numChannels) {
+			match = state == CHANNEL_UNUSED;
+			continue;
+		}
+		if (preset.channels[c].lfe) {
+			match = isLfe(state);
+			continue;
+		}
+		if (state != CHANNEL_SPEAKER) {
+			match = false;
+			continue;
+		}
+		match =
+			std::fabs(module->params[SP4TChannelsOut::CH_AZ_PARAM + c].getValue() - preset.channels[c].azimuth) < 0.05f
+		    && std::fabs(module->params[SP4TChannelsOut::CH_ELEV_PARAM + c].getValue() - preset.channels[c].elevation)
+		           < 0.05f;
+	}
+	return match;
+}
+
+/** Index of the preset the channels match, or -1 for a custom layout.
+ *
+ * The preset the layout was loaded from wins, so that picking one of two
+ * presets holding the same layout shows the name that was picked. */
+int matchingPreset(SP4TChannelsOut* module) {
 	if (!module)
 		return DEFAULT_PRESET;
+	if (module->lastPreset >= 0 && module->lastPreset < NUM_LAYOUT_PRESETS && presetMatches(module, module->lastPreset))
+		return module->lastPreset;
 	for (int p = 0; p < NUM_LAYOUT_PRESETS; p++) {
-		const LayoutPreset& preset = LAYOUT_PRESETS[p];
-		bool match = true;
-		for (int c = 0; c < NUM_CHANNELS && match; c++) {
-			int state = module->getChannelState(c);
-			if (c >= preset.numChannels) {
-				match = state == CHANNEL_UNUSED;
-				continue;
-			}
-			if (preset.channels[c].lfe) {
-				match = isLfe(state);
-				continue;
-			}
-			if (state != CHANNEL_SPEAKER) {
-				match = false;
-				continue;
-			}
-			match = std::fabs(module->params[SP4TSpeakersOut::CH_AZ_PARAM + c].getValue() - preset.channels[c].azimuth)
-			            < 0.05f
-			        && std::fabs(module->params[SP4TSpeakersOut::CH_ELEV_PARAM + c].getValue()
-			                     - preset.channels[c].elevation)
-			               < 0.05f;
-		}
-		if (match)
+		if (presetMatches(module, p))
 			return p;
 	}
 	return -1;
 }
 
 /** Sets a parameter, recording the change so that it can be undone. */
-void setParam(SP4TSpeakersOut* module, int paramId, float value, history::ComplexAction* group) {
+void setParam(SP4TChannelsOut* module, int paramId, float value, history::ComplexAction* group) {
 	float oldValue = module->params[paramId].getValue();
 	if (oldValue == value)
 		return;
@@ -654,7 +723,7 @@ void setParam(SP4TSpeakersOut* module, int paramId, float value, history::Comple
 }
 
 /** Runs `edit` over the parameters as one undoable step. */
-template <typename Edit> void editChannels(SP4TSpeakersOut* module, const std::string& name, const Edit& edit) {
+template <typename Edit> void editChannels(SP4TChannelsOut* module, const std::string& name, const Edit& edit) {
 	history::ComplexAction* group = new history::ComplexAction;
 	group->name = name;
 	edit(group);
@@ -664,26 +733,27 @@ template <typename Edit> void editChannels(SP4TSpeakersOut* module, const std::s
 		APP->history->push(group);
 }
 
-void applyPreset(SP4TSpeakersOut* module, int index) {
+void applyPreset(SP4TChannelsOut* module, int index) {
 	if (!module || index < 0 || index >= NUM_LAYOUT_PRESETS)
 		return;
 	const LayoutPreset& preset = LAYOUT_PRESETS[index];
+	module->lastPreset = index;
 	editChannels(module, string::f("load %s layout", preset.name), [&](history::ComplexAction* group) {
 		for (int c = 0; c < NUM_CHANNELS; c++) {
 			bool used = c < preset.numChannels;
 			int state = !used ? CHANNEL_UNUSED : (preset.channels[c].lfe ? CHANNEL_LFE : CHANNEL_SPEAKER);
-			setParam(module, SP4TSpeakersOut::CH_AZ_PARAM + c, used ? preset.channels[c].azimuth : 0.f, group);
-			setParam(module, SP4TSpeakersOut::CH_ELEV_PARAM + c, used ? preset.channels[c].elevation : 0.f, group);
-			setParam(module, SP4TSpeakersOut::CH_STATE_PARAM + c, (float) state, group);
+			setParam(module, SP4TChannelsOut::CH_AZ_PARAM + c, used ? preset.channels[c].azimuth : 0.f, group);
+			setParam(module, SP4TChannelsOut::CH_ELEV_PARAM + c, used ? preset.channels[c].elevation : 0.f, group);
+			setParam(module, SP4TChannelsOut::CH_STATE_PARAM + c, (float) state, group);
 		}
 	});
 }
 
-void clearChannel(SP4TSpeakersOut* module, int channel) {
+void clearChannel(SP4TChannelsOut* module, int channel) {
 	if (!module)
 		return;
 	editChannels(module, "clear channel", [&](history::ComplexAction* group) {
-		setParam(module, SP4TSpeakersOut::CH_STATE_PARAM + channel, (float) CHANNEL_UNUSED, group);
+		setParam(module, SP4TChannelsOut::CH_STATE_PARAM + channel, (float) CHANNEL_UNUSED, group);
 	});
 }
 
@@ -729,7 +799,7 @@ struct SpeakerTable;
  * and an unparsable one goes back to what it was.
  */
 struct AngleField : LedDisplayTextField {
-	SP4TSpeakersOut* module = nullptr;
+	SP4TChannelsOut* module = nullptr;
 	SpeakerTable* table = nullptr;
 	int channel = 0;
 	bool elevation = false;
@@ -746,10 +816,10 @@ struct AngleField : LedDisplayTextField {
 	bool focused() const { return APP->event->selectedWidget == this; }
 
 	int angleParam() const {
-		return (elevation ? SP4TSpeakersOut::CH_ELEV_PARAM : SP4TSpeakersOut::CH_AZ_PARAM) + channel;
+		return (elevation ? SP4TChannelsOut::CH_ELEV_PARAM : SP4TChannelsOut::CH_AZ_PARAM) + channel;
 	}
 	int otherParam() const {
-		return (elevation ? SP4TSpeakersOut::CH_AZ_PARAM : SP4TSpeakersOut::CH_ELEV_PARAM) + channel;
+		return (elevation ? SP4TChannelsOut::CH_AZ_PARAM : SP4TChannelsOut::CH_ELEV_PARAM) + channel;
 	}
 	float limit() const { return elevation ? 90.f : 180.f; }
 
@@ -794,12 +864,12 @@ struct AngleField : LedDisplayTextField {
 
 		value = math::clamp(value, -limit(), limit());
 		bool wasUnused = state() == CHANNEL_UNUSED;
-		editChannels(module, "set speaker angle", [&](history::ComplexAction* group) {
+		editChannels(module, "set channel angle", [&](history::ComplexAction* group) {
 			setParam(module, angleParam(), value, group);
 			// A row is never half set: the other angle starts at zero.
 			if (wasUnused) {
 				setParam(module, otherParam(), 0.f, group);
-				setParam(module, SP4TSpeakersOut::CH_STATE_PARAM + channel, (float) CHANNEL_SPEAKER, group);
+				setParam(module, SP4TChannelsOut::CH_STATE_PARAM + channel, (float) CHANNEL_SPEAKER, group);
 			}
 		});
 		refresh();
@@ -850,7 +920,7 @@ struct AngleField : LedDisplayTextField {
 
 /** The LFE toggle of a row: a click, or Space once the cell has the focus. */
 struct LfeCell : OpaqueWidget {
-	SP4TSpeakersOut* module = nullptr;
+	SP4TChannelsOut* module = nullptr;
 	SpeakerTable* table = nullptr;
 	int channel = 0;
 
@@ -870,7 +940,7 @@ struct LfeCell : OpaqueWidget {
 			next = current == CHANNEL_LFE_WITH_ANGLES ? CHANNEL_SPEAKER : CHANNEL_UNUSED;
 
 		editChannels(module, "toggle LFE channel", [&](history::ComplexAction* group) {
-			setParam(module, SP4TSpeakersOut::CH_STATE_PARAM + channel, (float) next, group);
+			setParam(module, SP4TChannelsOut::CH_STATE_PARAM + channel, (float) next, group);
 		});
 	}
 
@@ -883,7 +953,7 @@ struct LfeCell : OpaqueWidget {
 /** One row of the channel table: the channel number, its two angles and its
  * LFE toggle. A row is bound to a channel, which changes with the page. */
 struct TableRow : OpaqueWidget {
-	SP4TSpeakersOut* module = nullptr;
+	SP4TChannelsOut* module = nullptr;
 	SpeakerTable* table = nullptr;
 	int channel = 0;
 	AngleField* azField = nullptr;
@@ -909,10 +979,10 @@ struct TableRow : OpaqueWidget {
 
 /** The channel table: four rows on the page the module is showing. */
 struct SpeakerTable : widget::Widget {
-	SP4TSpeakersOut* module = nullptr;
+	SP4TChannelsOut* module = nullptr;
 	TableRow* rows[ROWS_PER_PAGE] = {};
 
-	SpeakerTable(SP4TSpeakersOut* module) : module(module) {
+	SpeakerTable(SP4TChannelsOut* module) : module(module) {
 		box.pos = mm2px(Vec(TABLE_X, TABLE_Y));
 		box.size = mm2px(Vec(TABLE_W, TABLE_H));
 
@@ -1126,7 +1196,7 @@ void TableRow::onButton(const ButtonEvent& e) {
 		ui::Menu* menu = createMenu();
 		menu->addChild(createMenuLabel(string::f("Channel %d", channel + 1)));
 		int target = channel;
-		SP4TSpeakersOut* m = module;
+		SP4TChannelsOut* m = module;
 		menu->addChild(createMenuItem("Clear channel", "", [m, target]() { clearChannel(m, target); }));
 		e.consume(this);
 		return;
@@ -1155,7 +1225,7 @@ void TableRow::drawLayer(const DrawArgs& args, int layer) {
 
 /** Name of the layout on show, which opens the preset menu when clicked. */
 struct LayoutChoice : LedDisplayChoice {
-	SP4TSpeakersOut* module = nullptr;
+	SP4TChannelsOut* module = nullptr;
 
 	LayoutChoice() {
 		fontPath = asset::system(sp4t::LABEL_FONT);
@@ -1174,8 +1244,8 @@ struct LayoutChoice : LedDisplayChoice {
 		if (!module)
 			return;
 		ui::Menu* menu = createMenu();
-		menu->addChild(createMenuLabel("Speaker layout"));
-		SP4TSpeakersOut* m = module;
+		menu->addChild(createMenuLabel("Layout"));
+		SP4TChannelsOut* m = module;
 		int current = matchingPreset(m);
 		for (int p = 0; p < NUM_LAYOUT_PRESETS; p++)
 			menu->addChild(createCheckMenuItem(
@@ -1192,7 +1262,7 @@ struct LayoutChoice : LedDisplayChoice {
 
 /** The LFE note and the empty-layout message, over the 3D view. */
 struct ScreenNote : TransparentWidget {
-	SP4TSpeakersOut* module = nullptr;
+	SP4TChannelsOut* module = nullptr;
 
 	void drawLayer(const DrawArgs& args, int layer) override {
 		if (layer != 1) {
@@ -1217,7 +1287,7 @@ struct ScreenNote : TransparentWidget {
 			               sp4t::SCREEN_TEXT_DIM,
 			               NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE,
 			               box.size.div(2),
-			               "NO SPEAKER CHANNEL");
+			               "NO DIRECTIONAL CHANNEL");
 		if (!lfe.empty())
 			sp4t::drawText(args.vg,
 			               sp4t::LABEL_FONT,
@@ -1232,15 +1302,15 @@ struct ScreenNote : TransparentWidget {
 };
 
 
-struct SP4TSpeakersOutWidget : ModuleWidget {
+struct SP4TChannelsOutWidget : ModuleWidget {
 	sp4t::AmbisonicDisplay* display;
 	SpeakerTable* table;
 	dsp::BooleanTrigger buttonTriggers[4];
 
-	SP4TSpeakersOutWidget(SP4TSpeakersOut* module) {
+	SP4TChannelsOutWidget(SP4TChannelsOut* module) {
 		setModule(module);
-		setPanel(createPanel(asset::plugin(pluginInstance, "res/SP4TSpeakersOut.svg"),
-		                     asset::plugin(pluginInstance, "res/SP4TSpeakersOut-dark.svg")));
+		setPanel(createPanel(asset::plugin(pluginInstance, "res/SP4TChannelsOut.svg"),
+		                     asset::plugin(pluginInstance, "res/SP4TChannelsOut-dark.svg")));
 
 		addChild(createWidget<ThemedScrew>(Vec(RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<ThemedScrew>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));
@@ -1263,20 +1333,20 @@ struct SP4TSpeakersOutWidget : ModuleWidget {
 		layout->box.size = mm2px(Vec(27.6, 6.0));
 		addChild(layout);
 
-		addParam(createParamCentered<SP4TButton>(mm2px(Vec(4.478, 55.8)), module, SP4TSpeakersOut::PREV_LAYOUT_PARAM));
-		addParam(createParamCentered<SP4TButton>(mm2px(Vec(44.578, 55.8)), module, SP4TSpeakersOut::NEXT_LAYOUT_PARAM));
+		addParam(createParamCentered<SP4TButton>(mm2px(Vec(4.478, 55.8)), module, SP4TChannelsOut::PREV_LAYOUT_PARAM));
+		addParam(createParamCentered<SP4TButton>(mm2px(Vec(44.578, 55.8)), module, SP4TChannelsOut::NEXT_LAYOUT_PARAM));
 
 		table = new SpeakerTable(module);
 		addChild(table);
 
-		addInput(createInputCentered<SP4TAmbiPort>(mm2px(Vec(8.756, 114.0)), module, SP4TSpeakersOut::AMBI_INPUT));
-		addParam(createParamCentered<SP4TButton>(mm2px(Vec(22.6, 114.0)), module, SP4TSpeakersOut::PREV_PAGE_PARAM));
-		addParam(createParamCentered<SP4TButton>(mm2px(Vec(42.6, 114.0)), module, SP4TSpeakersOut::NEXT_PAGE_PARAM));
+		addInput(createInputCentered<SP4TAmbiPort>(mm2px(Vec(8.756, 114.0)), module, SP4TChannelsOut::AMBI_INPUT));
+		addParam(createParamCentered<SP4TButton>(mm2px(Vec(22.6, 114.0)), module, SP4TChannelsOut::PREV_PAGE_PARAM));
+		addParam(createParamCentered<SP4TButton>(mm2px(Vec(42.6, 114.0)), module, SP4TChannelsOut::NEXT_PAGE_PARAM));
 
 		static const float pageX[NUM_PAGES] = {27.5f, 30.9f, 34.3f, 37.7f};
 		for (int p = 0; p < NUM_PAGES; p++) {
 			SP4TSignalLight* light = createLightCentered<SP4TSignalLight>(
-				mm2px(Vec(pageX[p], 114.0)), module, SP4TSpeakersOut::PAGE_LED_LIGHT + p);
+				mm2px(Vec(pageX[p], 114.0)), module, SP4TChannelsOut::PAGE_LED_LIGHT + p);
 			light->haloSpread = 1.5f;
 			addChild(light);
 		}
@@ -1286,28 +1356,28 @@ struct SP4TSpeakersOutWidget : ModuleWidget {
 			float x = (c % 2) ? 64.6f : 54.35f;
 			float ledX = (c % 2) ? 61.5f : 51.25f;
 			float y = 19.4f + (c / 2) * 11.25f;
-			addOutput(createOutputCentered<ThemedPJ301MPort>(mm2px(Vec(x, y)), module, SP4TSpeakersOut::CH_OUTPUT + c));
+			addOutput(createOutputCentered<ThemedPJ301MPort>(mm2px(Vec(x, y)), module, SP4TChannelsOut::CH_OUTPUT + c));
 			addChild(createLightCentered<SP4TSignalLight>(
-				mm2px(Vec(ledX, 13.55f + (c / 2) * 11.25f)), module, SP4TSpeakersOut::CH_LED_LIGHT + c));
+				mm2px(Vec(ledX, 13.55f + (c / 2) * 11.25f)), module, SP4TChannelsOut::CH_LED_LIGHT + c));
 		}
 
 		addOutput(
-			createOutputCentered<ThemedPJ301MPort>(mm2px(Vec(59.475, 114.0)), module, SP4TSpeakersOut::POLY_OUTPUT));
+			createOutputCentered<ThemedPJ301MPort>(mm2px(Vec(59.475, 114.0)), module, SP4TChannelsOut::POLY_OUTPUT));
 	}
 
 	/** The panel buttons are read here rather than in the audio thread: they
 	 * turn the page and load layouts, which belongs to the UI (and, for a
 	 * layout, to the undo history). */
 	void step() override {
-		SP4TSpeakersOut* module = getModule<SP4TSpeakersOut>();
+		SP4TChannelsOut* module = getModule<SP4TChannelsOut>();
 		if (module) {
-			if (buttonTriggers[0].process(module->params[SP4TSpeakersOut::PREV_LAYOUT_PARAM].getValue() > 0.f))
+			if (buttonTriggers[0].process(module->params[SP4TChannelsOut::PREV_LAYOUT_PARAM].getValue() > 0.f))
 				stepPreset(module, -1);
-			if (buttonTriggers[1].process(module->params[SP4TSpeakersOut::NEXT_LAYOUT_PARAM].getValue() > 0.f))
+			if (buttonTriggers[1].process(module->params[SP4TChannelsOut::NEXT_LAYOUT_PARAM].getValue() > 0.f))
 				stepPreset(module, 1);
-			if (buttonTriggers[2].process(module->params[SP4TSpeakersOut::PREV_PAGE_PARAM].getValue() > 0.f))
+			if (buttonTriggers[2].process(module->params[SP4TChannelsOut::PREV_PAGE_PARAM].getValue() > 0.f))
 				table->setPage((module->page + NUM_PAGES - 1) % NUM_PAGES);
-			if (buttonTriggers[3].process(module->params[SP4TSpeakersOut::NEXT_PAGE_PARAM].getValue() > 0.f))
+			if (buttonTriggers[3].process(module->params[SP4TChannelsOut::NEXT_PAGE_PARAM].getValue() > 0.f))
 				table->setPage((module->page + 1) % NUM_PAGES);
 
 			display->viewMode = module->viewMode;
@@ -1326,7 +1396,7 @@ struct SP4TSpeakersOutWidget : ModuleWidget {
 	}
 
 	/** Steps through the presets, starting at either end from a custom layout. */
-	void stepPreset(SP4TSpeakersOut* module, int delta) {
+	void stepPreset(SP4TChannelsOut* module, int delta) {
 		int current = matchingPreset(module);
 		int next;
 		if (current < 0)
@@ -1337,10 +1407,10 @@ struct SP4TSpeakersOutWidget : ModuleWidget {
 	}
 
 	void appendContextMenu(Menu* menu) override {
-		SP4TSpeakersOut* module = getModule<SP4TSpeakersOut>();
+		SP4TChannelsOut* module = getModule<SP4TChannelsOut>();
 
 		menu->addChild(new MenuSeparator);
-		menu->addChild(createSubmenuItem("Speaker layout", "", [=](Menu* sub) {
+		menu->addChild(createSubmenuItem("Layout", "", [=](Menu* sub) {
 			int current = matchingPreset(module);
 			for (int p = 0; p < NUM_LAYOUT_PRESETS; p++)
 				sub->addChild(createCheckMenuItem(
@@ -1446,4 +1516,4 @@ struct SP4TSpeakersOutWidget : ModuleWidget {
 };
 
 
-Model* modelNun4takSP4TSpeakersOut = createModel<SP4TSpeakersOut, SP4TSpeakersOutWidget>("SP4T-Speakers-Out");
+Model* modelNun4takSP4TChannelsOut = createModel<SP4TChannelsOut, SP4TChannelsOutWidget>("SP4T-Channels-Out");

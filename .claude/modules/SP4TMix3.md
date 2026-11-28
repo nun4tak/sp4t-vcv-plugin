@@ -61,13 +61,13 @@ The screen shows one vertical bar per ambisonic channel and per input, in the
 color of the input (Ayu dark):
 
 - input 1: orange `#FFB454` (as the sources of Source4 In)
-- input 2: purple `#D4BFFF` (as the speakers of Speakers Out)
+- input 2: purple `#D4BFFF` (as the channel directions of Channels Out)
 - input 3: green `#AAD94C`
 
 Bars use a dB scale from -48 to 0 dB, with faint grid lines every 12 dB (the
 shared `SCREEN_GRID` color) and no dB labels. The channels an input does not
 carry, or all the channels of an unpatched input, are drawn as short flat dashes
-(`UNUSED_COLOR` of Speakers Out), so that the order of each input can be read
+(`UNUSED_COLOR` of Channels Out), so that the order of each input can be read
 at a glance. Ticks separate the orders (ACN channels 0 | 1-3 | 4-8 | 9-15), and
 the order numbers 0 to 3 are drawn below them.
 
