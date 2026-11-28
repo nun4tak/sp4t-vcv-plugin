@@ -54,6 +54,7 @@ target_sources(${RACK_PLUGIN_LIB} PRIVATE
     src/AmbisonicDisplay.cpp
     src/RotationDisplay.cpp
     src/MicPatternDisplay.cpp
+    src/MixMeterDisplay.cpp
     src/SP4TStereoIn.cpp
     src/SP4TStereoOut.cpp
     src/SP4TEarsOut.cpp
@@ -69,7 +70,8 @@ target_sources(${RACK_PLUGIN_LIB} PRIVATE
     src/SP4TBlurSharp.cpp
     src/SP4TXY-MSOut.cpp
     src/SP4TUhjOut.cpp
-    src/SP4TSpeakersOut.cpp)
+    src/SP4TSpeakersOut.cpp
+    src/SP4TMix3.cpp)
 
 target_link_libraries(${RACK_PLUGIN_LIB} PRIVATE saf)
 

@@ -124,6 +124,13 @@
       "description": "Ambisonic Multi-Speaker Decoder",
       "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-speakers-out",
         "tags": ["Utility", "Polyphonic", "Panning"]
+    },
+    {
+      "slug": "SP4T-Mix3",
+      "name": "SP4T Mix3",
+      "description": "Ambisonic 3-Input Mixer",
+      "manualUrl": "https://sp4t.nun4tak.net/modules.html#sp4t-mix3",
+        "tags": ["Utility", "Polyphonic", "Mixer"]
     }
   ]
 }

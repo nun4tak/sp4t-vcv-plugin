@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SP4T Mix 3 panel, light theme. 8 HP. Units: mm.
+     Components layer holds VCV Rack placeholders (see
+     https://vcvrack.com/manual/Panel#Adding-components); it is
+     removed when the production panel is exported. -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" version="1.1" width="40.64mm" height="128.5mm" viewBox="0 0 40.64 128.5" id="svg8">
+  <sodipodi:namedview id="namedview8" inkscape:document-units="mm" />
+  <defs id="component-defs">
+    <!-- ScrewSilver.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <!-- SP4TAmbiPort.svg (PJ301M with the Ayu-blue outer ring) -->
+    <!-- PJ301M.svg (VCV Rack Component Library, CC BY-NC 4.0) -->
+    <!-- SP4TRoundLargeKnob_bg.svg + SP4TRoundLargeKnob.svg (indicator at the default, centered position) -->
+    <!-- SP4TRoundSmallKnob_bg.svg + SP4TRoundSmallKnob.svg (indicator at the default, centered position) -->
+  </defs>
+  <g id="panel" inkscape:groupmode="layer" inkscape:label="Panel">
+    <rect id="background" x="0" y="0" width="40.64" height="128.5" fill="#d8dbdf" />
+    <!-- just under the top screws -->
+    <text id="title" x="20.32" y="9" style="font-weight:bold;font-size:4.1px;font-family:'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif;text-anchor:middle;fill:#2b3038">SP<tspan fill="#22a4e6" id="title-accent">4</tspan>T · MIX3</text>
+    <!-- between the bottom screws -->
+    <text id="brand" x="20.32" y="125.958" font-family="'Rounded Mplus 1c', 'Arial Rounded MT Bold', sans-serif" font-size="4" font-weight="700" text-anchor="middle" fill="#3a4049">\nu.na.tak\</text>
+    <rect id="screen" x="1.728" y="11.5" width="37.294" height="34.039" rx="0.844" fill="#0d1017" />
+    <rect id="output-bg" x="28.078" y="102.6" width="10.048" height="18.7" rx="0.809" ry="1.552" fill="#bbbfc3" />
+    <text id="out-label" x="33.102" y="108.4" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">AMB</text>
+    <text id="slot-label-1" x="7.647" y="51.575" style="font-weight:600;font-size:4.0005px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.162;text-anchor:middle;fill:#3a4049">1</text>
+    <g id="level-arc-1" transform="matrix(0.9,0,0,0.9,-28.5629,9.9164)">
+      <path d="m 36.9655,59.95 a 6.417,6.417 0 1 1 6.535,0" style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
+    </g>
+    <g id="trim-arc-1" transform="matrix(0.91074573,0,0,0.91074573,-13.1599,4.7776)">
+      <path d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0" style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
+    </g>
+    <path id="cv-line-1a" d="m 7.647,64.823 v 1.924" style="fill:none;stroke:#737a83;stroke-width:0.264583px" />
+    <path id="cv-line-1b" d="m 7.647,75.561 v 1.6128" style="fill:none;stroke:#737a83;stroke-width:0.264583px" />
+    <text id="in-label-1" x="7.647" y="90.6" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">AMB</text>
+    <text id="slot-label-2" x="20.32" y="51.575" style="font-weight:600;font-size:4.0005px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.162;text-anchor:middle;fill:#3a4049">2</text>
+    <g id="level-arc-2" transform="matrix(0.9,0,0,0.9,-15.8899,9.9164)">
+      <path d="m 36.9655,59.95 a 6.417,6.417 0 1 1 6.535,0" style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
+    </g>
+    <g id="trim-arc-2" transform="matrix(0.91074573,0,0,0.91074573,-0.4869,4.7776)">
+      <path d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0" style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
+    </g>
+    <path id="cv-line-2a" d="m 20.32,64.823 v 1.924" style="fill:none;stroke:#737a83;stroke-width:0.264583px" />
+    <path id="cv-line-2b" d="m 20.32,75.561 v 1.6128" style="fill:none;stroke:#737a83;stroke-width:0.264583px" />
+    <text id="in-label-2" x="20.32" y="90.6" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">AMB</text>
+    <text id="slot-label-3" x="33.102" y="51.575" style="font-weight:600;font-size:4.0005px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.162;text-anchor:middle;fill:#3a4049">3</text>
+    <g id="level-arc-3" transform="matrix(0.9,0,0,0.9,-3.1079,9.9164)">
+      <path d="m 36.9655,59.95 a 6.417,6.417 0 1 1 6.535,0" style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
+    </g>
+    <g id="trim-arc-3" transform="matrix(0.91074573,0,0,0.91074573,12.2951,4.7776)">
+      <path d="m 20.712,76.773 a 4.19,4.19 0 1 1 4.268,0" style="fill:none;stroke:#737a83;stroke-width:0.3;stroke-linecap:round" />
+    </g>
+    <path id="cv-line-3a" d="m 33.102,64.823 v 1.924" style="fill:none;stroke:#737a83;stroke-width:0.264583px" />
+    <path id="cv-line-3b" d="m 33.102,75.561 v 1.6128" style="fill:none;stroke:#737a83;stroke-width:0.264583px" />
+    <text id="in-label-3" x="33.102" y="90.6" style="font-weight:600;font-size:3.3px;font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;letter-spacing:0.2;text-anchor:middle;fill:#3a4049">AMB</text>
+  </g>
+  <g id="components" inkscape:groupmode="layer" inkscape:label="components" style="display:none">
+    <circle id="level-1-param" inkscape:label="level-1-param" cx="7.647" cy="58.9" r="5.054" fill="#ff0000" />
+    <circle id="level-1-cv-param" inkscape:label="level-1-cv-param" cx="7.646" cy="71.416" r="3.084" fill="#ff0000" />
+    <circle id="level-1-cv-input" inkscape:label="level-1-cv-input" cx="7.647" cy="81.894" r="4.013" fill="#00ff00" />
+    <circle id="ambi-1-input" inkscape:label="ambi-1-input" cx="7.647" cy="96.6" r="4.013" fill="#00ff00" />
+    <circle id="level-2-param" inkscape:label="level-2-param" cx="20.32" cy="58.9" r="5.055" fill="#ff0000" />
+    <circle id="level-2-cv-param" inkscape:label="level-2-cv-param" cx="20.321" cy="71.416" r="3.084" fill="#ff0000" />
+    <circle id="level-2-cv-input" inkscape:label="level-2-cv-input" cx="20.32" cy="81.894" r="4.013" fill="#00ff00" />
+    <circle id="ambi-2-input" inkscape:label="ambi-2-input" cx="20.32" cy="96.6" r="4.013" fill="#00ff00" />
+    <circle id="level-3-param" inkscape:label="level-3-param" cx="33.102" cy="58.9" r="5.054" fill="#ff0000" />
+    <circle id="level-3-cv-param" inkscape:label="level-3-cv-param" cx="33.102" cy="71.416" r="3.084" fill="#ff0000" />
+    <circle id="level-3-cv-input" inkscape:label="level-3-cv-input" cx="33.102" cy="81.894" r="4.013" fill="#00ff00" />
+    <circle id="ambi-3-input" inkscape:label="ambi-3-input" cx="33.102" cy="96.6" r="4.013" fill="#00ff00" />
+    <circle id="ambi-output" inkscape:label="ambi-output" cx="33.102" cy="114.6" r="4.013" fill="#0000ff" />
+  </g>
+</svg>

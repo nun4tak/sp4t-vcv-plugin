@@ -140,6 +140,7 @@ which contain information across more than one axis (figure 1).
 
 ### Utilities
 
+- **SP4T Mix3** — Mixes up to three ambisonic signals into one.
 - **SP4T Gain** — A gain per ambisonic channel.
 - **SP4T Mute** — A mute per ambisonic channel.
 - **SP4T Split Insert** — Two effect inserts, one for the omni part of the field and one for the rest.

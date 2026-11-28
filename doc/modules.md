@@ -476,9 +476,57 @@ also has no effect on a 1st-order ambisonic signal.
 
 ## Utilities
 
-Utility modules to split, merge or process (groups of) ambisonic channels
-independently of each other. Some modules accept any polyphonic cable (not
-necessarily carrying an ambisonic signal).
+Utility modules to mix whole sound fields, and to split, merge or process
+(groups of) ambisonic channels independently of each other. Some modules accept
+any polyphonic cable (not necessarily carrying an ambisonic signal).
+
+### SP4T Mix3
+
+```{image} images/modules/SP4TMix3.svg
+:alt: SP4T Mix3
+:class: module-panel
+```
+
+*Ambisonic mixer for up to three input signals.*
+
+Sums up to three sound fields into one. Ambisonic signals are linear, so mixing
+them is a channel-by-channel weighted sum: what comes out is the sound field
+holding all the sources of the three inputs, at their own positions.
+
+One column per input, each with its **level** knob, a **CV** input and its trim
+(the CV attenuator above the jack). The gain of an input is
+
+    level x clamp(trim x CV / 10 V, 0, 1)
+
+The level knob tops out at unity — there is no boost — so the CV can only bring
+an input down from where the knob sits, and three inputs at full level cannot
+push the sum beyond the sum of what came in. The CV input is unipolar (0 to
+10 V) and reads 10 V when nothing is patched, which is why the trim on its own
+also works as a second attenuator. A level is a plain scalar on every channel
+of its input, so it changes the loudness of that field and never its spatial
+image; it cannot go negative, which would flip the polarity of a whole field.
+
+Inputs of different orders mix freely: the output carries the highest order of
+the patched inputs, and the channels a lower-order input does not have count as
+zero. An unpatched input is skipped altogether.
+
+The screen is a hint rather than a meter: one bar per ambisonic channel and per
+input, in the colour of the input, on a 48 dB scale with a faint line every
+12 dB. Ticks and the numbers 0 to 3 under them mark where each ambisonic order
+starts, and the channels an input does not carry are drawn as flat dashes, so
+the order of each input can be read at a glance. The right-click menu picks how
+the bars are grouped:
+
+- **Group by ambisonic channel** (the default) gives each ambisonic channel a
+  group of three thin bars, with the level of the output laid over the group as
+  a thin tick.
+- **Group by ambisonic input** gives each input a row of 16 bars, introduced by
+  its number.
+
+- **Width**: 8 HP
+- **In**: AMB 1-3, LEVEL CV 1-3 — **Out**: AMB
+- **Knobs**: LEVEL per input (0 to 1x, default 1x), each with a CV input and a
+  trim (0 to 100%, default 100%)
 
 ### SP4T Gain
 
