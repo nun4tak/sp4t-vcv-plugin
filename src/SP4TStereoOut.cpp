@@ -37,6 +37,10 @@ struct SP4TStereoOut : Module {
 	/** Peak of the output signals since the last light update. */
 	float peaks[2] = {0.f, 0.f};
 
+	/** Set while the decoding is skipped, i.e. while there is nothing to
+	 * decode. */
+	bool idle = false;
+
 	SP4TStereoOut() {
 		config(PARAMS_LEN, INPUTS_LEN, OUTPUTS_LEN, LIGHTS_LEN);
 		configParam(SPREAD_PARAM, 0.f, 90.f, 45.f, "Spread", "°");
@@ -57,6 +61,7 @@ struct SP4TStereoOut : Module {
 	void onReset(const ResetEvent& e) override {
 		Module::onReset(e);
 		crudeMode = false;
+		idle = false;
 		decoder.reset();
 		updateControls();
 	}
@@ -73,8 +78,34 @@ struct SP4TStereoOut : Module {
 	}
 
 	void process(const ProcessArgs& args) override {
-		if (controlDivider.process())
+		// Decoding starts as soon as there is something to decode, whether or
+		// not an output is patched, so that the LEDs answer the input. This is
+		// what every decoder of the plugin does.
+		bool connected = inputs[AMBI_INPUT].isConnected();
+
+		// The controls are read even while the module sits unpatched, and again
+		// the moment a cable is plugged back in, so that the decoder does not
+		// wait for the next tick.
+		if (controlDivider.process() || (idle && connected))
 			updateControls();
+
+		if (!connected) {
+			if (!idle) {
+				idle = true;
+				// The gains in force when the module is patched back in are the
+				// ones its controls ask for, not the ones it was interpolating
+				// through when it was unpatched.
+				decoder.reset();
+				outputs[LEFT_OUTPUT].setVoltage(0.f);
+				outputs[RIGHT_OUTPUT].setVoltage(0.f);
+				for (int i = 0; i < 2; i++) {
+					peaks[i] = 0.f;
+					lights[LEFT_LED_LIGHT + i].setBrightness(0.f);
+				}
+			}
+			return;
+		}
+		idle = false;
 
 		float in[sp4t::AmbiStereoDecoder::MAX_NUM_SH] = {};
 		for (int c = 0; c < decoder.getNumSH(); c++)

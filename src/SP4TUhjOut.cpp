@@ -39,8 +39,8 @@ struct SP4TUhjOut : Module {
 	/** Peak of the output signals since the last light update. */
 	float peaks[2] = {0.f, 0.f};
 
-	/** Set while the encoding is skipped, i.e. while there is nothing to encode
-	 * or nowhere to send it. */
+	/** Set while the encoding is skipped, i.e. while there is nothing to
+	 * encode. */
 	bool idle = false;
 	/** Samples of the allpass tail left to encode before going idle. */
 	int flushSamples = 0;
@@ -71,8 +71,10 @@ struct SP4TUhjOut : Module {
 	}
 
 	void process(const ProcessArgs& args) override {
-		bool connected = inputs[AMBI_INPUT].isConnected()
-		                 && (outputs[LEFT_OUTPUT].isConnected() || outputs[RIGHT_OUTPUT].isConnected());
+		// Encoding starts as soon as there is something to encode, whether or
+		// not an output is patched, so that the LEDs answer the input. This is
+		// what every decoder of the plugin does.
+		bool connected = inputs[AMBI_INPUT].isConnected();
 
 		// Keep encoding until the tail of the allpass chains has rung out, so
 		// that unplugging a cable does not cut the output short. Rack clears

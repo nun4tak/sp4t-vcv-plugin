@@ -115,8 +115,10 @@ struct SP4TXYMSOut : Module {
 	}
 
 	void process(const ProcessArgs& args) override {
-		bool connected = inputs[AMBI_INPUT].isConnected()
-		                 && (outputs[LEFT_OUTPUT].isConnected() || outputs[RIGHT_OUTPUT].isConnected());
+		// Decoding starts as soon as there is something to decode, whether or
+		// not an output is patched, so that the LEDs answer the input. This is
+		// what every decoder of the plugin does.
+		bool connected = inputs[AMBI_INPUT].isConnected();
 
 		// The controls are read even while the module sits unpatched, so that
 		// the screen follows them, and again the moment a cable is plugged
